@@ -1,5 +1,5 @@
 --- credit.lua – filter to 
---- https://github.com/..
+--- https://github.com/estedeahora/guri/tree/main/files/filters/credit.lua
 --- Copyright: © 2023 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 

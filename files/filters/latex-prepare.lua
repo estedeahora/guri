@@ -1,5 +1,5 @@
 --- author-list.lua – filter to obtain first two author names or "First et al"
---- https://github.com/..
+--- https://github.com/estedeahora/guri/tree/main/files/filters/author-list.lua
 --- Copyright: © 2023 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 

@@ -1,5 +1,5 @@
---- author-to-canonical.lua –     -- Autores a forma canónica (como se consigue con el filtro scholarly-metadata.lua). https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata
---- https://github.com/..
+--- author-to-canonical.lua – Autores a forma canónica (como se consigue con el filtro scholarly-metadata.lua). https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata
+--- https://github.com/estedeahora/guri/tree/main/files/filters/author-to-canonical.lua
 --- Copyright: © 2023 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 

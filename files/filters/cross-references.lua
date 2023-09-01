@@ -1,5 +1,5 @@
 --- cross-references.lua – filter to add cross-references from flags
---- https://github.com/...
+--- https://github.com/estedeahora/guri/tree/main/files/filters/cross-references.lua
 --- Copyright: © 2023 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
