@@ -1,0 +1,12 @@
+standalone: true
+
+wrap: none
+
+citeproc: true
+
+template: ../.files/template/template.html5
+
+metadata-files:
+  - ../.files/pandoc/html_metadata.yaml
+  - ../.files/journal/_journal.yaml
+  - article.yaml

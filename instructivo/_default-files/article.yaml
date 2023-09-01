@@ -1,0 +1,75 @@
+# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
+
+article:
+  heading:                  # Presentación / Dossier / Espacio Abierto / Urbanidades / Novedades / Nota editorial
+  type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+                            # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id:             # Identificador digital electrónico    
+  doi: 
+  # art-access-id:          # Este número lo otorga Redalyc
+  # fpage:                  # Página inicial
+  # lpage:                  # Página final
+
+# Datos del artículo (español)
+title_es: 
+subtitle_es: 
+
+abstract_es: |
+  colocar abstract en español.
+
+keyword_es: 
+  - kw1
+  - kw2
+  
+# Datos del artículo (inglés)
+title_en: 
+
+abstract_en: |
+  colocar abstract en inglés
+
+keyword_en: 
+  - kw1
+  - kw2
+
+# Sólo para Novedades
+book_info:                  #
+
+# Datos de autores (un bloque por autor)
+author:
+  - given-names: 
+    surname: 
+    email: 
+    orcid: 
+    cor-id: yes               # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+      - aff1
+      # - aff2
+  # - given-names:
+  #   surname: 
+  #   email: 
+  #   orcid: 
+  #   # cor-id: yes             # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+  #   affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+  #     - aff1
+
+affiliation:
+  - id: aff1
+    organization: CONICET
+    country-code: AR              # https://www.nationsonline.org/oneworld/country_code_list.htm
+  # - id: aff2
+  #   organization:
+  #   country-code: 
+
+# Datos de recepción del artículo
+history:
+  - type: received
+    day: 
+    month: 
+    year: 
+  - type: accepted
+    day: 
+    month: 
+    year: 
+
+# TODO    Averiguar cómo incorporar AoP (online first). 
+# TODO    Ver si el campo date no debe moverse a este archivo con publicación continua
