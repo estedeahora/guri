@@ -1,4 +1,4 @@
-# Gurí: Gestor Unificado de formatos para Revistas de Investigación <a href="https://github.com/estedeahora/guri"><img src="instructivo/guri_logo.png" align="right" height="138" /></a>
+# Gurí: Gestor Unificado de formatos para Revistas de Investigación <a href="https://github.com/estedeahora/guri"><img src="instructivo/figures/guri_logo.png" align="right" height="138" /></a>
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
