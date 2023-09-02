@@ -29,7 +29,7 @@ source("scripts/GURI_00_fx.R", encoding = "UTF-8")
 #   * Diferencia artículos según tipo
 art <- GURI_listfiles(path_issue) 
 
-GURI(art$art_path[1], art$art_id[1], verbose = T)
-GURI(art$art_path[2], art$art_id[2], verbose = T)
+GURI(art$art_path[1], art$art_id[1], verbose = F)
+GURI(art$art_path[2], art$art_id[2], verbose = F)
   
   
