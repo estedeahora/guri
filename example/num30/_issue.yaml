@@ -1,0 +1,10 @@
+
+issue: 30
+# volume:
+
+date:
+  type: pub
+  # day:                    # Utilizar cuando haya prepublicación continua
+  # month:
+  year: 2023
+  season: Julio-Diciembre                  # Julio-Diciembre / Enero-Junio

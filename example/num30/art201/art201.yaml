@@ -1,0 +1,63 @@
+article:
+  heading:  Presentación    # Presentación / Dossier / Espacio Abierto / Urbanidades / Novedades / ...
+  type: introduction        # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+                            # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id: 020201      # Identificador digital electrónico    
+  doi: 10.1177/004209802311733
+  # art-access-id:          # Este número lo otorga Redalyc
+  # publisher-id:           # REVISAR ESTE PUNTO. NO SE SI PUEDE IR ID DIGITAL DE PUB CONTINUA. HAY CAMBIOS CON 1.2
+  # fpage:                  # Página inicial
+  # lpage:                  # Página final
+# Datos del artículo (español)
+title_es: Presentación del Dossier \#16
+subtitle_es: Ciudad, ambiente y pandemia. Hacia una reconceptualización del colapso ecológico
+
+# abstract_es: |
+#   colocar abstract en español
+
+# keyword_es: 
+#   - kw1
+#   - kw2
+  
+# Datos del artículo (inglés)
+title_en: "Presentation of Dossier #16. City, environment and pandemic. Towards a reconceptualization of ecological collapse."
+
+# abstract_en: |
+#   colocar abstract en inglés
+
+# keyword_en: 
+#   - kw1
+#   - kw2
+
+# Datos de autores
+author:
+  - given-names: María Gabriela
+    surname: Merlinsky 
+    email: gabriela.merlinsky@gmail.com
+    orcid: 0000-0001-9343-8658
+    cor-id: yes               # si no es autor de correspondencia comentar
+    affiliation: 
+      - aff1
+  - given-names: Melina
+    surname: Tobías
+    email: melina.tobias@gmail.com
+    orcid: 0000-0003-0901-8285
+    # cor-id: yes               # si no es autor de correspondencia comentar
+    affiliation: 
+      - aff1
+  
+affiliation:
+  - id: aff1
+    organization: CONICET
+    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
+
+# Datos de recepción del artículo
+# history:
+  # - type: received
+  #   day: 10
+  #   month: 08
+  #   year: 2023
+  # - type: accepted
+  #   day: 15
+  #   month: 09
+  #   year: 2023
