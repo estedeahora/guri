@@ -46,33 +46,29 @@ $to_header$
 \AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
 
 % define comando blfootnote para nota sin numeración
-% OPCION 1
-% \makeatletter
-% \def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
-% \makeatother
-% OPCION 3
-% \NewDocumentCommand{\blfootnote}{ m }{{%
-%   \RenewDocumentCommand{\thefootnote}{}{\roman{footnote}}% roman{0} = empty
-%   \footnotetext[0]{\hspace*{-1.8em}#1}% Undo 1.8em indent
-% }}%
-% OPCION 4 con footmisc
-% \usepackage[hang,flushmargin]{footmisc} 
-
 \newcommand\blfootnote[1]{%
     \begingroup%
 \let\thefootnote\relax\footnotetext{\hspace{0.3em}#1}%
 \endgroup}%
 
-%%%% Encabezados de páginas %%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+% Encabezados de páginas 
+\usepackage[headsepline]{scrlayer-scrpage}
+\clearpairofpagestyles
 
-\fancyhead{} % clear all header fields
-\fancyhead[L]{\sffamily{$author_header$}} 
-\fancyhead[R]{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
+\ihead{\sffamily{$author_header$}}
+\ohead{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
 
-\fancyfoot{} % clear all footer fields
-\fancyfoot[R]{\thepage}
+\ofoot{\pagemark}
+
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+%
+% \fancyhead{} % clear all header fields
+% \fancyhead[L]{\sffamily{$author_header$}} 
+% \fancyhead[R]{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
+%
+% \fancyfoot{} % clear all footer fields
+% \fancyfoot[R]{\thepage}
 
 %%%% Página de título 
 \makeatletter
