@@ -261,6 +261,12 @@
   # GURI() ---------------------------------------------------- 
   
   GURI <- function(art_path, art_name, verbose = F){
+    pandoc_req <- "3.1.7"
+    if(!pandoc_version() >= pandoc_req){
+      stop("Necesita actualizar su versión de Pandoc (se requiere ", 
+           pandoc_req, " o posterior).")
+    }
+    
     cat("Artículo:", "\033[34m", art_name, "\033[39m", "\n")
     cat("\033[33m", "* Preparación de archivos.", "\033[39m")
     GURI_prepare(art_path, art_name)
