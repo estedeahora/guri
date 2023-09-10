@@ -150,6 +150,8 @@ No existen pautas únicas para realizar esta tarea, pero debe considerar algunas
 -   Los bloques de citas que contengan más de dos párrafos deben estar vinculados por un salto de línea débil ya que en realidad no son dos parágrafos. Sin embargo, si existieran dos bloques de citas consecutivos (por ejemplo, dos citas con extractos de entrevistas hechas a diferentes personas), sí deberá haber un salto de línea fuerte (son dos parágrafos);
 -   Los links a objetos externos se colocarán como hipervínculos, utilizando en mayúsculas la palabra 'link' encerrada entre corchetes (ejemplo: \[[LINK](https://publicaciones.sociales.uba.ar/index.php/quid16/index)\]);
 -   En caso de que haya referencias externas a notas periodísticas en las notas al pie y que las mismas no sean parte del listado de referencias bibliográficas serán colocadas como links en el cuerpo del texto.
+-   El título principal del artículo no puede contener notas al pie. Si existiera una nota al pie esta debe o bien ser incorporada al inicio del cuerpo en cursiva o bien acomodada más adelante en una nota al pie. Si es necesario dejar asentado el cambio en el archivo `art[~]_notes.md`. En los encabezados de sección (Heading 1, Heading 2, etc) es posible, pero no recomendable, incluir notas al pie, por lo cual se sugiere acomodarlas de otro modo siempre que fuera posible.
+-   Los resúmenes y abstract no deben contener referencias bibliográficas. Estos elementos deben poder ser autónomos respecto al resto del texto.
 
 Además de esto, se deberán marcar las referencias a los elementos flotantes (ver [siguiente sección](#sec-float)). Para esto se reemplazará cada referencia cruzada a tablas o figuras por `<!TAB_XX>` o `<!FIG_XX>` según corresponda, reemplazando '`XX`' por el número de tabla o figura (es importante usar dos dígitos para esta numeración). Si bien no es necesario, puede facilitar el trabajo de corrección y control final resaltar con color estas referencias.
 
@@ -194,7 +196,7 @@ La marcación de los elementos flotantes se deberá realizar en párrafo propio 
 [^4]: Para hacer el signo de virgulilla puede presionar simultáneamente `Alt gr` + `4` o bien `Alt` + `126`.
 
 | Clave=Valor        | Descripción de `value`                                                                                                                                                                      | Obligatorio | Ejemplo                                        |
-|-------------|---------------------------------|:-----------:|-------------|
+|---------------|-----------------------------|:-------------:|---------------|
 | \~!include=`value` | Etiqueta utilizada para el marcado y nombre del archivo (sin extensión).                                                                                                                    |      x      | `~!include=FIG_01`                             |
 | \~!title=`value`   | Título de la figura o la tabla. Recuerde incluir un punto final si es necesario al final de la oración.                                                                                     |      x      | `~!title=Título de figura.`                    |
 | \~!source=`value`  | Fuente de donde es extraída la figura o tabla. En caso de ser de elaboración propia deberá consignarse aquí.                                                                                |             | `~!source=Elaboración propia en base a INDEC.` |
