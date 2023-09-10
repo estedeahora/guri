@@ -31,5 +31,4 @@ art <- GURI_listfiles(path_issue)
 
 GURI(art$art_path[1], art$art_id[1], verbose = F)
 GURI(art$art_path[2], art$art_id[2], verbose = F)
-  
-  
+GURI(art$art_path[3], art$art_id[3], verbose = F)

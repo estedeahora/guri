@@ -1,0 +1,88 @@
+[
+	{
+		"id": "zotero-1",
+		"type": "article-newspaper"
+	},
+	{
+		"id": "zotero-2",
+		"type": "book"
+	},
+	{
+		"id": "MartinezAlier1998",
+		"type": "book",
+		"call-number": "HC79.E5 M3586 1998",
+		"collection-number": "8",
+		"collection-title": "Cuadernas",
+		"event-place": "Lanzarote, Islas Canarias",
+		"ISBN": "978-84-88550-25-5",
+		"number-of-pages": "232",
+		"publisher": "Fundación César Manrique",
+		"publisher-place": "Lanzarote, Islas Canarias",
+		"source": "Library of Congress ISBN",
+		"title": "La economía ecológica como ecología humana",
+		"title-short": "La economía ecológica como ecología humana =",
+		"author": [
+			{
+				"family": "Martínez Alier",
+				"given": "J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1998"
+				]
+			]
+		}
+	},
+	{
+		"id": "LeahTemperDanieladelBeneandJoanMartinez-Alier",
+		"type": "map",
+		"title": "Mapping the frontiers and front lines of global environmental justice: the EJAtlas",
+		"author": [
+			{
+				"family": "Leah Temper, Daniela del Bene and Joan Martinez-Alier",
+				"given": ""
+			}
+		]
+	},
+	{
+		"id": "DelBene2015",
+		"type": "webpage",
+		"abstract": "Mapping ecological conflicts and spaces of resistance",
+		"container-title": "Environmental Justice Atlas",
+		"language": "es",
+		"title": "Mapping the frontiers and front lines of global environmental justice: the EJAtlas",
+		"URL": "https://es.ejatlas.org/",
+		"author": [
+			{
+				"family": "Del Bene",
+				"given": "D."
+			},
+			{
+				"family": "Martinez-Alier",
+				"given": "J."
+			},
+			{
+				"family": "Temper",
+				"given": "L."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2023",
+					9,
+					6
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2015"
+				]
+			]
+		}
+	}
+]

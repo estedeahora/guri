@@ -1,0 +1,72 @@
+# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
+
+article:
+  heading: Novedades                 # Presentación / Dossier / Espacio Abierto / Urbanidades / Novedades / Nota editorial
+  type: meeting-report                    # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+                            # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id: N20A602            # Identificador digital electrónico    
+  # doi: 
+  # art-access-id:          # Este número lo otorga Redalyc
+  # fpage:                  # Página inicial
+  # lpage:                  # Página final
+
+# Datos del artículo (español)
+title_es: Informe del Taller de justicia ambiental y justicia climática, Clacso 2022
+# subtitle_es: 
+
+# abstract_es: |
+#   Este informe presenta las anotaciones derivadas del Taller de justicia ambiental y justicia climática realizado el junio 6 de 2022 en la Ciudad de México por la doctora Gabriela Merlinsky. Para ello se realiza un resumen de características y problemas generales de la ecología política y luego la propuesta de seis aspectos de estudio.
+
+# keyword_es: 
+#   - kw1
+#   - kw2
+  
+# Datos del artículo (inglés)
+title_en: Report of the Workshop on Environmental Justice and Climate Justice, Clacso 2022
+
+# abstract_en: |
+#   colocar abstract en inglés
+
+# keyword_en: 
+#   - kw1
+#   - kw2
+
+# Sólo para Novedades
+# book_info:                  #
+
+# Datos de autores (un bloque por autor)
+author:
+  - given-names: Edith
+    surname: Gamboa Saavedra
+    email: edithgamboasaavedra@gmail.com
+    orcid: 0000-0001-8278-1514
+    cor-id: yes               # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+      - aff1
+      # - aff2
+  # - given-names:
+  #   surname: 
+  #   email: 
+  #   orcid: 
+  #   # cor-id: yes             # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+  #   affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+  #     - aff1
+
+affiliation:
+  - id: aff1
+    organization: Universidad Industrial de Santander
+    country-code: CO              # https://www.nationsonline.org/oneworld/country_code_list.htm
+  # - id: aff2
+  #   organization:
+  #   country-code: 
+
+# Datos de recepción del artículo
+# history:
+#   - type: received
+#     day: 1
+#     month: 1
+#     year: 2023
+#   - type: accepted
+#     day: 2
+#     month: 1
+#     year: 2023
