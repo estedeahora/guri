@@ -46,33 +46,20 @@ $to_header$
 \AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
 
 % define comando blfootnote para nota sin numeración
-% OPCION 1
-% \makeatletter
-% \def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
-% \makeatother
-% OPCION 3
-% \NewDocumentCommand{\blfootnote}{ m }{{%
-%   \RenewDocumentCommand{\thefootnote}{}{\roman{footnote}}% roman{0} = empty
-%   \footnotetext[0]{\hspace*{-1.8em}#1}% Undo 1.8em indent
-% }}%
-% OPCION 4 con footmisc
-% \usepackage[hang,flushmargin]{footmisc} 
-
 \newcommand\blfootnote[1]{%
     \begingroup%
 \let\thefootnote\relax\footnotetext{\hspace{0.3em}#1}%
 \endgroup}%
 
-%%%% Encabezados de páginas %%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+%%%% Encabezados de páginas 
+\usepackage[headsepline]{scrlayer-scrpage}
+\addtokomafont{headsepline}{\color{gris_art}}
+\clearpairofpagestyles
 
-\fancyhead{} % clear all header fields
-\fancyhead[L]{\sffamily{$author_header$}} 
-\fancyhead[R]{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
+\ihead{\sffamily{$author_header$}}
+\ohead{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
 
-\fancyfoot{} % clear all footer fields
-\fancyfoot[R]{\thepage}
+\ofoot{\pagemark}
 
 %%%% Página de título 
 \makeatletter
@@ -82,7 +69,7 @@ $to_header$
   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   
   $-- % Cabecera
-  \begin{minipage}[t][][b]{0.7\textwidth}
+  \begin{minipage}[t][1.9em][b]{0.7\textwidth}
     $if(article.doi)$
     $else$
       \scriptsize\raggedright{\phantom{DOI: 10.1177/00420980231178401}\par}
@@ -195,7 +182,7 @@ $endif$
 
 
 \author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$sep$, $endfor$
-y $for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
+$if(author/allbutlast)$y $endif$$for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
     
 \date{}
 

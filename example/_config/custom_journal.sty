@@ -182,7 +182,7 @@ $endif$
 
 
 \author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$sep$, $endfor$
-y $for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
+$if(author/allbutlast)$y $endif$$for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
     
 \date{}
 
