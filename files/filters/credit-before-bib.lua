@@ -37,16 +37,16 @@ function get_credit(meta)
   end
 end
 
-function add_credit1(el)
+function add_credit1(el) -- Agrega credit antes de referencias
   if(stringify(el) == "Referencias bibliográficas") then
     with_ref = true
     return {credit_tit, credit_cont, el}
   end
 end
 
-function add_credit2(doc)
+function add_credit2(doc) -- Agrega credit al final para artículos sin referencias
   if(with_ref == nil) then
-    doc.blocks:extend ({credit_tit, credit_cont})
+    doc.blocks:extend({credit_tit, credit_cont})
     return doc
   end
 end

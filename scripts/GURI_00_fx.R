@@ -258,6 +258,58 @@
     
   }
   
+  # GURI_to_AST() -----------------------------------
+  
+  GURI_to_AST <- function(path_art, art) {
+    
+    wdir <- paste0(getwd(), path_art)
+    file_input  <- paste0(art, ".md")
+    file_json    <- paste0(art, "_AST.json")
+    
+    config_path = "../../_config/"
+    config_files = list.files(paste0(wdir, config_path))
+    
+    op_gral <- c("--wrap=none", "--mathml", #"-V lang=es", "-V link-citations=true", 
+                 "--metadata-file=../../../files/pandoc/jats_metadata.yaml",
+                 "--citeproc", "--reference-links=true",
+                 "--template=../../../files/template/template_default.jats_publishing")
+    
+    # Filtros Lua
+    op_filters <- paste0("--lua-filter=../../../files/filters/",
+                         c("unhighlight", "cross-references",
+                           "include-float-files", "author-to-canonical",
+                           "credit-before-bib", "latex-prepare"),
+                         ".lua")
+    
+    # csl
+    config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
+    if(length(config_csl) == 1){
+      op_gral <- c(op_gral, paste0("--csl=", config_path, config_csl))
+    }else if(length(conf_csl) > 1){
+      stop("Existen múltiples archivos csl en 'root/_config/'")
+    }else{
+      cat("Se usará csl por defecto")
+    }
+    
+    # latex metadata
+    config_latex_meta <- config_files[str_detect(config_files, "^latex_metadata.yaml$") ]
+    if(config_latex_meta == "latex_metadata.yaml"){
+      op_meta <- paste0("--metadata-file=", config_path, config_latex_meta)
+    }else{
+      cat("No existe archivo 'root/_config/latex_metadata.yaml'.",
+          "Se usará latex_metadata.yaml por defecto")
+      op_meta <- paste0("--metadata-file=../../../files/pandoc/", config_latex_meta)
+    }
+    
+    pandoc_convert(wd = paste0(getwd(), path_art), 
+                   input = file_input,
+                   from = "markdown",
+                   output = file_json,
+                   to = "json",
+                   options = c(op_gral, op_filters,  op_meta))
+  }
+  
+  
   # GURI() ---------------------------------------------------- 
   
   GURI <- function(art_path, art_name, verbose = F){
@@ -274,6 +326,11 @@
     cat("\033[33m", "* Crear archivo markdown (", art_name, ".md ).", "\033[39m")
     GURI_to_md(art_path, art_name)
     cat("DONE\n")
+    if (verbose){
+      cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
+      GURI_to_AST(art_path, art_name)
+      cat("DONE\n")
+    }
     cat("\033[33m", "* Crear archivo jats-xml (", art_name, ".xml ).", "\033[39m")
     GURI_to_jats(art_path, art_name)
     cat("DONE\n")
@@ -282,4 +339,5 @@
     GURI_to_pdf(art_path, art_name, verbose = verbose)
     cat("DONE\n")
   }
+  
   
