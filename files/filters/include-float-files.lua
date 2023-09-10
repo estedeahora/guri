@@ -56,7 +56,7 @@ function detect_meta(marcador, detect, detect_post)
 end
 
 -- fig_latex(label, elem, root) ----------------------------------------
--- Genera un texto de código plano (RawBlock) para html que incluye figuras
+-- Genera un texto de código plano (RawBlock) para latex que incluye figuras
 -- Return: RawBlock con ambiente figure (latex)
 
 function fig_latex(label, elem, root)
@@ -72,14 +72,14 @@ function fig_latex(label, elem, root)
     note = elem.note
   end
 
-  row_elem = '\\begin{figure}\n' ..
+  raw_elem = '\\begin{figure}\n' ..
               '\\centering\n' .. 
               '\\includegraphics[width=0.9\\textwidth]{' .. root .. label .. '}\n' .. 
               '\\caption{' .. elem.title .. '}\n' .. 
               source .. note ..
               '\\label{' .. label .. '}\n' ..
               '\\end{figure}'
-  return pandoc.RawBlock('latex', row_elem)
+  return pandoc.RawBlock('latex', raw_elem)
 end
 
 -- fig_html(path, elem, label, fignum) ----------------------------------------
@@ -95,40 +95,71 @@ function fig_html(path, elem, label, fignum)
 
   if elem.note ~= "" then
     note = '<figcaption>Nota: ' ..  elem.note .. '</figcaption>\n'
-    
   else
     note = elem.note
   end
 
-  row_elem = '<figure id="' .. label .. '">\n' ..
+  raw_elem = '<figure id="' .. label .. '">\n' ..
               '<img src="' .. path .. '" alt="' .. label .. '"/>\n' .. 
               '<figcaption>Figura ' .. fignum .. ": " .. elem.title .. '</figcaption>\n' ..
               source .. note ..
               '</figure>'
-  return pandoc.RawBlock('html', row_elem)
+  return pandoc.RawBlock('html', raw_elem)
 end
 
--- tab_float(tab_path, label, float_meta, format) ----------------------------------
+-- fig_jats(path, elem, label, fignum) --------------------------------
+-- Genera un texto de código plano (RawBlock) para jats que incluye figuras
+-- Return: RawBlock con ambiente figure (jats)
+
+function fig_jats(label, elem, fignum)
+  if elem.source ~= "" then
+    source = '<attrib>Fuente: ' ..  elem.source .. '</attrib>\n'
+  else
+    source = elem.source  
+  end
+
+  if elem.note ~= "" then
+    note = '<attrib>Nota: ' ..  elem.note .. '</attrib>\n'
+  else
+    note = elem.note
+  end
+
+  raw_elem = '<fig id="' .. label .. '">\n' ..
+              '<label>Figura ' ..  fignum .. '.</label>\n' ..
+              '<caption>\n' ..
+              '<p>' .. elem.title .. '</p>' .. 
+              '</caption>\n' ..
+              '<graphic xlink:href="'.. label .. '"/>\n' ..
+              source .. note ..
+              '</fig>'
+  return pandoc.RawBlock('jats', raw_elem)
+end
+
+-- tab_float(tab_path, label, float_meta, fignum, format) ----------------------------------
 -- Genera un texto de código plano (RawBlock) para latex/html que incluye tablas
 -- Return: RawBlock con ambiente table
 to_header = ''
 
-local function tab_float(tab_path, label, float_meta, format)
+local function tab_float(tab_path, label, float_meta, fignum, format)
   -- https://tex.stackexchange.com/questions/27097/changing-the-font-size-in-a-table
   -- Variables de formato (format_out, format_ext) y específicas de formato (tabla, to_header)
-  if format:match 'latex' or format:match 'pdf' or format:match 'json' then
+  if format:match 'latex' or format:match 'pdf' then
     format_out = 'latex'
     format_ext = '.tex'
     tabla = false
-  elseif format:match 'html' then
+  elseif format:match 'html' or format:match 'json' then
     format_out = 'html'
     format_ext = '.' .. format_out
+  elseif format:match 'jats' then
+    format_out = 'jats'
+    format_ext = '.html'
   else
     io.stderr:write('WARNING: "' .. format .. 
                     '" no es un formato de salida válido.' ..
                     '| Se generan tablas en formato "html".\n')
-    format_out = 'jats'
-    format_ext = '.html'
+    format_out = 'html'
+    format_ext = '.' .. format_out
+                
   end
   
   --  Definir (a) title; (b) source y note
@@ -167,17 +198,32 @@ local function tab_float(tab_path, label, float_meta, format)
           raw_content = raw_content .. line
         -- (d) Incluir en header
         else
-          line = line:gsub("%%.*", ''):gsub('\\documentclass{.*', ''):gsub('\\begin{document}.*', ''):gsub('\\end{document}.*', '')
+          line = line:gsub('%%.*', ''):gsub('\\documentclass{.*', ''):gsub('\\begin{document}.*', ''):gsub('\\end{document}.*', '')
           to_header = to_header .. line
-          
-
         end
       -- Salida html
-      elseif format_out == 'html' or format == 'jats_publishing' then
+      elseif format_out == 'html' then -- or format == 'jats_publishing' then
         raw_content = raw_content .. line
+      -- Salida jats
+      elseif format_out == 'jats' then 
+        raw_content = raw_content .. line:gsub('<br>', '<break/>'):gsub('<br/>', '<break/>'):gsub(
+                                                '<b>', '<bold>'):gsub('</b>', '</bold>'):gsub(
+                                                '<strong>', '<bold>'):gsub('</strong>', '</bold>'):gsub(
+                                                '<i>', '<italic>'):gsub('</i>', '</italic>'):gsub(
+                                                '<em>', '<italic>'):gsub('</em>', '</italic>')
       end
     end 
     fh:close()
+
+    -- Salida jats
+    if format_out == 'jats' then 
+      raw_content = '<table-wrap id="' .. label .. '">\n' ..
+                    '<label>Tabla ' .. fignum .. '.</label>\n' ..
+                    '<caption>' .. 
+                      '<title>' .. title .. '</title>' ..
+                    '</caption>\n' .. raw_content ..
+                    '</table-wrap>'
+    end
   end     
   -- return final code block
   return pandoc.RawBlock(format_out, raw_content)
@@ -266,6 +312,8 @@ function Blocks(blocks)
             blocks[i] = fig_latex(label, float_meta, root)
           elseif FORMAT:match 'html' or FORMAT:match 'json' then
             blocks[i] = fig_html(path, float_meta, label, contador_fig)
+          elseif FORMAT:match 'jats'  then
+            blocks[i] = fig_jats(label, float_meta, contador_fig)
           end
         end
 
@@ -273,7 +321,7 @@ function Blocks(blocks)
           -- Modifica bloques con tablas
           contador_tab = contador_tab + 1
 
-          blocks[i] = tab_float(root .. label, label, float_meta, FORMAT)
+          blocks[i] = tab_float(root .. label, label, float_meta, contador_fig, FORMAT)
         end
       end
       
