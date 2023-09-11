@@ -196,7 +196,7 @@ La marcación de los elementos flotantes se deberá realizar en párrafo propio 
 [^4]: Para hacer el signo de virgulilla puede presionar simultáneamente `Alt gr` + `4` o bien `Alt` + `126`.
 
 | Clave=Valor        | Descripción de `value`                                                                                                                                                                      | Obligatorio | Ejemplo                                        |
-|---------------|-----------------------------|:-------------:|---------------|
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------:|------------------------------------------------|
 | \~!include=`value` | Etiqueta utilizada para el marcado y nombre del archivo (sin extensión).                                                                                                                    |      x      | `~!include=FIG_01`                             |
 | \~!title=`value`   | Título de la figura o la tabla. Recuerde incluir un punto final si es necesario al final de la oración.                                                                                     |      x      | `~!title=Título de figura.`                    |
 | \~!source=`value`  | Fuente de donde es extraída la figura o tabla. En caso de ser de elaboración propia deberá consignarse aquí.                                                                                |             | `~!source=Elaboración propia en base a INDEC.` |

@@ -313,10 +313,11 @@
   # GURI() ---------------------------------------------------- 
   
   GURI <- function(art_path, art_name, verbose = F){
-    pandoc_req <- "3.1.7"
+    pandoc_req <- "3.1.8"
     if(!pandoc_version() >= pandoc_req){
       stop("Necesita actualizar su versión de Pandoc (se requiere ", 
-           pandoc_req, " o posterior).")
+           pandoc_req, " o posterior). Descargue la última versión",
+           "en el sitio de Pandoc: https://github.com/jgm/pandoc/releases/latest")
     }
     
     cat("Artículo:", "\033[34m", art_name, "\033[39m", "\n")
