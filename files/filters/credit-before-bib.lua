@@ -32,20 +32,22 @@ function get_credit(meta)
     credit_cont = credit_cont:gsub("&", "\\&")
     credit_cont = credit_cont .. "\n \\rmfamily \n \\normalsize"
     credit_cont = pandoc.RawBlock('latex', credit_cont)
+
+    credit = true
   else
     io.stderr:write("Sin datos de credit.")
   end
 end
 
 function add_credit1(el) -- Agrega credit antes de referencias
-  if(stringify(el) == "Referencias bibliográficas") then
+  if(stringify(el) == "Referencias bibliográficas" and credit) then
     with_ref = true
     return {credit_tit, credit_cont, el}
   end
 end
 
 function add_credit2(doc) -- Agrega credit al final para artículos sin referencias
-  if(with_ref == nil) then
+  if(with_ref == nil and credit) then
     doc.blocks:extend({credit_tit, credit_cont})
     return doc
   end
