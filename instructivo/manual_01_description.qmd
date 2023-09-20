@@ -1,0 +1,14 @@
+---
+title: 'Descripción general de la propuesta'
+format: pdf
+
+pdf-engine: lualatex
+linkcolor: Sepia
+urlcolor: Sepia
+editor: visual
+lang: es
+---
+  
+# Descripción de software utilizado
+
+*Dependencias:* Pandoc, tinytex, R, Rmarkdown

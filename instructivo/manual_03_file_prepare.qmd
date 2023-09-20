@@ -140,32 +140,7 @@ Los datos de los autores, el resumen y las palabras claves no deben estar presen
 
 # Corrección de contenido {#sec-content}
 
-Deberá realizar una corrección general de la escritura para detectar inconsistencias gramaticales, errores tipográficos u otros problemas asociados a la escritura. Estos cambios deberán ser generados con 'control de cambios' dentro de *Microsoft Word* (se puede activar / desactivar con `ctr` + `e`). Esto permite que los cambios puedan ser visualizados por el autor, para que este pueda luego dar su consentimiento.
-
-No existen pautas únicas para realizar esta tarea, pero debe considerar algunas cuestiones generales:
-
--   Las notas al pie deberán estar luego de los signos de puntuación;
--   Los títulos deben ir sin numeración (en caso de que exista una referencia en el texto debe modificarse para que sea interpretable);
--   No está permitido el uso de **negritas** o [subrayados]{.underline}, siendo conveniente reducir al mínimo la utilización de *cursivas*;
--   Los bloques de citas que contengan más de dos párrafos deben estar vinculados por un salto de línea débil ya que en realidad no son dos parágrafos. Sin embargo, si existieran dos bloques de citas consecutivos (por ejemplo, dos citas con extractos de entrevistas hechas a diferentes personas), sí deberá haber un salto de línea fuerte (son dos parágrafos);
--   Los links a objetos externos se colocarán como hipervínculos, utilizando en mayúsculas la palabra 'link' encerrada entre corchetes (ejemplo: \[[LINK](https://publicaciones.sociales.uba.ar/index.php/quid16/index)\]);
--   En caso de que haya referencias externas a notas periodísticas en las notas al pie y que las mismas no sean parte del listado de referencias bibliográficas serán colocadas como links en el cuerpo del texto.
--   El título principal del artículo no puede contener notas al pie. Si existiera una nota al pie esta debe o bien ser incorporada al inicio del cuerpo en cursiva o bien acomodada más adelante en una nota al pie. Si es necesario dejar asentado el cambio en el archivo `art[~]_notes.md`. En los encabezados de sección (Heading 1, Heading 2, etc) es posible, pero no recomendable, incluir notas al pie, por lo cual se sugiere acomodarlas de otro modo siempre que fuera posible.
--   Los resúmenes y abstract no deben contener referencias bibliográficas. Estos elementos deben poder ser autónomos respecto al resto del texto.
-
-Además de esto, se deberán marcar las referencias a los elementos flotantes (ver [siguiente sección](#sec-float)). Para esto se reemplazará cada referencia cruzada a tablas o figuras por `<!TAB_XX>` o `<!FIG_XX>` según corresponda, reemplazando '`XX`' por el número de tabla o figura (es importante usar dos dígitos para esta numeración). Si bien no es necesario, puede facilitar el trabajo de corrección y control final resaltar con color estas referencias.
-
-::: callout-note
-## Ejemplo de referencia cruzada a elementos flotantes
-
-Si el texto original fuera:
-
-> Como se muestra en la Figura 1, tal cosa \[...\] Mientras que en la Tabla 2 señalamos que pasa otra cosa.
-
-Debería reemplazarse por:
-
-> Como se muestra en la \<!FIG_01\>, tal cosa \[...\] Mientras que en la \<!TAB_02\> señalamos que pasa otra cosa.
-:::
+Deberá realizar una corrección general de la escritura para detectar inconsistencias gramaticales, errores tipográficos u otros problemas asociados a la escritura. No existen pautas únicas para realizar esta tarea, por lo cual cada revista seguirá sus propios criterios.
 
 # Elementos flotantes {#sec-float}
 
@@ -226,6 +201,22 @@ Luego de esto, podrá insertar automáticamente el bloque de marcación seleccio
 Además, es posible asignar un atajo de teclado para poder insertar este bloque de marcación. Para ello vaya a la pestaña 'Archivo' y selecciones 'Opciones'. En la ventana emergente seleccione la pestaña 'Personalizar cinta de opciones' y debajo del cuadro de la izquierda seleccione 'Personalizar...' (al lado de donde dice 'Métodos abreviados de teclado'). En el nuevo cuadro de diálogo seleccione la Categoría 'Bloques de creación', que estará cerca del final de toda la lista de categorías, y luego en el cuadro de la derecha seleccione el nombre del bloque de marcación por el nombre que le dio cuando lo creo. Por último seleccione una combinación de teclas de su preferencia (una opción recomendada es `Ctr` + `Alt` + `m`) y presione 'Asignar'.
 :::
 
+## Referencias cruzadas a elementos flotantes
+
+Se deberán marcar dentro del texto todas las referencias a elementos flotantes. Para esto se reemplazará cada referencia cruzada a tablas o figuras por `<!TAB_XX>` o `<!FIG_XX>` según corresponda, reemplazando '`XX`' por el número de tabla o figura (es importante usar dos dígitos para esta numeración).
+
+::: callout-note
+## Ejemplo de referencia cruzada a elementos flotantes
+
+Si el texto original fuera:
+
+> Como se muestra en la Figura 1, tal cosa \[...\] Mientras que en la Tabla 2 señalamos que pasa otra cosa.
+
+Debería reemplazarse por:
+
+> Como se muestra en la \<!FIG_01\>, tal cosa \[...\] Mientras que en la \<!TAB_02\> señalamos que pasa otra cosa.
+:::
+
 # Referencias bibliográficas {#sec-references}
 
 ## Obtener referencias
@@ -261,25 +252,3 @@ Además, es posible (y recomendable) personalizar los atajos de teclado de *Micr
 > **\[TODO\]** Definir tratamiento de anexos (`art[~]_app[~].docx`).
 >
 > **\[TODO\]** Escribir instructivo sobre anexos.
-
-# Anexo
-
-## Anexo 1: Instalación de *GURI*
-
-**\[TODO\]** Describir instalación de Gurí.
-
-## Anexo 2: Configuraciones globales de la revista
-
-Además de los archivos tratados anteriormente, cada revista deberá tener otros archivos que permiten configurar la salida.
-
-El archivo `./JUOURNAL/_journal.yaml`: En primer lugar en el directorio raíz de la revista deberá haber un `_journal.yaml` con los datos básicos de la revista.
-
-La carpeta `./JUOURNAL/_config`: A su vez, opcionalmente se podrá generar una carpeta `_config`. En caso de que esta carpeta no se genere se utilizarán las plantillas por defecto. Si existe un archivo `.csl` en esta carpeta se utilizará para generar el citado. En caso contrario se utilizará la configuración por defecto de Pandoc. Si existe un archivo `template.latex` en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI). Si existe un archivo `latex_metadata.yaml` en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI).
-
-## Anexo 3: El uso de *GURI*
-
-**\[TODO\]** Describir cómo usar GURI
-
-## Anexo 4: Descripción de software utilizado
-
-*Dependencias:* Pandoc, tinytex, R, Rmarkdown
