@@ -1,4 +1,4 @@
-# Gurí<a href="https://github.com/estedeahora/guri"><img src="instructivo/figures/guri_logo.png" align="right" height="100"/></a>
+# Gurí<a href="https://github.com/estedeahora/guri"><img src="manual/figures/guri_logo.png" align="right" height="100"/></a>
 
 ## Gestor Unificado de formatos para Revistas de Investigación
 
@@ -10,7 +10,7 @@ El proyecto se encuentra en versión preliminar.
 
 ## Documentación
 
-Un detalle de la propuesta de trabajo y la preparación de archivos puede encontrarse en el [Instructivo](instructivo/instructivo.pdf). Para generar los archivos finales debe correr el [código dosponible en la carpeta ./scripts](script/).
+Un detalle de la propuesta de trabajo y la preparación de archivos puede encontrarse en el [manual](manual/instructivo_(old_version).pdf). Para generar los archivos finales debe correr el [código dosponible en la carpeta ./scripts](script/).
 
 ## Dependencias
 
