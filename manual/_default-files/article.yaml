@@ -31,8 +31,12 @@ keyword_en:
   - kw1
   - kw2
 
-# Sólo para Novedades
-book_info:                  #
+# Texto libre en title (dedication en latex-pdf)
+# Puede usar cursiva (*texto*) o negritas (**texto**)
+# En caso de que necesite un salto de línea (\newline)
+# Puede usar comandos latex.
+# book_info: |
+#   Texto
 
 # Datos de autores (un bloque por autor)
 author:
@@ -54,7 +58,7 @@ author:
 
 affiliation:
   - id: aff1
-    organization: CONICET
+    organization: 
     country-code: AR              # https://www.nationsonline.org/oneworld/country_code_list.htm
   # - id: aff2
   #   organization:
@@ -70,6 +74,7 @@ history:
     day: 
     month: 
     year: 
-
-# TODO    Averiguar cómo incorporar AoP (online first). 
-# TODO    Ver si el campo date no debe moverse a este archivo con publicación continua
+  # - type: epub         # Para fecha de publicación electrónica (si se usa AoP o continua)
+  #   day: 
+  #   month: 
+  #   year: 
