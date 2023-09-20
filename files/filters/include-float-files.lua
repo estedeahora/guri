@@ -311,7 +311,7 @@ function Blocks(blocks)
           if FORMAT:match 'latex' or FORMAT:match 'pdf' then
             blocks[i] = fig_latex(label, float_meta, root)
           elseif FORMAT:match 'html' or FORMAT:match 'json' then
-            blocks[i] = fig_html(path, float_meta, label, contador_fig)
+            blocks[i] = fig_html(root, float_meta, label, contador_fig)
           elseif FORMAT:match 'jats'  then
             blocks[i] = fig_jats(label, float_meta, contador_fig)
           end
