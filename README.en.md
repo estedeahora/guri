@@ -10,7 +10,7 @@ The project is a preliminary version.
 
 ## Documentation
 
-A detail of the work proposal and file preparation can be found in the [manual](manual/instructivo_(old_version).pdf). To generate the final files you must run the [code available in the ./scripts](script/) folder.
+A detail of the work proposal and file preparation can be found in the [manual](manual/manual-old-version).pdf). To generate the final files you must run the [code available in the ./scripts](script/) folder.
 
 ## Dependences
 
