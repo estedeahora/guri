@@ -17,7 +17,6 @@
 % Carga de paquetes y configuraciones pedidas por el documento
 $to_header$
 
-
 % Colores de la revista
 \definecolor{gris_art}{RGB}{90,90,90}
 \definecolor{gris_art2}{RGB}{160,160,160}
@@ -26,6 +25,7 @@ $to_header$
 
 \setkomafont{title}{\sffamily\color{gris_art}}
 \setkomafont{author}{\sffamily}
+\setkomafont{dedication}{\sffamily\footnotesize}
 
 % Definir estilo de citas largas (achica el tamaño)
 \newcommand*{\OriginalQuote}{}
@@ -74,7 +74,7 @@ $to_header$
     $else$
       \scriptsize\raggedright{\phantom{DOI: 10.1177/00420980231178401}\par}
     $endif$
-    \sffamily\scriptsize\raggedright{Número: $issue$ ($date.year$) \\}
+    \sffamily\scriptsize\raggedright{Número: $issue$ ($date.year$). $article.elocation-id$ \\}
     $if(article.doi)$
       \sffamily\scriptsize\raggedright{DOI: \href{https://doi.org/$article.doi$}{$article.doi$}\par}
     $endif$
@@ -107,22 +107,20 @@ $to_header$
   
   \vskip 2em%
   
-  $-- % titlehead (no usado)  
-  $-- \ifx\@titlehead\@empty \else
+  
+  \ifx\@titlehead\@empty \else %        % titlehead (no usado)  
   $--  \begin{minipage}[t]{\textwidth}
   $--    \usekomafont{titlehead}{\@titlehead\par}%
   $--  \end{minipage}\par
-  $-- \fi
+  \fi
   $-- \null
 
-  $-- % subject (no usado) 
-  $-- \ifx\@subject\@empty \else
-  $--  {\usekomafont{subject}{\@subject \par}}%
-  $--  \vskip 1.5em
-  $-- \fi
+  \ifx\@subject\@empty \else%           % subject (no usado) 
+    $--  {\usekomafont{subject}{\@subject \par}}%
+    $--  \vskip 1.5em
+  \fi
 
-  $-- % Autores
-  {%
+  {%                                    % Autores
     \usekomafont{author}{%
       \lineskip .5em%
       \begin{flushleft}
@@ -132,27 +130,31 @@ $to_header$
         %\end{tabular}
         \end{spacing}
       \end{flushleft}
-
       \par
     }%
   }%
   \vskip 1em%
-  $-- % date (no usado) 
-  $-- {\usekomafont{date}{\@date \par}}%
-  $-- \vskip \z@ \@plus 1em
+  
+  \ifx\@date\@empty \else%              % date (no usado) 
+    $-- {\usekomafont{date}{\@date \par}}%
+    $-- \vskip \z@ \@plus 1em
+  \fi
 
   $-- % publishers
-  {\usekomafont{publishers}{\blfootnote{\noindent{\sffamily{\@publishers}}} \par}}%
+  {\usekomafont{publishers}{\blfootnote{\noindent{\sffamily{\@publishers}}}\par}}%
 
-  $-- % dedication (no usado) 
-  $-- \ifx\@dedication\@empty \else
-  $--  \vskip 1em
-  $--  {\usekomafont{dedication}{\@dedication \par}}%
-  $-- \fi
+  \ifx\@dedication\@empty \else%        % dedication (usado para reseña de tesis y libros) 
+    \vspace{-3em}
+    \begin{minipage}[t]{0.7\textwidth}
+      \color{gris_art}
+      \rule{0.7\textwidth}{0.2pt}\par%
+      {\usekomafont{dedication}{\@dedication \par}}%
+      \rule[1em]{0.7\textwidth}{0.2pt}\par
+    \end{minipage}\par
+  \fi
   \par
   \vskip 2em
 }%
-
 
 $if(title)$
   \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
@@ -171,7 +173,7 @@ $endif$
 \publishers{ 
   $for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
   $for(author)$%
-  $if(author.cor-id)$%\textsuperscript{*} 
+  $if(author.cor-id)$%
   \\\faEnvelope[regular] $author.surname$: $author.email$%
   $endif$%
   $endfor$\\ \\%
@@ -180,11 +182,13 @@ $endif$
   $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$
 }
 
-
 \author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$sep$, $endfor$
 $if(author/allbutlast)$y $endif$$for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
     
 \date{}
+
+$if(book_info)$\dedication{$book_info$}$endif$
+
 
 %%%% Abstract 
 
