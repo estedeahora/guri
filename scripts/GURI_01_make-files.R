@@ -1,9 +1,9 @@
 # Ajustes principales
 
-journal <- "QUID16"      # Define directorio de la revista (no usar espacios)
+journal <- "example"      # Define directorio de la revista (no usar espacios)
 prefijo <- "num"         # Prefijo para diferenciar número/volumen. Define directorio de número actual
 
-numero <- 20
+numero <- 1
 
 # Definir paths
 path_root    <- paste0("./", journal, "/") 
@@ -30,8 +30,4 @@ art <- GURI_listfiles(path_issue)
 # Armado de archivos finales
 walk2(art$art_path, art$art_id, 
       \(x, y) GURI(x, y, verbose = F) )
-
-# i <- 6
-# GURI(art$art_path[i], art$art_id[i], verbose = F)
-
 
