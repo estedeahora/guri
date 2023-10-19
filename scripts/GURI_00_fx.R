@@ -79,8 +79,10 @@
                   "--extract-media=./",
                   "--wrap=none")
     
-    op_filters <- c("--lua-filter=../../../files/filters/title.lua",
-                    "--lua-filter=../../../files/filters/credit.lua")
+    op_filters <- paste0("--lua-filter=../../../files/filters/",
+                           c("title", "credit", 
+                             "unhighlight", "cross-references"),
+                           ".lua")
     
     op_biblio <- c("--citeproc",
                    paste0("--bibliography=./", art, "_biblio.json"))
@@ -118,8 +120,7 @@
                  "--template=../../../files/template/template_default.jats_publishing")
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("unhighlight", "cross-references",
-                           "include-float-files", 
+                         c("include-float-files", 
                            "author-to-canonical"), ".lua" )
     
     # csl
@@ -157,9 +158,9 @@
                   "--template=../../../files/template/template_default.jats_publishing")
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("unhighlight.lua", "cross-references.lua",
-                           "include-float-files.lua", 
-                           "author-to-canonical.lua") )
+                         c("include-float-files", 
+                           "author-to-canonical"), 
+                         ".lua" )
     
     # csl
     config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
@@ -199,8 +200,7 @@
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("unhighlight", "cross-references",
-                           "include-float-files", "author-to-canonical",
+                         c("include-float-files", "author-to-canonical",
                            "credit-before-bib", "latex-prepare"),
                          ".lua")
     
@@ -275,8 +275,7 @@
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("unhighlight", "cross-references",
-                           "include-float-files", "author-to-canonical",
+                         c("include-float-files", "author-to-canonical",
                            "credit-before-bib", "latex-prepare"),
                          ".lua")
     
