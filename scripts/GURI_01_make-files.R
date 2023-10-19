@@ -30,4 +30,3 @@ art <- GURI_listfiles(path_issue)
 # Armado de archivos finales
 walk2(art$art_path, art$art_id, 
       \(x, y) GURI(x, y, verbose = F) )
-

@@ -45,7 +45,6 @@
 
     return(c(res1, res2))
   }
-  art <- GURI_listfiles(path_issue) 
 
   # GURI_prepare() ---------------------------------------
   
