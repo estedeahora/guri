@@ -69,32 +69,46 @@
 
   # GURI_to_md() --------------------------------------------------------------
   
-  GURI_to_md <- function(path_art, art){
+  GURI_to_md <- function(path_art, art, verbose = F){
     
     wdir <- paste0(getwd(), path_art)
     file_input  <- paste0(art, ".docx")
     file_output <- paste0(art, ".md")
+    
+    config_path = "../../_config/"
+    config_files = list.files(paste0(wdir, config_path))
     
     op_gral <- c( "-s",
                   "--extract-media=./",
                   "--wrap=none")
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                           c("title", "credit", 
-                             "unhighlight", "cross-references"),
-                           ".lua")
+                         c("title", "credit", "unhighlight", "cross-references",
+                           "md_include-float-files"),
+                         ".lua")
     
     op_biblio <- c("--citeproc",
                    paste0("--bibliography=./", art, "_biblio.json"))
+    
+    # csl latex
+    config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
+    
+    if(length(config_csl) == 1){
+      op_biblio <- c(op_biblio, paste0("--csl=", config_path, config_csl))
+    }else if(length(conf_csl) > 1){
+      stop("Existen múltiples archivos csl en 'root/_config/'")
+    }else{
+      cat("Se usará csl por defecto")
+    }
     
     op_meta <- c(paste0("--metadata-file=./", art, ".yaml"), # artículo
                  "--metadata-file=../_issue.yaml",           # número
                  "--metadata-file=../../_journal.yaml")      # revista
     
-    pandoc_convert(wd = wdir,
+    pandoc_convert(wd = wdir, 
                    input = file_input,
                    from = "docx+citations",
-                   output = file_output,
+                   output = file_output, verbose = T,
                    to = "markdown+footnotes+citations+smart+grid_tables-implicit_figures+link_attributes",
                    options = c(op_gral, op_meta, 
                                op_filters, op_biblio)
@@ -120,7 +134,7 @@
                  "--template=../../../files/template/template_default.jats_publishing")
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("include-float-files", 
+                         c("include-float-in-format",
                            "author-to-canonical"), ".lua" )
     
     # csl
@@ -158,19 +172,9 @@
                   "--template=../../../files/template/template_default.jats_publishing")
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("include-float-files", 
+                         c("include-float-in-format",
                            "author-to-canonical"), 
                          ".lua" )
-    
-    # csl
-    config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
-    if(length(config_csl) == 1){
-      op_gral <- c(op_gral, paste0("--csl=", config_path, config_csl))
-    }else if(length(conf_csl) > 1){
-      stop("Existen múltiples archivos csl en 'root/_config/'")
-    }else{
-      cat("Se usará csl por defecto")
-    }
     
     pandoc_convert(wd = wdir, 
                    input = file_input,
@@ -200,7 +204,8 @@
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("include-float-files", "author-to-canonical",
+                         c("include-float-in-format",
+                           "author-to-canonical",
                            "credit-before-bib", "latex-prepare"),
                          ".lua")
     
@@ -209,16 +214,6 @@
     # Archivos de 'root_journal/_config'
     config_path = "../../_config/"
     config_files = list.files(paste0(wdir, config_path))
-    
-    # csl
-    config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
-    if(length(config_csl) == 1){
-      op_biblio <- c(op_biblio, paste0("--csl=", config_path, config_csl))
-    }else if(length(conf_csl) > 1){
-      stop("Existen múltiples archivos csl en 'root/_config/'")
-    }else{
-      cat("Se usará csl por defecto")
-    }
     
     # template
     config_latex_template <- config_files[str_detect(config_files, "^template.latex$") ]
@@ -248,7 +243,6 @@
                    options = c(op_gral, op_biblio, op_filters, 
                                op_templ, op_meta))
     
-    
     lualatex(file_tex)
     
     # Volver a valores por defecto
@@ -275,7 +269,8 @@
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=../../../files/filters/",
-                         c("include-float-files", "author-to-canonical",
+                         c("include-float-in-format",
+                           "author-to-canonical",
                            "credit-before-bib", "latex-prepare"),
                          ".lua")
     
@@ -323,7 +318,7 @@
     GURI_prepare(art_path, art_name)
     cat("DONE\n")
     cat("\033[33m", "* Crear archivo markdown (", art_name, ".md ).", "\033[39m")
-    GURI_to_md(art_path, art_name)
+    GURI_to_md(art_path, art_name, verbose = verbose)
     cat("DONE\n")
     if (verbose){
       cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
