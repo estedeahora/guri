@@ -84,6 +84,7 @@
     
     op_filters <- paste0("--lua-filter=../../../files/filters/",
                          c("title", "credit", "unhighlight", "cross-references",
+                           "translate-citation-elements",
                            "md_include-float-files"),
                          ".lua")
     
