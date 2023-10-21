@@ -17,8 +17,6 @@ local function credit_dict()
 					"writing-original-draft/", "writing-review-editing/"}
 	for i = 1, #credit_uri do
 		credit_uri[i] = "https://credit.niso.org/contributor-roles/" .. credit_uri[i]
-		-- print(credit_term[i])
-		-- print(credit_uri[i])
 	end
 
 	return credit_term, credit_uri
@@ -73,21 +71,3 @@ function Meta(m)
 
 	return m
 end
-	
-    
-
-    -- print("total de autores = " .. n_aut, '\n')
-    -- for i, row in pairs(header) do
-    --     print(i, row)
-    -- end
-
-    -- for i = 1, n_aut do
-    --     print(header[i+2] .. ":")
-    --     print(table.unpack(credit[i]))
-    --     print()
-    -- end
-
-
-    -- for j,k in pairs(m.author) do
-    --     print(j, k)
-    -- end
