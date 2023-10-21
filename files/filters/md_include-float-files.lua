@@ -47,9 +47,10 @@ end
 
 function mark_cite(inline)
   if inline.t == "Cite" then
-
+    
     cite = inline.citations[1]
-    inline = pandoc.Str("[@" .. stringify(cite.prefix) ..  cite.id .. stringify(cite.suffix) .. "]")
+    inline = pandoc.Str("[@" .. stringify(cite.prefix) ..  cite.id .. stringify(cite.suffix) .. "]{" .. stringify(inline) .."}")
+    
   end
   return(inline)
 end
