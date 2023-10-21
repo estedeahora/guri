@@ -6,6 +6,7 @@
 local stringify = pandoc.utils.stringify
 local text = pandoc.text
 local root = "./float/"
+local nocite = {}
 
 --Inicializar contadores de tablas y figuras
 local contador_tab = 0
@@ -42,15 +43,21 @@ function is_float_element(el)
 end
 
 -- mark_cite(path) ----------------------------------
--- Identifica Inline de tipo "Cite" y obtiene formato de marcado para citas de la forma : [@cite]{autor, año}
+-- Identifica Inline de tipo "Cite" y obtiene formato de marcado para citas de la forma: "[{prefix}{@id}{suffix}]{cita textual}"
 -- Return: inline
 
 function mark_cite(inline)
-  if inline.t == "Cite" then
+  if inline.t == 'Cite' then
     
-    cite = inline.citations[1]
-    inline = pandoc.Str("[@" .. stringify(cite.prefix) ..  cite.id .. stringify(cite.suffix) .. "]{" .. stringify(inline) .."}")
-    
+    local cite = inline.citations[1]
+    local inline = pandoc.Str('[{' .. stringify(cite.prefix) .. 
+                              '}{@' .. cite.id .. 
+                              '}{' .. stringify(cite.suffix) .. '}]{' .. 
+                              stringify(inline) ..'}')
+
+    -- Agrega id del elemento a la lista nocite (para incluirlo en referencias)
+    table.insert(nocite, '@' ..  cite.id) 
+
   end
   return(inline)
 end
@@ -174,10 +181,18 @@ function Blocks(blocks)
   return blocks
 end
 
--- Guardar número de figuras / tablas (para xml-jats)
+
 function Meta(m)
+  -- Guardar número de figuras / tablas (para xml-jats)
   m.n_figs = contador_fig
   m.n_tabs = contador_tab
 
+  -- Agrega elementos nocite
+  if nocite ~= nil then
+    m.nocite = pandoc.CodeBlock(table.concat(nocite, ", "))
+    print( m.nocite)
+  end
+
+  
   return m
 end
