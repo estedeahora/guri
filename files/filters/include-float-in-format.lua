@@ -57,8 +57,8 @@ end
 
     local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
 
-    if source ~= "" then source = '<attrib>Fuente: ' ..  source .. '</attrib>\n' end
-    if note ~= "" then note = '<p content-type="Figure-Notes">Notas: ' ..  note .. '</p>\n' end
+    if source ~= '' then source = '<attrib>Fuente: ' ..  citation_jats(source) .. '</attrib>\n' end
+    if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  citation_jats(note) .. '</p>\n' end
   
     raw_elem = '<fig id="' .. label .. '">\n' ..
                 '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
@@ -72,7 +72,7 @@ end
     return RawBlock('jats', raw_elem)
 
   end
-
+  
 -- tab_float(tab_path, label, float_meta, fignum, format) ----------------------------------
 -- Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas
 -- Return: RawBlock con ambiente table
@@ -179,6 +179,56 @@ local function tab_float(label, float_attr, format)
   return RawBlock(format_out, raw_content)
   
 end
+ 
+-- citation_jats(str) ----------------------------------
+-- Toma un texto en formato de cadena plana en el que identifica si existe un marcador de cita, el cual reemplaza 
+--      por el formato adecuado para xmljats.
+-- Return: Cadena de texto plano
+
+function citation_jats(str)
+
+  -- Identifica marcador de cita
+  cita = str:match('%[{.*}{@%d+}{.*}]{.*}')
+  
+  if cita ~= nill then
+
+    -- Obtiene elementos de la cita
+    local el = citation_elements(cita)
+
+    local cita_comp = el.cita_comp:gsub('^%(', ''):gsub('%)$', '') 
+    local cita_jats = '(<xref alt="' .. cita_comp .. '" rid="ref-' .. el.id:gsub('@', '') .. '" ref-type="bibr">' .. cita_comp .. '</xref>)'
+
+    str = str:gsub('%[{.*}{@%d+}{.*}]{.*}', cita_jats)
+  end
+
+  return(str)
+
+end
+
+-- citation_elements(cita) ----------------------------------
+-- Toma un texto con un marcador de cita con la forma: "[{prefix}{@id}{suffix}]{cita textual}". Como resultado devuelve los elementos que componen la cita.
+-- Return: Table con elementos de cita
+
+
+function citation_elements(cita)
+
+  -- print(cita)                                      -- [{}{@21909}{, p. 3 }]{(Weber, 2002, p. 3)}
+  local pre = cita:match('^%[{.*}{@'):gsub('^%[{', ''):gsub('}{@', '')
+  -- print("prefix", pre)                             -- prefix	
+  local id = cita:match('@.+}'):gsub('}.+', '')
+  -- print("id", id)                                  -- id	@21909
+  local suf = cita:gsub('^%[{' .. pre .. '}{' .. id .. '}{', ''):gsub('}]{.+}$', '')
+  -- print("suffix", suf)                             -- suffix	, p. 3 
+  local cita_comp = cita:gsub('^%[{' .. pre .. '}{' .. id .. '}{' .. suf .. '}]{', ''):gsub('}$', '')
+  -- print(cita_comp)                                 -- (Weber, 2002, p. 3)
+  local cita_conten = cita_comp:gsub(suf:gsub('%s$', ''), '')
+  -- print(cita_conten)                               -- (Weber, 2002)
+
+  return {pre = pre, id = id, suf = suf, 
+          cita_comp = cita_comp, cita_conten = cita_conten}
+
+end
+
 
 ---  CodeBlock(cb) --------------------------------------------------------
 
