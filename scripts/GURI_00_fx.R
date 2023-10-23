@@ -120,7 +120,7 @@
                    from = "docx+citations",
                    output = file_output,
                    citeproc = T, verbose = verbose,
-                   to = "markdown+footnotes+citations+smart+grid_tables-implicit_figures+link_attributes",
+                   to = "markdown", # +footnotes+citations+smart+grid_tables-implicit_figures+link_attributes
                    options = c(op_gral, op_meta, 
                                op_filters, op_biblio)
     )
