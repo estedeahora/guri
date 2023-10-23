@@ -4,13 +4,13 @@
 --- License: CC-by-nc-sa
 
 local function credit_dict()
-	credit_term = {"Conceptualization", "Data curation", "Formal Analysis", 
+	local credit_term = {"Conceptualization", "Data curation", "Formal Analysis", 
 					"Funding acquisition", "Investigation", "Methodology",
 					"Project administration", "Resources", "Software",
 					"Supervision", "Validation", "Visualization", 
 					"Writing – original draft", "Writing – review & editing"}
 
-	credit_uri = {"conceptualization/", "data-curation/", "formal-analysis/",
+	local credit_uri = {"conceptualization/", "data-curation/", "formal-analysis/",
 					"funding-acquisition/", "investigation/", "methodology/", 
 					"project-administration/", "resources/", "software/",
 					"supervision/", "validation/", "visualization/",
@@ -22,7 +22,13 @@ local function credit_dict()
 	return credit_term, credit_uri
 end
 
+-- Meta(m) ----------------------------------------
+-- Incorpora roles credit (como tabla) dentro de author
+-- Return: Meta modificado con tabla con roles credit dentro de meta.author 
+
 function Meta(m)
+
+	local credit_file = ''
 
 	-- detect credit_file (art[XXX]_credit.csv)
     local archivos = pandoc.system.list_directory('.')
@@ -33,21 +39,21 @@ function Meta(m)
 
 	if credit_file then
 		-- make credit dictionary terms and uri
-		credit_term, credit_uri = credit_dict() 
+		local credit_term, credit_uri = credit_dict() 
 		
 		-- require csv library and read credit file
 		local csv = dofile("../../../files/filters/CSV.lua")
-		datos, header = csv.load('./' .. credit_file, ',', true)
+		local datos, header = csv.load('./' .. credit_file, ',', true)
 
 		-- count authors ('n_aut') 
-		n_aut = #header - 1
+		local n_aut = #header - 1
 		if #m.author ~= n_aut then
 			error('El numero de autores en article.yaml (' .. #m.author .. ') y en '
 					 .. credit_file .. ' (' .. n_aut .. ') no coincide.')
 		end
 
 		-- create 'credit' table ({cont, elem, uri})
-		credit = {}
+		local credit = {}
 		for i = 1, n_aut do
 			credit[i] = {}
 		end

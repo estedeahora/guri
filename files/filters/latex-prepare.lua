@@ -4,11 +4,13 @@
 --- License: CC-by-nc-sa
 
 function Meta(m)
-  if FORMAT:match 'latex' or FORMAT:match 'pdf' or FORMAT:match 'jats'  
-  or FORMAT:match 'json' then
-
+  if FORMAT:match 'latex' or FORMAT:match 'pdf' then
+  -- or FORMAT:match 'jats' or FORMAT:match 'json' 
+  
     -- Listado de autores 
     local aut_short
+    local aut_i
+
     if #m.author > 2 then
       aut_short = m.author[1]["surname"]
       aut_short = pandoc.utils.stringify(aut_short) .. ' et al'

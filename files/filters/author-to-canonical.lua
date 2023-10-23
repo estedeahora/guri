@@ -17,11 +17,10 @@ function get_country()
 
     local datos, header = csv.load('../../../files/filters/paises.csv', ',', true)
 
-    paises = {}
+    local paises = {}
     for _, v in pairs(datos) do
         paises[v[4]] = v[1]
     end
-
     
     return paises
 
@@ -60,8 +59,8 @@ function Meta(m)
         aut[i].institute = {}
 
         for j = 1, #aut[i].affiliation do
-        local v_str = stringify(aut[i].affiliation[j])
-        aut[i].institute[j] = inst_dict[v_str]
+            local v_str = stringify(aut[i].affiliation[j])
+            aut[i].institute[j] = inst_dict[v_str]
         end
     end
 
@@ -70,4 +69,5 @@ function Meta(m)
     m.institute = inst
     
     return m
+    
 end
