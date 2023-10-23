@@ -1,28 +1,111 @@
 
 local root = "./float/"                       
 local to_header = ''
+local mark_citation = '%[{.-}{@.-}{.-}]{.-}'
 
 local RawBlock = pandoc.RawBlock 
 local open = io.open
+
+-- citation_elements(cita) ----------------------------------
+-- Toma un texto con un marcador de cita con la forma: "[{prefix}{@id}{suffix}]{cita textual}". Como resultado devuelve los elementos que componen la cita.
+-- Return: Table con elementos de cita.
+
+local function citation_elements(cita)
+  
+  -- print(cita)                                      -- [{}{@21909}{, p. 3 }]{(Weber, 2002, p. 3)}
+  
+  local pre = cita:match('^%[{.-}{@'):gsub('^%[{', ''):gsub('}{@', '')
+  -- print("prefix", pre)                             -- prefix	
+  local id = cita:match('@.+%}'):gsub('}.+', ''):gsub('@', '')
+  -- print("id", id)                                  -- id	@21909
+  local suf = cita:gsub('^%[{' .. pre .. '}{@' .. id .. '}{', ''):gsub('}]{.-}', '')
+  -- print("suffix", suf)                             -- suffix	, p. 3 
+  local cita_comp = cita:gsub('^%[{' .. pre .. '}{@' .. id .. '}{' .. suf .. '}]{', ''):gsub('}$', '')
+  
+  -- Retiene delimitadores previo y posterior "()"
+  local prev = cita_comp:match('^%(', 1, "")
+  if(prev == nil) then prev = '' end
+
+  local post = cita_comp:match('%)$', 1, "") 
+  if(post == nil) then post = '' end
+
+  cita_comp = cita_comp:gsub('^%(', ''):gsub('%)$', '') 
+  -- print(prev, cita_comp, post)                                 -- (    Weber, 2002, p. 3   )
+
+  
+  return {id = id, 
+          -- pre = pre, suf = suf, 
+          cita_comp = cita_comp,
+          prev = prev, 
+          post = post
+        }
+
+end
+
+-- add_citation(str) ----------------------------------
+-- Toma un texto en formato de cadena plana en el que identifica si existe un marcador de cita, el cual reemplaza 
+--      por el formato adecuado para xmljats.
+-- Return: Cadena de texto plano (con cita transformada de marca a formato específico).
+
+
+local function add_citation(str)
+
+  -- Cuenta marcadores de cita
+  local _, cita_count = string.gsub(str,  mark_citation, "")
+  local cita_new = ""
+
+  if cita_count > 0 then
+
+    -- print("\nCantidad de citas:", cita_count)
+
+    for i = 1, cita_count do
+    
+      -- Obtiene cita i (primera disponible)
+      local cita_mark = str:match(mark_citation)
+    
+      -- Obtiene elementos de la cita
+      local el = citation_elements(cita_mark)
+
+      -- Devuelve cita en formato
+      if FORMAT:match 'latex' or FORMAT:match 'pdf' then
+        cita_new = el.prev .. '\\citeproc{ref-' .. el.id .. '}{' .. el.cita_comp .. '}' .. el.post 
+      elseif FORMAT:match 'html' or FORMAT:match 'json' then
+        cita_new = '<span class="citation">' .. el.prev .. '<a href="#ref-' .. el.id .. '">' .. el.cita_comp .. '</a>' .. el.post .. '</span>'                            -- '<span class="citation">(' .. alll cita_new .. ')</span>'
+      elseif FORMAT:match 'jats'  then
+        cita_new = el.prev .. '<xref alt="' .. el.cita_comp .. '" rid="ref-' .. el.id .. '" ref-type="bibr">' .. el.cita_comp .. '</xref>' .. el.post         -- '(' .. alll cita_new .. ')'
+      end   
+
+      -- Reemplaza la cita formateada por la marca de cita
+      str = str:gsub(mark_citation, cita_new, 1)
+
+    end 
+
+  end
+
+  return(str)
+
+end
+
 
 -- fig_latex(label, float_attr) ----------------------------------------
 -- Genera un texto de código plano (RawBlock) para latex que incluye figuras
 -- Return: RawBlock con ambiente figure (latex)
 
-function fig_latex(label, float_attr)
+local function fig_latex(label, float_attr)
 
   local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
 
-  if source ~= "" then source = '\\source{' ..  source .. '}\n' end
-  if note ~= "" then note = '\\notes{' ..  note .. '}\n' end
+  -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+  if source ~= "" then source = '\\source{' ..  add_citation(source) .. '}\n' end
+  if note ~= "" then note = '\\notes{' ..  add_citation(note) .. '}\n' end
 
-  raw_elem = '\\begin{figure}\n' ..
-              '\\centering\n' .. 
-              '\\includegraphics[width=0.9\\textwidth]{' .. root .. label .. '}\n' .. 
-              '\\caption{' .. float_attr.title .. '}\n' .. 
-              source .. note ..
-              '\\label{' .. label .. '}\n' ..
-              '\\end{figure}'
+  local raw_elem = '\\begin{figure}\n' ..
+                    '\\centering\n' .. 
+                    '\\includegraphics[width=0.9\\textwidth]{' .. root .. label .. '}\n' .. 
+                    '\\caption{' .. float_attr.title .. '}\n' .. 
+                    source .. note ..
+                    '\\label{' .. label .. '}\n' ..
+                    '\\end{figure}'
 
   return RawBlock('latex', raw_elem)
 
@@ -32,18 +115,19 @@ end
   -- Genera un texto de código plano (RawBlock) para html que incluye figuras
   -- Return: RawBlock con ambiente figure (html)
   
-  function fig_html(label, float_attr)
+  local function fig_html(label, float_attr)
 
     local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
 
-    if source ~= "" then source = '<figcaption><em>Fuente: ' ..  source .. '</em></figcaption>\n' end
-    if note ~= "" then note = '<figcaption>Nota: ' ..  note .. '</figcaption>\n' end
+    -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+    if source ~= "" then source = '<figcaption><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
+    if note ~= "" then note = '<figcaption>Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
   
-    raw_elem = '<figure id="' .. label .. '">\n' ..
-                '<img src="' .. float_attr.path .. '" alt="' .. label .. '"/>\n' .. 
-                '<figcaption>Figura ' .. float_attr.fignum .. ". " .. float_attr.title .. '</figcaption>\n' ..
-                source .. note ..
-                '</figure>'
+    local raw_elem = '<figure id="' .. label .. '">\n' ..
+                      '<img src="' .. float_attr.path .. '" alt="' .. label .. '"/>\n' .. 
+                      '<figcaption>Figura ' .. float_attr.fignum .. ". " .. float_attr.title .. '</figcaption>\n' ..
+                      source .. note ..
+                      '</figure>'
 
     return RawBlock('html', raw_elem)
 
@@ -53,60 +137,68 @@ end
   -- Genera un texto de código plano (RawBlock) para jats que incluye figuras
   -- Return: RawBlock con ambiente figure (jats)
   
-  function fig_jats(label, float_attr)
+  local function fig_jats(label, float_attr)
 
     local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
-
-    if source ~= '' then source = '<attrib>Fuente: ' ..  citation_jats(source) .. '</attrib>\n' end
-    if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  citation_jats(note) .. '</p>\n' end
+    
+      -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+    if source ~= '' then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
+    if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  add_citation(note) .. '</p>\n' end
   
-    raw_elem = '<fig id="' .. label .. '">\n' ..
-                '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
-                '<caption>\n' ..
-                '<p>' .. float_attr.title .. '</p>' .. 
-                '</caption>\n' ..
-                '<graphic xlink:href="'.. float_attr.path .. '"/>\n' ..
-                note .. source .. 
-                '</fig>'
+    local raw_elem = '<fig id="' .. label .. '">\n' ..
+                      '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
+                      '<caption>\n' ..
+                      '<p>' .. float_attr.title .. '</p>' .. 
+                      '</caption>\n' ..
+                      '<graphic xlink:href="'.. float_attr.path .. '"/>\n' ..
+                      note .. source .. 
+                      '</fig>'
                 
     return RawBlock('jats', raw_elem)
 
   end
   
--- tab_float(tab_path, label, float_meta, fignum, format) ----------------------------------
--- Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas
--- Return: RawBlock con ambiente table
+-- tab_float(label, float_attr) ----------------------------------
+-- Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas.
+-- Return: RawBlock con ambiente table.
 
-local function tab_float(label, float_attr, format)
+local function tab_float(label, float_attr)
   
   local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
 
+  local format_out = ''
+  local format_ext = ''
+  local tabla = ''
+  local raw_content = ''
+
   -- Variables de formato (format_out, format_ext) y específicas de formato (tabla, source, note)
-  if format:match 'latex' or format:match 'pdf' then
+  if FORMAT:match 'latex' or FORMAT:match 'pdf' then
       format_out = 'latex'
       format_ext = '.tex'
       tabla = false
 
-      if source ~= "" then source = '\\source{' ..  source .. '}\n' end
-      if note   ~= "" then note   = '\\notes{' ..  note .. '}\n' end
+      -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+      if source ~= "" then source = '\\source{' ..  add_citation(source) .. '}\n' end
+      if note   ~= "" then note   = '\\notes{' ..  add_citation(note) .. '}\n' end
 
-  elseif format:match 'html' or format:match 'json' then
+  elseif FORMAT:match 'html' or FORMAT:match 'json' then
       format_out = 'html'
       format_ext = '.html'
 
-      if source ~= "" then source = '<figcaption><em>Fuente: ' ..  source .. '</em></figcaption>\n' end
-      if note ~= "" then note = '<figcaption>Nota: ' ..  note .. '</figcaption>\n' end
+      -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+      if source ~= "" then source = '<figcaption><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
+      if note ~= "" then note = '<figcaption>Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
 
-  elseif format:match 'jats' then
+  elseif FORMAT:match 'jats' then
       format_out = 'jats'
       format_ext = '.html'
 
-      if source ~= "" then source = '<attrib>Fuente: ' ..  source .. '</attrib>\n' end
-      if note ~= "" then note = '<table-wrap-foot><p>Notas: ' ..  note .. '</p></table-wrap-foot>\n' end
+      -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+      if source ~= "" then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
+      if note ~= "" then note = '<table-wrap-foot><p>Notas: ' ..  add_citation(note) .. '</p></table-wrap-foot>\n' end
   end
     
   -- Abrir conexión con archivo
-  local raw_content = ''
   local fh = open(root .. label .. format_ext)
 
   if not fh then
@@ -179,56 +271,6 @@ local function tab_float(label, float_attr, format)
   return RawBlock(format_out, raw_content)
   
 end
- 
--- citation_jats(str) ----------------------------------
--- Toma un texto en formato de cadena plana en el que identifica si existe un marcador de cita, el cual reemplaza 
---      por el formato adecuado para xmljats.
--- Return: Cadena de texto plano
-
-function citation_jats(str)
-
-  -- Identifica marcador de cita
-  cita = str:match('%[{.*}{@%d+}{.*}]{.*}')
-  
-  if cita ~= nill then
-
-    -- Obtiene elementos de la cita
-    local el = citation_elements(cita)
-
-    local cita_comp = el.cita_comp:gsub('^%(', ''):gsub('%)$', '') 
-    local cita_jats = '(<xref alt="' .. cita_comp .. '" rid="ref-' .. el.id:gsub('@', '') .. '" ref-type="bibr">' .. cita_comp .. '</xref>)'
-
-    str = str:gsub('%[{.*}{@%d+}{.*}]{.*}', cita_jats)
-  end
-
-  return(str)
-
-end
-
--- citation_elements(cita) ----------------------------------
--- Toma un texto con un marcador de cita con la forma: "[{prefix}{@id}{suffix}]{cita textual}". Como resultado devuelve los elementos que componen la cita.
--- Return: Table con elementos de cita
-
-
-function citation_elements(cita)
-
-  -- print(cita)                                      -- [{}{@21909}{, p. 3 }]{(Weber, 2002, p. 3)}
-  local pre = cita:match('^%[{.*}{@'):gsub('^%[{', ''):gsub('}{@', '')
-  -- print("prefix", pre)                             -- prefix	
-  local id = cita:match('@.+}'):gsub('}.+', '')
-  -- print("id", id)                                  -- id	@21909
-  local suf = cita:gsub('^%[{' .. pre .. '}{' .. id .. '}{', ''):gsub('}]{.+}$', '')
-  -- print("suffix", suf)                             -- suffix	, p. 3 
-  local cita_comp = cita:gsub('^%[{' .. pre .. '}{' .. id .. '}{' .. suf .. '}]{', ''):gsub('}$', '')
-  -- print(cita_comp)                                 -- (Weber, 2002, p. 3)
-  local cita_conten = cita_comp:gsub(suf:gsub('%s$', ''), '')
-  -- print(cita_conten)                               -- (Weber, 2002)
-
-  return {pre = pre, id = id, suf = suf, 
-          cita_comp = cita_comp, cita_conten = cita_conten}
-
-end
-
 
 ---  CodeBlock(cb) --------------------------------------------------------
 
@@ -236,8 +278,8 @@ function CodeBlock(cb)
 
   if cb.classes[1] == "FIG" then
         
-    label = cb.identifier
-    float_meta = cb.attributes
+    local label = cb.identifier
+    local float_meta = cb.attributes
         
     if FORMAT:match 'latex' or FORMAT:match 'pdf' then
       cb = fig_latex(label, float_meta)
@@ -249,10 +291,10 @@ function CodeBlock(cb)
     
   elseif cb.classes[1] == "TAB" then
       
-    label = cb.identifier
-    float_meta = cb.attributes
+    local label = cb.identifier
+    local float_meta = cb.attributes
     
-    cb = tab_float(label, float_meta, FORMAT)
+    cb = tab_float(label, float_meta)
   end
 
   return cb
