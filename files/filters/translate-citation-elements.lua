@@ -7,13 +7,16 @@ local stringify = pandoc.utils.stringify
 
 function Cite(cite)
 
-    c = cite.citations[1].suffix
+    for i = 1, #cite.citations, 1 do
 
-    if c ~= nil then
-        c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo")
-        cite.citations[1].suffix = c
+        local c = cite.citations[i].suffix
+
+        if c ~= nil then
+            c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo")
+            cite.citations[i].suffix = c
+        end
+
     end
-    -- .suffix
-    -- cite.citations[1].suffix = 
+
     return cite
 end
