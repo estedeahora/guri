@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc+~!guri" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+$for(author)$
+  <meta name="author" content="$it.surname$, $it.given-names$" />
+$endfor$
+$if(date)$
+  <meta name="dcterms.date" content="$date.year$" />
+$endif$
+$if(keyword_es)$
+  <meta name="keywords" content="$for(keyword_es)$$keyword_es$$sep$, $endfor$" lang	= "es-ES" />
+$endif$
+$if(keyword_en)$
+<meta name="keywords" content="$for(keyword_en)$$keyword_en$$sep$, $endfor$" lang	= "en" />
+$endif$
+
+$if(description-meta)$
+  <meta name="description" content="$description-meta$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$$if(subtitle_es)$. $subtitle_es$$endif$</title>
+  <style>
+    $styles.html()$
+  </style>
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+$if(math)$
+$if(mathjax)$
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+$endif$
+  $math$
+$endif$
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+<header id="title-block-header">
+<h1 class="title">$title$</h1>
+$if(subtitle)$
+<h2 class="subtitle"><i>$subtitle$</i></h2>
+$endif$
+$for(author)$
+<p class="author">$it.given-names$ <span class="smallcaps">$it.surname$</span> <a href=“https://orcid.org/$it.orcid$/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>
+$endfor$
+<!-- $if(date)$
+<p class="date">$date$</p>
+$endif$ -->
+
+$if(abstract_es)$
+<div class="abstract">
+<div class="abstract-title"><span class="smallcaps">$abstract-title$</span></div>
+$abstract_es$
+$if(keyword_es)$
+<i>Palabras claves:</i> $for(keyword_es)$$it$$sep$;$endfor$.
+$endif$
+</div>
+$endif$
+
+$if(abstract_en)$
+<div class="abstract">
+<div class="abstract-title"><span class="smallcaps">Abstract</span></div>
+$abstract_en$
+$if(keyword_en)$
+<i>Palabras claves:</i> $for(keyword_en)$$it$$sep$;$endfor$.
+$endif$
+</div>
+$endif$
+</header>
+
+<!-- $if(toc)$
+<nav id="$idprefix$TOC" role="doc-toc">
+$if(toc-title)$
+<h2 id="$idprefix$toc-title">$toc-title$</h2>
+$endif$
+$table-of-contents$
+</nav>
+$endif$ -->
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+
+<script>
+  var divAck = document.getElementById("Ack");
+
+  if (divAck) {
+      divAck.insertAdjacentHTML("afterbegin", "<h3>Agradecimiento</h3>");
+      divAck.innerHTML = "<p>" + divAck.innerHTML + "</p>";
+  }
+
+  var divCredit = document.getElementById("Credit");
+
+  if (divCredit) {
+    divCredit.insertAdjacentHTML("afterbegin", "<h3>Declaración de contribuciones de autoría (CRediT)</h3>");
+    divCredit.innerHTML = "<p>" + divCredit.innerHTML + "</p>";
+  }
+</script>
+</body>
+</html>

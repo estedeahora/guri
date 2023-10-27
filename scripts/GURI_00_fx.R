@@ -91,6 +91,9 @@
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("title", 
                            "add-credit", 
+                           
+                           "prueba",
+                           
                            "unhighlight",
                            "cross-references",
                            "translate-citation-elements",
