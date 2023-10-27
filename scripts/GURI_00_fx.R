@@ -83,18 +83,16 @@
     config_files = list.files(paste0(wdir, config_path))
     
     # Opciones generales
-    op_gral <- c( "-s",
+    op_gral <- c( "-s", #"--log=./log_pandoc.log",
                   "--extract-media=./",
                   "--wrap=none")
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("title", 
-                           "add-credit", 
-                           
-                           "prueba",
-                           
                            "unhighlight",
+                           "add-credit", 
+                           "metadata-div-before-bib",
                            "cross-references",
                            "translate-citation-elements",
                            "include-float-files"),
@@ -148,6 +146,7 @@
     op_gral <- c("--wrap=none", "-s", "--metadata=link-citations", 
                  #"-V link-citations=true", 
                  # "--mathml",
+                 paste0("--template=", program_path, "template/template.html"),
                  "--reference-links=true")
     
     # Filtros Lua
@@ -158,9 +157,10 @@
     
     pandoc_convert(wd = paste0(getwd(), path_art),
                    input = file_input,
-                   from = "markdown", citeproc = T,
+                   from = "markdown", 
                    output = file_output,
                    to = "html",
+                   citeproc = T,
                    options =  c(op_gral, op_filters))
   }
   
@@ -187,7 +187,8 @@
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("include-float-in-format",
-                           "author-to-canonical"), 
+                           "author-to-canonical",
+                           "metadata-format-in-text"), 
                          ".lua" )
     
     pandoc_convert(wd = wdir, 
@@ -229,7 +230,8 @@
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("include-float-in-format",
                            "author-to-canonical",
-                           "credit-before-bib", 
+                           # "credit-before-bib", 
+                           "metadata-format-in-text",
                            "latex-prepare"),
                          ".lua")
     
@@ -299,7 +301,8 @@
     op_filters <- paste0("--lua-filter=",  program_path, "filters/",
                          c("include-float-in-format",
                            "author-to-canonical",
-                           "credit-before-bib", "latex-prepare"),
+                           "metadata-format-in-text",
+                           "latex-prepare"),
                          ".lua")
     
     pandoc_convert(wd = paste0(getwd(), path_art), 

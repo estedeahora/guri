@@ -38,6 +38,8 @@ keyword_en:
 # book_info: |
 #   Texto
 
+# ack:                          # Párrafo de agradecimiento (si lo hubiere)
+
 # Datos de autores (un bloque por autor)
 author:
   - given-names: 

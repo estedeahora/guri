@@ -328,6 +328,9 @@ $body$
 $if(back)$
 $back$
 $endif$
+$if(ack)$
+<ack><p>$ack$</p></ack>
+$endif$
 </back>
 </article>
 
