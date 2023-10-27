@@ -7,6 +7,7 @@ local contador_tab = 0        --Inicializar contadores de tablas
 local contador_fig = 0        --Inicializar contadores de figuras
 local root = "./float/"
 local nocite = {}
+local no_float = nil
 
 local stringify = pandoc.utils.stringify
 local text = pandoc.text
@@ -200,7 +201,10 @@ function Blocks(blocks)
       end
     end
   else
-    print("No existe ./float/\n")
+    if(not no_float) then
+      print("No existe ./float/\n")
+      no_float = true
+    end
   end
   return blocks
 end
