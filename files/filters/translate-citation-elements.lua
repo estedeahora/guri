@@ -12,7 +12,7 @@ function Cite(cite)
         local c = cite.citations[i].suffix
 
         if c ~= nil then
-            c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo")
+            c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo"):gsub("paragraph", "párrafo")
             cite.citations[i].suffix = c
         end
 
