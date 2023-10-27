@@ -14,11 +14,11 @@ function Meta(m)
         m.title_word = m.title
     end
 
-    if m.title_word ~= m.title_es then
+    if stringify(m.title_word) ~= stringify(m.title_es) then
         io.stderr:write("\nNo coincide título en word y en yaml.\n")
 
         print('Título en Word:', '"' .. stringify(m.title_word) .. "'") 
-        print('Título en YAML:', '"'  .. stringify(m.title_es) .. "'") 
+        print('Título en YAML:', '"' .. stringify(m.title_es) .. "'") 
 
         m.title = m.title_es
     end
