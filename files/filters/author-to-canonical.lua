@@ -9,7 +9,8 @@
 
 local stringify = pandoc.utils.stringify
 
-function get_country()
+-- Tabla con listado de paises (y código como clave)
+local function get_country()
     local csv = dofile("../../../files/filters/CSV.lua")
     
     -- https://gist.github.com/brenes/1095110#file-paises-csv
@@ -23,7 +24,6 @@ function get_country()
     end
     
     return paises
-
 end
 
 function Meta(m)

@@ -95,7 +95,8 @@
                            "metadata-div-before-bib",
                            "cross-references",
                            "translate-citation-elements",
-                           "include-float-files"),
+                           "include-float-files",
+                           "author-to-canonical"),
                          ".lua")
     
     # Opciones de bibliografía
@@ -151,8 +152,7 @@
     
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
-                         c("include-float-in-format", 
-                           "author-to-canonical"), 
+                         c("include-float-in-format"),
                          ".lua" )
     
     pandoc_convert(wd = paste0(getwd(), path_art),
@@ -187,7 +187,6 @@
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("include-float-in-format",
-                           "author-to-canonical",
                            "metadata-format-in-text"), 
                          ".lua" )
     
@@ -229,8 +228,6 @@
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("include-float-in-format",
-                           "author-to-canonical",
-                           # "credit-before-bib", 
                            "metadata-format-in-text",
                            "latex-prepare"),
                          ".lua")
@@ -300,7 +297,6 @@
     # Filtros Lua
     op_filters <- paste0("--lua-filter=",  program_path, "filters/",
                          c("include-float-in-format",
-                           "author-to-canonical",
                            "metadata-format-in-text",
                            "latex-prepare"),
                          ".lua")
