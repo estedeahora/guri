@@ -10,7 +10,7 @@ function Div(div)
     if(div.classes[1] == "Paratext") then
         
         if FORMAT:match 'jats' then
-            div = nil
+            div = RawBlock('jats', '')
         elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
 
             div = {RawBlock('latex', '\\begin{'.. div.identifier .. '}'),
@@ -21,6 +21,5 @@ function Div(div)
     end
 
     return div
-
 
 end
