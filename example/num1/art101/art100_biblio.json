@@ -1,0 +1,33 @@
+[
+	{
+		"id": "Comes2004",
+		"type": "paper-conference",
+		"event-place": "Buenos Aires",
+		"event-title": "s. XIV Jornadas de Investigación y Tercer Encuentro de Investigadores en Psicología del Mercosur",
+		"language": "es",
+		"publisher-place": "Buenos Aires",
+		"title": "La accesibilidad a la atención en salud: su articulación con la participación en salud de los usuarios",
+		"URL": "https://www.aacademica.org/000-073/429.pdf",
+		"author": [
+			{
+				"family": "Comes",
+				"given": "Y."
+			},
+			{
+				"family": "Garbus",
+				"given": "P."
+			},
+			{
+				"family": "Solitario",
+				"given": "R."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	}
+]
