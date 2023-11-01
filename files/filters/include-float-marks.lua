@@ -7,7 +7,7 @@ local contador_tab = 0        --Inicializar contadores de tablas
 local contador_fig = 0        --Inicializar contadores de figuras
 local root = "./float/"
 local nocite = {}
-local no_float = nil
+-- local no_float = nil
 
 local stringify = pandoc.utils.stringify
 local text = pandoc.text
@@ -130,13 +130,15 @@ end
 --    bloques de tipo "CodeBlock" con los elementos que definen un elemento flotante.
 -- Cuenta la cantidad de figuras y tablas (para pasarlo a los metadatos)
 
-function Blocks(blocks)
+function Pandoc(p)
   
+  -- Si existe floats recorrer bloques
   if exists(root) then
-
-    -- print("Existe ./float/")
-    -- Listar archivos con elementos flotantes
-    local archivos = pandoc.system.list_directory(root)     
+    
+    -- Obtener conjunto de blocks
+    local blocks = p.blocks
+    -- Obtener listado de archivos en ./float/
+    local archivos = pandoc.system.list_directory(root)
 
     for i = 1, #blocks, 1 do
       
@@ -201,24 +203,111 @@ function Blocks(blocks)
       end
     end
   else
-    if(not no_float) then
-      print("No existe ./float/\n")
-      no_float = true
-    end
+    print("No existe ./float/\n")
   end
-  return blocks
-end
 
 
-function Meta(m)
-  -- Guardar número de figuras / tablas (para xml-jats)
-  m.n_figs = contador_fig
-  m.n_tabs = contador_tab
+  p.meta.n_figs = contador_fig
+  p.meta.n_tabs = contador_tab
 
   -- Agrega elementos nocite
   if nocite ~= nil then
-    m.nocite = CodeBlock(table.concat(nocite, ", "))
+    p.meta.nocite = CodeBlock(table.concat(nocite, ", "))
   end
   
-  return m
+  return p
+  
 end
+
+-- function Blocks(blocks)
+  
+--   if exists(root) then
+
+--     -- print("Existe ./float/")
+--     -- Listar archivos con elementos flotantes
+--     local archivos = pandoc.system.list_directory(root)
+
+--     for i = 1, #blocks, 1 do
+      
+--       local bloque = blocks[i]
+    
+--       -- Obtener contenido textual del bloque
+--       local contenido = stringify(bloque)
+
+--       -- Detecta marcadores de elementos flotantes en bloques    
+--       local bloque_float = is_float_element(contenido)
+
+--       -- -- Filtra bloques con marcador de figura
+--       if bloque_float then    
+
+--         -- Define label (ej: FIG_01) 
+--         local label = contenido:match('^~!include=' .. bloque_float .. '_[0-9][0-9]'):gsub("^~!include=", "")
+
+--         -- Modifica contenido de los bloques para cambiar los elementos de citas (.t == Cite) por citas en la forma marckdown ("[@clave]")
+--         local contenido = stringify(bloque.content:map(mark_cite))
+        
+--         -- Obtiene metadatos de la figura (título, fuente y notas)
+--         local float_meta = meta_float(contenido)             
+
+--         -- Crea bloque de código (CodeBlock) con elementos 
+--         blocks[i] = CodeBlock("", 
+--                               {id = label, 
+--                                 class = bloque_float, 
+--                                 title = float_meta.title, 
+--                                 source = float_meta.source, 
+--                                 note = float_meta.note}
+--                               )
+
+--         if bloque_float == "FIG" then           -- Modifica bloques con figuras
+          
+--           contador_fig = contador_fig + 1
+          
+--           blocks[i].attributes.fignum = contador_fig
+
+--           -- Identiica path a la figura
+--           local path_fig = ''
+--           for i = 1, #archivos, 1 do
+--             local float_file = archivos[i]:match(label .. '.[a-z]+')
+--             if float_file then
+--               path_fig = root .. float_file
+--             end
+--           end
+
+--           blocks[i].attributes.path = path_fig
+
+--           -- blocks[i] = pandoc.Image({float_meta.title}, path_fig, "",
+--           --                           {id = label, source = float_meta.source, note = float_meta.note} )
+
+--         elseif bloque_float == "TAB" then       -- Modifica bloques con tablas
+
+--           contador_tab = contador_tab + 1
+
+--           blocks[i].attributes.tabnum = contador_tab
+          
+--           -- blocks[i] = CodeBlock("", {id = label, class = bloque_float, path = path_fig, 
+--           --                                 title = float_meta.title, source = float_meta.source, note = float_meta.note})
+--         end
+--       end
+--     end
+--   else
+--     if(not no_float) then
+--       print("No existe ./float/\n")
+--       no_float = true
+--     end
+--   end
+--   return blocks
+-- end
+
+
+-- function Meta(m)
+--   -- Guardar número de figuras / tablas (para xml-jats)
+--   m.n_figs = contador_fig
+--   m.n_tabs = contador_tab
+
+--   -- Agrega elementos nocite
+--   if nocite ~= nil then
+--     m.nocite = CodeBlock(table.concat(nocite, ", "))
+--   end
+  
+--   return m
+-- end
