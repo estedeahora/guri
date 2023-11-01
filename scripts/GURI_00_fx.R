@@ -10,9 +10,12 @@
            "Recuerde colocar una carpeta para artículo.")
     }
     
-    art <- data.frame(art_path = list.dirs(path_issue)) |>
-      filter(str_detect(art_path, paste0(path_issue, "art[0-9]{3}$"))) |> 
-      mutate(art_id = str_remove(art_path, path_issue),
+    art <- data.frame(art_path = list.dirs(path_issue, recursive = F)) |>
+      filter(str_detect(art_path, paste0(path_issue, "art[0-9]{3}.*"), negate = F)
+               ) |> 
+      mutate(#g = str_detect(art_path, paste0(path_issue, "art[0-9]{3}_*.*?/")),
+             art_id = str_remove(art_path, path_issue),
+             art_id = str_remove(art_id, "_.*$"),
              art_path = paste0(art_path, "/"))
     
     files <- map(art$art_path, ~list.files(.x, all.files = T, recursive = T)) |> 
@@ -93,9 +96,10 @@
                            "unhighlight",
                            "add-credit", 
                            "metadata-div-before-bib",
+                           # "include-files",
                            "cross-references",
                            "translate-citation-elements",
-                           "include-float-files",
+                           "include-float-marks",
                            "author-to-canonical"),
                          ".lua")
     
@@ -297,8 +301,7 @@
     # Filtros Lua
     op_filters <- paste0("--lua-filter=",  program_path, "filters/",
                          c("include-float-in-format",
-                           "metadata-format-in-text",
-                           "latex-prepare"),
+                           "metadata-format-in-text"),
                          ".lua")
     
     pandoc_convert(wd = paste0(getwd(), path_art), 
