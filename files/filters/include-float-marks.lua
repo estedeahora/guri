@@ -212,7 +212,7 @@ function Pandoc(p)
 
   -- Agrega elementos nocite
   if nocite ~= nil then
-    p.meta.nocite = CodeBlock(table.concat(nocite, ", "))
+    p.meta.nocite = CodeBlock(concat(nocite, ", "))
   end
   
   return p
