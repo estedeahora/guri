@@ -110,53 +110,54 @@ local function fig_latex(label, float_attr)
   return RawBlock('latex', raw_elem)
 
 end
-  
-  -- fig_html(label, float_attr) ----------------------------------------
-  -- Genera un texto de código plano (RawBlock) para html que incluye figuras
-  -- Return: RawBlock con ambiente figure (html)
-  
-  local function fig_html(label, float_attr)
 
-    local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
+-- fig_html(label, float_attr) ----------------------------------------
+-- Genera un texto de código plano (RawBlock) para html que incluye figuras
+-- Return: RawBlock con ambiente figure (html)
 
-    -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-    if source ~= "" then source = '<figcaption class="extra"><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
-    if note ~= "" then note = '<figcaption class="extra">Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
-  
-    local raw_elem = '<figure id="' .. label .. '">\n' ..
-                      '<img src="' .. float_attr.path .. '" alt="' .. label .. '"/>\n' .. 
-                      '<figcaption>Figura ' .. float_attr.fignum .. ". " .. float_attr.title .. '</figcaption>\n' ..
-                      source .. note ..
-                      '</figure>'
+local function fig_html(label, float_attr)
 
-    return RawBlock('html', raw_elem)
+  local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
 
-  end
-  
-  -- fig_jats(path, float_attr) --------------------------------
-  -- Genera un texto de código plano (RawBlock) para jats que incluye figuras
-  -- Return: RawBlock con ambiente figure (jats)
-  
-  local function fig_jats(label, float_attr)
+  -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+  if source ~= "" then source = '<figcaption class="extra"><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
+  if note ~= "" then note = '<figcaption class="extra">Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
 
-    local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
-    
-      -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-    if source ~= '' then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
-    if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  add_citation(note) .. '</p>\n' end
-  
-    local raw_elem = '<fig id="' .. label .. '">\n' ..
-                      '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
-                      '<caption>\n' ..
-                      '<p>' .. float_attr.title .. '</p>' .. 
-                      '</caption>\n' ..
-                      '<graphic xlink:href="'.. float_attr.path .. '"/>\n' ..
-                      note .. source .. 
-                      '</fig>'
-                
-    return RawBlock('jats', raw_elem)
+  local raw_elem = '<figure id="' .. label .. '">\n' ..
+                    '<img src="' .. float_attr.path .. '" alt="' .. label .. '"/>\n' .. 
+                    '<figcaption>Figura ' .. float_attr.fignum .. ". " .. float_attr.title .. '</figcaption>\n' ..
+                    source .. note ..
+                    '</figure>'
 
-  end
+  return RawBlock('html', raw_elem)
+
+end
+
+-- fig_jats(path, float_attr) --------------------------------
+-- Genera un texto de código plano (RawBlock) para jats que incluye figuras
+-- Return: RawBlock con ambiente figure (jats)
+
+local function fig_jats(label, float_attr)
+
+  local title, source, note, tabnum, path = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum, float_attr.path
+  path = path:gsub('^%' .. root, "")
+
+  -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
+  if source ~= '' then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
+  if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  add_citation(note) .. '</p>\n' end
+
+  local raw_elem = '<fig id="' .. label .. '">\n' ..
+                    '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
+                    '<caption>\n' ..
+                    '<p>' .. float_attr.title .. '</p>' .. 
+                    '</caption>\n' ..
+                    '<graphic xlink:href="'.. path .. '"/>\n' ..
+                    note .. source .. 
+                    '</fig>'
+              
+  return RawBlock('jats', raw_elem)
+
+end
   
 -- tab_float(label, float_attr) ----------------------------------
 -- Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas.
