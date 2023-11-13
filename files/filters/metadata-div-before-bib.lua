@@ -4,14 +4,20 @@
 --- License: CC-by-nc-sa
 
 local stringify = pandoc.utils.stringify
+local lower = pandoc.text.lower
+local concat = table.concat
 
 local Str = pandoc.Str
-local Para = pandoc.Para
-local Div = pandoc.Div
 local Strong = pandoc.Strong
 
-local cont_credit = nil
-local cont_ack = nil
+local Para = pandoc.Para
+local Div = pandoc.Div
+local RawBlock = pandoc.RawBlock
+local CodeBlock = pandoc.CodeBlock
+
+local cont_credit = ''
+local cont_ack = ''
+local cont_app = ''
 local with_ref = nil
 
 --  credit_Div(aut) ------------------------------------------------------------------------------------------
@@ -63,26 +69,41 @@ local function get_metadata(meta)
     if(meta.ack) then
         cont_ack = Div(Para(meta.ack), {id = "Ack", class = "Paratext"})
     end
-end
 
+    if(meta.appendix) then
+        -- local app = nil
+        if(type(meta.appendix) == "string") then
+            cont_app = meta.appendix
+        else
+            cont_app = concat(meta.appendix, "\n")
+        end
+        
+        cont_app = CodeBlock(cont_app, {class = "include", format = "markdown"})
+        cont_app.attributes["shift-heading-level-by"] = 0
+
+        meta.appendix = cont_app
+        cont_app = Div(cont_app, {id = "app", class = "Paratext"})
+
+
+    end
+
+end
 
 -- add_metadata1(h) & add_metadata2(doc) ------------------------------------------------------------------
 
 -- Agrega credit antes de referencias
 function add_metadata1(h) 
 
-  if(stringify(h) == "Referencias bibliográficas") then
+  local s = lower(stringify(h))
+  s = s:gsub("%s*$", "")
 
-    local res = {h}  
+  if(s == "referencias bibliográficas") then
+
+    local res = {cont_credit, cont_ack, h, 
+                RawBlock('markdown', '::: {#refs}\n:::'),
+                cont_app 
+                } 
     with_ref = true
-
-    if(cont_ack) then
-        res = {cont_ack, table.unpack(res)}
-    end
-    
-    if(cont_credit) then
-        res = {cont_credit, table.unpack(res)}
-    end
 
     return(res)
 
@@ -95,7 +116,9 @@ function add_metadata2(doc)
 
   if(with_ref == nil and cont_credit) then
 
-    doc.blocks:extend({cont_credit})    
+    io.stderr:write("\nSin referencias bibliográficas.\n")
+
+    doc.blocks:extend({cont_credit, cont_ack, cont_app})
   
   end
 

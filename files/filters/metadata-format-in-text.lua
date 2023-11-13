@@ -4,13 +4,21 @@
 --- License: CC-by-nc-sa
 
 local RawBlock = pandoc.RawBlock
+local app = nil
 
 function Div(div)
 
     if(div.classes[1] == "Paratext") then
         
         if FORMAT:match 'jats' then
-            div = RawBlock('jats', '')
+            if(div.identifier == "app") then
+                app = div.content
+                div = pandoc.Header(1, '')
+            else
+                div = RawBlock('jats', '')
+            end
+
+            
         elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
 
             div = {RawBlock('latex', '\\begin{'.. div.identifier .. '}'),
@@ -22,4 +30,12 @@ function Div(div)
 
     return div
 
+end
+
+function Meta(m)
+
+    if(app) then
+        m.app = app
+    end
+    return(m)
 end
