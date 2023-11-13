@@ -68,6 +68,27 @@
     }
   }
   
+  
+  # GURI_appendix() ------------------------------------------
+  # Transformación de archivos de anexos docx -> md
+  
+  GURI_appendix <- function(wdir, art){
+    appendix_files <-  list.files(wdir, pattern = paste0(art, "_app[0-9]*\\.docx"))
+  
+    walk(appendix_files,
+        \(file){
+          pandoc_convert(wd = wdir,
+                         input = file,
+                         from = "docx+citations",
+                         output = str_replace(file, "docx", "md") ,
+                         citeproc = T,
+                         to = "markdown")}
+    )
+    
+    return(str_replace(appendix_files, "docx", "md"))
+  }
+  
+  
 # Generar documentos finales ---------------------------   
 
   # GURI_to_md() --------------------------------------------------------------
@@ -90,13 +111,20 @@
                   "--extract-media=./",
                   "--wrap=none")
     
+    app_files <- GURI_appendix(wdir, art)
+    if(length(app_files) > 0){
+      app_files <- paste0("--metadata=appendix:", app_files)
+    }else{
+      app_files <- NULL
+    }
+    
     # Filtros Lua
     op_filters <- paste0("--lua-filter=", program_path, "filters/",
                          c("title", 
                            "unhighlight",
                            "add-credit", 
                            "metadata-div-before-bib",
-                           # "include-files",
+                           "include-files",
                            "cross-references",
                            "translate-citation-elements",
                            "include-float-marks",
@@ -111,23 +139,23 @@
     if(length(config_csl) == 1){
       op_biblio <- c(op_biblio, paste0("--csl=", config_path, config_csl))
     }else if(length(conf_csl) > 1){
-      stop("Existen múltiples archivos csl en 'root/_config/'")
+      stop("\nExisten múltiples archivos csl en 'root/_config/'")
     }else{
-      cat("Se usará csl por defecto")
+      cat("\nSe usará csl por defecto")
     }
     
     # Archivos de metadatos
     op_meta <- c(paste0("--metadata-file=./", art, ".yaml"), # artículo
                  "--metadata-file=../_issue.yaml",           # número
                  "--metadata-file=../../_journal.yaml")      # revista
-    
+
     pandoc_convert(wd = wdir, 
                    input = file_input,
                    from = "docx+citations",
                    output = file_output,
                    citeproc = T, verbose = verbose,
                    to = "markdown", # +footnotes+citations+smart+grid_tables-implicit_figures+link_attributes
-                   options = c(op_gral, op_meta, 
+                   options = c(op_gral, op_meta, app_files,
                                op_filters, op_biblio)
     )
   }
@@ -313,11 +341,65 @@
                    options = c(op_gral, op_filters))
   }
   
+
+  # GURI_zip_input() ----------------------------------------------------------
+
+  GURI_zip_input <- function(id_art){
+    
+    work_files <- paste0(paste0(id_art, c(".docx", "_biblio.json", 
+                                          "_notes.md", ".yaml", 
+                                          "_credit.xlsx") ))
+    float_dir <- paste0("float")
+    if(dir.exists(float_dir) ){
+      work_files <- c(work_files, float_dir)
+    }
+    
+    zip_file <- paste0(id_art, "_", format(today(), "%Y.%m.%d"), ".zip")
+    
+    zip(zipfile = zip_file, files = work_files)
+    
+  }
+  
+  
+  # GURI_clean_temp() -------------------------------------------
+  
+  GURI_clean_temp <- function(id_art){
+    
+    if(!dir.exists("./_temp")){
+      dir.create("./_temp")
+    }
+    archivos <- list.files(".")
+    patron <- paste0(id_art, c("\\.tex", "_AST\\.json", "\\.md")) |> 
+      paste0(collapse = "|")
+    archivos <- archivos[str_detect(archivos, patron)]
+    
+    walk2(archivos, paste0("./_temp/", archivos), 
+          file.rename)
+    
+  }
+  
+  # GURI_output() -------------------------------------------
+  
+  GURI_output <- function(id_art){
+    
+    if(!dir.exists("./_output")){
+      dir.create("./_output")
+    }
+    
+    archivos <- paste0(id_art, c(".pdf", ".xml"#, ".html"
+                                 ))
+    
+    walk2(archivos, paste0("./_output/", archivos), 
+          file.rename)
+    
+    
+  }
   
   # GURI() ---------------------------------------------------- 
   
-  GURI <- function(art_path, art_name, verbose = F){
-    pandoc_req <- "3.1.8"
+  GURI <- function(art_path, art_name, verbose = F, 
+                   zip_file = F, clean_files = T){
+    pandoc_req <- "3.1.9"
     if(!pandoc_version() >= pandoc_req){
       stop("Necesita actualizar su versión de Pandoc (se requiere ", 
            pandoc_req, " o posterior). Descargue la última versión",
@@ -343,6 +425,26 @@
         "y pdf (", art_name, "pdf ).", "\033[39m")
     GURI_to_pdf(art_path, art_name, verbose = verbose)
     cat("DONE\n")
+    
+    # File reorganization
+    
+    wd_orig <- getwd()
+    setwd(art_path)
+    
+    if(zip_file){
+      cat("\033[33m", "* Crear zip con archivos usados como entrada", "\033[39m")
+      GURI_zip_input(art_name)
+      cat("DONE\n")
+    }
+    if(clean_files){
+      cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
+      GURI_clean_temp(art_name)
+      cat("DONE\n")
+      cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
+      GURI_output(art_name)
+      cat("DONE\n")
+    }
+    setwd(wd_orig)
   }
   
   
