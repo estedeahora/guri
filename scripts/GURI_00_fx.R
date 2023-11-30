@@ -31,11 +31,11 @@
   
   GURI_filetype <- function(art_files, art_id){
     
-    search1 <- c(".docx", ".yaml", "_biblio.json", "_credit.xlsx", 
+    search1 <- c(".docx", ".yaml", "_credit.xlsx", # "_biblio.json",
                 "_app[0-9]{2}.docx", "_notes.md")
     
     res1 <- map_lgl(search1, ~any(str_detect(art_files, paste0(art_id, .x) ))) |> 
-      set_names(c("is_docx", "is_yaml", "is_biblio", "is_credit",
+      set_names(c("is_docx", "is_yaml", "is_credit", # "is_biblio", 
                   "is_appendix", "is_notes"))
     
     # bib <- art_files[str_detect(art_files, paste0(art_id, "_biblio.json"))]
@@ -53,11 +53,11 @@
   
   GURI_prepare <- function(art_path, art_pre){
     
-    # Crear "art[~]_biblio.json" vacío si no tiene bibliografía
-    biblio <- paste0(art_path, art_pre, "_biblio.json")
-    if(!file.exists(biblio)){
-      write_file(x = "[]", file = biblio)
-    }
+    # # Crear "art[~]_biblio.json" vacío si no tiene bibliografía
+    # biblio <- paste0(art_path, art_pre, "_biblio.json")
+    # if(!file.exists(biblio)){
+    #   write_file(x = "[]", file = biblio)
+    # }
     
     # Generar "art[~]_credit.csv "
     credit_xlsx <- paste0(art_path, art_pre, "_credit.xlsx")
@@ -71,6 +71,7 @@
   
   # GURI_appendix() ------------------------------------------
   # Transformación de archivos de anexos docx -> md
+  # Devuelve el listado de archivos para anexos
   
   GURI_appendix <- function(wdir, art){
     appendix_files <-  list.files(wdir, pattern = paste0(art, "_app[0-9]*\\.docx"))
@@ -132,7 +133,7 @@
                          ".lua")
     
     # Opciones de bibliografía
-    op_biblio <- c(paste0("--bibliography=./", art, "_biblio.json"))
+    op_biblio <- c()#c(paste0("--bibliography=./", art, "_biblio.json"))
     
     config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
     
@@ -346,7 +347,7 @@
 
   GURI_zip_input <- function(id_art){
     
-    work_files <- paste0(paste0(id_art, c(".docx", "_biblio.json", 
+    work_files <- paste0(paste0(id_art, c(".docx", #"_biblio.json", 
                                           "_notes.md", ".yaml", 
                                           "_credit.xlsx") ))
     float_dir <- paste0("float")
@@ -369,10 +370,11 @@
       dir.create("./_temp")
     }
     archivos <- list.files(".")
-    patron <- paste0(id_art, c("\\.tex", "_AST\\.json", "\\.md")) |> 
+    patron <- paste0(id_art, c("\\.tex", "_AST\\.json", "\\.md", 
+                               "_app[0-9]\\.md", "_credit\\.csv")) |> 
       paste0(collapse = "|")
     archivos <- archivos[str_detect(archivos, patron)]
-    
+
     walk2(archivos, paste0("./_temp/", archivos), 
           file.rename)
     
@@ -386,12 +388,10 @@
       dir.create("./_output")
     }
     
-    archivos <- paste0(id_art, c(".pdf", ".xml"#, ".html"
-                                 ))
+    archivos <- paste0(id_art, c(".pdf", ".xml", ".html"))
     
     walk2(archivos, paste0("./_output/", archivos), 
           file.rename)
-    
     
   }
   
@@ -406,36 +406,46 @@
            "en el sitio de Pandoc: https://github.com/jgm/pandoc/releases/latest")
     }
     
+    # Preprar archivos
     cat("Artículo:", "\033[34m", art_name, "\033[39m", "\n")
     cat("\033[33m", "* Preparación de archivos.", "\033[39m")
     GURI_prepare(art_path, art_name)
     cat("DONE\n")
+    
+    # Convert files
+    # docx -> md
     cat("\033[33m", "* Crear archivo markdown (", art_name, ".md ).", "\033[39m")
     GURI_to_md(art_path, art_name, verbose = verbose)
     cat("DONE\n")
-    if (verbose){
-      cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
-      GURI_to_AST(art_path, art_name)
-      cat("DONE\n")
-    }
+    # md -> AST
+    cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
+    GURI_to_AST(art_path, art_name)
+    cat("DONE\n")
+    # md -> jats
     cat("\033[33m", "* Crear archivo jats-xml (", art_name, ".xml ).", "\033[39m")
     GURI_to_jats(art_path, art_name)
     cat("DONE\n")
+    # md -> html
+    cat("\033[33m", "* Crear archivo html (", art_name, ".html ).", "\033[39m")
+    GURI_to_html(art_path, art_name)
+    cat("DONE\n")
+    # md -> tex + pdf
     cat("\033[33m", "* Crear archivo latex (", art_name, ".tex ).",
         "y pdf (", art_name, "pdf ).", "\033[39m")
     GURI_to_pdf(art_path, art_name, verbose = verbose)
     cat("DONE\n")
     
     # File reorganization
-    
     wd_orig <- getwd()
     setwd(art_path)
     
+    # Zip file
     if(zip_file){
       cat("\033[33m", "* Crear zip con archivos usados como entrada", "\033[39m")
       GURI_zip_input(art_name)
       cat("DONE\n")
     }
+    # Clean files
     if(clean_files){
       cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
       GURI_clean_temp(art_name)
