@@ -93,7 +93,7 @@ end
 
 local function fig_latex(label, float_attr)
 
-  local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
+  local title, source, note, fignum = float_attr.title, float_attr.source, float_attr.note, float_attr.fignum
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
   if source ~= "" then source = '\\source{' ..  add_citation(source) .. '}\n' end
@@ -102,7 +102,7 @@ local function fig_latex(label, float_attr)
   local raw_elem = '\\begin{figure}\n' ..
                     '\\centering\n' .. 
                     '\\includegraphics[width=0.9\\textwidth]{' .. root .. label .. '}\n' .. 
-                    '\\caption{' .. float_attr.title .. '}\n' .. 
+                    '\\caption{' .. title .. '}\n' .. 
                     source .. note ..
                     '\\label{' .. label .. '}\n' ..
                     '\\end{figure}'
@@ -117,15 +117,16 @@ end
 
 local function fig_html(label, float_attr)
 
-  local title, source, note, tabnum = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum
+  local title, source, note, fignum, path = float_attr.title, float_attr.source, float_attr.note, float_attr.fignum, float_attr.path
+  path = path:gsub('^%' .. root, "")
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
   if source ~= "" then source = '<figcaption class="extra"><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
   if note ~= "" then note = '<figcaption class="extra">Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
 
   local raw_elem = '<figure id="' .. label .. '">\n' ..
-                    '<img src="' .. float_attr.path .. '" alt="' .. label .. '"/>\n' .. 
-                    '<figcaption>Figura ' .. float_attr.fignum .. ". " .. float_attr.title .. '</figcaption>\n' ..
+                    '<img src="' .. path .. '" alt="' .. label .. '"/>\n' .. 
+                    '<figcaption>Figura ' .. fignum .. ". " .. title .. '</figcaption>\n' ..
                     source .. note ..
                     '</figure>'
 
@@ -139,7 +140,7 @@ end
 
 local function fig_jats(label, float_attr)
 
-  local title, source, note, tabnum, path = float_attr.title, float_attr.source, float_attr.note, float_attr.tabnum, float_attr.path
+  local title, source, note, fignum, path = float_attr.title, float_attr.source, float_attr.note, float_attr.fignum, float_attr.path
   path = path:gsub('^%' .. root, "")
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
@@ -147,9 +148,9 @@ local function fig_jats(label, float_attr)
   if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  add_citation(note) .. '</p>\n' end
 
   local raw_elem = '<fig id="' .. label .. '">\n' ..
-                    '<label>Figura ' ..  float_attr.fignum .. '.</label>\n' ..
+                    '<label>Figura ' ..  fignum .. '.</label>\n' ..
                     '<caption>\n' ..
-                    '<p>' .. float_attr.title .. '</p>' .. 
+                    '<p>' .. title .. '</p>' .. 
                     '</caption>\n' ..
                     '<graphic xlink:href="'.. path .. '"/>\n' ..
                     note .. source .. 
