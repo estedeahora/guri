@@ -309,7 +309,9 @@
     
   }
   
+# Funciones auxiliares --------------------
   # GURI_to_AST() -----------------------------------
+  # Genera archivo con estructura AST
   
   GURI_to_AST <- function(path_art, art) {
     
@@ -333,7 +335,7 @@
                            "metadata-format-in-text"),
                          ".lua")
     
-    pandoc_convert(wd = paste0(getwd(), path_art), 
+    pandoc_convert(wd = wdir, 
                    input = file_input,
                    from = "markdown",
                    output = file_json,
@@ -342,7 +344,32 @@
                    options = c(op_gral, op_filters))
   }
   
-
+  # GURI_biblio() ----------------------------------
+  # Genera archivo con bibliografía (en biblatex o csljson)
+  
+  GURI_biblio <- function(path_art, art, bib_type = "csljson"){
+    
+    wdir <- paste0(getwd(), path_art)
+    
+    # Archivos de entrada / salida
+    file_input  <- paste0(art, ".docx")
+    
+    if(bib_type == "csljson"){
+      file_out <- paste0(art, "_biblio.json")
+    }else if(bib_type == "biblatex"){
+      file_out <- paste0(art, "_biblio.bib")
+    }else{
+      stop("'bib_type' debe ser 'biblatex' o 'csljson'")
+    }
+    
+    pandoc_convert(wd = wdir,
+                   input = file_input,
+                   from = "docx+citations",
+                   output = file_out ,
+                   to = bib_type)
+    
+  }
+  
   # GURI_zip_input() ----------------------------------------------------------
 
   GURI_zip_input <- function(id_art){
@@ -371,7 +398,9 @@
     }
     archivos <- list.files(".")
     patron <- paste0(id_art, c("\\.tex", "_AST\\.json", "\\.md", 
-                               "_app[0-9]\\.md", "_credit\\.csv")) |> 
+                               "_app[0-9]\\.md", "_credit\\.csv",
+                               "_biblio\\.((json)|(bib))"
+                               )) |> 
       paste0(collapse = "|")
     archivos <- archivos[str_detect(archivos, patron)]
 
@@ -395,10 +424,12 @@
     
   }
   
-  # GURI() ---------------------------------------------------- 
+  
+# GURI() ---------------------------------------------------- 
   
   GURI <- function(art_path, art_name, verbose = F, 
                    zip_file = F, clean_files = T){
+    
     pandoc_req <- "3.1.9"
     if(!pandoc_version() >= pandoc_req){
       stop("Necesita actualizar su versión de Pandoc (se requiere ", 
@@ -416,6 +447,10 @@
     # docx -> md
     cat("\033[33m", "* Crear archivo markdown (", art_name, ".md ).", "\033[39m")
     GURI_to_md(art_path, art_name, verbose = verbose)
+    cat("DONE\n")
+    # docx -> biblio
+    cat("\033[33m", "* Crear archivo de bibliografía (", art_name, "_biblio).", "\033[39m")
+    GURI_biblio(art_path, art_name)
     cat("DONE\n")
     # md -> AST
     cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
