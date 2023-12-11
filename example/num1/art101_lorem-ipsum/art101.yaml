@@ -1,11 +1,9 @@
 # TODO    Averiguar cómo incorporar AoP (online first)
 article:
-  heading: Dossier                 # Presentación / Dossier / Espacio Abierto / Urbanidades / Novedades / Nota editorial
-  type: research-article                    # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
-                            # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
-  elocation-id: a101            # Identificador digital electrónico    
-  # doi: 
-  # art-access-id:          # Este número lo otorga Redalyc
+  heading: Presentación
+  type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id: a101            
+  doi: 10.1223/3344445.55555333
   # fpage:                  # Página inicial
   # lpage:                  # Página final
 
@@ -17,17 +15,19 @@ abstract_es: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 keyword_es: 
-  - kw1_es
-  - kw2_es
+  - Lorem
+  - Ipsum
+  - Dolor
   
-title_en: English lorem ipsum
+title_en: Pain itself
 
 abstract_en: |
-  Maecenas risus nisl, vehicula a molestie eget, varius ut quam. Vestibulum quis blandit metus, at fringilla magna. Morbi finibus dui lacus, viverra faucibus dolor laoreet ac. Praesent vehicula neque tempor lacus scelerisque, id tincidunt nulla condimentum. Etiam convallis lobortis nulla ut fringilla. Phasellus aliquet euismod mauris ac commodo. Nam dictum, nunc sed tempus dictum, sapien tortor commodo tortor, ac fermentum lacus metus nec ex. Nunc ac finibus est. Integer ut vestibulum ante. 
+  It is important to take care of the patient, to be followed by the client, but at the same time they will be affected by some great pains and sufferings. For to come to the smallest detail, no one should practice any kind of work unless he derives some benefit from it. Do not be angry with the pain in the rebuke, in the pleasure he wants to be a hair from the pain, let him run away from the pain. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.
 
 keyword_en: 
-  - kw1_en
-  - kw2_en
+  - Home
+  - He himself
+  - Pain
 
 # Texto libre en title (dedication en latex-pdf)
 # Puede usar cursiva (*texto*) o negritas (**texto**)
@@ -40,33 +40,22 @@ ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse i
 
 # Datos de autores (un bloque por autor)
 author:
-  - given-names: Carlos Alberto 
-    surname: García
-    email: snm@instute.com
+  - given-names: Marcus Tullius  
+    surname: Cicero
+    email: ciceron@instute.com
     orcid: 0000-0000-1234-5678
     cor-id: yes               # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
     affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
       - aff1
       - aff2
-  - given-names: Luis Alberto
-    surname: Spinetta
-    email: las@institute.com
-    orcid: 0000-0005-0901-8282
-    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
-      - aff1
-      - aff3
 
 affiliation:
   - id: aff1
-    organization: Rock Nacional
-    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
+    organization: Ancient Rome
+    country-code: IT
   - id: aff2
-    organization: Say No More
-    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
-  - id: aff3
-    organization: Alma de diamante
-    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
-
+    organization: Platonic Academy
+    country-code: GR # https://www.nationsonline.org/oneworld/country_code_list.htm
 
 history:
   - type: received

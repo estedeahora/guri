@@ -2,6 +2,7 @@
 % Permite cambiar la posición de las figuras
 \usepackage[export]{adjustbox}
 
+\renewcommand{\spanishtablename}{Tabla}
 % \usepackage[notmath]{sansmathfonts}
 
 % Iconos 
@@ -18,19 +19,17 @@
 $to_header$
 
 % Colores de la revista
-\definecolor{gris_art}{RGB}{90,90,90}
-\definecolor{gris_art2}{RGB}{160,160,160}
 \definecolor{verde_orcid}{RGB}{166,206,57}
-\definecolor{rojo_quid}{RGB}{167,112,112}
 
-\setkomafont{title}{\sffamily\color{gris_art}}
+\setkomafont{title}{\sffamily}
 \setkomafont{author}{\sffamily}
 \setkomafont{dedication}{\sffamily\footnotesize}
 
 % Definir estilo de citas largas (achica el tamaño)
-\newcommand*{\OriginalQuote}{}
-\let\OriginalQuote\quote
-\renewcommand*{\quote}{\OriginalQuote\small}
+% \usepackage{relsize,etoolbox}% http://ctan.org/pkg/{relsize,etoolbox}
+\IfPackageLoadedTF{relsize}{}{\usepackage{relsize}}
+\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
+\AtBeginEnvironment{quote}{\smaller}% Step font down one size relative to current font.
 
 % Agregado para titulos de tablas
 \usepackage{caption}
@@ -40,7 +39,7 @@ $to_header$
 \newcommand{\notes}[1]{\vspace{-9pt}\raggedright{\caption*{\footnotesize{\textit{Notas:} {#1}}}} }
   
 % Cambiar fuente y tamaño de letra para entorno de tablas (table)
-\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
+% \IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
 \AtBeginEnvironment{tabular}{\sffamily\footnotesize}
 \IfPackageLoadedTF{tabularray}{%
 \AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
@@ -53,108 +52,107 @@ $to_header$
 
 %%%% Encabezados de páginas 
 \usepackage[headsepline]{scrlayer-scrpage}
-\addtokomafont{headsepline}{\color{gris_art}}
+\addtokomafont{headsepline}{}
 \clearpairofpagestyles
 
-\ihead{\sffamily{$author_header$}}
-\ohead{\QUID{\huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
+\ihead{\sffamily{$author.surname$}}
+\ohead{\large{\textbf{$journal.title$}}}
 
 \ofoot{\pagemark}
 
 %%%% Página de título 
-\makeatletter
-\renewcommand*{\@maketitle}{%
-  \global\@topnum=\z@
+% \makeatletter
+% \renewcommand*{\@maketitle}{%
+%   \global\@topnum=\z@
 
-  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+%   \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
   
-  $-- % Cabecera
-  \begin{minipage}[t][1.9em][b]{0.7\textwidth}
-    $if(article.doi)$
-    $else$
-      \scriptsize\raggedright{\phantom{DOI: 10.1177/00420980231178401}\par}
-    $endif$
-    \sffamily\scriptsize\raggedright{Número: $issue$ ($date.year$). $article.elocation-id$ \\}
-    $if(article.doi)$
-      \sffamily\scriptsize\raggedright{DOI: \href{https://doi.org/$article.doi$}{$article.doi$}\par}
-    $endif$
-  \end{minipage}%
-  \begin{minipage}[t][][b]{0.3\textwidth}
-    \raggedleft{\QUID{\Huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
-  \end{minipage}%
+%   $-- % Cabecera
+%   \begin{minipage}[t][1.9em][b]{0.5\textwidth}
+%     $if(article.doi)$
+%     $else$
+%       \scriptsize\raggedright{\phantom{DOI: 10.1177/00420980231178401}\par}
+%     $endif$
+%     \sffamily\scriptsize\raggedright{Número: $issue$ ($date.year$). $article.elocation-id$ \\}
+%     $if(article.doi)$
+%       \sffamily\scriptsize\raggedright{DOI: \href{https://doi.org/$article.doi$}{$article.doi$}\par}
+%     $endif$
+%   \end{minipage}%
+%   \begin{minipage}[t][][b]{0.5\textwidth}
+%     \raggedleft{\large{\textbf{$journal.title$}}}
+%   \end{minipage}%
   
-  {\color{gris_art}\hrule height 0.3pt}
-  \vskip 0.3em
+%   \hrule height 0.3pt%
+%   \vskip 0.3em
 
-  \begin{minipage}[][0.5em][t]{0.86\textwidth}
-    \sffamily{\textcolor{gris_art}\large{\textsc{$article.heading$}}}\\%
-  \end{minipage}%
-  \begin{minipage}[][1em][t]{0.14\textwidth}
-    \href{$license.link$}{\Large{\textcolor{black}{\ccbync}}}
+%   \begin{minipage}[][0.5em][t]{0.86\textwidth}
+%     \sffamily{\large{\textsc{$article.heading$}}}\\%
+%   \end{minipage}%
+%   \begin{minipage}[][1em][t]{0.14\textwidth}
+%     \href{$license.link$}{\Large{\textcolor{black}{\ccbync}}}
     
-  \end{minipage}%
-  \vskip 0.5em
+%   \end{minipage}%
+%   \vskip 0.5em
 
-  $-- % Titulo
-  \begin{minipage}[t]{0.85\textwidth}
-    \raggedright
-    {\usekomafont{title}{\LARGE\textbf{\@title} \par}}%
-    \vskip .5em
-    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\Large \@subtitle\par\fi}%
-    \vskip 1em
-    \usekomafont{subtitle}\textcolor{gris_art2}\Large\textit{$title_en$}
-  \end{minipage}%
+%   $-- % Titulo
+%   \begin{minipage}[t]{0.85\textwidth}
+%     \raggedright
+%     {\usekomafont{title}{\LARGE\textbf{\@title} \par}}%
+%     \vskip .5em
+%     {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\Large \@subtitle\par\fi}%
+%     \vskip 1em
+%     \usekomafont{subtitle}\Large\textit{$title_en$}
+%   \end{minipage}%
   
-  \vskip 2em%
+%   \vskip 2em%
   
   
-  \ifx\@titlehead\@empty \else %        % titlehead (no usado)  
-  $--  \begin{minipage}[t]{\textwidth}
-  $--    \usekomafont{titlehead}{\@titlehead\par}%
-  $--  \end{minipage}\par
-  \fi
-  $-- \null
+%   \ifx\@titlehead\@empty \else %        % titlehead (no usado)  
+%   $--  \begin{minipage}[t]{\textwidth}
+%   $--    \usekomafont{titlehead}{\@titlehead\par}%
+%   $--  \end{minipage}\par
+%   \fi
+%   $-- \null
 
-  \ifx\@subject\@empty \else%           % subject (no usado) 
-    $--  {\usekomafont{subject}{\@subject \par}}%
-    $--  \vskip 1.5em
-  \fi
+%   \ifx\@subject\@empty \else%           % subject (no usado) 
+%     $--  {\usekomafont{subject}{\@subject \par}}%
+%     $--  \vskip 1.5em
+%   \fi
 
-  {%                                    % Autores
-    \usekomafont{author}{%
-      \lineskip .5em%
-      \begin{flushleft}
-        \begin{spacing}{1.5}
-        %\begin{tabular}[t]{@{}l}
-          \@author
-        %\end{tabular}
-        \end{spacing}
-      \end{flushleft}
-      \par
-    }%
-  }%
-  \vskip 1em%
+%   {%                                    % Autores
+%     \usekomafont{author}{%
+%       \lineskip .5em%
+%       \begin{flushleft}
+%         \begin{spacing}{1.5}
+%         %\begin{tabular}[t]{@{}l}
+%           \@author
+%         %\end{tabular}
+%         \end{spacing}
+%       \end{flushleft}
+%       \par
+%     }%
+%   }%
+%   \vskip 1em%
   
-  \ifx\@date\@empty \else%              % date (no usado) 
-    $-- {\usekomafont{date}{\@date \par}}%
-    $-- \vskip \z@ \@plus 1em
-  \fi
+%   \ifx\@date\@empty \else%              % date (no usado) 
+%     $-- {\usekomafont{date}{\@date \par}}%
+%     $-- \vskip \z@ \@plus 1em
+%   \fi
 
-  $-- % publishers
-  {\usekomafont{publishers}{\blfootnote{\noindent{\sffamily{\@publishers}}}\par}}%
+%   $-- % publishers
+%   {\usekomafont{publishers}{\blfootnote{\noindent{\sffamily{\@publishers}}}\par}}%
 
-  \ifx\@dedication\@empty \else%        % dedication (usado para reseña de tesis y libros) 
-    \vspace{-3em}
-    \begin{minipage}[t]{0.7\textwidth}
-      \color{gris_art}
-      \rule{0.7\textwidth}{0.2pt}\par%
-      {\usekomafont{dedication}{\@dedication \par}}%
-      \rule[1em]{0.7\textwidth}{0.2pt}\par
-    \end{minipage}\par
-  \fi
-  \par
-  \vskip 2em
-}%
+%   \ifx\@dedication\@empty \else%        % dedication (usado para reseña de tesis y libros) 
+%     \vspace{-3em}
+%     \begin{minipage}[t]{0.7\textwidth}
+%       \rule{0.7\textwidth}{0.2pt}\par%
+%       {\usekomafont{dedication}{\@dedication \par}}%
+%       \rule[1em]{0.7\textwidth}{0.2pt}\par
+%     \end{minipage}\par
+%   \fi
+%   \par
+%   \vskip 2em
+% }%
 
 $if(title)$
   \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
@@ -171,61 +169,34 @@ $if(subtitle)$
 $endif$
 
 \publishers{ 
-  $for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
-  $for(author)$%
-  $if(author.cor-id)$%
-  \\\faEnvelope[regular] $author.surname$: $author.email$%
-  $endif$%
-  $endfor$\\ \\%
-  $if(history)$$for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
-  Publicación del \emph{$journal.publisher-name$}. $publisher-loc.institution$.
-  $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$
+  $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
+  % $for(author)$%
+  % $if(author.cor-id)$%
+  % \\\faEnvelope[regular] $author.surname$: $author.email$%
+  % $endif$%
+  $endfor$%\\ \\$endif$%
+  % $if(history)$$for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
+  % Publicación de \emph{$journal.publisher-name$}.
+  % $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$
 }
 
-\author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$sep$, $endfor$
+$if(author)$
+\author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$}}$sep$, $endfor$
 $if(author/allbutlast)$y $endif$$for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
-    
+$endif$    
 \date{}
 
 $if(book_info)$\dedication{$book_info$}$endif$
 
 
-%%%% Abstract 
+%%% Credit Enviroment
 
-\renewenvironment{abstract}{%
-  \if@titlepage
-    \titlepage
-    \null\vfil
-    \@beginparpenalty\@lowpenalty
-    \if@abstrt
-      \begin{center}
-        \normalfont\sectfont\nobreak\abstractname
-        \@endparpenalty\@M
-      \end{center}
-    \fi
-  \else
-    \if@twocolumn\if@abstrt
-        \addsec*{\abstractname}
-      \fi
-    \else
-      \if@abstrt
-        \small
-        \begin{flushleft}
-          {\normalfont\sectfont\nobreak\abstractname
-            \vspace{-.5em}\vspace{\z@}}%
-        \end{flushleft}
-      \fi
-     \quotation
-    \fi
-  \fi
-}{%
-  \if@titlepage
-    \par\vfil\null\endtitlepage
-  \else
-    \if@twocolumn\else
-       \endquotation
-            \par
-    \fi
-  \fi
-}
-\makeatother
+% \newenvironment{Credit}[1][optarg_default]{begin_def}{end_def}
+\newenvironment{Credit}[1][Declaración de contribuciones de autoría (CRediT)]
+    {\subsection*{#1}
+    \sffamily\small}
+
+
+\newenvironment{Ack}{\begin{Credit}[Agradecimiento]}{\end{Credit}}%
+
+\newenvironment{app}{\newpage}{}
