@@ -1,3 +1,52 @@
+# GURI_install -----------------------------------------------
+# Actualiza paquetes y distribución latex necesaria para el funcionamiento de GURI 
+
+GURI_install <- function(){
+  
+  dep <- c("tidyverse", "rmarkdown", "readxl", "tinytex", "crayon")
+  pkg <- .packages(all.available = TRUE)
+  
+  dep_needed <- dep [!dep %in% pkg]
+  
+  if(length(dep_needed) > 0){
+    cat("\n", "Instalando paquetes R faltantes:", 
+        paste0(dep_needed, collapse = ", ") )
+    install.packages(dep_needed)
+  }else{
+    cat("\n", "Paquetes R necesarios presentes") 
+  }
+  
+  
+  if(!tinytex::is_tinytex()){
+    
+    cat("\n", "Instalando la distribución de latex tinytex\n")
+    tinytex::install_tinytex()
+    
+  }else{
+    cat("\n", "Actualizando la distribución de latex tinytex\n")
+    tinytex::tlmgr_update()
+  }
+  
+  latex_version <- tinytex::tlmgr_version()
+
+  latex_pkg <- c("amsmath", "koma-script", "setspace", "iftex", "mathspec", 
+                 "lm", "fontspec",  "upquote", "microtype", "parskip", "fancyvrb",
+                 "xcolor", "geometry", "listings", "booktabs", "multirow","etoolbox",
+                 "footnotehyper", "svg", "luacolor", "lua-ul", "soul","babel", 
+                 "selnolig", "natbib", "biblatex", "csquotes", "hyperref", "xurl",
+                 "bookmark", "unicode-math", "adjustbox", "fontawesome5", "caption", 
+                 "ccicons", "relsize")
+  
+  cat("\n", "Comprobando paquetes latex necesarios")
+  a <- lapply(latex_pkg, tinytex::check_installed)  |> 
+    as.logical()
+  
+  if(sum(!a) > 0){
+    cat("\n", "Instalando paquetes latex necesarios", "\n")
+    tinytex::tlmgr_install(paste0(latex_pkg[!a], ".sty"))
+  }
+}
+
 # Armado de archivos base ------------------------------
 
   # GURI_listfiles() ----------------------------------------
