@@ -1,6 +1,6 @@
 # TODO    Averiguar cómo incorporar AoP (online first)
 article:
-  heading: Presentación
+  heading: Modelo
   type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id: a101            
   doi: 10.1223/3344445.55555333
