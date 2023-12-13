@@ -8,7 +8,7 @@ prefix <- "num"         # Prefijo para diferenciar número/volumen. Define direc
 
 issue <- 1              # Número/volumen de la revista que desea procesar
 
-# Packages ----------------------------------------------------------------
+# 2. Load Packages
 
 library(tidyverse)
 library(rmarkdown)
@@ -16,11 +16,17 @@ library(readxl)
 library(tinytex)
 library(crayon)
 
-# Cargar funciones --------------------------------------------------------
+# 3. Load custom functions 
+# Carga las funciones que utilizará para procesar los archivos.
 
 source("scripts/GURI_00_fx.R", encoding = "UTF-8")
 
-# Datos -------------------------------------------------------------------
+# Instalar paquetes y distribución de latex
+# Si es la primera vez que instala 
+
+# GURI_install()
+
+# 4. File data
 
 # Definir paths
 path_root    <- paste0("./", journal, "/") 
@@ -32,6 +38,6 @@ path_issue   <- paste0(path_root, prefix, issue, "/")
 #   * Diferencia artículos según tipo
 (art <- GURI_listfiles(path_issue) )
 
-# Armado de archivos finales
+# 5. Creating output files
 walk2(art$art_path, art$art_id, 
       \(x, y) GURI(x, y, verbose = F) )
