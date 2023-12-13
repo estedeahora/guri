@@ -16,7 +16,7 @@ Una descripción de la propuesta puede encontrarse en el [manual](manual/manual-
 
 Para el uso de esta herramienta se requiere la instalación de los siguientes programas:
 
--   [Pandoc](https://pandoc.org/) (versión 3.1.9 o superior);
+-   [Pandoc](https://pandoc.org/) (versión 3.1.10 o superior);
 -   [R](https://cran.r-project.org/) y los paquetes `tidyverse`, `rmarkdown`, `readxl`, `tinytex` y `crayon`;
 -   Alguna distribución de *LaTeX*. Se recomienda utilizar [TinyTeX](https://yihui.org/tinytex/) , que fue pensada para utilizarse directamente desde R y facilita gran parte del proceso de instalación de paquetes sin requerir demasiados conocimientos sobre el tema. De hecho esta versión se utiliza de forma predeterminada para la generación de archivos `PDF`.
 
