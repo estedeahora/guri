@@ -228,7 +228,7 @@ GURI_install <- function(){
     # Opciones generales
     op_gral <- c("--wrap=none", "-s", "--metadata=link-citations", 
                  #"-V link-citations=true", 
-                 # "--mathml",
+                 "--mathml",
                  paste0("--template=", program_path, "template/template.html"),
                  "--reference-links=true")
     
