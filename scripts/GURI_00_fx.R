@@ -473,13 +473,12 @@ GURI_install <- function(){
     
   }
   
-  
 # GURI() ---------------------------------------------------- 
   
   GURI <- function(art_path, art_name, verbose = F, 
                    zip_file = F, clean_files = T){
     
-    pandoc_req <- "3.1.9"
+    pandoc_req <- "3.1.10"
     if(!pandoc_version() >= pandoc_req){
       stop("Necesita actualizar su versión de Pandoc (se requiere ", 
            pandoc_req, " o posterior). Descargue la última versión",

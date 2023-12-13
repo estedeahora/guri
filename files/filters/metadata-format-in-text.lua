@@ -13,12 +13,11 @@ function Div(div)
         if FORMAT:match 'jats' then
             if(div.identifier == "app") then
                 app = div.content
-                div = pandoc.Header(1, '')
+                div = RawBlock('jats', '')
             else
                 div = RawBlock('jats', '')
             end
 
-            
         elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
 
             div = {RawBlock('latex', '\\begin{'.. div.identifier .. '}'),
