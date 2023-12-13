@@ -40,3 +40,13 @@ Esta obra está bajo una licencia [Creative Commons Attribution-NonCommercial-Sh
 ## Contribuir
 
 Se aceptan solicitudes de extracción, informes de errores y solicitudes de funciones.
+
+## Futuras mejoras
+
+1.  [ ] Desarrollar aplicación web para facilitar la generación de archivos yaml.
+2.  [ ] Integrar con OJS.
+3.  [ ] Posibilitar uso desde línea de comandos (y luego desde aplicación).
+4.  [ ] Agregar soporte para permitir primer idioma diferente de español.
+5.  [ ] Permitir filtros personalizados.
+6.  [ ] Agregar ebook como formato de salida.
+7.  [ ] Incorporar requerimientos de *Scielo*.
