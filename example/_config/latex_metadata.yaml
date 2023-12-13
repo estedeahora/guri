@@ -1,7 +1,5 @@
 # Latex variable
 
-lang: es-AR
-
 # Layout ----------------------------------
 
 documentclass: scrartcl 

@@ -1,6 +1,6 @@
 journal:
-  title: guri_ {An example journal}
-  abbrev-title: guri_
+  title: ~!guri_ {An example journal}
+  abbrev-title: ~!guri_
   # pissn:                 #print issn
   eissn: 0001-2000
   publisher-name: guri

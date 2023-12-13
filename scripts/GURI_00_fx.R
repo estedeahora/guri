@@ -355,7 +355,6 @@ GURI_install <- function(){
     setwd(proj_dir) 
     # options(tinytex.latexmk.warning = tinytex_warn)
     
-    
   }
   
 # Funciones auxiliares --------------------
