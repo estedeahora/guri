@@ -1,9 +1,11 @@
-%%%% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+
 $if(colorlinks)$
   \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 $endif$
+
 $if(CJKmainfont)$   
   \PassOptionsToPackage{space}{xeCJK}
 $endif$
@@ -15,6 +17,9 @@ $endif$
   $endif$%
   $if(papersize)$%
     $papersize$paper,%
+  $endif$%
+  $if(twocolumn)$%
+    twocolumn,%
   $endif$%
   $for(classoption)$%
     $classoption$$sep$,%
@@ -303,7 +308,7 @@ $if(csl-refs)$
     \setlength{\itemsep}{#2\baselineskip}}}
   {\end{list}}
   \usepackage{calc}
-  \newcommand{\CSLBlock}[1]{\hfill\break#1\hfill\break}
+  \newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
   \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
   \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
   \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
@@ -396,18 +401,25 @@ $endif$
   $if(title-meta)$
     pdftitle={$title-meta$},
   $endif$
-  $if(author-meta)$
-    pdfauthor={$author-meta$},
+  $if(author)$
+    pdfauthor={$for(author)$$author.name$$sep$, $endfor$},
   $endif$
+  pdfsubject={$journal.title$$if(volume)$ - Volume: $volume$ $endif$$if(issue)$ - Issue: $issue$ $endif$ ($date.year$)$if(article.elocation-id)$ $article.elocation-id$$endif$$if(article.doi)$ doi: $article.doi$$endif$},
   $if(lang)$
     pdflang={$lang$},
   $endif$
-  $if(subject)$
-    pdfsubject={$subject$},
+  $if(keyword_es)$
+    pdfkeywords={$for(keyword_es)$$keyword_es$$sep$, $endfor$},
   $endif$
-  $if(keywords_es)$
-    pdfkeywords={$for(keywords_es)$$keywords_es$$sep$, $endfor$},
-  $endif$
+  pdfinfo={
+    $if(article.doi)$
+      DOI={$article.doi$},
+    $endif$
+    $if(abstract_es)$
+      pdfsubject={$abstract_es$},
+    $endif$
+    journal=$journal.title$
+      },
   % Define color de links
   $if(colorlinks)$
     colorlinks=true,
@@ -421,7 +433,7 @@ $endif$
       hidelinks,
     $endif$
   $endif$
-    pdfcreator={LaTeX via pandoc & !~gurí}}
+pdfcreator={LaTeX via pandoc \& \textasciitilde!guri\_}}
 
 %%%% Inicio de documento
 
@@ -438,14 +450,7 @@ $endif$
     
     \begin{abstract}
 
-      \begin{center}
-        \sffamily\textbf{Resumen}
-        %\subsection{Resumen}
-      \end{center}
-
-      \nopagebreak
-    
-      \noindent \sffamily{$abstract_es$}
+      \noindent{$abstract_es$}
 
       \nopagebreak
 
@@ -453,22 +458,19 @@ $endif$
 
     \end{abstract}
     
-    $if(abstract_en)$  
-      \begin{abstract}      
-        
-        \begin{center}
-          \sffamily\textbf{Abstract}
-        \end{center}
+    $if(abstract_en)$
+    \begin{otherlanguage}{english}
 
-        \nopagebreak
-      
-        \noindent \sffamily{$abstract_en$}
+      \begin{abstract}      
+ 
+        \noindent{$abstract_en$}
 
         \nopagebreak
 
         \noindent\sffamily\textit{Keywords: $for(keyword_en)$$it$$sep$; $endfor$}.%
 
       \end{abstract}
+    \end{otherlanguage}
     $endif$
   $endif$
 

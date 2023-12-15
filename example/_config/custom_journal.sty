@@ -1,15 +1,11 @@
 % Customizaciones generales %%%%%%%%%%%%%%%%%%%%%
-% Permite cambiar la posición de las figuras
+
+%%%% CARGA DE PAQUETES
 \usepackage[export]{adjustbox}
 
-\renewcommand{\spanishtablename}{Tabla}
-% \usepackage[notmath]{sansmathfonts}
-
-% Iconos 
+% Cargar paquetes de íconos 
 \usepackage{fontawesome5}
 \usepackage{ccicons}
-
-% \usepackage[notmath]{sansmathfonts}
 
 % Carga setspace para separación entre lineas (si no fue cargado)
 \IfPackageLoadedTF{setspace}{}{\usepackage{setspace}}
@@ -18,18 +14,21 @@
 % Carga de paquetes y configuraciones pedidas por el documento
 $to_header$
 
-% Colores de la revista
+%%%% COLORES CUSTOMIZADOS
+
 \definecolor{verde_orcid}{RGB}{166,206,57}
 
-\setkomafont{title}{\sffamily}
-\setkomafont{author}{\sffamily}
-\setkomafont{dedication}{\sffamily\footnotesize}
+%%%% CITAS LARGAS
 
 % Definir estilo de citas largas (achica el tamaño)
-% \usepackage{relsize,etoolbox}% http://ctan.org/pkg/{relsize,etoolbox}
 \IfPackageLoadedTF{relsize}{}{\usepackage{relsize}}
 \IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
 \AtBeginEnvironment{quote}{\smaller}% Step font down one size relative to current font.
+
+%%%% TABLAS
+
+% Cambia denominación de "Cuadro" a "Tabla"
+\renewcommand{\spanishtablename}{Tabla}
 
 % Agregado para titulos de tablas
 \usepackage{caption}
@@ -39,69 +38,80 @@ $to_header$
 \newcommand{\notes}[1]{\vspace{-9pt}\raggedright{\caption*{\footnotesize{\textit{Notas:} {#1}}}} }
   
 % Cambiar fuente y tamaño de letra para entorno de tablas (table)
-% \IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
 \AtBeginEnvironment{tabular}{\sffamily\footnotesize}
 \IfPackageLoadedTF{tabularray}{%
 \AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
 
-% define comando blfootnote para nota sin numeración
-\newcommand\blfootnote[1]{%
-    \begingroup%
-\let\thefootnote\relax\footnotetext{\hspace{0.3em}#1}%
-\endgroup}%
-
-%%%% Encabezados de páginas 
+%%%% ENCABEZADO DE PÁGINA
+% Si utiliza clases de Koma-script debe utilizar el paquete 'scrlayer-scrpage'
+% Si utiliza las clases estándar debe usar el paquete 'fancyhdr'
+\usepackage[breakwords]{truncate}
 \usepackage[headsepline]{scrlayer-scrpage}
-\addtokomafont{headsepline}{}
-\clearpairofpagestyles
+\setkomafont{pagefoot}{\normalfont\footnotesize}
 
-\ihead{\sffamily{$author.surname$}}
+% \addtokomafont{headsepline}{}
+% \clearpairofpagestyles
+
+\ihead{\sffamily{\truncate{0.4\textwidth}{$title$}}}
 \ohead{\large{\textbf{$journal.title$}}}
 
-\ofoot{\pagemark}
+\ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{$journal.publisher-name$}.
+      $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$\\
+      $license.text$ ($license.link$)]{}
+\cfoot[]{\pagemark}
 
-$if(title)$
-  \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-$endif$
+
+%%%% PÁGINA DE TÍTULO 
+\setkomafont{titlehead}{\raggedright\sffamily\small}
+\setkomafont{title}{\raggedright\sffamily}
+\setkomafont{author}{\raggedright\sffamily\setlength{\tabcolsep}{0pt}}
+\setkomafont{publishers}{\raggedright\sffamily\footnotesize}
+\setkomafont{dedication}{\raggedright\sffamily\footnotesize}
+
+
+\titlehead{%
+  \textbf$if(article.heading)$\textbf{$article.heading/uppercase$}$endif$\hfill\textbf{$journal.title$}\\%
+  \vskip 0.3em \hrule height 0.3pt \vskip 0.3em%
+  \hfill $if(volume)$Volumen: $volume$$endif$$if(issue)$ Número: $issue$$endif$ ($date.year$)
+  $if(article.doi)$\\ \hfill DOI: $article.doi$$endif$%
+ }%
+
+\title{$title$}
 
 $if(subtitle)$
-    \IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
-    \makeatletter
-    \providecommand{\subtitle}[1]{% add subtitle to \maketitle
-      \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-    }
-    \makeatother
-  \subtitle{$subtitle$}
+  \subtitle{$subtitle$\\ \vspace{1em} \textit{$title_en$}}
+$else$
+  \subtitle{\vspace{1em} \textit{$title_en$}}
 $endif$
 
-\publishers{ 
+$if(author)$
+\author{{\begin{tabular}[l]{@{}l@{}}%
+  $for(author)${$author.given-names$ \textit{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$;$endfor$} $if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}$endif$$sep$ \\ $endfor$
+\end{tabular}}%
+}
+$endif$    
+\date{}
+
+\publishers{
+  \vspace{1em}
   $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
   % $for(author)$%
   % $if(author.cor-id)$%
   % \\\faEnvelope[regular] $author.surname$: $author.email$%
   % $endif$%
-  $endfor$%\\ \\$endif$%
-  % $if(history)$$for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
-  % Publicación de \emph{$journal.publisher-name$}.
-  % $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$
+  %$endfor$%\\ \\$endif$%
+  $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
 }
 
-$if(author)$
-\author{$for(author/allbutlast)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$}}$sep$, $endfor$
-$if(author/allbutlast)$y $endif$$for(author/last)$\mbox{\large{$author.given-names$ \textsc{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$; $endfor$} \href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}}$endfor$}
-$endif$    
-\date{}
 
 $if(book_info)$\dedication{$book_info$}$endif$
 
 
-%%% Credit Enviroment
+%%% Credit, Ack and app Enviroment
 
-% \newenvironment{Credit}[1][optarg_default]{begin_def}{end_def}
 \newenvironment{Credit}[1][Declaración de contribuciones de autoría (CRediT)]
     {\subsection*{#1}
     \sffamily\small}
-
 
 \newenvironment{Ack}{\begin{Credit}[Agradecimiento]}{\end{Credit}}%
 
