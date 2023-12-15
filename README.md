@@ -25,13 +25,13 @@ Para el uso de esta herramienta se requiere la instalación de los siguientes pr
 Esta herramienta puede usarse para la producción de revistas de acceso diamante (sin cobro de cargos de procesamiento y sin muros de pago) sin ningún límite salvo la atribución. En este sentido, se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de 'política editorial') en los diferentes idiomas que utilice en la revista:
 
 > *Español:*\
-> Los documentos finales de esta revista fueron generados utilizando [\~!guri](https://github.com/estedeahora/guri).
+> Los documentos finales de esta revista fueron generados utilizando [\~!guri\_](https://github.com/estedeahora/guri).
 >
 > *English:*\
-> The final documents of this journal were generated using [\~!guri](https://github.com/estedeahora/guri).
+> The final documents of this journal were generated using [\~!guri\_](https://github.com/estedeahora/guri).
 >
 > *Português:*\
-> Os documentos finais desta revista foram gerados usando [\~!guri](https://github.com/estedeahora/guri).
+> Os documentos finais desta revista foram gerados usando [\~!guri\_](https://github.com/estedeahora/guri).
 
 Esta obra está bajo una licencia [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). Este software no ofrece garantía de ningún tipo.
 
