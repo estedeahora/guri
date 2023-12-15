@@ -1,7 +1,7 @@
 # GURI_install -----------------------------------------------
 # Actualiza paquetes y distribución latex necesaria para el funcionamiento de GURI 
 
-GURI_install <- function(){
+GURI_install <- function(install_tinytex = T){
   
   dep <- c("tidyverse", "rmarkdown", "readxl", "tinytex", "crayon")
   pkg <- .packages(all.available = TRUE)
@@ -16,35 +16,43 @@ GURI_install <- function(){
     cat("\n", "Paquetes R necesarios presentes") 
   }
   
-  
-  if(!tinytex::is_tinytex()){
+  # Instalación de distribución tinytex y paquetes sugeridos
+  if(install_tinytex){
+    if(!tinytex::is_tinytex()){
+      
+      cat("\n", "Instalando la distribución de latex tinytex\n")
+      tinytex::install_tinytex()
+      
+    }else{
+      cat("\n", "Actualizando la distribución de latex tinytex\n")
+      # latex_version <- tinytex::tlmgr_version()
+      tinytex::tlmgr_update()
+    }
     
-    cat("\n", "Instalando la distribución de latex tinytex\n")
-    tinytex::install_tinytex()
+    latex_pkg <- c("amsmath", "amsfonts", "lm", "unicode-math", "iftex", "listings", 
+                   "fancyvrb", "booktabs", "hyperref", "xcolor", "soul", "geometry", 
+                   "setspace", "babel", "fontspec", "selnolig", "mathspec", "biblatex",
+                   "bibtex", "biber", "upquote", "microtype", "csquotes", "natbib", 
+                   "bookmark", "xurl", "parskip", "svg", "geometry", "multirow", 
+                   "etoolbox", "luacolor",  "lua-ul", 
+                   "adjustbox", "fontawesome5", "caption",  "ccicons",
+                   "relsize", "koma-script",
+                   # "amssymb", "longtable", "graphicx", "xecjk", "footnotehyper",
+                   # "footnote", "fontenc", "inputenc", "textcomp", "luatexja-preset",
+                   # "array", "calc", "xeCJKfntef", "subcaption"
+    )
     
-  }else{
-    cat("\n", "Actualizando la distribución de latex tinytex\n")
-    tinytex::tlmgr_update()
+    
+    cat("\n", "Comprobando paquetes latex necesarios")
+    latex_pkg_installed <- lapply(latex_pkg, tinytex::check_installed)  |> 
+      as.logical()
+    
+    if(sum(!latex_pkg_installed) > 0){
+      cat("\n", "Instalando paquetes latex necesarios", "\n")
+      tinytex::tlmgr_install(paste0(latex_pkg[!latex_pkg_installed], ".sty"))
+    }
   }
   
-  latex_version <- tinytex::tlmgr_version()
-
-  latex_pkg <- c("amsmath", "koma-script", "setspace", "iftex", "mathspec", 
-                 "lm", "fontspec",  "upquote", "microtype", "parskip", "fancyvrb",
-                 "xcolor", "geometry", "listings", "booktabs", "multirow","etoolbox",
-                 "footnotehyper", "svg", "luacolor", "lua-ul", "soul","babel", 
-                 "selnolig", "natbib", "biblatex", "csquotes", "hyperref", "xurl",
-                 "bookmark", "unicode-math", "adjustbox", "fontawesome5", "caption", 
-                 "ccicons", "relsize")
-  
-  cat("\n", "Comprobando paquetes latex necesarios")
-  a <- lapply(latex_pkg, tinytex::check_installed)  |> 
-    as.logical()
-  
-  if(sum(!a) > 0){
-    cat("\n", "Instalando paquetes latex necesarios", "\n")
-    tinytex::tlmgr_install(paste0(latex_pkg[!a], ".sty"))
-  }
 }
 
 # Armado de archivos base ------------------------------
