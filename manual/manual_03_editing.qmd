@@ -1,5 +1,5 @@
 ---
-title: 'Instructivo para la etapa de corrección de pruebas'
+title: 'Uso de ~!gurí_'
 format: pdf
 
 pdf-engine: lualatex
@@ -9,13 +9,13 @@ editor: visual
 lang: es
 ---
 
-# El proceso de trabajo dentro de la etapa de corrección de pruebas
-
 ::: callout-important
 Esta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.
 :::
 
-Este documento describe algunos aspectos a tener en cuenta en la etapa de corrección de pruebas con el objetivo de automatizar la etapa de *producción* de revistas científicas usando *`~!gurí_`* (*Gestor de formatos para Revistas de Investigación*). Es importante considerar que la propuesta editorial tiene como base diferenciar los tres grandes bloques que componen un artículo científico (ver estandar [XML-JATS](#0)), a saber:
+La propuesta de
+
+Es importante considerar que la propuesta editorial tiene como base diferenciar los tres grandes bloques que componen un artículo científico (ver estandar [XML-JATS](#0)), a saber:
 
 (a) Metadatos (*front*): contiene información de identificación sobre la revista, los autores y el propio artículo;
 (b) Cuerpo principal del manuscrito (*body*): contiene el contenido principal del texto, incluidos los elementos flotantes como tablas y figuras; y
@@ -74,13 +74,14 @@ Dentro de cada carpeta de artículo es obligatorio que haya los siguientes archi
 Además de estos archivos es posible encontrar uno o más de los siguientes archivos opcionales:
 
 -   `art[~]_credit.xlsx` (ejemplo: `art302_credit.yaml`): Contiene una tabla con la información sobre la taxonomía CRediT, referida a las contribuciones de los autores individuales.
--   `art[~]_biblio.json` (ejemplo: `art302_biblio.json`): Contiene el listado bibliográfico en el formato estandarizado JSON (exportado desde Zotero). Sólo podrá haber un archivo `.JSON` por cada artículo y el mismo estará disponible sólo si el artículo tiene referencias bibliográficas asociadas.
 -   `art[~]_app[~].docx`(ejemplo: `art302_app01.docx`): Contiene los anexos vinculados al manuscrito. Es posible que exista uno o más archivos de este tipo (dependiendo de la cantidad de anexos). Debería estar presente sólo si existen anexos en el manuscrito.
--   `art[~]_notes.md` (ejemplo: `art302_notes.md`): En este archivo se podrá incluir cualquier tipo de observación o comentario que se considere pertinente comunicar. El archivo está escrito en formato [Markdown](https://es.wikipedia.org/wiki/Markdown), por lo que se recomienda el uso de los marcadores asociados a este lenguaje de marcación (ver [Tutorial de Markdown](https://tutorialmarkdown.com/sintaxis) y [Editor online](https://markdownlivepreview.com/)). Recuerde que este archivo es simplemente un archivo de texto plano (por ejemplo un `.TXT`) con una extención `.MD`. Sólo puede haber un archivo de este tipo por artículo. El archivo sólo estará presente si hay comentarios durante el proceso de corrección de pruebas (se sugiere no crearlo sin contenido).
+-   `art[~]_notes.md` (ejemplo: `art302_notes.md`): En este archivo se podrá incluir cualquier tipo de observación o comentario que se considere pertinente comunicar. El archivo está en formato [Markdown](https://es.wikipedia.org/wiki/Markdown), por lo que se recomienda el uso de los marcadores asociados a este lenguaje de marcación (ver [Tutorial de Markdown](https://tutorialmarkdown.com/sintaxis) y [Editor online](https://markdownlivepreview.com/)). Recuerde que este archivo es simplemente un archivo de texto plano (por ejemplo un `.txt`) con una extención `.md`. Sólo puede haber un archivo de este tipo por artículo. El archivo sólo estará presente si hay comentarios durante el proceso de corrección de pruebas.
+
+<!--# `art[~]_biblio.json` (ejemplo: `art302_biblio.json`): Contiene el listado bibliográfico en el formato estandarizado JSON (exportado desde Zotero). Sólo podrá haber un archivo `.JSON` por cada artículo y el mismo estará disponible sólo si el artículo tiene referencias bibliográficas asociadas. -->
 
 Además de estos archivos, dentro de cada carpeta de artículo podrá haber una carpeta `./float` con varios archivos en donde estarán las Tablas y Figuras (ver sección [Elementos flotantes](#sec-float) para mayor desarrollo).
 
-Para ilustrar la organización de archivos prevista, si el artículo que se está corrigiendo corresponde al `Número 20` de la revista, entonces la carpeta del segundo artículo de la sección dossier (`./art302`) deberá tener la estructura de archivos que se presenta en la @fig-folder.
+Para ilustrar la organización de archivos prevista, si el artículo que se está corrigiendo corresponde al `Número 20` de la revista, entonces la carpeta del segundo artículo de la sección "3" (`./art302`) deberá tener la estructura de archivos que se presenta en la @fig-folder.
 
 ![Estructura de carpetas y achivos.](figures/tree.png){#fig-folder}
 
