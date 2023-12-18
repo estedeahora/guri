@@ -416,7 +416,7 @@ $endif$
       DOI={$article.doi$},
     $endif$
     $if(abstract_es)$
-      pdfsubject={$abstract_es$},
+      abstract={$abstract_es$},
     $endif$
     journal=$journal.title$
       },
