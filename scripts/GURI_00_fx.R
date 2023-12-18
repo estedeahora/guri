@@ -36,7 +36,7 @@ GURI_install <- function(install_tinytex = T){
                    "bookmark", "xurl", "parskip", "svg", "geometry", "multirow", 
                    "etoolbox", "luacolor",  "lua-ul", 
                    "adjustbox", "fontawesome5", "caption",  "ccicons",
-                   "relsize", "koma-script",
+                   "relsize", "koma-script", "truncate", "lastpage"
                    # "amssymb", "longtable", "graphicx", "xecjk", "footnotehyper",
                    # "footnote", "fontenc", "inputenc", "textcomp", "luatexja-preset",
                    # "array", "calc", "xeCJKfntef", "subcaption"

@@ -56,10 +56,10 @@ $to_header$
 \setkomafont{pagefoot}{\normalfont\footnotesize}
 \ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{$journal.publisher-name$}.
       $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$\\
-      $license.text$ ($license.link$)]{}
+      $license.text$ ($license.link$).]{}
 \cfoot[]{\pagemark}
 
-% Si utilizamos paginación personalizada
+% Definir primera página del artícul (si se utiliza paginación personalizada)
 $if(article.fpage)$
   \usepackage{lastpage}
   \setcounter{page}{$article.fpage$}
@@ -70,10 +70,11 @@ $endif$
 \setkomafont{title}{\raggedright\sffamily}
 \setkomafont{author}{\raggedright\sffamily\setlength{\tabcolsep}{0pt}}
 \setkomafont{publishers}{\raggedright\sffamily\footnotesize}
-\setkomafont{dedication}{\raggedright\sffamily\footnotesize}
+\setkomafont{dedication}{\raggedright\sffamily\small}
 
 \titlehead{%
   \textbf$if(article.heading)$\textbf{$article.heading/uppercase$}$endif$\hfill\textbf{$journal.title$}\\%
+  \vspace{4pt}
   \hfill $if(volume)$Vol. $volume$$endif$$if(issue)$ Núm. $issue$$endif$$if(article.fpage)$ pp. $article.fpage$-\pageref*{LastPage}$endif$ ($date.year$)
   $if(article.doi)$\\ \hfill DOI: \href{https://doi.org/$article.doi$}{$article.doi$}$endif$%
  }%
@@ -97,14 +98,8 @@ $endif$
 \publishers{
   \vspace{1em}
   $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
-  % $for(author)$%
-  % $if(author.cor-id)$%
-  % \\\faEnvelope[regular] $author.surname$: $author.email$%
-  % $endif$%
-  %$endfor$%\\ \\$endif$%
   $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
 }
-
 
 $if(book_info)$\dedication{$book_info$}$endif$
 
