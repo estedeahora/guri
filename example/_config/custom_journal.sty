@@ -47,19 +47,23 @@ $to_header$
 % Si utiliza las clases estándar debe usar el paquete 'fancyhdr'
 \usepackage[breakwords]{truncate}
 \usepackage[headsepline]{scrlayer-scrpage}
+
+\setkomafont{pagehead}{\normalfont\sffamily\small}
+
+\ihead{\textit{\truncate{0.45\textwidth}{$title$}}}
+\ohead{\textbf{$journal.title$}}
+
 \setkomafont{pagefoot}{\normalfont\footnotesize}
-
-% \addtokomafont{headsepline}{}
-% \clearpairofpagestyles
-
-\ihead{\sffamily{\truncate{0.4\textwidth}{$title$}}}
-\ohead{\large{\textbf{$journal.title$}}}
-
 \ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{$journal.publisher-name$}.
       $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$\\
       $license.text$ ($license.link$)]{}
 \cfoot[]{\pagemark}
 
+% Si utilizamos paginación personalizada
+$if(article.fpage)$
+  \usepackage{lastpage}
+  \setcounter{page}{$article.fpage$}
+$endif$
 
 %%%% PÁGINA DE TÍTULO 
 \setkomafont{titlehead}{\raggedright\sffamily\small}
@@ -68,12 +72,10 @@ $to_header$
 \setkomafont{publishers}{\raggedright\sffamily\footnotesize}
 \setkomafont{dedication}{\raggedright\sffamily\footnotesize}
 
-
 \titlehead{%
   \textbf$if(article.heading)$\textbf{$article.heading/uppercase$}$endif$\hfill\textbf{$journal.title$}\\%
-  \vskip 0.3em \hrule height 0.3pt \vskip 0.3em%
-  \hfill $if(volume)$Volumen: $volume$$endif$$if(issue)$ Número: $issue$$endif$ ($date.year$)
-  $if(article.doi)$\\ \hfill DOI: $article.doi$$endif$%
+  \hfill $if(volume)$Vol. $volume$$endif$$if(issue)$ Núm. $issue$$endif$$if(article.fpage)$ pp. $article.fpage$-\pageref*{LastPage}$endif$ ($date.year$)
+  $if(article.doi)$\\ \hfill DOI: \href{https://doi.org/$article.doi$}{$article.doi$}$endif$%
  }%
 
 \title{$title$}
@@ -86,7 +88,7 @@ $endif$
 
 $if(author)$
 \author{{\begin{tabular}[l]{@{}l@{}}%
-  $for(author)${$author.given-names$ \textit{$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$;$endfor$} $if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}$endif$$sep$ \\ $endfor$
+  $for(author)$\large{$author.given-names$ {$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$;$endfor$} $if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}$endif$$sep$ \\ $endfor$
 \end{tabular}}%
 }
 $endif$    
