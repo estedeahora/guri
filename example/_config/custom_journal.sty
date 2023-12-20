@@ -7,9 +7,12 @@
 \usepackage{fontawesome5}
 \usepackage{ccicons}
 
-% Carga setspace para separación entre lineas (si no fue cargado)
+% Carga `setspace' para separación entre lineas (si no fue cargado)
 \IfPackageLoadedTF{setspace}{}{\usepackage{setspace}}
+% Carga `graphicx' si no fue cargado (dado que no se usa entorno pandoc para figures)
 \IfPackageLoadedTF{graphicx}{}{\usepackage{graphicx}}
+% Carga `etoolbox' 
+\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
 
 % Carga de paquetes y configuraciones pedidas por el documento
 $to_header$
@@ -22,21 +25,26 @@ $to_header$
 
 % Definir estilo de citas largas (achica el tamaño)
 \IfPackageLoadedTF{relsize}{}{\usepackage{relsize}}
-\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
 \AtBeginEnvironment{quote}{\smaller}% Step font down one size relative to current font.
 
-%%%% TABLAS
+%%%% TABLAS Y FGURAS
+
+% Agregado de \source y \notes para titulos secundarios de las tablas y figuras
+\usepackage{caption}
+\captionsetup{format=plain,labelsep=period,singlelinecheck=false,justification=centerlast,
+              font={small,singlespacing,sf},labelfont={sc,bf},width=0.8\textwidth}
+\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Fuente:} {#1}}}}
+\newcommand{\notes}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Notas:} {#1}}}}
+
+$if(twocolumn)$ 
+% Permite tablas y figuras de ancho completo en documentos a dos columnas
+\RenewEnvironmentCopy{figure}{figure*}
+\RenewEnvironmentCopy{table}{table*}
+$endif$
 
 % Cambia denominación de "Cuadro" a "Tabla"
 \renewcommand{\spanishtablename}{Tabla}
 
-% Agregado para titulos de tablas
-\usepackage{caption}
-\captionsetup{format=plain,labelsep=period,singlelinecheck=false,justification=raggedright,
-              font={small,singlespacing,sf},labelfont={sc,bf},width=\textwidth}
-\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Fuente:} {#1}}} }
-\newcommand{\notes}[1]{\vspace{-9pt}\raggedright{\caption*{\footnotesize{\textit{Notas:} {#1}}}} }
-  
 % Cambiar fuente y tamaño de letra para entorno de tablas (table)
 \AtBeginEnvironment{tabular}{\sffamily\footnotesize}
 \IfPackageLoadedTF{tabularray}{%
@@ -45,8 +53,8 @@ $to_header$
 %%%% ENCABEZADO DE PÁGINA
 % Si utiliza clases de Koma-script debe utilizar el paquete 'scrlayer-scrpage'
 % Si utiliza las clases estándar debe usar el paquete 'fancyhdr'
-\usepackage[breakwords]{truncate}
 \usepackage[headsepline]{scrlayer-scrpage}
+\usepackage[breakwords]{truncate}
 
 \setkomafont{pagehead}{\normalfont\sffamily\small}
 
@@ -97,7 +105,7 @@ $endif$
 
 \publishers{
   \vspace{1em}
-  $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$
+  $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$$endif$
   $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
 }
 
