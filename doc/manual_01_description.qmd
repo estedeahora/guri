@@ -1,10 +1,10 @@
 ---
 title: 'Descripción general e inicio rápido'
-format: pdf
+format: html
 
-pdf-engine: lualatex
-linkcolor: Sepia
-urlcolor: Sepia
+# pdf-engine: lualatex
+# linkcolor: Sepia
+# urlcolor: Sepia
 editor: visual
 lang: es
 ---
