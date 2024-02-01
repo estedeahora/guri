@@ -1,12 +1,5 @@
 ---
 title: 'Uso de ~!gurí_'
-format: pdf
-
-pdf-engine: lualatex
-linkcolor: Sepia
-urlcolor: Sepia
-editor: visual
-lang: es
 ---
 
 ::: callout-important
@@ -25,7 +18,7 @@ En este sentido, una de las tareas principales de esta etapa es generar los docu
 
 > **\[TODO\]** Actualizar figura con esquema para incorporar CRediT y elementos flotantes
 
-![Esquema de la etapa final de publicación de revistas científicas (etapa de producción)](figures/scheme.png){#fig-esquema fig-align="center"}
+![Esquema de la etapa final de publicación de revistas científicas (etapa de producción)](../figures/scheme.png){#fig-esquema fig-align="center"}
 
 Las tareas específicas del *Editor* durante esta etapa serán:
 
@@ -83,7 +76,7 @@ Además de estos archivos, dentro de cada carpeta de artículo podrá haber una 
 
 Para ilustrar la organización de archivos prevista, si el artículo que se está corrigiendo corresponde al `Número 20` de la revista, entonces la carpeta del segundo artículo de la sección "3" (`./art302`) deberá tener la estructura de archivos que se presenta en la @fig-folder.
 
-![Estructura de carpetas y achivos.](figures/tree.png){#fig-folder}
+![Estructura de carpetas y achivos.](../figures/tree.png){#fig-folder}
 
 # Metadatos {#sec-metadata}
 
@@ -197,7 +190,7 @@ Luego seleccione este contenido y dentro de la pestaña 'Insertar' busque el bot
 
 Luego de esto, podrá insertar automáticamente el bloque de marcación seleccionándolo dentro de las opciones que aparecen en el botón 'Elementos rápidos' del menú 'Insertar' (ver @fig-float-block). Si requiere modificar o eliminar el bloque de contenido que generó, puede elegir la opción 'Organización de bloques de creación...' (dentro del botón 'Elementos rápidos' del menú 'Insertar'). Cuando guarde el archivo se le consultará para guardar los cambios hechos en los 'estilos' o 'bloques de creación' (debe guardar estos cambios).
 
-![Ejemplo de inserción automática de bloque de marcación](figures/float-block.png){#fig-float-block}
+![Ejemplo de inserción automática de bloque de marcación](../figures/float-block.png){#fig-float-block}
 
 Además, es posible asignar un atajo de teclado para poder insertar este bloque de marcación. Para ello vaya a la pestaña 'Archivo' y selecciones 'Opciones'. En la ventana emergente seleccione la pestaña 'Personalizar cinta de opciones' y debajo del cuadro de la izquierda seleccione 'Personalizar...' (al lado de donde dice 'Métodos abreviados de teclado'). En el nuevo cuadro de diálogo seleccione la Categoría 'Bloques de creación', que estará cerca del final de toda la lista de categorías, y luego en el cuadro de la derecha seleccione el nombre del bloque de marcación por el nombre que le dio cuando lo creo. Por último seleccione una combinación de teclas de su preferencia (una opción recomendada es `Ctr` + `Alt` + `m`) y presione 'Asignar'.
 :::

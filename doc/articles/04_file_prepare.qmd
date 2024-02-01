@@ -1,12 +1,5 @@
 ---
 title: 'Instructivo para la etapa de corrección de pruebas'
-format: pdf
-
-pdf-engine: lualatex
-linkcolor: Sepia
-urlcolor: Sepia
-editor: visual
-lang: es
 ---
 
 # Preparación de los documentos

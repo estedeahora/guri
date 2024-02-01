@@ -1,12 +1,5 @@
 ---
 title: 'Instalar y configurar ~!gurí_'
-format: pdf
-
-pdf-engine: lualatex
-linkcolor: Sepia
-urlcolor: Sepia
-editor: visual
-lang: es
 ---
 
 # Instalación de *GURI*

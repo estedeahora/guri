@@ -1,4 +1,4 @@
-# \~!gurí\_<a href="https://github.com/estedeahora/guri"><img src="manual/figures/guri_logo.png" align="right" height="100"/></a>
+# \~!gurí\_<a href="https://github.com/estedeahora/guri"><img src="doc/figures/guri_logo.png" align="right" height="100"/></a>
 
 ## Gestor Unificado de formatos para Revistas de Investigación
 
@@ -6,11 +6,11 @@
 
 La herramienta `~!gurí_` es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de 'corrección de pruebas'. La herramienta se basa en el uso de [Pandoc](https://pandoc.org/) como herramienta de conversión entre formatos, a la cual se incorpora un conjunto de filtros *Lua* y plantillas personalizadas, así como un flujo de trabajo que permite la correcta conversión de los documentos ingresados.
 
-![Esquema general](manual/figures/scheme_gral.png)
+![Esquema general](doc/figures/scheme_gral.png)
 
 ## Documentación
 
-Una descripción de la propuesta puede encontrarse en el [manual](manual/manual-old-version.pdf) de usuario.
+Una descripción de la propuesta puede encontrarse en la [documentación](estedeahora.github.io/guri) de usuario.
 
 ## Dependencias
 
