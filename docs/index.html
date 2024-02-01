@@ -82,12 +82,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./articles/description.html" rel="" target="">
- <span class="menu-text">Descripción e inicio rápido</span></a>
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Descripción</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./articles/get_started.html" rel="" target="">
+ <span class="menu-text">Inicio rápido</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-artículos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
@@ -108,6 +108,10 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">Acerca de</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
     <a href="https://github.com/estedeahora/guri" rel="" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
@@ -174,9 +178,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#dependencias" id="toc-dependencias" class="nav-link active" data-scroll-target="#dependencias">Dependencias</a></li>
+  <li><a href="#descripción-de-la-propuesta" id="toc-descripción-de-la-propuesta" class="nav-link active" data-scroll-target="#descripción-de-la-propuesta">Descripción de la propuesta</a>
+  <ul class="collapse">
+  <li><a href="#dependencias-de-software" id="toc-dependencias-de-software" class="nav-link" data-scroll-target="#dependencias-de-software">Dependencias de software</a></li>
   <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
   <li><a href="#contribuir" id="toc-contribuir" class="nav-link" data-scroll-target="#contribuir">Contribuir</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -200,26 +207,28 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" class="img-fluid" alt="CC BY-NC-SA 4.0"></a> <a href="https://github.com/estedeahora/guri/blob/main/README.md"><img src="https://img.shields.io/badge/lang-es-yellow.svg" class="img-fluid" alt="es"></a> <a href="https://github.com/estedeahora/guri/blob/main/README.en.md"><img src="https://img.shields.io/badge/lang-en-red.svg" class="img-fluid" alt="en"></a> <!-- [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.pt-br.md)--></p>
-<p>La herramienta <code>~!gurí_</code> es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La herramienta se basa en el uso de <a href="https://pandoc.org/">Pandoc</a> como herramienta de conversión entre formatos, a la cual se incorpora un conjunto de filtros <em>Lua</em> y plantillas personalizadas, así como un flujo de trabajo que permite la correcta conversión de los documentos ingresados.</p>
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" class="img-fluid" alt="CC BY-NC-SA 4.0"></a> <!--[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/estedeahora/guri/blob/main/README.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/estedeahora/guri/blob/main/README.en.md)--></p>
+<section id="descripción-de-la-propuesta" class="level1">
+<h1>Descripción de la propuesta</h1>
+<p><code>~!gurí_</code> permite la automatización en la generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La propuesta parte del hecho de que muchas revistas académicas utilizan como base de sus flujos de trabajos documentos <code>docx</code> y busca evitar la duplicación de tareas referidas al marcaje de documentos. La herramienta se basa en el uso de <a href="https://pandoc.org/">Pandoc</a> para la conversión entre formatos, a lo cual se agrega un conjunto de filtros <em>Lua</em> y plantillas personalizadas, así como un flujo de trabajo, que permite en su conjunto la creación de los documentos finales.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/scheme_gral.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Esquema general</figcaption>
 </figure>
 </div>
-<section id="dependencias" class="level2">
-<h2 class="anchored" data-anchor-id="dependencias">Dependencias</h2>
-<p>Para el uso de esta herramienta se requiere la instalación de los siguientes programas:</p>
-<ul>
-<li><a href="https://pandoc.org/">Pandoc</a> (versión 3.1.10 o superior);</li>
-<li><a href="https://cran.r-project.org/">R</a> y los paquetes <code>tidyverse</code>, <code>rmarkdown</code>, <code>readxl</code>, <code>tinytex</code> y <code>crayon</code>;</li>
-<li>Alguna distribución de <em>LaTeX</em>. Se recomienda utilizar <a href="https://yihui.org/tinytex/">TinyTeX</a> , que fue pensada para utilizarse directamente desde R y facilita gran parte del proceso de instalación de paquetes sin requerir demasiados conocimientos sobre el tema. De hecho esta versión se utiliza de forma predeterminada para la generación de archivos <code>PDF</code>.</li>
-</ul>
+<p>En términos resumidos, la propuesta propone esquematizar y separar los principales elementos que componen un artículo científico. Para ello, para cada artículo, se debe generar un archivo <code>docx</code> (generado mediante una plantilla y con las citas identificadas con Zotero) y un archivo <code>yaml</code> con los metadatos del artículo. Opcionalmente, puede brindarse otros archivos con información de la <a href="https://credit.niso.org/">taxonomía CRediT</a>, elementos flotantes (figuras y tablas) y apéndices. A partir de estos archivos iniciales se genera un archivo intermedio <code>markdown</code>, que se utiliza para generar los documentos finales (en formato <code>pdf</code>, <code>html</code> y <code>xml</code>). Por su diseño la propuesta permite una fuerte adaptación de la apariencia de los formatos finales, a partir de la utilización de plantillas personalizadas.</p>
+<!-- La propuesta surgió como respuesta a la dificultad que encuentran algunas revistas de acceso diamante para generar los documentos finales del proceso de publicación. En particular, la generación de revistasined -->
+<section id="dependencias-de-software" class="level2">
+<h2 class="anchored" data-anchor-id="dependencias-de-software">Dependencias de software</h2>
+<p>Para el uso de esta herramienta se requiere la instalación previa de <a href="https://pandoc.org/">Pandoc</a>, <a href="https://cran.r-project.org/">R</a> y alguna distribución de <a href="https://www.latex-project.org/"><em>LaTeX</em></a>. Si no tiene instalados estos programas deberá hacerlo previamente de las páginas oficiales.</p>
+<p>Como se señaló anteriormente, esta herramienta se basa en el uso de <a href="https://pandoc.org/">Pandoc</a> (versión 3.1.10 o superior) como herramienta de conversión entre formatos.</p>
+<p>También es necesario instalar alguna versión de <a href="https://cran.r-project.org/">R</a> (recomendable versión 4.3 o superior) y, preferentemente, del entorno de desarrollo <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>. <code>R</code> es el que es el encargado de coordinar el proceso de conversiones. Para el funcionamiento de <code>~!gurí_</code> deberá además instalar los paquetes <code>tidyverse</code>, <code>rmarkdown</code>, <code>readxl</code>, <code>tinytex</code>, <code>crayon</code>. Estos paquetes son instalados automáticamente (si no están instalados aún), mediante la función <code>GURI_install()</code>.</p>
+<p>Por último, es necesario tener instalada alguna distribución de <a href="https://www.latex-project.org/"><em>LaTeX</em></a>. A las personas con poca experiencia en el uso de <code>LaTeX</code>, recomendamos utilizar la distribución <a href="https://yihui.org/tinytex/">tinytex</a>, por su integración con R y la facilidad para manejar las dependencia de paquetes. LaTeX se utiliza para generar los archivos en formago <code>pdf</code>. Además, es recomendable tener instalados los siguientes paquetes de <code>LaTeX</code> que son utilizados por la pantilla de Pandoc: <a href="https://ctan.org/pkg/amsfonts"><code>amsfonts</code></a>, <a href="https://ctan.org/pkg/amsmath"><code>amsmath</code></a>, <a href="https://ctan.org/pkg/lm"><code>lm</code></a>, <a href="https://ctan.org/pkg/unicode-math"><code>unicode-math</code></a>, <a href="https://ctan.org/pkg/iftex"><code>iftex</code></a>, <a href="https://ctan.org/pkg/listings"><code>listings</code></a>, <a href="https://ctan.org/pkg/fancyvrb"><code>fancyvrb</code></a>, <a href="https://ctan.org/pkg/longtable"><code>longtable</code></a>, <a href="https://ctan.org/pkg/booktabs"><code>booktabs</code></a>, <a href="https://ctan.org/pkg/graphicx"><code>graphicx</code></a>, <a href="https://ctan.org/pkg/hyperref"><code>hyperref</code></a>, <a href="https://ctan.org/pkg/xcolor"><code>xcolor</code></a>, <a href="https://ctan.org/pkg/soul"><code>soul</code></a>, <a href="https://ctan.org/pkg/geometry"><code>geometry</code></a>, <a href="https://ctan.org/pkg/setspace"><code>setspace</code></a>, <a href="https://ctan.org/pkg/babel"><code>babel</code></a>, <a href="https://ctan.org/pkg/xecjk"><code>xeCJK</code></a>, <a href="https://ctan.org/pkg/fontspec"><code>fontspec</code></a>, <a href="https://ctan.org/pkg/selnolig"><code>selnolig</code></a>, <a href="https://ctan.org/pkg/mathspec"><code>mathspec</code></a>, <a href="https://ctan.org/pkg/biblatex"><code>biblatex</code></a>, <a href="https://ctan.org/pkg/bibtex"><code>bibtex</code></a>, <a href="https://ctan.org/pkg/biber"><code>biber</code></a>, <a href="https://ctan.org/pkg/upquote"><code>upquote</code></a>, <a href="https://ctan.org/pkg/microtype"><code>microtype</code></a>, <a href="https://ctan.org/pkg/csquotes"><code>csquotes</code></a>, <a href="https://ctan.org/pkg/natbib"><code>natbib</code></a>, <a href="https://ctan.org/pkg/bookmark"><code>bookmark</code></a>, <a href="https://ctan.org/pkg/footnotehyper"><code>footnotehyper</code></a>, <a href="https://ctan.org/pkg/footnote"><code>footnote</code></a>, <a href="https://ctan.org/pkg/xurl"><code>xurl</code></a>, <a href="https://ctan.org/pkg/parskip"><code>parskip</code></a> y <a href="https://ctan.org/pkg/svg">svg</a>. A su vez, la adaptación de la plantilla utiliza los siguientes paquetes: <a href="https://ctan.org/pkg/adjustbox"><code>adjustbox</code></a>, <a href="https://ctan.org/pkg/fontawesome5"><code>fontawesome5</code></a>, <a href="https://ctan.org/pkg/caption"><code>caption</code></a>, <a href="https://ctan.org/pkg/ccicons"><code>ccicons</code></a>, <a href="https://ctan.org/pkg/relsize">relsize</a>, <a href="https://ctan.org/pkg/truncate"><code>truncate</code></a>, <a href="https://ctan.org/pkg/lastpage"><code>lastpage</code></a> y <a href="https://ctan.org/pkg/koma-script"><code>koma-script</code></a>. Si no tiene instalada la distribución <code>tinytex</code> y estos paquetes, pueden ser instalados automáticamente con la función <code>GURI_install(install_tinytex = T)</code>.</p>
 </section>
 <section id="licencia" class="level2">
 <h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>Esta herramienta puede usarse para la producción de revistas de acceso diamante (sin cobro de cargos de procesamiento y sin muros de pago) sin ningún límite salvo la atribución. En este sentido, se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de ‘política editorial’) en los diferentes idiomas que utilice en la revista:</p>
+<p><em><code>~!gurí_</code></em> puede usarse como parte del proceso de producción de <em>revistas de acceso diamante</em> (sin cobro de cargos de procesamiento y sin muros de pago). Más allá de esta restricción, no existe ningún límite salvo la atribución de autoría. En este sentido, se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de ‘política editorial’) en los diferentes idiomas que utilice en la revista:</p>
 <blockquote class="blockquote">
 <p><em>Español:</em><br>
 Los documentos finales de esta revista fueron generados utilizando <a href="https://github.com/estedeahora/guri">~!guri_</a>.</p>
@@ -229,7 +238,7 @@ The final documents of this journal were generated using <a href="https://github
 Os documentos finais desta revista foram gerados usando <a href="https://github.com/estedeahora/guri">~!guri_</a>.</p>
 </blockquote>
 <p>Esta obra está bajo una licencia <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. Este software no ofrece garantía de ningún tipo.</p>
-<div class="quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
@@ -238,9 +247,10 @@ Os documentos finais desta revista foram gerados usando <a href="https://github.
 </section>
 <section id="contribuir" class="level2">
 <h2 class="anchored" data-anchor-id="contribuir">Contribuir</h2>
-<p>Se aceptan solicitudes de extracción, informes de errores y solicitudes de funciones.</p>
+<p>Se aceptan solicitudes de extracción, informes de errores y solicitudes de funciones. Utilice</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

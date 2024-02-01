@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
     "section": "",
-    "text": "La herramienta ~!gurí_ es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La herramienta se basa en el uso de Pandoc como herramienta de conversión entre formatos, a la cual se incorpora un conjunto de filtros Lua y plantillas personalizadas, así como un flujo de trabajo que permite la correcta conversión de los documentos ingresados."
+    "text": "La herramienta ~!gurí_ es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. Esta herramienta se basa en el uso de Pandoc para la conversión entre formatos, a la cual se incorpora un conjunto de filtros Lua y plantillas personalizadas, así como un flujo de trabajo que permite la correcta conversión de los documentos ingresados."
   },
   {
     "objectID": "index.html#dependencias",
@@ -18,14 +18,14 @@
     "href": "index.html#licencia",
     "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
     "section": "Licencia",
-    "text": "Licencia\nEsta herramienta puede usarse para la producción de revistas de acceso diamante (sin cobro de cargos de procesamiento y sin muros de pago) sin ningún límite salvo la atribución. En este sentido, se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de ‘política editorial’) en los diferentes idiomas que utilice en la revista:\n\nEspañol:\nLos documentos finales de esta revista fueron generados utilizando ~!guri_.\nEnglish:\nThe final documents of this journal were generated using ~!guri_.\nPortuguês:\nOs documentos finais desta revista foram gerados usando ~!guri_.\n\nEsta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Este software no ofrece garantía de ningún tipo.\n\n\n\nCC BY-NC-SA 4.0"
+    "text": "Licencia\n~!gurí_ puede usarse como parte del proceso de producción de revistas de acceso diamante (sin cobro de cargos de procesamiento y sin muros de pago). Más allá de esta restricción, no existe ningún límite salvo la atribución de autoría. En este sentido, se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de ‘política editorial’) en los diferentes idiomas que utilice en la revista:\n\nEspañol:\nLos documentos finales de esta revista fueron generados utilizando ~!guri_.\nEnglish:\nThe final documents of this journal were generated using ~!guri_.\nPortuguês:\nOs documentos finais desta revista foram gerados usando ~!guri_.\n\nEsta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Este software no ofrece garantía de ningún tipo.\n\n\n\nCC BY-NC-SA 4.0"
   },
   {
     "objectID": "index.html#contribuir",
     "href": "index.html#contribuir",
     "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
     "section": "Contribuir",
-    "text": "Contribuir\nSe aceptan solicitudes de extracción, informes de errores y solicitudes de funciones."
+    "text": "Contribuir\nSe aceptan solicitudes de extracción, informes de errores y solicitudes de funciones. Utilice"
   },
   {
     "objectID": "articles/04_file_prepare.html",
@@ -51,9 +51,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Citado y autoría",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Pablo Santiago Serrati. Author, maintainer."
   },
   {
     "objectID": "articles/01_description.html",
@@ -172,7 +172,7 @@
     "href": "articles/editing.html",
     "title": "Uso de ~!gurí_",
     "section": "",
-    "text": "Importante\n\n\n\nEsta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.\nLa propuesta de\nEs importante considerar que la propuesta editorial tiene como base diferenciar los tres grandes bloques que componen un artículo científico (ver estandar XML-JATS), a saber:\nEn este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un Corrector de estilo y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (.DOCX) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (front, body y back) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver Figura 1).\nLas tareas específicas del Editor durante esta etapa serán:\nLas tarea del Corrector de estilo serán:"
+    "text": "Importante\n\n\n\nEsta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.\nEs importante considerar que la propuesta editorial tiene como base diferenciar los tres grandes bloques que componen un artículo científico (ver estandar XML-JATS), a saber:\nEn este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un Corrector de estilo y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (.DOCX) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (front, body y back) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver Figura 1).\nLas tareas específicas del Editor durante esta etapa serán:\nLas tarea del Corrector de estilo serán:"
   },
   {
     "objectID": "articles/editing.html#información-del-volumennúmero-y-el-artículo",
@@ -243,5 +243,33 @@
     "title": "Uso de ~!gurí_",
     "section": "Notas",
     "text": "Notas\n\n\nEs importante respetar el siguiente orden de las filas con los roles:\n\n(1) Conceptualization; (2) Data curation; (3) Formal Analysis; (4) Funding acquisition; (5) Investigation; (6) Methodology; (7) Project administration; (8) Resources; (9) Software; (10) Supervision; (11) Validation; (12) Visualization; (13) Writing – original draft; (14) Writing – review & editing.\n\nEs posible modificar el texto que aparece en la columna ‘CREDIT’ y, de hecho, es recomendable que lo haga para que esta se adapte al idioma de su revista. El texto que figura en esta columna será utilizado para indicar la taxonomía en los formatos de salida.↩︎\nLas figuras podrán tener cualquiera de los formatos válidos para figuras, como ser: .png, .jpg o .jpeg.↩︎\nLos dos contenidos opcionales irán debajo del elemento en la versión de publicación.↩︎\nPara hacer el signo de virgulilla puede presionar simultáneamente Alt gr + 4 o bien Alt + 126.↩︎"
+  },
+  {
+    "objectID": "about.html#autor",
+    "href": "about.html#autor",
+    "title": "Citado y autoría",
+    "section": "",
+    "text": "Pablo Santiago Serrati. Author, maintainer."
+  },
+  {
+    "objectID": "index.html#dependencias-de-software",
+    "href": "index.html#dependencias-de-software",
+    "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
+    "section": "Dependencias de software",
+    "text": "Dependencias de software\nPara el uso de esta herramienta se requiere la instalación previa de Pandoc, R y alguna distribución de LaTeX. Si no tiene instalados estos programas deberá hacerlo previamente de las páginas oficiales.\nComo se señaló anteriormente, esta herramienta se basa en el uso de Pandoc (versión 3.1.10 o superior) como herramienta de conversión entre formatos.\nTambién es necesario instalar alguna versión de R (recomendable versión 4.3 o superior) y, preferentemente, del entorno de desarrollo RStudio. R es el que es el encargado de coordinar el proceso de conversiones. Para el funcionamiento de ~!gurí_ deberá además instalar los paquetes tidyverse, rmarkdown, readxl, tinytex, crayon. Estos paquetes son instalados automáticamente (si no están instalados aún), mediante la función GURI_install().\nPor último, es necesario tener instalada alguna distribución de LaTeX. A las personas con poca experiencia en el uso de LaTeX, recomendamos utilizar la distribución tinytex, por su integración con R y la facilidad para manejar las dependencia de paquetes. LaTeX se utiliza para generar los archivos en formago pdf. Además, es recomendable tener instalados los siguientes paquetes de LaTeX que son utilizados por la pantilla de Pandoc: amsfonts, amsmath, lm, unicode-math, iftex, listings, fancyvrb, longtable, booktabs, graphicx, hyperref, xcolor, soul, geometry, setspace, babel, xeCJK, fontspec, selnolig, mathspec, biblatex, bibtex, biber, upquote, microtype, csquotes, natbib, bookmark, footnotehyper, footnote, xurl, parskip y svg. A su vez, la adaptación de la plantilla utiliza los siguientes paquetes: adjustbox, fontawesome5, caption, ccicons, relsize, truncate, lastpage y koma-script. Si no tiene instalada la distribución tinytex y estos paquetes, pueden ser instalados automáticamente con la función GURI_install(install_tinytex = T)."
+  },
+  {
+    "objectID": "articles/get_started.html",
+    "href": "articles/get_started.html",
+    "title": "Inicio rápido",
+    "section": "",
+    "text": "Para realizar una prueba rápida de ~!gurí_ puede utilizar el ejemplo disponible en la carpeta ./example/. En esta carpeta encontrará los archivos de una revista ficticia (para una descripción de estos archivos vea el apartado dedicado a organización de carpetas). A continuación se detallan los pasos a seguir para obtener los archivos finales .\nEn primer lugar deberá clonar el repositorio (o descargarlo manualmente). Dentro del directorio de ~!gurí_ debe abrir el proyecto de R utilizando el archivo guri.Rproj.\nSi es la primera vez que usa ~!gurí_ es posible que previamente sea conveniente ejecutar manualmente el siguiente código para instalar las librerías de R necesarias, así como la distribución de tinytex:\nsource(\"scripts/GURI_00_fx.R\", encoding = \"UTF-8\")\nGURI_install()\nLuego debe abrir el script GURI_make-files.R ubicado dentro de la carpeta ./scripts/ y ejecute el mismo siguiendo las indicaciones (para una versión de prueba no debe realizar modificaciones). Con esto habrá generado un\nComo resultado, dentro de la carpeta de cada artículo (en la carpeta ./example/num1/) encontrará un directorio _output con los archivos finales resultantes."
+  },
+  {
+    "objectID": "about.html#citation",
+    "href": "about.html#citation",
+    "title": "Citado y autoría",
+    "section": "Citation",
+    "text": "Citation"
   }
 ]
