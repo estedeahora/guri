@@ -156,14 +156,14 @@
   {
     "objectID": "articles/configuration.html",
     "href": "articles/configuration.html",
-    "title": "Instalar y configurar ~!gurí_",
+    "title": "Instalación y configuración",
     "section": "",
-    "text": "[TODO] Describir instalación de Gurí."
+    "text": "Para utilizar ~!gurí_ deberá haber descargado e instalado previamente Pandoc y R. Además, es conveniente tener instalado el entorno de desarrollo RStudio. Una descripción de la instalación de estos programas está disponible en la página oficial de cada uno de estos programas.\nUna vez que tenga instaladas las dependencias necesarias, deberá descargar la última versión de ~!gurí_ y colocar estos archivos en la carpeta “guri” en su disco duro. Dentro de esta carpeta deberá abrir el proyecto de R haciendo doble click desde el explorador de archivos en el archivo guri.Rproj (puede hacerlo también desde RStudio). Como resultado, se abrirá una sesión de R y RStudio, que dirá en la parte superior derecha “guri” (ver imagen).\n\nA continuación, deberá instalar las librerías de R, así como la distribución de LaTeX (tinytex) y las librerías utilizadas. Para ello debe ejecutar en la consola de R el siguiente comando (esto puede tardar algunos minutos):\nsource(\"scripts/GURI_00_fx.R\", encoding = \"UTF-8\")\nGURI_install()\nPara verificar que esté instalado correctamente puede ejecutar el ejemplo (ver Inicio rápido)"
   },
   {
     "objectID": "articles/configuration.html#el-uso-de-guri",
     "href": "articles/configuration.html#el-uso-de-guri",
-    "title": "Instalar y configurar ~!gurí_",
+    "title": "Instalación y configuración",
     "section": "El uso de GURI",
     "text": "El uso de GURI\n[TODO] Describir cómo usar GURI"
   },
@@ -263,7 +263,7 @@
     "href": "articles/get_started.html",
     "title": "Inicio rápido",
     "section": "",
-    "text": "Para realizar una prueba rápida de ~!gurí_ puede utilizar el ejemplo disponible en la carpeta ./example/. En esta carpeta encontrará los archivos de una revista ficticia (para una descripción de estos archivos vea el apartado dedicado a organización de carpetas). A continuación se detallan los pasos a seguir para obtener los archivos finales .\nEn primer lugar deberá clonar el repositorio (o descargarlo manualmente). Dentro del directorio de ~!gurí_ debe abrir el proyecto de R utilizando el archivo guri.Rproj.\nSi es la primera vez que usa ~!gurí_ es posible que previamente sea conveniente ejecutar manualmente el siguiente código para instalar las librerías de R necesarias, así como la distribución de tinytex:\nsource(\"scripts/GURI_00_fx.R\", encoding = \"UTF-8\")\nGURI_install()\nLuego debe abrir el script GURI_make-files.R ubicado dentro de la carpeta ./scripts/ y ejecute el mismo siguiendo las indicaciones (para una versión de prueba no debe realizar modificaciones). Con esto habrá generado un\nComo resultado, dentro de la carpeta de cada artículo (en la carpeta ./example/num1/) encontrará un directorio _output con los archivos finales resultantes."
+    "text": "Para realizar una prueba rápida de ~!gurí_ puede utilizar el ejemplo disponible en la carpeta ./example/, que contiene los archivos de una revista ficticia.\nLuego de que haya descargado e instalado Pandoc y R (preferentemente también RStudio), deberá clonar el repositorio de github (o descargarlo manualmente). Luego, deberá abrir el proyecto de R utilizando el archivo guri.Rproj (puede hacerlo desde RStudio o haciendo doble click desde el explorador de archivos). Esto abrirá una sesión de R con el proyecto “guri” abierto.\nSi es la primera vez que usa ~!gurí_ es posible que previamente sea conveniente ejecutar manualmente el siguiente código para instalar la distribución de LaTeX (tinytex) así como las librerías necesarias. Para ello debe ejecutar en la consola de R el siguiente comando:\nsource(\"scripts/GURI_00_fx.R\", encoding = \"UTF-8\")\nGURI_install()\nLuego debe abrir el script GURI_make-files.R ubicado dentro de la carpeta ./scripts/ y ejecute el mismo siguiendo las indicaciones (para una versión de prueba sólo debe ejecutar el contenido de este script sin realizar modificaciones).\nComo resultado, dentro de la carpeta de cada artículo (en la carpeta ./example/num1/art*) encontrará un directorio _output con los archivos finales resultantes."
   },
   {
     "objectID": "about.html#citation",
@@ -271,5 +271,12 @@
     "title": "Citado y autoría",
     "section": "Citation",
     "text": "Citation"
+  },
+  {
+    "objectID": "index.html#documentación-de-uso",
+    "href": "index.html#documentación-de-uso",
+    "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
+    "section": "Documentación de uso",
+    "text": "Documentación de uso\nUna descripción de la propuesta puede encontrarse en la documentación de usuario."
   }
 ]

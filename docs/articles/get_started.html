@@ -230,13 +230,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Para realizar una prueba rápida de <code>~!gurí_</code> puede utilizar el ejemplo disponible en la carpeta <code>./example/</code>. En esta carpeta encontrará los archivos de una revista ficticia (para una descripción de estos archivos vea el apartado dedicado a <a href="editing.html#sec-folders">organización de carpetas</a>). A continuación se detallan los pasos a seguir para obtener los archivos finales .</p>
-<p>En primer lugar deberá clonar el repositorio (o descargarlo manualmente). Dentro del directorio de <code>~!gurí_</code> debe abrir el proyecto de R utilizando el archivo <code>guri.Rproj</code>.</p>
-<p>Si es la primera vez que usa <code>~!gurí_</code> es posible que previamente sea conveniente ejecutar manualmente el siguiente código para instalar las librerías de <code>R</code> necesarias, así como la distribución de <code>tinytex</code>:</p>
+<p>Para realizar una prueba rápida de <code>~!gurí_</code> puede utilizar el ejemplo disponible en la carpeta <code>./example/</code>, que contiene los archivos de una revista ficticia.</p>
+<p>Luego de que haya descargado e instalado <a href="https://pandoc.org/">Pandoc</a> y <a href="https://cran.r-project.org/">R</a> (preferentemente también <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>), deberá clonar el repositorio de github (o descargarlo manualmente). Luego, deberá abrir el proyecto de R utilizando el archivo <code>guri.Rproj</code> (puede hacerlo desde RStudio o haciendo doble click desde el explorador de archivos). Esto abrirá una sesión de R con el proyecto “guri” abierto.</p>
+<p>Si es la primera vez que usa <code>~!gurí_</code> es posible que previamente sea conveniente ejecutar manualmente el siguiente código para instalar la distribución de LaTeX (<code>tinytex</code>) así como las librerías necesarias. Para ello debe ejecutar en la consola de R el siguiente comando:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/GURI_00_fx.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GURI_install</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Luego debe abrir el script <a href="script/GURI_make-files.R"><code>GURI_make-files.R</code></a> ubicado dentro de la carpeta <code>./scripts/</code> y ejecute el mismo siguiendo las indicaciones (para una versión de prueba no debe realizar modificaciones). Con esto habrá generado un</p>
-<p>Como resultado, dentro de la carpeta de cada artículo (en la carpeta <code>./example/num1/</code>) encontrará un directorio <code>_output</code> con los archivos finales resultantes.</p>
+<p>Luego debe abrir el script <a href="script/GURI_make-files.R"><code>GURI_make-files.R</code></a> ubicado dentro de la carpeta <code>./scripts/</code> y ejecute el mismo siguiendo las indicaciones (para una versión de prueba sólo debe ejecutar el contenido de este script sin realizar modificaciones).</p>
+<p>Como resultado, dentro de la carpeta de cada artículo (en la carpeta <code>./example/num1/art*</code>) encontrará un directorio <code>_output</code> con los archivos finales resultantes.</p>
 
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>~!gurí_ - Instalar y configurar ~!gurí_</title>
+<title>~!gurí_ - Instalación y configuración</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -124,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Instalar y configurar ~!gurí_</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Instalación y configuración</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -178,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#instalación-de-guri" id="toc-instalación-de-guri" class="nav-link active" data-scroll-target="#instalación-de-guri">Instalación de <em>GURI</em></a></li>
+  <li><a href="#instalación-de-programas-y-dependencias" id="toc-instalación-de-programas-y-dependencias" class="nav-link active" data-scroll-target="#instalación-de-programas-y-dependencias">Instalación de programas y dependencias</a></li>
   <li><a href="#configuraciones-globales-de-la-revista" id="toc-configuraciones-globales-de-la-revista" class="nav-link" data-scroll-target="#configuraciones-globales-de-la-revista">Configuraciones globales de la revista</a>
   <ul class="collapse">
   <li><a href="#el-uso-de-guri" id="toc-el-uso-de-guri" class="nav-link" data-scroll-target="#el-uso-de-guri">El uso de <em>GURI</em></a></li>
@@ -191,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Instalar y configurar ~!gurí_</h1>
+<h1 class="title">Instalación y configuración</h1>
 </div>
 
 
@@ -206,12 +240,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="instalación-de-guri" class="level1">
-<h1>Instalación de <em>GURI</em></h1>
-<p><strong>[TODO]</strong> Describir instalación de Gurí.</p>
+<section id="instalación-de-programas-y-dependencias" class="level1">
+<h1>Instalación de programas y dependencias</h1>
+<p>Para utilizar <code>~!gurí_</code> deberá haber descargado e instalado previamente <a href="https://pandoc.org/">Pandoc</a> y <a href="https://cran.r-project.org/">R</a>. Además, es conveniente tener instalado el entorno de desarrollo <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>. Una descripción de la instalación de estos programas está disponible en la página oficial de cada uno de estos programas.</p>
+<p>Una vez que tenga instaladas las dependencias necesarias, deberá descargar la última versión de <code>~!gurí_</code> y colocar estos archivos en la carpeta “guri” en su disco duro. Dentro de esta carpeta deberá abrir el proyecto de R haciendo doble click desde el explorador de archivos en el archivo <code>guri.Rproj</code> (puede hacerlo también desde RStudio). Como resultado, se abrirá una sesión de R y RStudio, que dirá en la parte superior derecha “guri” (ver imagen).</p>
+<p><img src="..\figures/project.png" class="img-fluid"></p>
+<p>A continuación, deberá instalar las librerías de R, así como la distribución de LaTeX (<code>tinytex</code>) y las librerías utilizadas. Para ello debe ejecutar en la consola de R el siguiente comando (esto puede tardar algunos minutos):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/GURI_00_fx.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GURI_install</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para verificar que esté instalado correctamente puede ejecutar el ejemplo (ver <a href="get_started.html">Inicio rápido</a>)</p>
 </section>
 <section id="configuraciones-globales-de-la-revista" class="level1">
 <h1>Configuraciones globales de la revista</h1>
+<p>Para generar</p>
 <p>Además de los archivos tratados anteriormente, cada revista deberá tener otros archivos que permiten configurar la salida.</p>
 <p>El archivo <code>./JUOURNAL/_journal.yaml</code>: En primer lugar en el directorio raíz de la revista deberá haber un <code>_journal.yaml</code> con los datos básicos de la revista.</p>
 <p>La carpeta <code>./JUOURNAL/_config</code>: A su vez, opcionalmente se podrá generar una carpeta <code>_config</code>. En caso de que esta carpeta no se genere se utilizarán las plantillas por defecto. Si existe un archivo <code>.csl</code> en esta carpeta se utilizará para generar el citado. En caso contrario se utilizará la configuración por defecto de Pandoc. Si existe un archivo <code>template.latex</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI). Si existe un archivo <code>latex_metadata.yaml</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI).</p>
