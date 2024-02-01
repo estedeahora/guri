@@ -1,0 +1,52 @@
+project:
+  type: website
+
+# ver
+# https://www.marvinschmitt.com/blog/website-tutorial-quarto/
+# https://github.com/mcanouil/awesome-quarto?tab=readme-ov-file
+# https://quartoand.me/front-end
+
+website:
+  page-navigation: false
+  title: "~!gurí_"
+  # favicon: "figures/guri_logo.png"
+  navbar:
+    left:
+      # - href: index.qmd
+      #   text: Home
+      - text: Descripción e inicio rápido
+        href: articles/01_description.qmd
+      - about.qmd
+      - text: "Artículos"
+        menu:
+        - text: Configuración
+          href: articles/02_configuration.qmd
+        - text: Uso de gurí
+          href: articles/03_editing.qmd
+        - text: Preparación de archivos
+          href: articles/04_file_prepare.qmd
+    tools: 
+      - icon: github
+        text: Github
+        href: https://github.com/estedeahora/guri
+  sidebar:
+    logo: "figures/guri_logo.png"
+    contents:
+      - text: Citation
+        href: about.qmd
+      - section: Developer
+        contents: 
+        - text: Pablo S. Serrati
+          href: https://pabloserrati.netlify.app/
+      - section: Reports
+        contents: reports
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+lang: es
