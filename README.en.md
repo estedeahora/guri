@@ -1,4 +1,4 @@
-# Gurí<a href="https://github.com/estedeahora/guri"><img src="manual/figures/guri_logo.png" align="right" height="100"/></a>
+# Gurí<a href="https://github.com/estedeahora/guri"><img src="figures/guri_logo.png" align="right" height="100"/></a>
 
 ## Gestor Unificado de formatos para Revistas de Investigación [*Unified Format Manager for Research Journals*]
 

@@ -1,4 +1,4 @@
-# \~!gurí\_<a href="https://github.com/estedeahora/guri"><img src="doc/figures/guri_logo.png" align="right" height="100"/></a>
+# \~!gurí\_<a href="https://github.com/estedeahora/guri">![](figures/guri_logo.png){align="right"}</a>
 
 ## Gestor Unificado de formatos para Revistas de Investigación
 
