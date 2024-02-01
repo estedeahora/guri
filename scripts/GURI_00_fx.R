@@ -32,7 +32,7 @@ GURI_install <- function(install_tinytex = T){
     latex_pkg <- c("amsmath", "amsfonts", "lm", "unicode-math", "iftex", "listings", 
                    "fancyvrb", "booktabs", "hyperref", "xcolor", "soul", "geometry", 
                    "setspace", "babel", "fontspec", "selnolig", "mathspec", "biblatex",
-                   "bibtex", "biber", "upquote", "microtype", "csquotes", "natbib", 
+                   "bibtex", "upquote", "microtype", "csquotes", "natbib", 
                    "bookmark", "xurl", "parskip", "svg", "geometry", "multirow", 
                    "etoolbox", "luacolor",  "lua-ul", 
                    "adjustbox", "fontawesome5", "caption",  "ccicons",
