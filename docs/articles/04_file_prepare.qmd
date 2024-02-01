@@ -1,7 +1,0 @@
----
-title: 'Instructivo para la etapa de corrección de pruebas'
----
-
-# Preparación de los documentos
-
-Este documento describe algunos aspectos a tener en cuenta en la etapa de corrección de pruebas con el objetivo de automatizar la etapa de *producción* de revistas científicas usando *`~!gurí_`* (*Gestor de formatos para Revistas de Investigación*).
