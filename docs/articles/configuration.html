@@ -213,10 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#instalación-de-programas-y-dependencias" id="toc-instalación-de-programas-y-dependencias" class="nav-link active" data-scroll-target="#instalación-de-programas-y-dependencias">Instalación de programas y dependencias</a></li>
-  <li><a href="#configuraciones-globales-de-la-revista" id="toc-configuraciones-globales-de-la-revista" class="nav-link" data-scroll-target="#configuraciones-globales-de-la-revista">Configuraciones globales de la revista</a>
-  <ul class="collapse">
-  <li><a href="#el-uso-de-guri" id="toc-el-uso-de-guri" class="nav-link" data-scroll-target="#el-uso-de-guri">El uso de <em>GURI</em></a></li>
-  </ul></li>
+  <li><a href="#creación-de-una-revista" id="toc-creación-de-una-revista" class="nav-link" data-scroll-target="#creación-de-una-revista">Creación de una revista</a></li>
+  <li><a href="#configuraciones-globales-de-la-revista" id="toc-configuraciones-globales-de-la-revista" class="nav-link" data-scroll-target="#configuraciones-globales-de-la-revista">Configuraciones globales de la revista</a></li>
   </ul>
 </nav>
     </div>
@@ -243,25 +241,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="instalación-de-programas-y-dependencias" class="level1">
 <h1>Instalación de programas y dependencias</h1>
 <p>Para utilizar <code>~!gurí_</code> deberá haber descargado e instalado previamente <a href="https://pandoc.org/">Pandoc</a> y <a href="https://cran.r-project.org/">R</a>. Además, es conveniente tener instalado el entorno de desarrollo <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>. Una descripción de la instalación de estos programas está disponible en la página oficial de cada uno de estos programas.</p>
-<p>Una vez que tenga instaladas las dependencias necesarias, deberá descargar la última versión de <code>~!gurí_</code> y colocar estos archivos en la carpeta “guri” en su disco duro. Dentro de esta carpeta deberá abrir el proyecto de R haciendo doble click desde el explorador de archivos en el archivo <code>guri.Rproj</code> (puede hacerlo también desde RStudio). Como resultado, se abrirá una sesión de R y RStudio, que dirá en la parte superior derecha “guri” (ver imagen).</p>
+<p>Una vez que tenga instaladas las dependencias necesarias, deberá descargar la última versión de <code>~!gurí_</code> del código fuente de <a href="https://github.com/estedeahora/guri/releases/latest"><code>~!gurí_</code></a> y colocar estos archivos en la carpeta “guri” de su disco duro. Dentro de esta carpeta deberá abrir el proyecto de R haciendo doble click desde el explorador de archivos en el archivo <code>guri.Rproj</code> (puede hacerlo también desde RStudio). Como resultado, se abrirá una sesión de R y RStudio, que dirá en la parte superior derecha “guri” (ver imagen).</p>
 <p><img src="..\figures/project.png" class="img-fluid"></p>
 <p>A continuación, deberá instalar las librerías de R, así como la distribución de LaTeX (<code>tinytex</code>) y las librerías utilizadas. Para ello debe ejecutar en la consola de R el siguiente comando (esto puede tardar algunos minutos):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/GURI_00_fx.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GURI_install</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para verificar que esté instalado correctamente puede ejecutar el ejemplo (ver <a href="get_started.html">Inicio rápido</a>)</p>
 </section>
+<section id="creación-de-una-revista" class="level1">
+<h1>Creación de una revista</h1>
+<p><code>~!gurí_</code> está pensado para que pueda administrar una o más revistas de forma conjunta. Para ello, genera un directorio para cada una de las revistas y un script personalizado para la creación de los documentos de su revista (en la carpeta <code>/scripts/</code>). Para la creación de su revista puede utilizar el comando <code>GURI_make_journal</code> que generará una carpeta y el conjunto de archivos predeterminados para la misma. Es recomendable no utilizar espacios ni símbolos en el nombre de la revista</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/GURI_fx.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GURI_make_journal</span>(<span class="st">"abbr_name"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>De forma predeterminada, este comando abrirá dos archivos. Por un lado un archivo con el nombre <code>GURI_[abbr_name].R</code> que contiene el script para generar los documentos de la revista. Por otro lado el archivo <code>./JUOURNAL/_journal.yaml</code> contiene los datos básicos de la revista. Antes de cerrar este arhivo debe completar los datos de su revista. Si algún campo no corresponde o no será usado por su revista utilice <code>#</code> al inicio de la línea y el campo no será considerado. Es importante que no modifique el tabulado a la izquierda dentro de este archivo.</p>
+</section>
 <section id="configuraciones-globales-de-la-revista" class="level1">
 <h1>Configuraciones globales de la revista</h1>
-<p>Para generar</p>
-<p>Además de los archivos tratados anteriormente, cada revista deberá tener otros archivos que permiten configurar la salida.</p>
-<p>El archivo <code>./JUOURNAL/_journal.yaml</code>: En primer lugar en el directorio raíz de la revista deberá haber un <code>_journal.yaml</code> con los datos básicos de la revista.</p>
-<p>La carpeta <code>./JUOURNAL/_config</code>: A su vez, opcionalmente se podrá generar una carpeta <code>_config</code>. En caso de que esta carpeta no se genere se utilizarán las plantillas por defecto. Si existe un archivo <code>.csl</code> en esta carpeta se utilizará para generar el citado. En caso contrario se utilizará la configuración por defecto de Pandoc. Si existe un archivo <code>template.latex</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI). Si existe un archivo <code>latex_metadata.yaml</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI).</p>
-<section id="el-uso-de-guri" class="level2">
-<h2 class="anchored" data-anchor-id="el-uso-de-guri">El uso de <em>GURI</em></h2>
-<p><strong>[TODO]</strong> Describir cómo usar GURI</p>
+<p>Cada revista puede tener opcionalmente otros archivos que permiten configurar y personalizar la salida de cada uno de los formatos. Estos archivos se encuentran en la carpeta <code>_config</code> dentro del directorio de su revista (<code>./JUOURNAL/_config</code>). En caso de que esta carpeta no se genere se utilizarán las plantillas por defecto. De forma predeterminada, el comando <code>GURI_make_journal</code> genera esta carpeta con una copia de los archivos utilizados por defecto.</p>
+<p>Usted puede colocar en esta carpeta un archivo csl En esta carpeta Si existe un archivo <code>.csl</code> en esta carpeta se utilizará para generar el citado. En caso contrario se utilizará la configuración por defecto de Pandoc.</p>
+<p>Si existe un archivo <code>template.latex</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI). Si existe un archivo <code>latex_metadata.yaml</code> en la carpeta de configuración se utilizará como plantilla. En caso contrario se utilizará un template por defecto (de GURI).</p>
+<p>Una vez que haya terminado de configurar esta carpeta puede comenzar a preparar los archivos para generar su número.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
