@@ -1,3 +1,11 @@
+# Load Packages
+
+library(tidyverse)
+library(rmarkdown)
+library(readxl)
+library(tinytex)
+library(crayon)
+
 # GURI_install -----------------------------------------------
 # Actualiza paquetes y distribución latex necesaria para el funcionamiento de GURI 
 
@@ -55,6 +63,59 @@ GURI_install <- function(install_tinytex = T){
   
 }
 
+# GURI_make_journal -----------------------------------------------
+
+GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
+  
+  journal_folder <- paste0("./", journal)
+  if(dir.exists(journal_folder)){
+    stop("The journal name already exists. To create a new journal, choose a new journal name.")
+  }
+  
+  cat("* Create journal folder (", journal_folder, ").\n", sep = "")
+  dir.create(journal_folder)
+  
+  
+  cat("* Copy config files.\n", sep = "")
+  file.copy(from = "files/_config-files/_config/",
+            to = journal_folder, recursive = T)
+  
+  cat("* Copy default files files.\n", sep = "")
+  file.copy(from = "files/_config-files/_default-files/",
+            to = journal_folder, recursive = T)
+  
+  cat("* Copy _journal.yaml file (edit manually with the journal data).\n")
+  file.copy(from = "files/_config-files/_journal.yaml",
+            to = paste0(journal_folder, "/_journal.yaml"))
+  file.edit(paste0(journal_folder, "/_journal.yaml"))
+  
+  script_path <- paste0("scripts/GURI_", journal, ".R")
+  cat("* Create journal script (", paste0(script_path), ")\n", sep = "")
+  
+  file.copy(from = "scripts/GURI_01_make-files.R",
+            to = script_path)
+  iocon <- file(script_path,"r+")
+  script <- readLines(iocon)
+  
+  # Modificar variable journal
+  script <- map_chr(script, 
+                    \(x) {str_replace(x, '^journal <- "example"', 
+                                      paste0('journal <- "', journal, '"'))})
+  # Modificar variable prefix
+  script <- map_chr(script, 
+                    \(x) {str_replace(x, '^prefix <- "num"', 
+                                      paste0('prefix <- "', issue_prefix, '"'))})
+  # Modificar primer issue
+  script <- map_chr(script, 
+                    \(x) {str_replace(x, '^issue <- 1', 
+                                      paste0('issue <- ', issue_first))})
+  
+  writeLines(script, con=iocon)
+  close(iocon)
+  
+  file.edit(script_path)
+}
+  
 # Armado de archivos base ------------------------------
 
   # GURI_listfiles() ----------------------------------------
