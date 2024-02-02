@@ -328,6 +328,18 @@ $body$
 $if(back)$
 $back$
 $endif$
+$if(ack)$
+<ack><p>$ack$</p></ack>
+$endif$
+$if(app)$
+<app-group>
+   <app>
+   <title></title>
+   $app$
+   </app>
+</app-group>
+$endif$
+
 </back>
 </article>
 

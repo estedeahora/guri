@@ -1,16 +1,14 @@
-# Ajustes principales
+# 1. Ajustes principales
+# Defina el directorio de su revista (`journal`), así como el prefijo utilizado 
+#   para indicar los números de su revista (`prefix`). Por último indique el 
+#   número que desea procesar (`issue`). 
 
-journal <- "example"      # Define directorio de la revista (no usar espacios)
-prefijo <- "num"         # Prefijo para diferenciar número/volumen. Define directorio de número actual
+journal <- "example"    # Define directorio de la revista (no usar espacios)
+prefix <- "num"         # Prefijo para diferenciar número/volumen. Define directorio de número actual
 
-numero <- 1
+issue <- 1              # Número/volumen de la revista que desea procesar
 
-# Definir paths
-path_root    <- paste0("./", journal, "/") 
-path_aux     <- paste0(path_root, "files/")
-path_issue   <- paste0(path_root, prefijo, numero, "/")
-
-# Packages ----------------------------------------------------------------
+# 2. Load Packages
 
 library(tidyverse)
 library(rmarkdown)
@@ -18,15 +16,28 @@ library(readxl)
 library(tinytex)
 library(crayon)
 
-# Cargar funciones
+# 3. Load custom functions 
+# Carga las funciones que utilizará para procesar los archivos.
 
 source("scripts/GURI_00_fx.R", encoding = "UTF-8")
+
+# Instalar paquetes y distribución de latex
+# Si es la primera vez que instala 
+
+# GURI_install()
+
+# 4. File data
+
+# Definir paths
+path_root    <- paste0("./", journal, "/") 
+path_aux     <- paste0(path_root, "files/")
+path_issue   <- paste0(path_root, prefix, issue, "/")
 
 # Armado de archivos base de cada artículo
 #   * Devuelve lista de archivos en cada carpeta ./{issue}/{art}
 #   * Diferencia artículos según tipo
-art <- GURI_listfiles(path_issue) 
+(art <- GURI_listfiles(path_issue) )
 
-# Armado de archivos finales
+# 5. Creating output files
 walk2(art$art_path, art$art_id, 
       \(x, y) GURI(x, y, verbose = F) )

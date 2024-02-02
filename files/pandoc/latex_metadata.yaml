@@ -1,9 +1,5 @@
 # Latex variable
 
-lang: es-AR
-link-citations: true
-colorlinks: true
-
 # Layout ----------------------------------
 
 documentclass: scrartcl 
