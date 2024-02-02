@@ -3,6 +3,7 @@
 
 babel-otherlangs: 
   - english
+  
 # Page layout ----------------------------------
 
 documentclass: scrartcl 
