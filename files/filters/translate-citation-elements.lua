@@ -1,6 +1,6 @@
---- translate-citation-elements.lua – filter to 
---- https://github.com/estedeahora/guri/tree/main/files/filters/credit.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- translate-citation-elements.lua – filter to translate citation elements (in zotero reference)
+--- https://github.com/estedeahora/guri/tree/main/files/filters/translate-citation-elements.lua
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
 local stringify = pandoc.utils.stringify

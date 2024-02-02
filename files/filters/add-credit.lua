@@ -1,20 +1,20 @@
---- credit.lua – filter to 
---- https://github.com/estedeahora/guri/tree/main/files/filters/credit.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- add-credit.lua – filter to filter to add credit data to author metadata (in art[~]_credit.csv file)
+--- https://github.com/estedeahora/guri/tree/main/files/filters/add-credit.lua
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
 local function credit_dict()
 	local credit_term = {"Conceptualization", "Data curation", "Formal Analysis", 
-					"Funding acquisition", "Investigation", "Methodology",
-					"Project administration", "Resources", "Software",
-					"Supervision", "Validation", "Visualization", 
-					"Writing – original draft", "Writing – review & editing"}
+						"Funding acquisition", "Investigation", "Methodology",
+						"Project administration", "Resources", "Software",
+						"Supervision", "Validation", "Visualization", 
+						"Writing – original draft", "Writing – review & editing"}
 
 	local credit_uri = {"conceptualization/", "data-curation/", "formal-analysis/",
-					"funding-acquisition/", "investigation/", "methodology/", 
-					"project-administration/", "resources/", "software/",
-					"supervision/", "validation/", "visualization/",
-					"writing-original-draft/", "writing-review-editing/"}
+						"funding-acquisition/", "investigation/", "methodology/", 
+						"project-administration/", "resources/", "software/",
+						"supervision/", "validation/", "visualization/",
+						"writing-original-draft/", "writing-review-editing/"}
 	for i = 1, #credit_uri do
 		credit_uri[i] = "https://credit.niso.org/contributor-roles/" .. credit_uri[i]
 	end
@@ -22,8 +22,8 @@ local function credit_dict()
 	return credit_term, credit_uri
 end
 
--- Meta(m) ----------------------------------------
--- Incorpora roles credit (como tabla) dentro de author
+-- Meta(m)
+-- Incorpora roles credit (como tabla) dentro de author // Incorporates credit roles (as table) within author
 -- Return: Meta modificado con tabla con roles credit dentro de meta.author 
 
 function Meta(m)

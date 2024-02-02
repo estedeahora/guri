@@ -1,22 +1,17 @@
---- author-to-canonical.lua 
--- Cambia autores a "forma canónica" (como se consigue con el filtro scholarly-metadata.lua). https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata
+--- author-to-canonical – lua Change authors metadata to "canonical form", as achieved with the scholarly-metadata.lua filter.
+--- Cambia autores a "forma canónica", como se consigue con el filtro scholarly-metadata.lua (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata)
 --- https://github.com/estedeahora/guri/tree/main/files/filters/author-to-canonical.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
-
--- function table.clone(org)
---     return {table.unpack(org)}
--- end
 
 local stringify = pandoc.utils.stringify
 
 -- Tabla con listado de paises (y código como clave)
+-- data from: https://gist.github.com/brenes/1095110#file-paises-csv
 local function get_country()
     local csv = dofile("../../../files/filters/CSV.lua")
     
-    -- https://gist.github.com/brenes/1095110#file-paises-csv
-    -- local datos, header = csv.load('https://gist.githubusercontent.com/brenes/1095110/raw/c8f208b03485ba28f97c500ab7271e8bce43b9c6/paises.csv')
-
+    
     local datos, header = csv.load('../../../files/filters/paises.csv', ',', true)
 
     local paises = {}

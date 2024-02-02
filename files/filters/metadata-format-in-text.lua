@@ -1,6 +1,6 @@
---- metadata-format-in-text.lua – filter to include float elements from flags
---- https://github.com/estedeahora/guri/tree/main/files/filters/credit-before-bib.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- metadata-format-in-text.lua – filter to include div elements (before the reference) in the output format
+--- https://github.com/estedeahora/guri/tree/main/files/filters/metadata-format-in-text.lua
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
 local RawBlock = pandoc.RawBlock

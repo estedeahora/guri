@@ -1,3 +1,7 @@
+--- include-float-in-format.lua – filter to include floating element code (depending on output format)
+--- https://github.com/estedeahora/guri/tree/main/files/filters/include-float-in-format.lua
+--- Copyright: © 2024 Pablo Santiago SERRATI
+--- License: CC-by-nc-sa
 
 local root = "./float/"                       
 local to_header = ''

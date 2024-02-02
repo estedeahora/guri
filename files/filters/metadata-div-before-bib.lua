@@ -1,6 +1,6 @@
---- metadata-div-before-bib.lua – filter to include float elements from flags
---- https://github.com/estedeahora/guri/tree/main/files/filters/credit-before-bib.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- metadata-div-before-bib.lua – filter to include credit, acknowledgements and appendices as div blocks before references (or at the end)
+--- https://github.com/estedeahora/guri/tree/main/files/filters/metadata-div-before-bib.lua
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
 local stringify = pandoc.utils.stringify

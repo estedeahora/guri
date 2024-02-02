@@ -1,6 +1,7 @@
---- author-list.lua – filter to obtain first two author names or "First et al"
+--- author-list.lua – filter to obtain filter to modify fields for latex output
+--- (a) make aut_short: first two author names or "FirstSurname et al"; (b) tipo & tipo: history in date format
 --- https://github.com/estedeahora/guri/tree/main/files/filters/author-list.lua
---- Copyright: © 2023 Pablo Santiago SERRATI
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
 function Meta(m)
