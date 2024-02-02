@@ -1,66 +1,89 @@
 # Latex variable
+# Description in: https://pandoc.org/MANUAL.html#variables-for-latex
 
-lang: es-AR
-
-# Layout ----------------------------------
+babel-otherlangs: 
+  - english
+  
+# Page layout ----------------------------------
 
 documentclass: scrartcl 
 classoption: 
   - DIV=calc
-# header-includes:
+  - abstract=true
+  # - twoside=true
 
 papersize: a4
+# twocolumn: true
 
 # geometry:
 # - top=30mm
+# - bottom=20mm
+# - right=20mm
 # - left=20mm
 # - heightrounded
+# - ...                       # see complete list in https://ctan.org/pkg/koma-script
 
-# hyperrefoptions:
+# hyperrefoptions: 
 # - linktoc=all
 # - pdfwindowui
 # - pdfpagemode=FullScreen
+# - ...                       # see complete list in https://ctan.org/pkg/hyperref
 
 # linestretch: 1.25
 # ident: true
 
-# Fonts --------------------------------------
+# header-includes:           # arbitrary text in latex (placed before personal customizations in the template)
+
+# Fonts options --------------------------------------
 
 # fontsize:
 
-fontenc: T1 
 fontfamily: Alegreya
 # fontfamilyoptions:
-# mainfont: 
+
+# mainfont:
 # mainfontoptions:
-sansfont: Alegreya Sans
+# sansfont: Alegreya Sans
 # sansfontoptions:
 # monofont: 
 # monofontoptions:
 # mathfont:
 # mathfontoptions:
-# CJKmainfont, CJKsansfont, CJKmonofont, CJKoptions
-# microtypeoptions
+# CJKmainfont:
+# CJKsansfont:
+# CJKmonofont:
+# CJKoptions:
 
-fontfamilies:
-  - name: \QUID
-    font: OptimusPrinceps
+# Custom font families (example: name: \name font: fontname)
+# fontfamilies:
+#   - name: 
+#     font: 
 
-# Links --------------------------------------
+# microtypeoptions: 
+fontenc: T1
+
+# Links options --------------------------------------
 
 link-citations: true
 
 colorlinks: true
-urlcolor: Sepia
-linkcolor: Sepia
-filecolor: Sepia
-citecolor: Sepia
+urlcolor: CadetBlue
+linkcolor: CadetBlue
+filecolor: CadetBlue
+citecolor: CadetBlue
 # toccolor:
 # boxlinks:
 # links-as-notes: true
 # urlstyle: 
 
 # Front matter -------------------------------
+
+# toc
+# lof
+# lot
+
+# BibLaTeX Bibliographies --------------------
+# Do not use
 
 # biblatexoptions
 # biblio-style

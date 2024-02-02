@@ -6,6 +6,8 @@ journal:
   publisher-name: guri
 publisher-loc:
    country: Argentina
+  #  email: publisher@university.edu
+  #  institution: Institution
 
 license: 
   text: Esta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License

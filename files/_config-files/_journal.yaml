@@ -2,7 +2,6 @@
 # Si no tiene alguno de los elementos requeridos, debe comentar con "#"
 
 journal:
-  # publisher-id-redalyc: 
   title: journal title
   abbrev-title: abreviated journal title
   pissn: 0123-4567 # print ISSN
@@ -17,3 +16,5 @@ license:
   text: Esta obra está bajo una Licencia Creative Commons Atribución 4.0 Internacional.
   link: https://creativecommons.org/licenses/by/4.0/
   free_to_read: true
+
+  lang: es-ES
