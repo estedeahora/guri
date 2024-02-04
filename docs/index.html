@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,7 +45,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
@@ -54,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "resultado adicional en este documento",
     "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Buscar"
@@ -68,9 +75,9 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">~!gurí_</span>
     </a>
@@ -82,96 +89,65 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Descripción</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Descripción</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./articles/get_started.html" rel="" target="">
- <span class="menu-text">Inicio rápido</span></a>
+    <a class="nav-link" href="./articles/get_started.html"> 
+<span class="menu-text">Inicio rápido</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-artículos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-artículos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Artículos</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-artículos">    
         <li>
-    <a class="dropdown-item" href="./articles/configuration.html" rel="" target="">
+    <a class="dropdown-item" href="./articles/configuration.html">
  <span class="dropdown-text">Configuración</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./articles/editing.html" rel="" target="">
+    <a class="dropdown-item" href="./articles/editing.html">
  <span class="dropdown-text">Uso de gurí</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./articles/file_prepare.html" rel="" target="">
+    <a class="dropdown-item" href="./articles/file_prepare.html">
  <span class="dropdown-text">Preparación de archivos</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">Acerca de</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-    <a href="https://github.com/estedeahora/guri" rel="" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/estedeahora/guri" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">~!gurí_: Gestor Unificado de formatos para Revistas de Investigación</li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">~!gurí_: Gestor Unificado de formatos para Revistas de Investigación</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./figures/guri_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Citation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Developer</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="https://pabloserrati.netlify.app/" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pablo S. Serrati</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Reports</span></span>
-  </li>
-    </ul>
-    </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -206,17 +182,19 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" class="img-fluid" alt="CC BY-NC-SA 4.0"></a> <!--[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/estedeahora/guri/blob/main/README.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/estedeahora/guri/blob/main/README.en.md)--></p>
 <section id="descripción-de-la-propuesta" class="level1">
 <h1>Descripción de la propuesta</h1>
-<p><code>~!gurí_</code> facilita la generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La propuesta busca resolver las dificultades de algunas revistas académicas para la generación de documentos finales en diferentes formatos de forma consistente y sin generar procesos duplicados. Además, toma en cuenta que muchas revistas cientíticas utilizan como base de sus flujos de trabajos documentos <code>docx</code>. <!--  La propuesta surgió como respuesta a la dificultad de las revistas académcias de acceso diamante para generar los documentos finales del proceso de publicación sin aumentar los costos de publicación. --></p>
+<p><code>~!gurí_</code> facilita la generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La propuesta busca resolver las dificultades de algunas revistas académicas para la generación de documentos finales en diferentes formatos de forma consistente y sin generar procesos duplicados. Además, toma en cuenta que muchas revistas científicas utilizan como base de sus flujos de trabajos documentos <code>docx</code>. <!--  La propuesta surgió como respuesta a la dificultad de las revistas académcias de acceso diamante para generar los documentos finales del proceso de publicación sin aumentar los costos de publicación. --></p>
 <p>En términos resumidos, la propuesta propone esquematizar y separar los principales elementos que componen un artículo científico. Para ello, para cada artículo, se debe generar un archivo <code>docx</code> (generado mediante una plantilla y con las citas identificadas con Zotero) y un archivo <code>yaml</code> con los metadatos del artículo. Opcionalmente, puede brindarse otros archivos con información de la <a href="https://credit.niso.org/">taxonomía CRediT</a>, elementos flotantes (figuras y tablas) y apéndices. A partir de estos archivos iniciales se genera un archivo intermedio <code>markdown</code>, que se utiliza para generar los documentos finales (en formato <code>pdf</code>, <code>html</code> y <code>xml</code>). Por su diseño la propuesta permite una fuerte adaptación de la apariencia de los formatos finales, a partir de la utilización de plantillas personalizadas.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/scheme_gral.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Esquema general</figcaption>
+<figcaption>Esquema general</figcaption>
 </figure>
 </div>
 <p>La herramienta se basa en el uso de <a href="https://pandoc.org/">Pandoc</a> para la conversión entre formatos, a lo cual se agrega un conjunto de filtros <em>Lua</em> y plantillas personalizadas, así como un flujo de trabajo, que permite en su conjunto la creación de los documentos finales.</p>
@@ -225,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Para el uso de esta herramienta se requiere la instalación previa de <a href="https://pandoc.org/">Pandoc</a>, <a href="https://cran.r-project.org/">R</a> y alguna distribución de <a href="https://www.latex-project.org/"><em>LaTeX</em></a>. Si no tiene instalados estos programas deberá hacerlo previamente de las páginas oficiales.</p>
 <p>Como se señaló anteriormente, esta herramienta se basa en el uso de <a href="https://pandoc.org/">Pandoc</a> (versión 3.1.10 o superior) como herramienta de conversión entre formatos.</p>
 <p>También es necesario instalar alguna versión de <a href="https://cran.r-project.org/">R</a> (recomendable versión 4.3 o superior) y, preferentemente, del entorno de desarrollo <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>. <code>R</code> es el que es el encargado de coordinar el proceso de conversiones. Para el funcionamiento de <code>~!gurí_</code> deberá además instalar los paquetes <code>tidyverse</code>, <code>rmarkdown</code>, <code>readxl</code>, <code>tinytex</code>, <code>crayon</code>. Estos paquetes son instalados automáticamente (si no están instalados aún), mediante la función <code>GURI_install()</code>.</p>
-<p>Por último, es necesario tener instalada alguna distribución de <a href="https://www.latex-project.org/"><em>LaTeX</em></a>. A las personas con poca experiencia en el uso de <code>LaTeX</code>, recomendamos utilizar la distribución <a href="https://yihui.org/tinytex/">tinytex</a>, por su integración con R y la facilidad para manejar las dependencia de paquetes. LaTeX se utiliza para generar los archivos en formago <code>pdf</code>. Además, es recomendable tener instalados los siguientes paquetes de <code>LaTeX</code> que son utilizados por la pantilla de Pandoc: <a href="https://ctan.org/pkg/amsfonts"><code>amsfonts</code></a>, <a href="https://ctan.org/pkg/amsmath"><code>amsmath</code></a>, <a href="https://ctan.org/pkg/lm"><code>lm</code></a>, <a href="https://ctan.org/pkg/unicode-math"><code>unicode-math</code></a>, <a href="https://ctan.org/pkg/iftex"><code>iftex</code></a>, <a href="https://ctan.org/pkg/listings"><code>listings</code></a>, <a href="https://ctan.org/pkg/fancyvrb"><code>fancyvrb</code></a>, <a href="https://ctan.org/pkg/longtable"><code>longtable</code></a>, <a href="https://ctan.org/pkg/booktabs"><code>booktabs</code></a>, <a href="https://ctan.org/pkg/graphicx"><code>graphicx</code></a>, <a href="https://ctan.org/pkg/hyperref"><code>hyperref</code></a>, <a href="https://ctan.org/pkg/xcolor"><code>xcolor</code></a>, <a href="https://ctan.org/pkg/soul"><code>soul</code></a>, <a href="https://ctan.org/pkg/geometry"><code>geometry</code></a>, <a href="https://ctan.org/pkg/setspace"><code>setspace</code></a>, <a href="https://ctan.org/pkg/babel"><code>babel</code></a>, <a href="https://ctan.org/pkg/xecjk"><code>xeCJK</code></a>, <a href="https://ctan.org/pkg/fontspec"><code>fontspec</code></a>, <a href="https://ctan.org/pkg/selnolig"><code>selnolig</code></a>, <a href="https://ctan.org/pkg/mathspec"><code>mathspec</code></a>, <a href="https://ctan.org/pkg/biblatex"><code>biblatex</code></a>, <a href="https://ctan.org/pkg/bibtex"><code>bibtex</code></a>, <a href="https://ctan.org/pkg/biber"><code>biber</code></a>, <a href="https://ctan.org/pkg/upquote"><code>upquote</code></a>, <a href="https://ctan.org/pkg/microtype"><code>microtype</code></a>, <a href="https://ctan.org/pkg/csquotes"><code>csquotes</code></a>, <a href="https://ctan.org/pkg/natbib"><code>natbib</code></a>, <a href="https://ctan.org/pkg/bookmark"><code>bookmark</code></a>, <a href="https://ctan.org/pkg/footnotehyper"><code>footnotehyper</code></a>, <a href="https://ctan.org/pkg/footnote"><code>footnote</code></a>, <a href="https://ctan.org/pkg/xurl"><code>xurl</code></a>, <a href="https://ctan.org/pkg/parskip"><code>parskip</code></a> y <a href="https://ctan.org/pkg/svg">svg</a>. A su vez, la adaptación de la plantilla utiliza los siguientes paquetes: <a href="https://ctan.org/pkg/adjustbox"><code>adjustbox</code></a>, <a href="https://ctan.org/pkg/fontawesome5"><code>fontawesome5</code></a>, <a href="https://ctan.org/pkg/caption"><code>caption</code></a>, <a href="https://ctan.org/pkg/ccicons"><code>ccicons</code></a>, <a href="https://ctan.org/pkg/relsize">relsize</a>, <a href="https://ctan.org/pkg/truncate"><code>truncate</code></a>, <a href="https://ctan.org/pkg/lastpage"><code>lastpage</code></a> y <a href="https://ctan.org/pkg/koma-script"><code>koma-script</code></a>. Si no tiene instalada la distribución <code>tinytex</code> y estos paquetes, pueden ser instalados automáticamente con la función <code>GURI_install(install_tinytex = T)</code>.</p>
+<p>Por último, es necesario tener instalada alguna distribución de <a href="https://www.latex-project.org/"><em>LaTeX</em></a>. A las personas con poca experiencia en el uso de <code>LaTeX</code>, recomendamos utilizar la distribución <a href="https://yihui.org/tinytex/">tinytex</a>, por su integración con R y la facilidad para manejar las dependencia de paquetes. LaTeX se utiliza para generar los archivos en formago <code>pdf</code>. Además, es recomendable tener instalados los siguientes paquetes de <code>LaTeX</code> que son utilizados por la pantilla de Pandoc: <a href="https://ctan.org/pkg/amsfonts"><code>amsfonts</code></a>, <a href="https://ctan.org/pkg/amsmath"><code>amsmath</code></a>, <a href="https://ctan.org/pkg/lm"><code>lm</code></a>, <a href="https://ctan.org/pkg/unicode-math"><code>unicode-math</code></a>, <a href="https://ctan.org/pkg/iftex"><code>iftex</code></a>, <a href="https://ctan.org/pkg/listings"><code>listings</code></a>, <a href="https://ctan.org/pkg/fancyvrb"><code>fancyvrb</code></a>, <a href="https://ctan.org/pkg/longtable"><code>longtable</code></a>, <a href="https://ctan.org/pkg/booktabs"><code>booktabs</code></a>, <a href="https://ctan.org/pkg/graphicx"><code>graphicx</code></a>, <a href="https://ctan.org/pkg/hyperref"><code>hyperref</code></a>, <a href="https://ctan.org/pkg/xcolor"><code>xcolor</code></a>, <a href="https://ctan.org/pkg/soul"><code>soul</code></a>, <a href="https://ctan.org/pkg/geometry"><code>geometry</code></a>, <a href="https://ctan.org/pkg/setspace"><code>setspace</code></a>, <a href="https://ctan.org/pkg/babel"><code>babel</code></a>, <a href="https://ctan.org/pkg/xecjk"><code>xeCJK</code></a>, <a href="https://ctan.org/pkg/fontspec"><code>fontspec</code></a>, <a href="https://ctan.org/pkg/selnolig"><code>selnolig</code></a>, <a href="https://ctan.org/pkg/mathspec"><code>mathspec</code></a>, <a href="https://ctan.org/pkg/biblatex"><code>biblatex</code></a>, <a href="https://ctan.org/pkg/bibtex"><code>bibtex</code></a>, <a href="https://ctan.org/pkg/biber"><code>biber</code></a>, <a href="https://ctan.org/pkg/upquote"><code>upquote</code></a>, <a href="https://ctan.org/pkg/microtype"><code>microtype</code></a>, <a href="https://ctan.org/pkg/csquotes"><code>csquotes</code></a>, <a href="https://ctan.org/pkg/natbib"><code>natbib</code></a>, <a href="https://ctan.org/pkg/bookmark"><code>bookmark</code></a>, <a href="https://ctan.org/pkg/footnotehyper"><code>footnotehyper</code></a>, <a href="https://ctan.org/pkg/footnote"><code>footnote</code></a>, <a href="https://ctan.org/pkg/xurl"><code>xurl</code></a>, <a href="https://ctan.org/pkg/parskip"><code>parskip</code></a> y <a href="https://ctan.org/pkg/svg">svg</a>. A su vez, la adaptación de la plantilla utiliza los siguientes paquetes: <a href="https://ctan.org/pkg/adjustbox"><code>adjustbox</code></a>, <a href="https://ctan.org/pkg/fontawesome5"><code>fontawesome5</code></a>, <a href="https://ctan.org/pkg/caption"><code>caption</code></a>, <a href="https://ctan.org/pkg/ccicons"><code>ccicons</code></a>, <a href="https://ctan.org/pkg/relsize">relsize</a>, <a href="https://ctan.org/pkg/truncate"><code>truncate</code></a>, <a href="https://ctan.org/pkg/lastpage"><code>lastpage</code></a> y <a href="https://ctan.org/pkg/koma-script"><code>koma-script</code></a>. Si no tiene instalada una distribución de y estos paquetes, pueden ser instalados automáticamente con la función <code>GURI_install(install_tinytex = T)</code>.</p>
 </section>
 <section id="documentación-de-uso" class="level2">
 <h2 class="anchored" data-anchor-id="documentación-de-uso">Documentación de uso</h2>
@@ -245,8 +223,8 @@ Os documentos finais desta revista foram gerados usando <a href="https://github.
 <p>Esta obra está bajo una licencia <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. Este software no ofrece garantía de ningún tipo.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid figure-img"></a></p>
-<figcaption class="figure-caption">CC BY-NC-SA 4.0</figcaption>
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" class="img-fluid quarto-figure quarto-figure-left figure-img" alt="CC BY-NC-SA 4.0"></a></p>
+<figcaption>CC BY-NC-SA 4.0</figcaption>
 </figure>
 </div>
 </section>
@@ -338,10 +316,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -351,8 +328,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -365,6 +351,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -408,6 +513,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -433,6 +539,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -493,6 +625,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
