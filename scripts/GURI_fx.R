@@ -357,7 +357,7 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
   GURI_to_pdf <- function(path_art, art, verbose = F){
     
     # Directorio de trabajo
-    wdir <- paste0(proj_dir, path_art)
+    wdir <- paste0(getwd(), path_art)
     proj_dir <- setwd(wdir) 
     on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
     
