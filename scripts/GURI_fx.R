@@ -4,7 +4,9 @@ library(tidyverse)
 library(rmarkdown)
 library(readxl)
 library(tinytex)
-library(crayon)
+
+library(cli)
+# library(pandoc)
 
 # GURI_install -----------------------------------------------
 # Actualiza paquetes y distribución latex necesaria para el funcionamiento de GURI 
@@ -355,9 +357,9 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
   GURI_to_pdf <- function(path_art, art, verbose = F){
     
     # Directorio de trabajo
-    proj_dir <- getwd()
     wdir <- paste0(proj_dir, path_art)
-    setwd(wdir) 
+    proj_dir <- setwd(wdir) 
+    on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
     
     # Archivos de entrada / salida
     file_input  <- paste0(art, ".md")
@@ -370,8 +372,9 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
     config_files = list.files(paste0(wdir, config_path))
     
     # Retener warnings?
-    # tinytex_warn <- options()$tinytex.latexmk.warning
-    # options(tinytex.latexmk.warning = verbose)
+    # ### tinytex_warn <- options()$tinytex.latexmk.warning
+    # tinytex_warn <- options(tinytex.latexmk.warning = verbose)
+    # on.exit(options(tinytex.latexmk.warning = tinytex_warn))
     
     # Opciones generales
     op_gral <- c( "-s", "--pdf-engine=lualatex" )
@@ -405,7 +408,6 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
         op_meta <- paste0("--metadata-file=", program_path, "pandoc/", config_latex_meta)
       }
     
-    
     # Conversión md -> tex
     pandoc_convert(wd = "./", 
                    input = file_input,
@@ -419,10 +421,6 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
     
     # Conversión tex -> pdf
     lualatex(file_tex)
-    
-    # Volver a valores por defecto
-    setwd(proj_dir) 
-    # options(tinytex.latexmk.warning = tinytex_warn)
     
   }
   
@@ -504,7 +502,6 @@ GURI_make_journal <- function(journal, issue_prefix = "num", issue_first = 1){
     zip(zipfile = zip_file, files = work_files)
     
   }
-  
   
   # GURI_clean_temp() -------------------------------------------
   

@@ -11,90 +11,101 @@ $if(CJKmainfont)$
   \PassOptionsToPackage{space}{xeCJK}
 $endif$
 
-% Define la clase del documento %%%%%%%%%%%%%%%%%
+%%%% Clase del documento y configuraciones generales de apariencia
 \documentclass[
-  $if(fontsize)$
-    $fontsize$,
-  $endif$
-  $if(papersize)$
-    $papersize$paper,
-  $endif$
-  $if(beamer)$
-    ignorenonframetext,
-    $if(handout)$
-      handout,
-    $endif$
-    $if(aspectratio)$
-      aspectratio=$aspectratio$,
-    $endif$
-  $endif$
-  $for(classoption)$
-    $classoption$$sep$,
-  $endfor$
-  ]{$documentclass$}
+  $if(fontsize)$%
+    $fontsize$,%
+  $endif$%
+  $if(papersize)$%
+    $papersize$paper,%
+  $endif$%
+  $if(twocolumn)$%
+    twocolumn,%
+  $endif$%
+  $for(classoption)$%
+    $classoption$$sep$,%
+  $endfor$%
+  ]{$documentclass$}%
 
-% Clase para presentaciones %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-$if(beamerarticle)$
-  \usepackage{beamerarticle} % needs to be loaded first
-$endif$
-
+ $-- Paquete  para ecuaciones matemáticas
 \usepackage{amsmath,amssymb}
+
+$-- Ajusta la separación entre líneas
 $if(linestretch)$
   \usepackage{setspace}
 $endif$
 
+$-- Herramientas para condicionales
 \usepackage{iftex}
 
-\ifPDFTeX
+$-- Símbolos matemáticos y especiales
+\ifPDFTeX                       % if pdflatex
   \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{textcomp}         % provide euro and other symbols
 \else % if luatex or xetex
-
 $if(mathspec)$
   \ifXeTeX
-    \usepackage{mathspec} % this also loads fontspec
+      \usepackage{mathspec}     % this also loads fontspec
   \else
     \usepackage{unicode-math} % this also loads fontspec
   \fi
 $else$
-  \usepackage{unicode-math} % this also loads fontspec
+    \usepackage{unicode-math}   % this also loads fontspec
 $endif$
   \defaultfontfeatures{Scale=MatchLowercase}$-- must come before Beamer theme
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 
+$-- Selección de familias de fuentes
 $if(fontfamily)$
 $else$
   $-- Set default font before Beamer theme so the theme can override it
   \usepackage{lmodern}
 $endif$
-
-$-- User font settings (must come after default font and Beamer theme)
 $if(fontfamily)$
+  $-- User font settings (must come after default font and Beamer theme)
   \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $endif$
 
-% xetex/luatex font selection %%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\ifPDFTeX\else
-  % xetex/luatex font selection
+\ifPDFTeX\else    $-- xetex/luatex font selection  
   \usepackage{fontspec}
   $if(mainfont)$
-    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+    $if(mainfontfallback)$
+      \ifLuaTeX
+        \usepackage{luaotfload}
+        \directlua{luaotfload.add_fallback("mainfontfallback",{
+        $for(mainfontfallback)$"$mainfontfallback$"$sep$,$endfor$
+        })}
+      \fi
+    $endif$
+    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$$if(mainfontfallback)$,RawFeature={fallback=mainfontfallback}$endif$]{$mainfont$}
   $endif$
-
   $if(sansfont)$
-    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+    $if(sansfontfallback)$
+      \ifLuaTeX
+        \usepackage{luaotfload}
+        \directlua{luaotfload.add_fallback("sansfontfallback",{
+          $for(sansfontfallback)$"$sansfontfallback$"$sep$,$endfor$
+        })}
+      \fi
+    $endif$
+    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$$if(sansfontfallback)$,RawFeature={fallback=sansfontfallback}$endif$]{$sansfont$}
   $endif$
-
   $if(monofont)$
-    \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+    $if(monofontfallback)$
+      \ifLuaTeX
+        \usepackage{luaotfload}
+        \directlua{luaotfload.add_fallback("monofontfallback",{
+          $for(monofontfallback)$"$monofontfallback$"$sep$,$endfor$
+        })}
+      \fi
+    $endif$
+    \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$if(monofontfallback)$,RawFeature={fallback=monofontfallback}$endif$]{$monofont$}
   $endif$
-  
   $for(fontfamilies)$
     \newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
-  $endfor$
-  
+  $endfor$  
   $if(mathfont)$
     $if(mathspec)$
       \ifXeTeX
@@ -107,7 +118,7 @@ $endif$
     $endif$
   $endif$
   
-  % Uso de caracteres especiales
+  $-- Uso de caracteres asiáticos
   $if(CJKmainfont)$
     \ifXeTeX
       \usepackage{xeCJK}
@@ -115,19 +126,16 @@ $endif$
       $if(CJKsansfont)$
         \setCJKsansfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKsansfont$}
       $endif$
-
       $if(CJKmonofont)$
         \setCJKmonofont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmonofont$}
       $endif$
     \fi
   $endif$
-
   $if(luatexjapresetoptions)$
     \ifLuaTeX
       \usepackage[$for(luatexjapresetoptions)$$luatexjapresetoptions$$sep$,$endfor$]{luatexja-preset}
     \fi
   $endif$
-
   $if(CJKmainfont)$
     \ifLuaTeX
       \usepackage[$for(luatexjafontspecoptions)$$luatexjafontspecoptions$$sep$,$endfor$]{luatexja-fontspec}
@@ -136,12 +144,11 @@ $endif$
   $endif$
 \fi
 
-% zero width non joiner (ZWNJ) %%%%%%%%%%%%%%%%%%%%%
+$-- Support for zero-width non-joiner characters.
 $if(zero-width-non-joiner)$
-  %% Support for zero-width non-joiner characters.
   \makeatletter
   \def\zerowidthnonjoiner{%
-    % Prevent ligatures and adjust kerning, but still support hyphenating.
+    $-- Prevent ligatures and adjust kerning, but still support hyphenating.
     \texorpdfstring{%
       \TextOrMath{\nobreak\discretionary{-}{}{\kern.03em}%
         \ifvmode\else\nobreak\hskip\z@skip\fi}{}%
@@ -154,47 +161,43 @@ $if(zero-width-non-joiner)$
     \catcode`^^^^200c=\active
     \protected\def ^^^^200c{\zerowidthnonjoiner}
   \fi
-  %% End of ZWNJ support
 $endif$
 
-% Use upquote if available, for straight quotes in verbatim environments
+$-- Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
-% use microtype if available
-\IfFileExists{microtype.sty}{% use microtype if available
+$-- use microtype if available
+\IfFileExists{microtype.sty}{
   \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+  \UseMicrotypeSet[protrusion]{basicmath} $-- disable protrusion for tt fonts
 }{}
 
+$-- Cambia entre indent en párrafos y separación entre párrafos
 $if(indent)$
 $else$
   \makeatletter
-  \@ifundefined{KOMAClassName}{% if non-KOMA class
+\@ifundefined{KOMAClassName}{%    $-- if non-KOMA class
     \IfFileExists{parskip.sty}{%
       \usepackage{parskip}
-    }{% else
+    }{$-- else
       \setlength{\parindent}{0pt}
       \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-  }{% if KOMA class
+  }{$-- if KOMA class
     \KOMAoptions{parskip=half}}
   \makeatother
 $endif$
 
+$-- permite verbatim en notas al pie
 $if(verbatim-in-note)$
   \usepackage{fancyvrb}
 $endif$
 
+$-- Uso de xcolor
 \usepackage{xcolor}
-$if(geometry)$
-  $if(beamer)$
-    \geometry{$for(geometry)$$geometry$$sep$,$endfor$}
-  $else$
-    \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-  $endif$
-$endif$
 
-$if(beamer)$
-  \newif\ifbibliography
+$-- Definir geometry de la página
+$if(geometry)$
+  \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
 
 $if(listings)$
@@ -204,6 +207,7 @@ $if(listings)$
   \lstset{defaultdialect=[x86masm]Assembler}
 $endif$
 
+$-- Agrega soporte para 'literate_haskell'
 $if(lhs)$
   \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
@@ -212,33 +216,25 @@ $if(highlighting-macros)$
   $highlighting-macros$
 $endif$
 
-% Configuración de tablas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-$if(tables)$
+%%%% Configuración de tablas
+$if(n_tabs)$
   \usepackage{longtable,booktabs,array}
   $if(multirow)$
     \usepackage{multirow}
   $endif$
   \usepackage{calc} % for calculating minipage widths
-  $if(beamer)$
-    \usepackage{caption}
-    % Make caption package work with longtable
-    \makeatletter
-    \def\fnum@table{\tablename~\thetable}
-    \makeatother
-  $else$
-    % Correct order of tables after \paragraph or \subparagraph
-    \usepackage{etoolbox}
-    \makeatletter
-    \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-    \makeatother
-    % Allow footnotes in longtable head/foot
-    \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-    \makesavenoteenv{longtable}
-  $endif$
+  % Correct order of tables after \paragraph or \subparagraph
+  \usepackage{etoolbox}
+  \makeatletter
+  \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+  \makeatother
+  % Allow footnotes in longtable head/foot
+  \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+  \makesavenoteenv{longtable}
 $endif$
 
-% Configuración de figuras/graficos %%%%%%%%%%%%%%%%%%%%%%%
-% $if(graphics)$
+%%%% Configuración de figuras
+$if(n_figs)$
   \usepackage{graphicx}
   \makeatletter
   \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -252,7 +248,7 @@ $endif$
   \makeatletter
   \def\fps@figure{htbp}
   \makeatother
-% $endif$
+$endif$
 
 $if(svg)$
   \usepackage{svg}
@@ -265,6 +261,13 @@ $if(strikeout)$
     \usepackage[soul]{lua-ul}
   \else
     \usepackage{soul}
+    $if(CJKmainfont)$
+      \ifXeTeX 
+        % soul's \st doesn't work for CJK:
+        \usepackage{xeCJKfntef}
+        \renewcommand{\st}[1]{\sout{#1}}
+      \fi
+    $endif$
   \fi
 $endif$
 
@@ -272,7 +275,7 @@ $endif$
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% Define si está activado el conteo de secciones %%%%%%%%%%%%%%%%%
+$-- Define si está activado el conteo de secciones
 $if(numbersections)$
   \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 $else$
@@ -283,19 +286,30 @@ $if(subfigure)$
   \usepackage{subcaption}
 $endif$
 
-$if(beamer)$
-$else$
-  $if(block-headings)$
-    % Make \paragraph and \subparagraph free-standing
-    \ifx\paragraph\undefined\else
-      \let\oldparagraph\paragraph
-      \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-    \fi
-    \ifx\subparagraph\undefined\else
-      \let\oldsubparagraph\subparagraph
-      \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-    \fi
-  $endif$
+$if(block-headings)$
+  % Make \paragraph and \subparagraph free-standing
+  \makeatletter
+  \ifx\paragraph\undefined\else
+    \let\oldparagraph\paragraph
+    \renewcommand{\paragraph}{
+      \@ifstar
+        \xxxParagraphStar
+        \xxxParagraphNoStar
+    }
+    \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+    \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+  \fi
+  \ifx\subparagraph\undefined\else
+    \let\oldsubparagraph\subparagraph
+    \renewcommand{\subparagraph}{
+      \@ifstar
+        \xxxSubParagraphStar
+        \xxxSubParagraphNoStar
+    }
+    \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+    \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+  \fi
+  \makeatother
 $endif$
 
 $if(pagestyle)$
@@ -304,32 +318,42 @@ $endif$
 
 % Referencias con CSL
 $if(csl-refs)$
+  % definitions for citeproc citations
+  \NewDocumentCommand\citeproctext{}{}
+  \NewDocumentCommand\citeproc{mm}{%
+    \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+  \makeatletter
+  % allow citations to break across lines
+  \let\@cite@ofmt\@firstofone
+  % avoid brackets around text for \cite:
+    \def\@biblabel#1{}
+    \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+  \makeatother
   \newlength{\cslhangindent}
   \setlength{\cslhangindent}{1.5em}
   \newlength{\csllabelwidth}
   \setlength{\csllabelwidth}{3em}
-  \newlength{\cslentryspacingunit} % times entry-spacing
-  \setlength{\cslentryspacingunit}{\parskip}
-  \newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
-  {% don't indent paragraphs
-    \setlength{\parindent}{0pt}
+  \newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+   {\begin{list}{}{%
+    \setlength{\itemindent}{0pt}
+    \setlength{\leftmargin}{0pt}
+    \setlength{\parsep}{0pt}
     % turn on hanging indent if param 1 is 1
     \ifodd #1
-    \let\oldpar\par
-    \def\par{\hangindent=\cslhangindent\oldpar}
+      \setlength{\leftmargin}{\cslhangindent}
+      \setlength{\itemindent}{-1\cslhangindent}
     \fi
     % set entry spacing
-    \setlength{\parskip}{#2\cslentryspacingunit}
-  }%
-  {}
+    \setlength{\itemsep}{#2\baselineskip}}}
+  {\end{list}}
   \usepackage{calc}
-  \newcommand{\CSLBlock}[1]{#1\hfill\break}
-  \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-  \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+  \newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+  \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+  \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
   \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
 
-% Define opciones de lenguaje
+$-- Define opciones de lenguaje/idioma
 $if(lang)$
   \ifLuaTeX
     \usepackage[bidi=basic]{babel}
@@ -341,7 +365,7 @@ $if(lang)$
     $if(mainfont)$
       \ifPDFTeX
       \else
-        \babelfont{rm}[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+        \babelfont{rm}[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$$if(mainfontfallback)$,RawFeature={fallback=mainfontfallback}$endif$]{$mainfont$}
       \fi
     $endif$
   $endif$
@@ -361,6 +385,8 @@ $for(header-includes)$
   $header-includes$
 $endfor$
 
+${ custom_journal.sty() }
+
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -375,6 +401,7 @@ $if(dir)$
   \fi
 $endif$
 
+$-- Configuración de bibliografía
 $if(natbib)$
   \usepackage[$natbiboptions$]{natbib}
   \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
@@ -413,18 +440,25 @@ $endif$
   $if(title-meta)$
     pdftitle={$title-meta$},
   $endif$
-  $if(author-meta)$
-    pdfauthor={$author-meta$},
+  $if(author)$
+    pdfauthor={$for(author)$$author.name$$sep$, $endfor$},
   $endif$
+  pdfsubject={$journal.title$$if(volume)$ - Volume: $volume$ $endif$$if(issue)$ - Issue: $issue$ $endif$ ($date.year$)$if(article.elocation-id)$ $article.elocation-id$$endif$$if(article.doi)$ doi: $article.doi$$endif$},
   $if(lang)$
     pdflang={$lang$},
   $endif$
-  $if(subject)$
-    pdfsubject={$subject$},
+  $if(keyword_es)$
+    pdfkeywords={$for(keyword_es)$$keyword_es$$sep$, $endfor$},
   $endif$
-  $if(keywords_es)$
-    pdfkeywords={$for(keywords_es)$$keywords_es$$sep$, $endfor$},
-  $endif$
+  pdfinfo={
+    $if(article.doi)$
+      DOI={$article.doi$},
+    $endif$
+    $if(abstract_es)$
+      abstract={$abstract_es$},
+    $endif$
+    journal=$journal.title$
+      },
   % Define color de links
   $if(colorlinks)$
     colorlinks=true,
@@ -438,184 +472,9 @@ $endif$
       hidelinks,
     $endif$
   $endif$
-    pdfcreator={LaTeX via pandoc}}
+pdfcreator={LaTeX via pandoc \& \textasciitilde!guri\_}}
 
-\def\issuenumber{$issue$}
-\def\DOI{$DOI$}
-% Encabezados de páginas %%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead{} % clear all header fields
-\fancyhead[RE,LO]{$article.heading$}
-%\fancyhead[RO]{PRIMER AUTOR}
-\fancyhead[LE,RO]{\QUID{\Huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
-\fancyfoot{} % clear all footer fields
-\fancyfoot[LE,RO]{\thepage}
-
-% Título %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Permite cambiar la posición de las figuras
-\usepackage[export]{adjustbox}
-
-\definecolor{gris_art}{RGB}{90,90,90}
-\definecolor{gris_art2}{RGB}{160,160,160}
-\definecolor{rojo_quid}{RGB}{167,112,112}
-
-\setkomafont{title}{\sffamily\color{gris_art}}
-\setkomafont{author}{\sffamily}
-
-\makeatletter
-\renewcommand*{\@maketitle}{%
-  \global\@topnum=\z@
-
-  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
-  
-  % Cabecera %
-  \begin{minipage}[t][][b]{0.7\textwidth}
-    \sffamily\scriptsize\raggedright{Número: $article.issue$ ($date.year$) \\}
-    $if(article.doi)$
-      \sffamily\scriptsize\raggedright{DOI: $article.doi$\par}
-    $else$
-      %\scriptsize\raggedright{\phantom{DOI: 10.1177/00420980231178401}\par}
-    $endif$
-  \end{minipage}%
-  \begin{minipage}[t][][b]{0.3\textwidth}
-    \raggedleft{\QUID{\Huge{\textbf{\textcolor{rojo_quid}{Quid 16}}}}}
-  \end{minipage}%
-  
-  {\color{gris_art}\hrule height 0.3pt}
-  \vskip 0.3em
-
-  \begin{minipage}[b][][t]{0.86\textwidth}
-    \sffamily{\textcolor{gris_art}\large\textsc{$article.heading$}} \\
-  \end{minipage}%
-  \begin{minipage}[b][][t]{0.14\textwidth}
-    \href{$license.link$}{\includegraphics[width=0.9\columnwidth,right]{../.files/template/img/cc}}
-  \end{minipage}%
-  \vskip 0.5em
-
-  % Titulo %
-  \begin{minipage}[t]{0.85\textwidth}
-    {\usekomafont{title}{\LARGE \@title \par}}%
-    \vskip .5em
-    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\Large \@subtitle\par\fi}%
-    \vskip 1em
-    \usekomafont{subtitle}\textcolor{gris_art2}\Large\textit{$title_en$}
-  \end{minipage}%
-  
-  \vskip 2em%
-  
-  % titlehead (no usado) %%%%%%%%%%%%%%%%% 
-  \ifx\@titlehead\@empty \else
-    \begin{minipage}[t]{\textwidth}
-      \usekomafont{titlehead}{\@titlehead\par}%
-      %\includegraphics{../template/quid_EA}
-    \end{minipage}\par
-  \fi
-  \null
-  % \vskip 2em%
-
-  % subject (no usado) %%%%%%%%%%%%%%%%%%%
-  \ifx\@subject\@empty \else
-    {\usekomafont{subject}{\@subject \par}}%
-    \vskip 1.5em
-  \fi
-
-
-  % Autores %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  {%
-    \usekomafont{author}{%
-      \lineskip .5em%
-      \begin{tabular}[t]{@{}l}
-        \@author
-      \end{tabular}\par
-    }%
-  }%
-  \vskip 1em%
-
-  % date (no usado) %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  {\usekomafont{date}{\@date \par}}%
-  \vskip \z@ \@plus 1em
-
-  % publishers (no usado) %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  {\usekomafont{publishers}{\@publishers \par}}%
-
-  % dedication (no usado) %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \ifx\@dedication\@empty \else
-    \vskip 2em
-    {\usekomafont{dedication}{\@dedication \par}}%
-  \fi
-
-  \par
-  \vskip 2em
-}%
-
-$if(title)$
-  \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-$endif$
-
-$if(subtitle)$
-  $if(beamer)$
-  $else$
-    \usepackage{etoolbox}
-    \makeatletter
-    \providecommand{\subtitle}[1]{% add subtitle to \maketitle
-      \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-    }
-    \makeatother
-  $endif$
-  \subtitle{$subtitle$}
-$endif$
-
-\author{$for(author)$$author.surname$ $author.given-names$ \href{https://orcid.org/$author.orcid$}{\includegraphics[height=2ex]{../.files/template/img/ORCID}} \\\href{mailto:$author.email$}{$author.email$} $sep$ \and $endfor$}
-
-%\date{$date.year$}
-\date{}
-
-% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\renewenvironment{abstract}{%
-  \if@titlepage
-    \titlepage
-    \null\vfil
-    \@beginparpenalty\@lowpenalty
-    \if@abstrt
-      \begin{center}
-        \normalfont\sectfont\nobreak\abstractname
-        \@endparpenalty\@M
-      \end{center}
-    \fi
-  \else
-    \if@twocolumn\if@abstrt
-        \addsec*{\abstractname}
-      \fi
-    \else
-      \if@abstrt
-        \small
-        \begin{flushleft}
-          {\normalfont\sectfont\nobreak\abstractname
-            \vspace{-.5em}\vspace{\z@}}%
-        \end{flushleft}
-      \fi
-     \quotation
-    \fi
-  \fi
-}{%
-  \if@titlepage
-    \par\vfil\null\endtitlepage
-  \else
-    \if@twocolumn\else
-       \endquotation
-            \par
-    \fi
-  \fi
-}
-\makeatother
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% document  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Inicio de documento
 
 \begin{document}
   
@@ -625,33 +484,34 @@ $endif$
 
   \maketitle
 
-  % Abstract / Resumen
+  $-- Resumen / Abstract
   $if(abstract_es)$  
     
     \begin{abstract}
 
-      \begin{center}
-        \sffamily\textbf{Resumen}
-      \end{center}
-    
-      \noindent \sffamily{$abstract_es$}
+      \noindent{$abstract_es$}
+
+      \nopagebreak
+
+      \noindent\sffamily\textit{Palabras claves: $for(keyword_es)$$it$$sep$; $endfor$}.%
 
     \end{abstract}
     
-    $if(abstract_en)$  
+    $if(abstract_en)$
+    \begin{otherlanguage}{english}
+
       \begin{abstract}      
-        
-        \begin{center}
-          \sffamily\textbf{Abstract}
-        \end{center}
-      
-        \noindent \sffamily{$abstract_en$}
+ 
+        \noindent{$abstract_en$}
+
+        \nopagebreak
+
+        \noindent\sffamily\textit{Keywords: $for(keyword_en)$$it$$sep$; $endfor$}.%
 
       \end{abstract}
+    \end{otherlanguage}
     $endif$
   $endif$
-
-  %\indent
 
   $for(include-before)$
     $include-before$
@@ -664,8 +524,8 @@ $endif$
   $if(has-frontmatter)$
     \mainmatter
   $endif$
-  
-  % BODY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+  $-- BODY  
   
   $body$
 
@@ -673,7 +533,7 @@ $endif$
     \backmatter
   $endif$
   
-  % Referencias bibliográficas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%% Referencias bibliográficas
   $if(natbib)$
     $if(bibliography)$
       $if(biblio-title)$
@@ -683,26 +543,12 @@ $endif$
           \renewcommand\refname{$biblio-title$}
         $endif$
       $endif$
-      $if(beamer)$
-        \begin{frame}[allowframebreaks]{$biblio-title$}
-          \bibliographytrue
-      $endif$
       \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
-      $if(beamer)$
-        \end{frame}
-      $endif$
     $endif$
   $endif$
 
   $if(biblatex)$
-    $if(beamer)$
-      \begin{frame}[allowframebreaks]{$biblio-title$}
-        \bibliographytrue
-        \printbibliography[heading=none]
-      \end{frame}
-    $else$
       \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-    $endif$
   $endif$
 
   $for(include-after)$
