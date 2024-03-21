@@ -1,0 +1,31 @@
+[
+  {
+    "ISBN": "978-84-88550-25-5",
+    "author": [
+      {
+        "family": "Martínez Alier",
+        "given": "J."
+      }
+    ],
+    "call-number": "HC79.E5 M3586 1998",
+    "citation-key": "MartinezAlier1998",
+    "collection-number": "8",
+    "collection-title": "Cuadernas",
+    "event-place": "Lanzarote, Islas Canarias",
+    "id": "3",
+    "issued": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "number-of-pages": "232",
+    "publisher": "Fundación César Manrique",
+    "publisher-place": "Lanzarote, Islas Canarias",
+    "source": "Library of Congress ISBN",
+    "title": "La economía ecológica como ecología humana",
+    "title-short": "La economía ecológica como ecología humana =",
+    "type": "book"
+  }
+]

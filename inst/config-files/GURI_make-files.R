@@ -1,7 +1,6 @@
-# 1. Load functions 
-# Carga las funciones que utilizará para procesar los archivos.
+# 1. Load {guri} package
 
-source("scripts/GURI_fx.R", encoding = "UTF-8")
+library(guri)
 
 # 2. Installation and configuration
 # Instalar paquetes y distribución de latex (ejecutar la primera vez que ejecuta ~!gurí_)
@@ -10,11 +9,10 @@ source("scripts/GURI_fx.R", encoding = "UTF-8")
 # Crear el directorio y los archivos de revista (ejecutar sólo una vez por revista)
 # GURI_make_journal("journal name")
 
-
 # 3. Ajustes principales
-# Defina el directorio de su revista (`journal`), así como el prefijo utilizado 
-#   para indicar los números de su revista (`prefix`). Por último indique el 
-#   número que desea procesar (`issue`). 
+# Defina el directorio de su revista (`journal`), así como el prefijo utilizado
+#   para indicar los números de su revista (`prefix`). Por último indique el
+#   número que desea procesar (`issue`).
 
 journal <- "example"    # Define directorio de la revista (no usar espacios)
 prefix <- "num"         # Prefijo para diferenciar número/volumen. Define directorio de número actual
@@ -24,7 +22,7 @@ issue <- 1              # Número/volumen de la revista que desea procesar
 # 4. File data
 
 # Definir paths
-path_root    <- paste0("./", journal, "/") 
+path_root    <- paste0("./", journal, "/")
 path_aux     <- paste0(path_root, "files/")
 path_issue   <- paste0(path_root, prefix, issue, "/")
 
@@ -34,5 +32,5 @@ path_issue   <- paste0(path_root, prefix, issue, "/")
 (art <- GURI_listfiles(path_issue) )
 
 # 6. Creating output files
-walk2(art$art_path, art$art_id, 
+walk2(art$art_path, art$art_id,
       \(x, y) GURI(x, y, verbose = F) )

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd">
+
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type="research-article" xml:lang="es-ES">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title specific-use="original" xml:lang="es-ES">~!guri_ {An example journal}</journal-title>
+<abbrev-journal-title>~!guri_</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic" pub-type="epub">0001-2000</issn>
+<publisher>
+<publisher-name>guri</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="doi">10.1177/004209802311733</article-id>
+<article-categories>
+<subj-group subj-group-type="heading">
+<subject>Artículos</subject>
+</subj-group>
+</article-categories>
+<title-group>
+<article-title xml:lang="es-ES">Ejecución de Tiros Libres en Fútbol</article-title>
+<subtitle xml:lang="es-ES">Un Análisis Científico</subtitle>
+<trans-title-group>
+<trans-title xml:lang="en">Free Kicks in Football. A Scientific Analysis</trans-title>
+</trans-title-group>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0010-0010-0010</contrib-id>
+<name>
+<surname>Maradona</surname>
+<given-names>Diego Armando</given-names>
+</name>
+<email>d10s@afa.ar</email>
+<xref ref-type="aff" rid="aff-aff1"/>
+<!--  -->
+<!-- <xref ref-type="corresp" rid="cor-true"><sup>*</sup></xref> -->
+<!--  -->
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Conceptualization" vocab-term-identifier="https://credit.niso.org/contributor-roles/conceptualization/">Conceptualización</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Funding acquisition" vocab-term-identifier="https://credit.niso.org/contributor-roles/funding-acquisition/">Adquisición de Financiamiento</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="https://credit.niso.org/contributor-roles/resources/">Recursos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Validation" vocab-term-identifier="https://credit.niso.org/contributor-roles/validation/">Validación</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – original draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">Redacción - preparación del borrador original</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – review &amp; editing" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-review-editing/">Redacción - revisión y edición</role>
+</contrib>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0001-2345-6789</contrib-id>
+<name>
+<surname>Messi</surname>
+<given-names>Lionel</given-names>
+</name>
+<email>lmessi@afa.ar</email>
+<xref ref-type="aff" rid="aff-aff1"/>
+<!--  -->
+<!-- <xref ref-type="corresp" rid="cor-true"><sup>*</sup></xref> -->
+<!--  -->
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Data curation" vocab-term-identifier="https://credit.niso.org/contributor-roles/data-curation/">Curación de datos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="https://credit.niso.org/contributor-roles/resources/">Recursos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="https://credit.niso.org/contributor-roles/visualization/">Visualización</role>
+</contrib>
+<aff id="aff-aff1">
+<institution-wrap>
+<institution>Selección de Futbol Argentina</institution>
+</institution-wrap>,
+<country country="AR">Argentina</country>
+</aff>
+</contrib-group>
+<pub-date pub-type="epub" date-type="pub" publication-format="electronic">
+<season>Julio-Diciembre</season>
+<year>2023</year>
+</pub-date>
+<elocation-id>20201</elocation-id>
+<permissions>
+<license xlink:href="https://creativecommons.org/licenses/by-nc/4.0/">
+<ali:license_ref>https://creativecommons.org/licenses/by-nc/4.0/</ali:license_ref>
+<license-p>Esta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license-p>
+</license>
+</permissions>
+<counts>
+  <!-- <count count-type="contributors" count="3"/> -->
+    <fig-count count="0"/>
+      <table-count count="0"/>
+    
+  <!-- <equation-count count="10"/>
+  <ref-count count="26"/>
+  <page-count count="6"/>
+  <word-count count="2847"/> -->
+ </counts>
+</article-meta>
+</front>
+<body>
+<sec id="introducción">
+  <title>Introducción</title>
+  <p>El fútbol es uno de los deportes más populares y apreciados en todo el mundo. Entre las numerosas habilidades que un jugador de fútbol debe dominar, la ejecución de tiros libres se destaca como un aspecto crucial del juego. La capacidad de convertir un tiro libre en un gol puede cambiar el curso de un partido y llevar a la victoria a un equipo. En este artículo, exploraremos los aspectos científicos detrás de la ejecución de tiros libres en fútbol, basándonos en investigaciones previas publicadas en revistas científicas especializadas.</p>
+</sec>
+<sec id="mecánica-de-la-ejecución-de-tiros-libres">
+  <title>Mecánica de la Ejecución de Tiros Libres</title>
+  <p>La ejecución de tiros libres en el fútbol es una habilidad fundamental que requiere una comprensión profunda de la mecánica detrás de cada disparo. La mecánica adecuada de la ejecución de tiros libres en fútbol ha sido objeto de numerosos estudios científicos. Según el trabajo de García et al. (2019) en la &quot;Revista de Biomecánica Deportiva&quot;, la biomecánica de un tiro libre exitoso se basa en una combinación de factores, incluyendo la posición del pie de apoyo, el ángulo de inclinación del cuerpo, la velocidad de la pelota y la dirección de la mirada del jugador.</p>
+  <list list-type="order">
+    <list-item>
+      <p><italic>Posición del Pie de Apoyo:</italic> La posición del pie de apoyo es esencial para garantizar la estabilidad y la precisión en el momento del disparo. Un pie de apoyo colocado correctamente permite al jugador mantener el equilibrio y generar la potencia adecuada para el tiro.</p>
+    </list-item>
+    <list-item>
+      <p><italic>Ángulo de Inclinación del Cuerpo:</italic> El ángulo de inclinación del cuerpo del jugador también influye en la trayectoria de la pelota. Un ángulo de inclinación adecuado puede determinar si la pelota pasa por encima de la barrera o si se curva alrededor de ella.</p>
+    </list-item>
+    <list-item>
+      <p><italic>Velocidad de la Pelota:</italic> La velocidad con la que se golpea la pelota es un factor crítico. Investigaciones sugieren que la velocidad adecuada puede evitar que el portero tenga tiempo suficiente para reaccionar y bloquear el tiro (García et al., 2019).</p>
+    </list-item>
+    <list-item>
+      <p><italic>Dirección de la Mirada del Jugador:</italic> La dirección de la mirada del jugador influye en la precisión del disparo. Fijar la mirada en un punto específico de la portería puede ayudar al jugador a apuntar con mayor precisión.</p>
+    </list-item>
+  </list>
+</sec>
+<sec id="influencia-de-la-superficie-del-campo">
+  <title>Influencia de la Superficie del Campo</title>
+  <p>La superficie del campo de juego también ha sido objeto de investigación en relación con la ejecución de tiros libres. En un estudio reciente publicado en la &quot;Revista de Ciencias del Deporte y la Tecnología&quot; (Smith y Johnson, 2021), se analizó cómo la superficie del campo afecta la trayectoria de la pelota durante un tiro libre. Los resultados sugieren que la superficie del campo puede influir significativamente en la distancia y la curvatura de la pelota.</p>
+  <p>El campo de juego en el fútbol no siempre es uniforme, y la superficie del campo puede variar. Investigaciones recientes, como el estudio de Smith y Johnson (2021) en la &quot;Revista de Ciencias del Deporte y la Tecnología&quot;, han examinado cómo la superficie del campo afecta la ejecución de tiros libres.</p>
+  <p>La superficie del campo puede influir en la distancia y la curvatura de la pelota durante un tiro libre. Superficies más duras pueden permitir que la pelota ruede más rápido y se mantenga más baja, mientras que superficies más blandas pueden afectar la velocidad y la trayectoria de la pelota. Comprender cómo la superficie del campo interactúa con la mecánica de los tiros libres es fundamental para los jugadores y entrenadores.</p>
+</sec>
+<sec id="entrenamiento-específico">
+  <title>Entrenamiento Específico</title>
+  <p>El entrenamiento específico para tiros libres es un tema importante en la literatura científica. En un artículo de revisión de la &quot;Revista de Entrenamiento Deportivo Avanzado&quot; (Martínez, 2018), se destacó la importancia de la práctica constante y la retroalimentación para mejorar la precisión y la potencia de los tiros libres. Además, se sugiere que el entrenamiento de la concentración mental puede aumentar la efectividad de los tiros libres, como se menciona en el estudio de López et al. (2020) en la &quot;Revista de Psicología del Deporte&quot;.</p>
+  <p>El entrenamiento específico para tiros libres es una parte esencial del desarrollo de las habilidades de un jugador. Como se destaca en el artículo de revisión de Martínez (2018) en la &quot;Revista de Entrenamiento Deportivo Avanzado&quot;, el entrenamiento de tiros libres debe ser meticuloso y enfocado en aspectos específicos.</p>
+  <p>Se recomienda la práctica constante y la retroalimentación para mejorar la precisión y la potencia de los tiros libres. Además, el entrenamiento de la concentración mental es una estrategia importante para aumentar la efectividad de los tiros libres, como se menciona en el estudio de López et al. (2020) en la &quot;Revista de Psicología del Deporte&quot;.</p>
+</sec>
+<sec id="factores-psicológicos">
+  <title>Factores Psicológicos</title>
+  <p>La ejecución de tiros libres en situaciones de alta presión durante un partido también ha sido objeto de investigación psicológica. En el artículo de la &quot;Revista de Psicología del Rendimiento Deportivo&quot; de Rodríguez (2017), se exploran las estrategias mentales utilizadas por los jugadores para mantener la concentración y la calma durante un tiro libre importante.</p>
+  <p>Los factores psicológicos desempeñan un papel crucial en la ejecución de tiros libres, especialmente en situaciones de alta presión durante un partido. En el artículo de la &quot;Revista de Psicología del Rendimiento Deportivo&quot; de Rodríguez (2017), se exploran las estrategias mentales utilizadas por los jugadores para mantener la concentración y la calma durante un tiro libre importante.</p>
+  <p>Los aspectos psicológicos, como la autoconfianza, la visualización y la gestión del estrés, son fundamentales para garantizar un rendimiento óptimo en situaciones de tiro libre.</p>
+</sec>
+<sec id="conclusiones">
+  <title>Conclusiones</title>
+  <p>En conclusión, la ejecución de tiros libres en fútbol es un tema complejo que involucra aspectos biomecánicos, físicos y psicológicos. La investigación científica en este campo ha proporcionado valiosos conocimientos sobre la mecánica, la influencia de la superficie del campo, el entrenamiento y los factores psicológicos que influyen en la precisión y efectividad de los tiros libres. Estos estudios han contribuido significativamente al desarrollo y la mejora de las habilidades de ejecución de tiros libres en el fútbol, y continúan siendo una fuente importante de información para entrenadores y jugadores en todo el mundo.</p>
+  <p>En resumen, la ejecución de tiros libres en fútbol es una habilidad compleja que involucra aspectos biomecánicos, físicos y psicológicos. La investigación científica en este campo ha proporcionado conocimientos valiosos sobre la mecánica, la influencia de la superficie del campo, el entrenamiento específico y los factores psicológicos que influyen en la precisión y efectividad de los tiros libres. Estos estudios han contribuido significativamente al desarrollo y la mejora de las habilidades de ejecución de tiros libres en el fútbol y continúan siendo una fuente importante de información para entrenadores y jugadores en todo el mundo.</p>
+</sec>
+</body>
+<back>
+
+</back>
+</article>
+

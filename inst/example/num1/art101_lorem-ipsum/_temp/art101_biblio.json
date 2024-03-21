@@ -1,0 +1,25 @@
+[
+  {
+    "ISBN": "978-0-19-814670-4",
+    "author": [
+      {
+        "family": "Cicero",
+        "given": "Marcus Tullius"
+      }
+    ],
+    "citation-key": "Cicero1998",
+    "id": "27676",
+    "issued": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "language": "la",
+    "number-of-pages": "270",
+    "publisher": "Clarendon Press",
+    "title": "Cicero De Finibus Bonorum Et Malorum",
+    "type": "book"
+  }
+]

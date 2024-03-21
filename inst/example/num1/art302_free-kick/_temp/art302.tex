@@ -1,0 +1,451 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+
+  \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
+
+
+%%%% Clase del documento y configuraciones generales de apariencia
+\documentclass[
+  %
+  %
+    a4paper,%
+  %
+  %
+  %
+    DIV=calc,%
+  %
+    abstract=true%
+  ]{scrartcl}%
+
+\usepackage{amsmath,amssymb}
+
+
+\usepackage{iftex}
+
+\ifPDFTeX                       % if pdflatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}         % provide euro and other symbols
+\else % if luatex or xetex
+      \usepackage{unicode-math}   % this also loads fontspec
+    \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+
+  
+  \usepackage[]{Alegreya}
+
+\ifPDFTeX\else    
+  \usepackage{fontspec}
+          
+  
+      \fi
+
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\IfFileExists{microtype.sty}{
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} 
+}{}
+
+  \makeatletter
+  \@ifundefined{KOMAClassName}{%    
+    \IfFileExists{parskip.sty}{%
+      \usepackage{parskip}
+    }{
+      \setlength{\parindent}{0pt}
+      \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+  }{
+    \KOMAoptions{parskip=half}}
+  \makeatother
+
+
+\usepackage{xcolor}
+
+
+
+
+
+%%%% Configuración de tablas
+  \usepackage{longtable,booktabs,array}
+    \usepackage{calc} % for calculating minipage widths
+  % Correct order of tables after \paragraph or \subparagraph
+  \usepackage{etoolbox}
+  \makeatletter
+  \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+  \makeatother
+  % Allow footnotes in longtable head/foot
+  \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+  \makesavenoteenv{longtable}
+
+%%%% Configuración de figuras
+  \usepackage{graphicx}
+  \makeatletter
+  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+  \makeatother
+  % Scale images if necessary, so that they will not overflow the page
+  % margins by default, and it is still possible to overwrite the defaults
+  % using explicit options in \includegraphics[width, height, ...]{}
+  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+  % Set default figure placement to htbp
+  \makeatletter
+  \def\fps@figure{htbp}
+  \makeatother
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+  \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+% Referencias con CSL
+
+  \ifLuaTeX
+    \usepackage[bidi=basic]{babel}
+  \else
+    \usepackage[bidi=default]{babel}
+  \fi
+      \babelprovide[main,import]{spanish}
+      
+      \babelprovide[import]{english}
+      % get rid of language-specific shorthands (see #6817):
+  \let\LanguageShortHands\languageshorthands
+  \def\languageshorthands#1{}
+
+
+% Customizaciones generales %%%%%%%%%%%%%%%%%%%%%
+
+%%%% CARGA DE PAQUETES
+\usepackage[export]{adjustbox}
+
+% Cargar paquetes de íconos 
+\usepackage{fontawesome5}
+\usepackage{ccicons}
+
+% Carga `setspace' para separación entre lineas (si no fue cargado)
+\IfPackageLoadedTF{setspace}{}{\usepackage{setspace}}
+% Carga `graphicx' si no fue cargado (dado que no se usa entorno pandoc para figures)
+\IfPackageLoadedTF{graphicx}{}{\usepackage{graphicx}}
+% Carga `etoolbox' 
+\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
+
+% Carga de paquetes y configuraciones pedidas por el documento
+
+
+%%%% COLORES CUSTOMIZADOS
+
+\definecolor{verde_orcid}{RGB}{166,206,57}
+
+%%%% CITAS LARGAS
+
+% Definir estilo de citas largas (achica el tamaño)
+\IfPackageLoadedTF{relsize}{}{\usepackage{relsize}}
+\AtBeginEnvironment{quote}{\smaller}% Step font down one size relative to current font.
+
+%%%% TABLAS Y FGURAS
+
+% Agregado de \source y \notes para titulos secundarios de las tablas y figuras
+\usepackage{caption}
+\captionsetup{format=plain,labelsep=period,singlelinecheck=false,justification=centerlast,
+              font={small,singlespacing,sf},labelfont={sc,bf},width=0.8\textwidth}
+\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Fuente:} {#1}}}}
+\newcommand{\notes}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Notas:} {#1}}}}
+
+
+
+% Cambia denominación de "Cuadro" a "Tabla"
+\renewcommand{\spanishtablename}{Tabla}
+
+% Cambiar fuente y tamaño de letra para entorno de tablas (table)
+\AtBeginEnvironment{tabular}{\sffamily\footnotesize}
+\IfPackageLoadedTF{tabularray}{%
+\AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
+
+%%%% ENCABEZADO DE PÁGINA
+% Si utiliza clases de Koma-script debe utilizar el paquete 'scrlayer-scrpage'
+% Si utiliza las clases estándar debe usar el paquete 'fancyhdr'
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage[breakwords]{truncate}
+
+\setkomafont{pagehead}{\normalfont\sffamily\small}
+
+\ihead{\textit{\truncate{0.45\textwidth}{Ejecución de Tiros Libres en
+Fútbol}}}
+\ohead{\textbf{\textasciitilde!guri\_ \{An example journal\}}}
+
+\setkomafont{pagefoot}{\normalfont\footnotesize}
+\ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{guri}.
+      ISSN-e: 0001-2000.\\
+      Esta obra está bajo una licencia Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+License (https://creativecommons.org/licenses/by-nc/4.0/).]{}
+\cfoot[]{\pagemark}
+
+% Definir primera página del artícul (si se utiliza paginación personalizada)
+
+%%%% PÁGINA DE TÍTULO 
+\setkomafont{titlehead}{\raggedright\sffamily\small}
+\setkomafont{title}{\raggedright\sffamily}
+\setkomafont{author}{\raggedright\sffamily\setlength{\tabcolsep}{0pt}}
+\setkomafont{publishers}{\raggedright\sffamily\footnotesize}
+\setkomafont{dedication}{\raggedright\sffamily\small}
+
+\titlehead{%
+  \textbf\textbf{ARTÍCULOS}\hfill\textbf{\textasciitilde!guri\_ \{An
+example journal\}}\\%
+  \vspace{4pt}
+  \hfill Vol. 10 Núm. 1 (2023)
+  \\ \hfill DOI: \href{https://doi.org/10.1177/004209802311733}{10.1177/004209802311733}%
+ }%
+
+\title{Ejecución de Tiros Libres en Fútbol}
+
+  \subtitle{Un Análisis Científico\\ \vspace{1em} \textit{Free Kicks in
+Football. A Scientific Analysis}}
+
+\author{{\begin{tabular}[l]{@{}l@{}}%
+  \large{Diego
+Armando {Maradona}}\textsuperscript{a} \href{https://orcid.org/0000-0010-0010-0010}{\textcolor{verde_orcid}{\faOrcid}} \\ \large{Lionel {Messi}}\textsuperscript{a} \href{https://orcid.org/0000-0001-2345-6789}{\textcolor{verde_orcid}{\faOrcid}}
+\end{tabular}}%
+}
+    
+\date{}
+
+\publishers{
+  \vspace{1em}
+  \textsuperscript{a} Selección de Futbol Argentina, Argentina.
+  %
+}
+
+
+
+
+%%% Credit, Ack and app Enviroment
+
+\newenvironment{Credit}[1][Declaración de contribuciones de autoría (CRediT)]
+    {\subsection*{#1}
+    \sffamily\small}
+
+\newenvironment{Ack}{\begin{Credit}[Agradecimiento]}{\end{Credit}}%
+
+\newenvironment{app}{\newpage}{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+
+
+
+
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+
+
+
+\hypersetup{
+      pdftitle={Ejecución de Tiros Libres en Fútbol},
+        pdfauthor={Diego Armando Maradona, Lionel Messi},
+    pdfsubject={\textasciitilde!guri\_ \{An example
+journal\} - Volume: 10  - Issue: 1  (2023) 20201 doi: 10.1177/004209802311733},
+      pdflang={es-ES},
+      pdfinfo={
+          DOI={10.1177/004209802311733},
+            journal=\textasciitilde!guri\_ \{An example journal\}
+      },
+  % Define color de links
+      colorlinks=true,
+    linkcolor={CadetBlue},
+    filecolor={CadetBlue},
+    citecolor={CadetBlue},
+    urlcolor={CadetBlue},
+  pdfcreator={LaTeX via pandoc \& \textasciitilde!guri\_}}
+
+%%%% Inicio de documento
+
+\begin{document}
+  
+  
+  \maketitle
+
+  
+  
+
+    
+    
+      
+  
+  
+  \section{Introducción}\label{introducciuxf3n}
+
+  El fútbol es uno de los deportes más populares y apreciados en todo el
+  mundo. Entre las numerosas habilidades que un jugador de fútbol debe
+  dominar, la ejecución de tiros libres se destaca como un aspecto
+  crucial del juego. La capacidad de convertir un tiro libre en un gol
+  puede cambiar el curso de un partido y llevar a la victoria a un
+  equipo. En este artículo, exploraremos los aspectos científicos detrás
+  de la ejecución de tiros libres en fútbol, basándonos en
+  investigaciones previas publicadas en revistas científicas
+  especializadas.
+
+  \section{Mecánica de la Ejecución de Tiros
+  Libres}\label{mecuxe1nica-de-la-ejecuciuxf3n-de-tiros-libres}
+
+  La ejecución de tiros libres en el fútbol es una habilidad fundamental
+  que requiere una comprensión profunda de la mecánica detrás de cada
+  disparo. La mecánica adecuada de la ejecución de tiros libres en
+  fútbol ha sido objeto de numerosos estudios científicos. Según el
+  trabajo de García et al.~(2019) en la "Revista de Biomecánica
+  Deportiva", la biomecánica de un tiro libre exitoso se basa en una
+  combinación de factores, incluyendo la posición del pie de apoyo, el
+  ángulo de inclinación del cuerpo, la velocidad de la pelota y la
+  dirección de la mirada del jugador.
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    \emph{Posición del Pie de Apoyo:} La posición del pie de apoyo es
+    esencial para garantizar la estabilidad y la precisión en el momento
+    del disparo. Un pie de apoyo colocado correctamente permite al
+    jugador mantener el equilibrio y generar la potencia adecuada para
+    el tiro.
+  \item
+    \emph{Ángulo de Inclinación del Cuerpo:} El ángulo de inclinación
+    del cuerpo del jugador también influye en la trayectoria de la
+    pelota. Un ángulo de inclinación adecuado puede determinar si la
+    pelota pasa por encima de la barrera o si se curva alrededor de
+    ella.
+  \item
+    \emph{Velocidad de la Pelota:} La velocidad con la que se golpea la
+    pelota es un factor crítico. Investigaciones sugieren que la
+    velocidad adecuada puede evitar que el portero tenga tiempo
+    suficiente para reaccionar y bloquear el tiro (García et al., 2019).
+  \item
+    \emph{Dirección de la Mirada del Jugador:} La dirección de la mirada
+    del jugador influye en la precisión del disparo. Fijar la mirada en
+    un punto específico de la portería puede ayudar al jugador a apuntar
+    con mayor precisión.
+  \end{enumerate}
+
+  \section{Influencia de la Superficie del
+  Campo}\label{influencia-de-la-superficie-del-campo}
+
+  La superficie del campo de juego también ha sido objeto de
+  investigación en relación con la ejecución de tiros libres. En un
+  estudio reciente publicado en la "Revista de Ciencias del Deporte y la
+  Tecnología" (Smith y Johnson, 2021), se analizó cómo la superficie del
+  campo afecta la trayectoria de la pelota durante un tiro libre. Los
+  resultados sugieren que la superficie del campo puede influir
+  significativamente en la distancia y la curvatura de la pelota.
+
+  El campo de juego en el fútbol no siempre es uniforme, y la superficie
+  del campo puede variar. Investigaciones recientes, como el estudio de
+  Smith y Johnson (2021) en la "Revista de Ciencias del Deporte y la
+  Tecnología", han examinado cómo la superficie del campo afecta la
+  ejecución de tiros libres.
+
+  La superficie del campo puede influir en la distancia y la curvatura
+  de la pelota durante un tiro libre. Superficies más duras pueden
+  permitir que la pelota ruede más rápido y se mantenga más baja,
+  mientras que superficies más blandas pueden afectar la velocidad y la
+  trayectoria de la pelota. Comprender cómo la superficie del campo
+  interactúa con la mecánica de los tiros libres es fundamental para los
+  jugadores y entrenadores.
+
+  \section{Entrenamiento Específico}\label{entrenamiento-especuxedfico}
+
+  El entrenamiento específico para tiros libres es un tema importante en
+  la literatura científica. En un artículo de revisión de la "Revista de
+  Entrenamiento Deportivo Avanzado" (Martínez, 2018), se destacó la
+  importancia de la práctica constante y la retroalimentación para
+  mejorar la precisión y la potencia de los tiros libres. Además, se
+  sugiere que el entrenamiento de la concentración mental puede aumentar
+  la efectividad de los tiros libres, como se menciona en el estudio de
+  López et al.~(2020) en la "Revista de Psicología del Deporte".
+
+  El entrenamiento específico para tiros libres es una parte esencial
+  del desarrollo de las habilidades de un jugador. Como se destaca en el
+  artículo de revisión de Martínez (2018) en la "Revista de
+  Entrenamiento Deportivo Avanzado", el entrenamiento de tiros libres
+  debe ser meticuloso y enfocado en aspectos específicos.
+
+  Se recomienda la práctica constante y la retroalimentación para
+  mejorar la precisión y la potencia de los tiros libres. Además, el
+  entrenamiento de la concentración mental es una estrategia importante
+  para aumentar la efectividad de los tiros libres, como se menciona en
+  el estudio de López et al.~(2020) en la "Revista de Psicología del
+  Deporte".
+
+  \section{Factores Psicológicos}\label{factores-psicoluxf3gicos}
+
+  La ejecución de tiros libres en situaciones de alta presión durante un
+  partido también ha sido objeto de investigación psicológica. En el
+  artículo de la "Revista de Psicología del Rendimiento Deportivo" de
+  Rodríguez (2017), se exploran las estrategias mentales utilizadas por
+  los jugadores para mantener la concentración y la calma durante un
+  tiro libre importante.
+
+  Los factores psicológicos desempeñan un papel crucial en la ejecución
+  de tiros libres, especialmente en situaciones de alta presión durante
+  un partido. En el artículo de la "Revista de Psicología del
+  Rendimiento Deportivo" de Rodríguez (2017), se exploran las
+  estrategias mentales utilizadas por los jugadores para mantener la
+  concentración y la calma durante un tiro libre importante.
+
+  Los aspectos psicológicos, como la autoconfianza, la visualización y
+  la gestión del estrés, son fundamentales para garantizar un
+  rendimiento óptimo en situaciones de tiro libre.
+
+  \section{Conclusiones}\label{conclusiones}
+
+  En conclusión, la ejecución de tiros libres en fútbol es un tema
+  complejo que involucra aspectos biomecánicos, físicos y psicológicos.
+  La investigación científica en este campo ha proporcionado valiosos
+  conocimientos sobre la mecánica, la influencia de la superficie del
+  campo, el entrenamiento y los factores psicológicos que influyen en la
+  precisión y efectividad de los tiros libres. Estos estudios han
+  contribuido significativamente al desarrollo y la mejora de las
+  habilidades de ejecución de tiros libres en el fútbol, y continúan
+  siendo una fuente importante de información para entrenadores y
+  jugadores en todo el mundo.
+
+  En resumen, la ejecución de tiros libres en fútbol es una habilidad
+  compleja que involucra aspectos biomecánicos, físicos y psicológicos.
+  La investigación científica en este campo ha proporcionado
+  conocimientos valiosos sobre la mecánica, la influencia de la
+  superficie del campo, el entrenamiento específico y los factores
+  psicológicos que influyen en la precisión y efectividad de los tiros
+  libres. Estos estudios han contribuido significativamente al
+  desarrollo y la mejora de las habilidades de ejecución de tiros libres
+  en el fútbol y continúan siendo una fuente importante de información
+  para entrenadores y jugadores en todo el mundo.
+
+  \begin{Credit}
+
+  \phantomsection\label{Credit}
+  \textbf{Maradona:} Conceptualización (Conceptualization); Adquisición
+  de Financiamiento (Funding acquisition); Recursos (Resources);
+  Validación (Validation); Redacción - preparación del borrador original
+  (Writing -- original draft); Redacción - revisión y edición (Writing
+  -- review \& editing). \textbf{Messi:} Curación de datos (Data
+  curation); Recursos (Resources); Visualización (Visualization).
+
+  \end{Credit}
+
+    
+  %%%% Referencias bibliográficas
+  
+  
+    
+\end{document}

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd">
+
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type="editorial" xml:lang="es-ES">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title specific-use="original" xml:lang="es-ES">~!guri_ {An example journal}</journal-title>
+<abbrev-journal-title>~!guri_</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic" pub-type="epub">0001-2000</issn>
+<publisher>
+<publisher-name>guri</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="doi">10.1223/3344445.55555333</article-id>
+<article-categories>
+<subj-group subj-group-type="heading">
+<subject>Modelo</subject>
+</subj-group>
+</article-categories>
+<title-group>
+<article-title xml:lang="es-ES">Lorem ipsum</article-title>
+<subtitle xml:lang="es-ES">Duis aute irure dolor</subtitle>
+<trans-title-group>
+<trans-title xml:lang="en">Pain itself</trans-title>
+</trans-title-group>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0000-1234-5678</contrib-id>
+<name>
+<surname>Cicero</surname>
+<given-names>Marcus Tullius</given-names>
+</name>
+<email>ciceron@instute.com</email>
+<xref ref-type="aff" rid="aff-aff1"/>
+<xref ref-type="aff" rid="aff-aff2"/>
+<!--  -->
+<!-- <xref ref-type="corresp" rid="cor-true"><sup>*</sup></xref> -->
+<!--  -->
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Conceptualization" vocab-term-identifier="https://credit.niso.org/contributor-roles/conceptualization/">Conceptualización</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Data curation" vocab-term-identifier="https://credit.niso.org/contributor-roles/data-curation/">Curación de datos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Formal Analysis" vocab-term-identifier="https://credit.niso.org/contributor-roles/formal-analysis/">Análisis formal</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Investigation" vocab-term-identifier="https://credit.niso.org/contributor-roles/investigation/">Investigación</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Methodology" vocab-term-identifier="https://credit.niso.org/contributor-roles/methodology/">Metodología</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Project administration" vocab-term-identifier="https://credit.niso.org/contributor-roles/project-administration/">Administración de proyecto</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="https://credit.niso.org/contributor-roles/resources/">Recursos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – original draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">Redacción - preparación del borrador original</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – review &amp; editing" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-review-editing/">Redacción - revisión y edición</role>
+</contrib>
+<aff id="aff-aff1">
+<institution-wrap>
+<institution>Ancient Rome</institution>
+</institution-wrap>,
+<country country="IT">Italia</country>
+</aff>
+<aff id="aff-aff2">
+<institution-wrap>
+<institution>Platonic Academy</institution>
+</institution-wrap>,
+<country country="GR">Grecia</country>
+</aff>
+</contrib-group>
+<pub-date pub-type="epub" date-type="pub" publication-format="electronic">
+<season>Julio-Diciembre</season>
+<year>2023</year>
+</pub-date>
+<elocation-id>a101</elocation-id>
+<history>
+<date date-type="received" publication-format="dd mm yyyy">
+<day>1</day>
+<month>9</month>
+<year>2023</year>
+</date>
+<date date-type="accepted" publication-format="dd mm yyyy">
+<day>11</day>
+<month>11</month>
+<year>2023</year>
+</date>
+</history>
+<permissions>
+<license xlink:href="https://creativecommons.org/licenses/by-nc/4.0/">
+<ali:license_ref>https://creativecommons.org/licenses/by-nc/4.0/</ali:license_ref>
+<license-p>Esta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license-p>
+</license>
+</permissions>
+<abstract xml:lang="es-ES">
+<title>Resumen</title>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</abstract>
+<trans-abstract xml:lang="en">
+<title>Abstract</title>
+<p>It is important to take care of the patient, to be followed by the client, but at the same time they will be affected by some great pains and sufferings. For to come to the smallest detail, no one should practice any kind of work unless he derives some benefit from it. Do not be angry with the pain in the rebuke, in the pleasure he wants to be a hair from the pain, let him run away from the pain. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.</p>
+</trans-abstract>
+<kwd-group kwd-group-type="author">
+<title>Palabras claves</title>
+<kwd>Lorem</kwd>
+<kwd>Ipsum</kwd>
+<kwd>Dolor</kwd>
+</kwd-group>
+<kwd-group kwd-group-type="author" xml:lang="en">
+<title>Keywords</title>
+<kwd>Home</kwd>
+<kwd>He himself</kwd>
+<kwd>Pain</kwd>
+</kwd-group>
+<counts>
+  <!-- <count count-type="contributors" count="3"/> -->
+    <fig-count count="2"/>
+      <table-count count="1"/>
+    
+  <!-- <equation-count count="10"/>
+  <ref-count count="26"/>
+  <page-count count="6"/>
+  <word-count count="2847"/> -->
+ </counts>
+</article-meta>
+</front>
+<body>
+<sec id="dolor-sit-amet">
+  <title>Dolor sit amet</title>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris accumsan lectus non sem interdum condimentum. Nam at tincidunt sem. Ut cursus massa sagittis porta placerat. Sed consectetur diam est, ac sodales felis condimentum et. Fusce ut eros a massa molestie vestibulum. Donec blandit, augue non tempor laoreet, nisl velit cursus ante, vitae lobortis quam diam nec leo. In id nisi eget eros lobortis condimentum. Aenean a luctus quam. Mauris at vulputate nibh. Vivamus ultrices ligula velit, in volutpat tortor ullamcorper rhoncus:</p>
+  <disp-quote>
+    <p>Proin molestie enim est, et tempor est malesuada posuere. Nullam gravida, justo et aliquam fermentum, est dolor tincidunt arcu, vitae accumsan lectus eros et est. In laoreet est ut velit bibendum iaculis. Quisque et dignissim est, pharetra tempus diam.</p>
+  </disp-quote>
+  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eu ante tortor. Morbi vel tellus fringilla, ultrices nisi sit amet, ornare velit. Nunc rhoncus metus a massa venenatis mollis. Aliquam erat volutpat. Nam dui neque, aliquet a tempus eget, condimentum id libero. Ut tincidunt metus erat, eget feugiat nibh vestibulum nec. Maecenas nec quam a neque imperdiet bibendum eu eu risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed sed eros venenatis, consequat nunc eu, semper neque. Donec auctor facilisis metus et rhoncus. Vestibulum tempus tellus sed interdum posuere. Nulla bibendum fringilla nulla, sit amet tempus sem porttitor nec. Phasellus varius at tellus vitae sagittis. Ut rhoncus neque non est aliquet feugiat. Nullam condimentum luctus congue.</p>
+  <p><disp-formula><alternatives>
+  <tex-math><![CDATA[E = \sqrt{p^{2}c^{2} + m^{2}c^{4} = mc^{2}}]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>E</mml:mi><mml:mo>=</mml:mo><mml:msqrt><mml:mrow><mml:msup><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>m</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>c</mml:mi><mml:mn>4</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:mi>m</mml:mi><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:msqrt></mml:mrow></mml:math></alternatives></disp-formula></p>
+  <p>Phasellus ultricies nulla sed erat molestie mattis: <inline-formula><alternatives>
+  <tex-math><![CDATA[P\left( \left. \ A \right|B \right) = \frac{P\left( \left. \ B \right|A \right)P(A)}{P(B)}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>P</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mrow><mml:mspace width="0.222em"></mml:mspace><mml:mi>A</mml:mi><mml:mo stretchy="true" form="postfix">|</mml:mo></mml:mrow><mml:mi>B</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>P</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mrow><mml:mspace width="0.222em"></mml:mspace><mml:mi>B</mml:mi><mml:mo stretchy="true" form="postfix">|</mml:mo></mml:mrow><mml:mi>A</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mi>P</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>P</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mi>B</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:math></alternatives></inline-formula> . In congue tortor id venenatis luctus. Nulla a nulla vitae dolor porttitor porttitor quis sed urna. Curabitur at nisi et eros viverra porta quis eget neque. Donec at ante rhoncus, iaculis diam eget, egestas urna. Sed turpis tortor, facilisis vel neque eget, placerat bibendum leo. Mauris nec diam sed nisi cursus condimentum. Suspendisse suscipit turpis eu magna fringilla, id cursus tortor dignissim. Duis nisi lorem, facilisis id tincidunt ac, elementum quis risus.</p>
+</sec>
+<sec id="lorem-ipsum">
+  <title>Lorem ipsum</title>
+  <p>Mauris suscipit mattis lacinia. Donec a augue felis. Fusce imperdiet rutrum nibh, non elementum urna malesuada eu. Phasellus dolor mauris, molestie et augue a, luctus posuere quam. Nulla ut quam velit. Donec euismod, massa vitae tristique bibendum, metus lorem euismod lacus, id hendrerit enim nulla et lectus. Cras sit amet eros feugiat nibh ultricies luctus at et nisl. Nunc in tincidunt elit. Maecenas sit amet sem et justo fermentum pharetra. Duis venenatis aliquet arcu sed maximus. Suspendisse venenatis justo sed ipsum volutpat dictum. Duis dapibus, dui vel viverra semper, sapien metus placerat diam, non ornare dolor arcu quis massa. Nam ac rhoncus nisi.</p>
+  <fig id="FIG_01">
+  <label>Figura 1.</label>
+  <caption>
+  <p>Lorem ipsum example</p></caption>
+  <graphic xlink:href="FIG_01.png"/>
+  <p content-type="Figure-Notes">Notas: Wikipedia says: “Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum.”</p>
+  <attrib>Fuente: Marcus Tullius Cicero (<xref alt="1998, 45 BCE" rid="ref-27676" ref-type="bibr">1998, 45 BCE</xref>).</attrib>
+  </fig>
+  <p>Etiam at maximus quam. Nam rhoncus, odio eu hendrerit iaculis, nisi massa gravida ante, eget tempor ante libero eget nisi. Donec fermentum diam tortor, ac tempor ex imperdiet tristique. Nam placerat lacinia arcu, sit amet auctor orci interdum eu. Maecenas sed tempus dui. Nullam imperdiet, arcu eget finibus dignissim, sapien diam feugiat lorem, at mattis metus sem a libero. Vestibulum vitae pretium risus.</p>
+  <sec id="quis-autem-vel-eum-iure-reprehenderit">
+    <title>Quis autem vel eum iure reprehenderit</title>
+    <p>Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga (<xref alt="Figura 2" rid="FIG_02">Figura 2</xref>).</p>
+    <fig id="FIG_02">
+    <label>Figura 2.</label>
+    <caption>
+    <p>Cicero's statue in the Capitoline Museums in Rome.</p></caption>
+    <graphic xlink:href="FIG_02.jpg"/>
+    <attrib>Fuente: Wikipedia (“Ciceron”).</attrib>
+    </fig>
+    <p>Fusce in nisl ut velit ornare malesuada. Etiam quis mauris vitae ligula pharetra condimentum ac ac orci. Curabitur aliquet justo nec quam posuere consectetur. Phasellus tincidunt rutrum lectus, eget viverra leo imperdiet sed. Aliquam vitae luctus mi. Maecenas a nulla elementum ipsum consequat scelerisque. Sed in mi pretium, pharetra odio ac, venenatis justo. Proin hendrerit mattis nisl, eu blandit libero cursus quis. Donec maximus volutpat arcu, quis laoreet purus mollis vel.</p>
+  </sec>
+  <sec id="praesent-sollicitudin">
+    <title>Praesent sollicitudin</title>
+    <p>Praesent sollicitudin lectus at eros rutrum aliquet. Aenean tempus ante a fermentum suscipit. Integer aliquet diam id elit pharetra, nec viverra ante faucibus. Nulla sit amet turpis enim. Vestibulum et pulvinar odio. Vestibulum euismod ante id placerat varius. Integer ac lacus nec felis sagittis elementum. Vestibulum arcu ipsum, eleifend eu eleifend eu, vestibulum in diam. Nunc interdum velit non tellus hendrerit vehicula. Aliquam sit amet justo ullamcorper leo tempor vulputate. Donec ultricies posuere odio, ac cursus odio mollis vel. Etiam nec gravida sapien.</p>
+    <p>Sed condimentum diam orci, eget condimentum ipsum convallis quis. Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa <xref alt="Tabla 1" rid="TAB_01">Tabla 1</xref>, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.</p>
+    <table-wrap id="TAB_01">
+    <label>Tabla 1.</label>
+    <caption>
+    <title>Frequency of occurrence of letters in common English and "Lorem Ipsum".</title>
+    </caption>
+    <table style="border-collapse: collapse; border: medium; border-spacing: 0px;">
+    	<tr>
+    		<td style="border-top: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			<bold>letter</bold>
+    		</td>
+    		<td style="border-top: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			<bold>English</bold>
+    		</td>
+    		<td style="border-top: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			<bold>Lorem</bold>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			e
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			12.7 (1)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			9.6 (1)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			t
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			9.1 (2)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			7.2 (5)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			a
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			8.2 (3)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			6.8 (2)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			o
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			7.5 (4)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			3.8 (7)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			i
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			7 (5)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			7.7 (13)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			n
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			6.7 (6)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			5.2 (3)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			s
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			6.3 (7)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			7.2 (6)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			h
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			6.1 (8)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			0.6 (11)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			r
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			6 (9)
+    		</td>
+    		<td style="text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			4.6 (9)
+    		</td>
+    	</tr>
+    	<tr>
+    		<td style="border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			d
+    		</td>
+    		<td style="border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			4.3 (10)
+    		</td>
+    		<td style="border-bottom: 2px solid rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+    			2.4 (14)
+    		</td>
+    	</tr>
+    </table><attrib>Fuente: Own elaboration based on https://rpubs.com/kamerlingh/87951</attrib>
+    <table-wrap-foot><p>Notas: The order of the letter in the frequency distribution is placed in brackets.</p></table-wrap-foot>
+    </table-wrap>
+  </sec>
+</sec>
+<sec id="praesent-id-nunc-felis">
+  <title>Praesent id nunc felis</title>
+  <p>Praesent id nunc felis. Aenean rutrum quam quis leo molestie, feugiat luctus arcu faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis bibendum justo consequat pharetra. Mauris ornare eget erat eget varius. Phasellus lacinia congue justo. Sed malesuada et odio eget sodales. Etiam euismod tellus orci, lacinia consequat massa hendrerit elementum. Praesent dolor lacus, varius quis pharetra ut, lobortis in massa. Duis sit amet nunc ac nulla convallis viverra. Duis fermentum justo vitae erat condimentum convallis. Nam elementum orci vel lectus pulvinar, non mollis erat dignissim. Fusce volutpat auctor libero quis semper. Vivamus quam lorem, lobortis eget porta eget, volutpat vitae nibh.</p>
+  <p>Nisi porta lorem mollis aliquam ut porttitor leo a diam.</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <title>Referencias bibliográficas</title>
+  <ref id="ref-27676">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name><surname>Cicero</surname><given-names>Marcus Tullius</given-names></name>
+      </person-group>
+      <source>Cicero De Finibus Bonorum Et Malorum</source>
+      <publisher-name>Clarendon Press</publisher-name>
+      <year iso-8601-date="1998">1998</year>
+      <isbn>978-0-19-814670-4</isbn>
+    </element-citation>
+  </ref>
+</ref-list>
+<ack><p>Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.</p></ack>
+<app-group>
+   <app>
+   <title></title>
+   <sec id="appendix-a-some-clarification">
+     <title>Appendix A: Some clarification</title>
+     <p>Quis autem vel eum iure reprehenderit</p>
+   </sec>
+   <sec id="appendix-b-another-thing">
+     <title>Appendix B: Another thing</title>
+     <p>Maristella Igraine – NGO 1, 24/04/2014.</p>
+     <p>Hiba Dubgall – NGO 2, 17/4/2014.</p>
+     <p>Adebola Anaís – NGO 3, 7/5/2014.</p>
+     <p>Elias Audley – Government, 4/5/2014.</p>
+     <p>Clitus Laurus – NGO 3, 16/04/2016.</p>
+     <p>Santiago Rehoboam – Government, 21/09/2016.</p>
+     <p>Ana Mathildis, NGO 1, 19/03/2020.</p>
+   </sec>
+   </app>
+</app-group>
+
+</back>
+</article>
+

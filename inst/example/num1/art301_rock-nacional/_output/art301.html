@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc+~!guri" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="García, Carlos Alberto" />
+  <meta name="author" content="Spinetta, Luis Alberto" />
+  <meta name="dcterms.date" content="2023" />
+  <meta name="keywords" content="kw1_es, kw2_es" lang	= "es-ES" />
+<meta name="keywords" content="kw1_en, kw2_en" lang	= "en" />
+
+  <title>Lorem ipsum. Duis aute irure dolor</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      <!-- max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px; -->
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+      div.abstract {
+        margin: 2em 2em 2em 2em;
+        text-align: left;
+        font-size: 85%;
+      }
+      div.abstract-title {
+        font-weight: bold;
+        padding: 0;
+        margin-bottom: 0.5em;
+      }
+    div.Paratext {
+      margin: 2em 2em 2em 0em;
+      text-align: left;
+      font-size: 85%;
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    figcaption.extra{
+      font-size: 85%;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: left;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Lorem ipsum</h1>
+<h2 class="subtitle"><i>Duis aute irure dolor</i></h2>
+<p class="author">Carlos Alberto <span class="smallcaps">García</span> <a href=“https://orcid.org/0000-0000-1234-5678/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>
+<p class="author">Luis Alberto <span class="smallcaps">Spinetta</span> <a href=“https://orcid.org/0000-0005-0901-8282/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>
+<!-- <p class="date">true</p>
+ -->
+
+<div class="abstract">
+<div class="abstract-title"><span class="smallcaps">Resumen</span></div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<i>Palabras claves:</i> kw1_es;kw2_es.
+</div>
+
+<div class="abstract">
+<div class="abstract-title"><span class="smallcaps">Abstract</span></div>
+<p>Maecenas risus nisl, vehicula a molestie eget, varius ut quam. Vestibulum quis blandit metus, at fringilla magna. Morbi finibus dui lacus, viverra faucibus dolor laoreet ac. Praesent vehicula neque tempor lacus scelerisque, id tincidunt nulla condimentum. Etiam convallis lobortis nulla ut fringilla. Phasellus aliquet euismod mauris ac commodo. Nam dictum, nunc sed tempus dictum, sapien tortor commodo tortor, ac fermentum lacus metus nec ex. Nunc ac finibus est. Integer ut vestibulum ante.</p>
+<i>Palabras claves:</i> kw1_en;kw2_en.
+</div>
+</header>
+
+<!--  -->
+<p><em>Este informe presenta las anotaciones derivadas del Taller de justicia ambiental y justicia climática realizado el junio 6 de 2022 en la Ciudad de México por la doctora Gabriela Merlinsky. Para ello se realiza un resumen de características y problemas generales de la ecología política y luego la propuesta de seis aspectos de estudio.</em></p>
+<p>En la ecología política se encuentran perspectivas situadas, alianzas de producción de conocimientos de actores en los territorios que producen conocimientos, epidemiologías populares, como cuando las comunidades hacen sus propias investigaciones o piden ayuda a algún grupo de investigación de las universidades para medir, por ejemplo, la calidad del agua ante la duda y alerta del crecimiento de cáncer en las comunidades cercanas, (mientras que otros actores dicen que las enfermedades son la responsabilidad de las comunidades por sus malos hábitos de higiene, usar pisos o elementos que contienen plomo, etc., y se culpa a las comunidades mismas. Entonces ellas acuden a un ejercicio de epidemiología popular).</p>
+<p>También están las cargas desproporcionadas de sitios de contaminación, rellenos sanitarios, sitios de desechos peligrosos o tóxicos que se ubican en cierto tipo de comunidades, y no en otras, pero que en realidad no deberían estar ubicados en ninguna comunidad, la visibilidad en la producción del conocimiento y, por consiguiente, la visibilidad de los cuerpos, de los conocimientos alternativos, frente a las concepciones del ambiente y las pruebas judiciales como únicas que se aceptan, mapeos de actores y sitios específicos, cartografías sociales, metodologías alternativas, investigación acción participativa, entre otras.</p>
+<p>La ecología política latinoamericana actúa bajo el supuesto según el cual ha habido colonialidad de la naturaleza, como algo de dominio de la ciencia y de la producción económica, como objeto de disputa, apropiación, resignificación. Sin embargo, se ha estado dando un giro ontológico a partir de las voces de los pueblos andinos, en especial las indígenas, las ontologías relacionales. Por ejemplo, para el cuidado de una montaña, más que considerarla como una creencia en un ser idealizado, se entiende que ella posee propiedades agentivas, agencia propia, lo que no es fácil de entender desde contextos urbanos y concepciones occidentales.</p>
+<p>Toda ecología es política. Los debates sobre el clima, los trabajos académicos del sur global están emergiendo en estas temáticas, pero todavía se ve invisibilización del sur global. Entonces se requiere politizar varias categorías, diferentes formas de jerarquía que, basadas en la clase, etnia y género, están en la base de la desigualdad. Se requiere mirar sus implicaciones políticas y atender a los movimientos de justicia ambiental.</p>
+<p>En la ecología política hay varios aspectos a considerar: las desigualdades y entre ellas las desigualdades ambientales, las formas de interseccionalidad de distintas jerarquías (clase, etnia, género), y las exclusiones en las prácticas políticas. Así, la ecología política estudia algunas constantes en los conflictos: las disputas, los actores, el escalamiento o re-escalamiento y las exclusiones. Acerca de esto último, las comunidades se quejan por la falta de licencia social o el derecho a ser consultadas en las decisiones que les afectan, como en los casos para explotación minero-energética. En efecto, muchas de estas decisiones aun siendo legales no son legítimas ante la comunidad. Existe desigualdad y también una diferenciación en el concepto de ambiente que incluye disputas de sentido por el problema ambiental.</p>
+<p>Se presentan seis aspectos fundamentales en la ecología política:</p>
+<ol style="list-style-type: decimal">
+<li><p>La discusión debe ser tangible no abstracta. En efecto, se está hablando del derecho a la vida, a la salud, a la tierra, a las semillas, a lo agroecológico, a lo cotidiano. Más que partes por millón, gases efecto invernadero, emisiones de carbono, toxicidad, más que otros conceptos técnicos o elementos, se trata de la vida y vivencia tangible. No obstante, hay un clasismo en la discusión en esos términos abstractos. Ha habido expropiación y despojo no solo cultural, económico, social, sino también epistémico. Se requieren agendas que construyan, a partir de modos tangibles, la discusión de las cuestiones claves para la vida. Hay que escuchar cómo "somos una clase social que solo tiene su trabajo o su no trabajo". La desigualdad es fuerte.</p></li>
+<li><p>La inconmensurabilidad de los valores <span class="citation">(<a href="#ref-3">Martínez Alier, 1998</a>)</span>. En el estudio de la economía ecológica, este autor analiza los lenguajes de valoración. Si bien algunos colectivos o comunidades entienden que es mejor recibir alguna compensación económica que ninguna, lo que no están dispuestos a realizar es traducir las cuestiones fundamentales o lo que está en juego al lenguaje del dinero. ¿Cuál es el valor de un paisaje? ¿Cuánto vale la vida? ¿Cuánto vale la salud no traducido al dinero? Es así como hay otros lenguajes que no son económicos y deben estar en el centro de la discusión. (Aunque no recibir nada es lo peor que puede pasarles a las comunidades en un conflicto socio-ambiental).</p></li>
+<li><p>El discurso experto no es el que rige a la discusión. La persona experta y el discurso experto en ciencias naturales no son de suyo quienes deban cerrar la discusión ambiental. En efecto, puede recurrirse a esta en ayuda para determinar con su ciencia algunos aspectos, pero ella no tiene la última palabra en la discusión en términos del bagaje del lenguaje de la vida y las tensiones que se manejan. Sin embargo, lo que se ha visto es que el lenguaje económico es el que ha estado prefijado para los debates, por encima del científico, y más aún, por encima del lenguaje de la vida.</p></li>
+<li><p>La cuestión del reconocimiento y la discriminación. ¿A quién le toca la mayor carga ambiental? Están las mujeres, los grupos y comunidades locales y ancestrales, las clases sociales populares y, especialmente, las comunidades de personas recicladoras. Existe una paradoja de no querer la basura en un territorio propio, pero si se pone en otro lado no importa. Sin embargo, no tendría que estar en ningún lugar "en el patio trasero de nadie". En efecto, hay que pensar otros modelos de reducción y de disposición final.</p></li>
+<li><p>La violencia simbólica y la discriminación, según la cual a quienes les ha tocado la mayor carga ambiental ya han sido discriminados anteriormente por otras razones. Está el caso de las mujeres que denuncian: "Trabajamos con la basura, pero no queremos ser tratadas así". Sea como fuere, se debe incorporar la cuestión social, étnica y de género a la ambiental.</p></li>
+<li><p>La necesidad y demanda de políticas estatales. Es decir, antes de que sucedan los acontecimientos, el Estado debió impedir, regular, proponer alternativas de solución del problema, inspeccionar, supervisar. También hay que tener en cuenta las demandas de las organizaciones ambientalistas cuando dicen: "ustedes están preocupados por las especies en extinción. ¡Nosotros somos comunidades en extinción!", porque hay exposición al peligro. Martínez Alier, en su atlas de la justicia ambiental [<a href="https://ejatlas.org/?translate=es">LINK</a>] incluye a varios países en el estudio progresivo de la cuestión.</p></li>
+</ol>
+<p>Vivir bien es un concepto interpelado, muy profundo. El Buen Vivir, <em>sumak kawsay</em> (Ecuador), <em>suma qamaña</em> (Bolivia), señalan que no se trata de crecer económicamente con modelos foráneos impuestos, o de tener o explotar más recursos, sino de vivir bien. Sin embargo, está la disputa por el conocimiento, la necesidad de ir desde la seguridad hacia la soberanía alimentaria, el hecho de que no se trata de exportar commodities y seguir explotando hasta la última cantidad de algún elemento. Hay varias concepciones como los derechos de la naturaleza, la biopiratería según la cual se ha dado la expropiación y apropiación de recursos genéticos y derechos de propiedad de los pueblos indígenas, el agua como derecho humano (frente a la privatización del agua que considera el agua como mercancía). También se requiere poner atención a los jóvenes y a sus activismos urbanos, mirar hacia las personas recicladoras o cartoneras que trabajan con la basura en las calles y en los depósitos por cuanto tienen un rol central para la sustentabilidad.</p>
+<p>Se requiere igualmente de agendas prospectivistas y post-extractivistas en lo rural como en las zonas periféricas de las grandes metrópolis como, por ejemplo, en Córdoba, Argentina, donde las comunidades cercanas reciben los agrotóxicos esparcidos para el cultivo industrial de la soja.</p>
+<p>Finalmente, existe un gran potencial performativo en el concepto de justicia climática al conectar sitios dispares del mundo y vincularlos. Esto permite analizar cómo los países del sur global son los que menos emiten contaminaciones (¿quiénes emiten las basuras? ¿cuánta y a dónde van a parar?), las discusiones por la justicia ante el capitalismo fósil y carbonífero, la desigualdad entre el norte y el sur global, el enfrentamiento a las élites, las definiciones de justicia localizada para cada comunidad, las diferencias entre los movimientos o luchas ambientales y climáticas, y las medidas de reparación.</p>
+<div id="Credit" class="Paratext">
+<p><strong>García:</strong> Conceptualización (Conceptualization); Análisis formal (Formal Analysis); Adquisición de Financiamiento (Funding acquisition); Investigación (Investigation); Administración de proyecto (Project administration); Recursos (Resources); Validación (Validation); Redacción - preparación del borrador original (Writing – original draft); Redacción - revisión y edición (Writing – review &amp; editing). <strong>Spinetta:</strong> Conceptualización (Conceptualization); Análisis formal (Formal Analysis); Adquisición de Financiamiento (Funding acquisition); Investigación (Investigation); Administración de proyecto (Project administration); Recursos (Resources); Validación (Validation); Redacción - preparación del borrador original (Writing – original draft); Redacción - revisión y edición (Writing – review &amp; editing).</p>
+</div>
+<div id="Ack" class="Paratext">
+<p>Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.</p>
+</div>
+<h1 id="referencias-bibliográficas">Referencias bibliográficas</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-3" class="csl-entry">
+Martínez Alier, J. (1998). <em>La economía ecológica como ecología humana</em>. Fundación César Manrique.
+</div>
+</div>
+
+<script>
+  var divAck = document.getElementById("Ack");
+
+  if (divAck) {
+      divAck.insertAdjacentHTML("afterbegin", "<h3>Agradecimiento</h3>");
+      divAck.innerHTML = "<p>" + divAck.innerHTML + "</p>";
+  }
+
+  var divCredit = document.getElementById("Credit");
+
+  if (divCredit) {
+    divCredit.insertAdjacentHTML("afterbegin", "<h3>Declaración de contribuciones de autoría (CRediT)</h3>");
+    divCredit.innerHTML = "<p>" + divCredit.innerHTML + "</p>";
+  }
+</script>
+</body>
+</html>

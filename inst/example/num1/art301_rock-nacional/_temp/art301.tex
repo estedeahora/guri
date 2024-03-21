@@ -1,0 +1,576 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+
+  \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
+
+
+%%%% Clase del documento y configuraciones generales de apariencia
+\documentclass[
+  %
+  %
+    a4paper,%
+  %
+  %
+  %
+    DIV=calc,%
+  %
+    abstract=true%
+  ]{scrartcl}%
+
+\usepackage{amsmath,amssymb}
+
+
+\usepackage{iftex}
+
+\ifPDFTeX                       % if pdflatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}         % provide euro and other symbols
+\else % if luatex or xetex
+      \usepackage{unicode-math}   % this also loads fontspec
+    \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+
+  
+  \usepackage[]{Alegreya}
+
+\ifPDFTeX\else    
+  \usepackage{fontspec}
+          
+  
+      \fi
+
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\IfFileExists{microtype.sty}{
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} 
+}{}
+
+  \makeatletter
+  \@ifundefined{KOMAClassName}{%    
+    \IfFileExists{parskip.sty}{%
+      \usepackage{parskip}
+    }{
+      \setlength{\parindent}{0pt}
+      \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+  }{
+    \KOMAoptions{parskip=half}}
+  \makeatother
+
+
+\usepackage{xcolor}
+
+
+
+
+
+%%%% Configuración de tablas
+  \usepackage{longtable,booktabs,array}
+    \usepackage{calc} % for calculating minipage widths
+  % Correct order of tables after \paragraph or \subparagraph
+  \usepackage{etoolbox}
+  \makeatletter
+  \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+  \makeatother
+  % Allow footnotes in longtable head/foot
+  \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+  \makesavenoteenv{longtable}
+
+%%%% Configuración de figuras
+  \usepackage{graphicx}
+  \makeatletter
+  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+  \makeatother
+  % Scale images if necessary, so that they will not overflow the page
+  % margins by default, and it is still possible to overwrite the defaults
+  % using explicit options in \includegraphics[width, height, ...]{}
+  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+  % Set default figure placement to htbp
+  \makeatletter
+  \def\fps@figure{htbp}
+  \makeatother
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+  \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+% Referencias con CSL
+  % definitions for citeproc citations
+  \NewDocumentCommand\citeproctext{}{}
+  \NewDocumentCommand\citeproc{mm}{%
+    \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+  \makeatletter
+  % allow citations to break across lines
+  \let\@cite@ofmt\@firstofone
+  % avoid brackets around text for \cite:
+    \def\@biblabel#1{}
+    \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+  \makeatother
+  \newlength{\cslhangindent}
+  \setlength{\cslhangindent}{1.5em}
+  \newlength{\csllabelwidth}
+  \setlength{\csllabelwidth}{3em}
+  \newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+   {\begin{list}{}{%
+    \setlength{\itemindent}{0pt}
+    \setlength{\leftmargin}{0pt}
+    \setlength{\parsep}{0pt}
+    % turn on hanging indent if param 1 is 1
+    \ifodd #1
+      \setlength{\leftmargin}{\cslhangindent}
+      \setlength{\itemindent}{-1\cslhangindent}
+    \fi
+    % set entry spacing
+    \setlength{\itemsep}{#2\baselineskip}}}
+  {\end{list}}
+  \usepackage{calc}
+  \newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+  \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+  \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+  \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+  \ifLuaTeX
+    \usepackage[bidi=basic]{babel}
+  \else
+    \usepackage[bidi=default]{babel}
+  \fi
+      \babelprovide[main,import]{spanish}
+      
+      \babelprovide[import]{english}
+      % get rid of language-specific shorthands (see #6817):
+  \let\LanguageShortHands\languageshorthands
+  \def\languageshorthands#1{}
+
+
+% Customizaciones generales %%%%%%%%%%%%%%%%%%%%%
+
+%%%% CARGA DE PAQUETES
+\usepackage[export]{adjustbox}
+
+% Cargar paquetes de íconos 
+\usepackage{fontawesome5}
+\usepackage{ccicons}
+
+% Carga `setspace' para separación entre lineas (si no fue cargado)
+\IfPackageLoadedTF{setspace}{}{\usepackage{setspace}}
+% Carga `graphicx' si no fue cargado (dado que no se usa entorno pandoc para figures)
+\IfPackageLoadedTF{graphicx}{}{\usepackage{graphicx}}
+% Carga `etoolbox' 
+\IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
+
+% Carga de paquetes y configuraciones pedidas por el documento
+
+
+%%%% COLORES CUSTOMIZADOS
+
+\definecolor{verde_orcid}{RGB}{166,206,57}
+
+%%%% CITAS LARGAS
+
+% Definir estilo de citas largas (achica el tamaño)
+\IfPackageLoadedTF{relsize}{}{\usepackage{relsize}}
+\AtBeginEnvironment{quote}{\smaller}% Step font down one size relative to current font.
+
+%%%% TABLAS Y FGURAS
+
+% Agregado de \source y \notes para titulos secundarios de las tablas y figuras
+\usepackage{caption}
+\captionsetup{format=plain,labelsep=period,singlelinecheck=false,justification=centerlast,
+              font={small,singlespacing,sf},labelfont={sc,bf},width=0.8\textwidth}
+\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Fuente:} {#1}}}}
+\newcommand{\notes}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Notas:} {#1}}}}
+
+
+
+% Cambia denominación de "Cuadro" a "Tabla"
+\renewcommand{\spanishtablename}{Tabla}
+
+% Cambiar fuente y tamaño de letra para entorno de tablas (table)
+\AtBeginEnvironment{tabular}{\sffamily\footnotesize}
+\IfPackageLoadedTF{tabularray}{%
+\AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
+
+%%%% ENCABEZADO DE PÁGINA
+% Si utiliza clases de Koma-script debe utilizar el paquete 'scrlayer-scrpage'
+% Si utiliza las clases estándar debe usar el paquete 'fancyhdr'
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage[breakwords]{truncate}
+
+\setkomafont{pagehead}{\normalfont\sffamily\small}
+
+\ihead{\textit{\truncate{0.45\textwidth}{Lorem ipsum}}}
+\ohead{\textbf{\textasciitilde!guri\_ \{An example journal\}}}
+
+\setkomafont{pagefoot}{\normalfont\footnotesize}
+\ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{guri}.
+      ISSN-e: 0001-2000.\\
+      Esta obra está bajo una licencia Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+License (https://creativecommons.org/licenses/by-nc/4.0/).]{}
+\cfoot[]{\pagemark}
+
+% Definir primera página del artícul (si se utiliza paginación personalizada)
+
+%%%% PÁGINA DE TÍTULO 
+\setkomafont{titlehead}{\raggedright\sffamily\small}
+\setkomafont{title}{\raggedright\sffamily}
+\setkomafont{author}{\raggedright\sffamily\setlength{\tabcolsep}{0pt}}
+\setkomafont{publishers}{\raggedright\sffamily\footnotesize}
+\setkomafont{dedication}{\raggedright\sffamily\small}
+
+\titlehead{%
+  \textbf\textbf{DOSSIER}\hfill\textbf{\textasciitilde!guri\_ \{An
+example journal\}}\\%
+  \vspace{4pt}
+  \hfill Vol. 10 Núm. 1 (2023)
+  \\ \hfill DOI: \href{https://doi.org/10.54/242423423.dsa211}{10.54/242423423.dsa211}%
+ }%
+
+\title{Lorem ipsum}
+
+  \subtitle{Duis aute irure dolor\\ \vspace{1em} \textit{English lorem
+ipsum}}
+
+\author{{\begin{tabular}[l]{@{}l@{}}%
+  \large{Carlos
+Alberto {García}}\textsuperscript{a;b} \href{https://orcid.org/0000-0000-1234-5678}{\textcolor{verde_orcid}{\faOrcid}} \\ \large{Luis
+Alberto {Spinetta}}\textsuperscript{a;c} \href{https://orcid.org/0000-0005-0901-8282}{\textcolor{verde_orcid}{\faOrcid}}
+\end{tabular}}%
+}
+    
+\date{}
+
+\publishers{
+  \vspace{1em}
+  \textsuperscript{a} Rock Nacional, Argentina.\\\textsuperscript{b} Say
+No More, Argentina.\\\textsuperscript{c} Alma de diamante, Argentina.
+  \\ \vspace{1em} \textit{Recibido:} 1 de Septiembre de 2023; \textit{Aceptado:} 11 de Noviembre de 2023.\\%
+}
+
+
+
+
+%%% Credit, Ack and app Enviroment
+
+\newenvironment{Credit}[1][Declaración de contribuciones de autoría (CRediT)]
+    {\subsection*{#1}
+    \sffamily\small}
+
+\newenvironment{Ack}{\begin{Credit}[Agradecimiento]}{\end{Credit}}%
+
+\newenvironment{app}{\newpage}{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+
+
+
+
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+
+
+
+\hypersetup{
+      pdftitle={Lorem ipsum},
+        pdfauthor={Carlos Alberto García, Luis Alberto Spinetta},
+    pdfsubject={\textasciitilde!guri\_ \{An example
+journal\} - Volume: 10  - Issue: 1  (2023) a301 doi: 10.54/242423423.dsa211},
+      pdflang={es-ES},
+        pdfkeywords={kw1\_es, kw2\_es},
+    pdfinfo={
+          DOI={10.54/242423423.dsa211},
+              abstract={Lorem ipsum dolor sit amet, consectetur
+adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+qui officia deserunt mollit anim id est laborum.},
+        journal=\textasciitilde!guri\_ \{An example journal\}
+      },
+  % Define color de links
+      colorlinks=true,
+    linkcolor={CadetBlue},
+    filecolor={CadetBlue},
+    citecolor={CadetBlue},
+    urlcolor={CadetBlue},
+  pdfcreator={LaTeX via pandoc \& \textasciitilde!guri\_}}
+
+%%%% Inicio de documento
+
+\begin{document}
+  
+  
+  \maketitle
+
+  
+    
+    
+    \begin{abstract}
+
+      \noindent{Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+officia deserunt mollit anim id est laborum.}
+
+      \nopagebreak
+
+      \noindent\sffamily\textit{Palabras claves: kw1\_es; kw2\_es}.%
+
+    \end{abstract}
+    
+        \begin{otherlanguage}{english}
+
+      \begin{abstract}      
+ 
+        \noindent{Maecenas risus nisl, vehicula a molestie eget, varius
+ut quam. Vestibulum quis blandit metus, at fringilla magna. Morbi
+finibus dui lacus, viverra faucibus dolor laoreet ac. Praesent vehicula
+neque tempor lacus scelerisque, id tincidunt nulla condimentum. Etiam
+convallis lobortis nulla ut fringilla. Phasellus aliquet euismod mauris
+ac commodo. Nam dictum, nunc sed tempus dictum, sapien tortor commodo
+tortor, ac fermentum lacus metus nec ex. Nunc ac finibus est. Integer ut
+vestibulum ante.}
+
+        \nopagebreak
+
+        \noindent\sffamily\textit{Keywords: kw1\_en; kw2\_en}.%
+
+      \end{abstract}
+    \end{otherlanguage}
+      
+
+    
+    
+      
+  
+  
+  \emph{Este informe presenta las anotaciones derivadas del Taller de
+  justicia ambiental y justicia climática realizado el junio 6 de 2022
+  en la Ciudad de México por la doctora Gabriela Merlinsky. Para ello se
+  realiza un resumen de características y problemas generales de la
+  ecología política y luego la propuesta de seis aspectos de estudio.}
+
+  En la ecología política se encuentran perspectivas situadas, alianzas
+  de producción de conocimientos de actores en los territorios que
+  producen conocimientos, epidemiologías populares, como cuando las
+  comunidades hacen sus propias investigaciones o piden ayuda a algún
+  grupo de investigación de las universidades para medir, por ejemplo,
+  la calidad del agua ante la duda y alerta del crecimiento de cáncer en
+  las comunidades cercanas, (mientras que otros actores dicen que las
+  enfermedades son la responsabilidad de las comunidades por sus malos
+  hábitos de higiene, usar pisos o elementos que contienen plomo, etc.,
+  y se culpa a las comunidades mismas. Entonces ellas acuden a un
+  ejercicio de epidemiología popular).
+
+  También están las cargas desproporcionadas de sitios de contaminación,
+  rellenos sanitarios, sitios de desechos peligrosos o tóxicos que se
+  ubican en cierto tipo de comunidades, y no en otras, pero que en
+  realidad no deberían estar ubicados en ninguna comunidad, la
+  visibilidad en la producción del conocimiento y, por consiguiente, la
+  visibilidad de los cuerpos, de los conocimientos alternativos, frente
+  a las concepciones del ambiente y las pruebas judiciales como únicas
+  que se aceptan, mapeos de actores y sitios específicos, cartografías
+  sociales, metodologías alternativas, investigación acción
+  participativa, entre otras.
+
+  La ecología política latinoamericana actúa bajo el supuesto según el
+  cual ha habido colonialidad de la naturaleza, como algo de dominio de
+  la ciencia y de la producción económica, como objeto de disputa,
+  apropiación, resignificación. Sin embargo, se ha estado dando un giro
+  ontológico a partir de las voces de los pueblos andinos, en especial
+  las indígenas, las ontologías relacionales. Por ejemplo, para el
+  cuidado de una montaña, más que considerarla como una creencia en un
+  ser idealizado, se entiende que ella posee propiedades agentivas,
+  agencia propia, lo que no es fácil de entender desde contextos urbanos
+  y concepciones occidentales.
+
+  Toda ecología es política. Los debates sobre el clima, los trabajos
+  académicos del sur global están emergiendo en estas temáticas, pero
+  todavía se ve invisibilización del sur global. Entonces se requiere
+  politizar varias categorías, diferentes formas de jerarquía que,
+  basadas en la clase, etnia y género, están en la base de la
+  desigualdad. Se requiere mirar sus implicaciones políticas y atender a
+  los movimientos de justicia ambiental.
+
+  En la ecología política hay varios aspectos a considerar: las
+  desigualdades y entre ellas las desigualdades ambientales, las formas
+  de interseccionalidad de distintas jerarquías (clase, etnia, género),
+  y las exclusiones en las prácticas políticas. Así, la ecología
+  política estudia algunas constantes en los conflictos: las disputas,
+  los actores, el escalamiento o re-escalamiento y las exclusiones.
+  Acerca de esto último, las comunidades se quejan por la falta de
+  licencia social o el derecho a ser consultadas en las decisiones que
+  les afectan, como en los casos para explotación minero-energética. En
+  efecto, muchas de estas decisiones aun siendo legales no son legítimas
+  ante la comunidad. Existe desigualdad y también una diferenciación en
+  el concepto de ambiente que incluye disputas de sentido por el
+  problema ambiental.
+
+  Se presentan seis aspectos fundamentales en la ecología política:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    La discusión debe ser tangible no abstracta. En efecto, se está
+    hablando del derecho a la vida, a la salud, a la tierra, a las
+    semillas, a lo agroecológico, a lo cotidiano. Más que partes por
+    millón, gases efecto invernadero, emisiones de carbono, toxicidad,
+    más que otros conceptos técnicos o elementos, se trata de la vida y
+    vivencia tangible. No obstante, hay un clasismo en la discusión en
+    esos términos abstractos. Ha habido expropiación y despojo no solo
+    cultural, económico, social, sino también epistémico. Se requieren
+    agendas que construyan, a partir de modos tangibles, la discusión de
+    las cuestiones claves para la vida. Hay que escuchar cómo "somos una
+    clase social que solo tiene su trabajo o su no trabajo". La
+    desigualdad es fuerte.
+  \item
+    La inconmensurabilidad de los valores (\citeproc{ref-3}{Martínez
+    Alier, 1998}). En el estudio de la economía ecológica, este autor
+    analiza los lenguajes de valoración. Si bien algunos colectivos o
+    comunidades entienden que es mejor recibir alguna compensación
+    económica que ninguna, lo que no están dispuestos a realizar es
+    traducir las cuestiones fundamentales o lo que está en juego al
+    lenguaje del dinero. ¿Cuál es el valor de un paisaje? ¿Cuánto vale
+    la vida? ¿Cuánto vale la salud no traducido al dinero? Es así como
+    hay otros lenguajes que no son económicos y deben estar en el centro
+    de la discusión. (Aunque no recibir nada es lo peor que puede
+    pasarles a las comunidades en un conflicto socio-ambiental).
+  \item
+    El discurso experto no es el que rige a la discusión. La persona
+    experta y el discurso experto en ciencias naturales no son de suyo
+    quienes deban cerrar la discusión ambiental. En efecto, puede
+    recurrirse a esta en ayuda para determinar con su ciencia algunos
+    aspectos, pero ella no tiene la última palabra en la discusión en
+    términos del bagaje del lenguaje de la vida y las tensiones que se
+    manejan. Sin embargo, lo que se ha visto es que el lenguaje
+    económico es el que ha estado prefijado para los debates, por encima
+    del científico, y más aún, por encima del lenguaje de la vida.
+  \item
+    La cuestión del reconocimiento y la discriminación. ¿A quién le toca
+    la mayor carga ambiental? Están las mujeres, los grupos y
+    comunidades locales y ancestrales, las clases sociales populares y,
+    especialmente, las comunidades de personas recicladoras. Existe una
+    paradoja de no querer la basura en un territorio propio, pero si se
+    pone en otro lado no importa. Sin embargo, no tendría que estar en
+    ningún lugar "en el patio trasero de nadie". En efecto, hay que
+    pensar otros modelos de reducción y de disposición final.
+  \item
+    La violencia simbólica y la discriminación, según la cual a quienes
+    les ha tocado la mayor carga ambiental ya han sido discriminados
+    anteriormente por otras razones. Está el caso de las mujeres que
+    denuncian: "Trabajamos con la basura, pero no queremos ser tratadas
+    así". Sea como fuere, se debe incorporar la cuestión social, étnica
+    y de género a la ambiental.
+  \item
+    La necesidad y demanda de políticas estatales. Es decir, antes de
+    que sucedan los acontecimientos, el Estado debió impedir, regular,
+    proponer alternativas de solución del problema, inspeccionar,
+    supervisar. También hay que tener en cuenta las demandas de las
+    organizaciones ambientalistas cuando dicen: "ustedes están
+    preocupados por las especies en extinción. ¡Nosotros somos
+    comunidades en extinción!", porque hay exposición al peligro.
+    Martínez Alier, en su atlas de la justicia ambiental
+    {[}\href{https://ejatlas.org/?translate=es}{LINK}{]} incluye a
+    varios países en el estudio progresivo de la cuestión.
+  \end{enumerate}
+
+  Vivir bien es un concepto interpelado, muy profundo. El Buen Vivir,
+  \emph{sumak kawsay} (Ecuador), \emph{suma qamaña} (Bolivia), señalan
+  que no se trata de crecer económicamente con modelos foráneos
+  impuestos, o de tener o explotar más recursos, sino de vivir bien. Sin
+  embargo, está la disputa por el conocimiento, la necesidad de ir desde
+  la seguridad hacia la soberanía alimentaria, el hecho de que no se
+  trata de exportar commodities y seguir explotando hasta la última
+  cantidad de algún elemento. Hay varias concepciones como los derechos
+  de la naturaleza, la biopiratería según la cual se ha dado la
+  expropiación y apropiación de recursos genéticos y derechos de
+  propiedad de los pueblos indígenas, el agua como derecho humano
+  (frente a la privatización del agua que considera el agua como
+  mercancía). También se requiere poner atención a los jóvenes y a sus
+  activismos urbanos, mirar hacia las personas recicladoras o cartoneras
+  que trabajan con la basura en las calles y en los depósitos por cuanto
+  tienen un rol central para la sustentabilidad.
+
+  Se requiere igualmente de agendas prospectivistas y
+  post-extractivistas en lo rural como en las zonas periféricas de las
+  grandes metrópolis como, por ejemplo, en Córdoba, Argentina, donde las
+  comunidades cercanas reciben los agrotóxicos esparcidos para el
+  cultivo industrial de la soja.
+
+  Finalmente, existe un gran potencial performativo en el concepto de
+  justicia climática al conectar sitios dispares del mundo y
+  vincularlos. Esto permite analizar cómo los países del sur global son
+  los que menos emiten contaminaciones (¿quiénes emiten las basuras?
+  ¿cuánta y a dónde van a parar?), las discusiones por la justicia ante
+  el capitalismo fósil y carbonífero, la desigualdad entre el norte y el
+  sur global, el enfrentamiento a las élites, las definiciones de
+  justicia localizada para cada comunidad, las diferencias entre los
+  movimientos o luchas ambientales y climáticas, y las medidas de
+  reparación.
+
+  \begin{Credit}
+
+  \phantomsection\label{Credit}
+  \textbf{García:} Conceptualización (Conceptualization); Análisis
+  formal (Formal Analysis); Adquisición de Financiamiento (Funding
+  acquisition); Investigación (Investigation); Administración de
+  proyecto (Project administration); Recursos (Resources); Validación
+  (Validation); Redacción - preparación del borrador original (Writing
+  -- original draft); Redacción - revisión y edición (Writing -- review
+  \& editing). \textbf{Spinetta:} Conceptualización (Conceptualization);
+  Análisis formal (Formal Analysis); Adquisición de Financiamiento
+  (Funding acquisition); Investigación (Investigation); Administración
+  de proyecto (Project administration); Recursos (Resources); Validación
+  (Validation); Redacción - preparación del borrador original (Writing
+  -- original draft); Redacción - revisión y edición (Writing -- review
+  \& editing).
+
+  \end{Credit}
+
+  \begin{Ack}
+
+  \phantomsection\label{Ack}
+  Porta phasellus natoque fusce tempus aptent sem fames, mattis
+  suspendisse inceptos ligula accumsan taciti.
+
+  \end{Ack}
+
+  \section{Referencias
+  bibliográficas}\label{referencias-bibliogruxe1ficas}
+
+  \phantomsection\label{refs}
+  \begin{CSLReferences}{1}{0}
+  \bibitem[\citeproctext]{ref-3}
+  Martínez Alier, J. (1998). \emph{La economía ecológica como ecología
+  humana}. Fundación César Manrique.
+
+  \end{CSLReferences}
+
+    
+  %%%% Referencias bibliográficas
+  
+  
+    
+\end{document}

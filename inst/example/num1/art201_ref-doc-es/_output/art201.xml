@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd">
+
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type="research-article" xml:lang="es-ES">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title specific-use="original" xml:lang="es-ES">~!guri_ {An example journal}</journal-title>
+<abbrev-journal-title>~!guri_</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic" pub-type="epub">0001-2000</issn>
+<publisher>
+<publisher-name>guri</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="doi">10.1223/3344443.33221333</article-id>
+<article-categories>
+<subj-group subj-group-type="heading">
+<subject>Presentación de la propuesta</subject>
+</subj-group>
+</article-categories>
+<title-group>
+<article-title xml:lang="es-ES">Documento de referencia para ~!gurí_ (Gestor Unificado de formatos para Revistas de Investigación)</article-title>
+<trans-title-group>
+<trans-title xml:lang="en">Reference Document for ~!gurí_ (Unified Format Manager for Research Journals)</trans-title>
+</trans-title-group>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0001-5300-2243</contrib-id>
+<name>
+<surname>Serrati</surname>
+<given-names>Pablo</given-names>
+</name>
+<email>pabloserrati@gmail.com</email>
+<xref ref-type="aff" rid="aff-aff1"/>
+<xref ref-type="aff" rid="aff-aff2"/>
+<!--  -->
+<!-- <xref ref-type="corresp" rid="cor-true"><sup>*</sup></xref> -->
+<!--  -->
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Conceptualization" vocab-term-identifier="https://credit.niso.org/contributor-roles/conceptualization/">Conceptualización</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Data curation" vocab-term-identifier="https://credit.niso.org/contributor-roles/data-curation/">Curación de datos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Formal Analysis" vocab-term-identifier="https://credit.niso.org/contributor-roles/formal-analysis/">Análisis formal</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Funding acquisition" vocab-term-identifier="https://credit.niso.org/contributor-roles/funding-acquisition/">Adquisición de Financiamiento</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Investigation" vocab-term-identifier="https://credit.niso.org/contributor-roles/investigation/">Investigación</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Methodology" vocab-term-identifier="https://credit.niso.org/contributor-roles/methodology/">Metodología</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Project administration" vocab-term-identifier="https://credit.niso.org/contributor-roles/project-administration/">Administración de proyecto</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="https://credit.niso.org/contributor-roles/resources/">Recursos</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Software" vocab-term-identifier="https://credit.niso.org/contributor-roles/software/">Software</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Supervision" vocab-term-identifier="https://credit.niso.org/contributor-roles/supervision/">Supervisión</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Validation" vocab-term-identifier="https://credit.niso.org/contributor-roles/validation/">Validación</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Visualization" vocab-term-identifier="https://credit.niso.org/contributor-roles/visualization/">Visualización</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – original draft" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-original-draft/">Redacción - preparación del borrador original</role>
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="Writing – review &amp; editing" vocab-term-identifier="https://credit.niso.org/contributor-roles/writing-review-editing/">Redacción - revisión y edición</role>
+</contrib>
+<aff id="aff-aff1">
+<institution-wrap>
+<institution>Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET)</institution>
+</institution-wrap>,
+<country country="AR">Argentina</country>
+</aff>
+<aff id="aff-aff2">
+<institution-wrap>
+<institution>Universidad de Buenos Aires, Facultad de Ciencias Sociales, Instituto de Investigaciones Gino Germani</institution>
+</institution-wrap>,
+<country country="AR">Argentina</country>
+</aff>
+</contrib-group>
+<pub-date pub-type="epub" date-type="pub" publication-format="electronic">
+<season>Julio-Diciembre</season>
+<year>2023</year>
+</pub-date>
+<elocation-id>a201</elocation-id>
+<history>
+<date date-type="received" publication-format="dd mm yyyy">
+<day>2</day>
+<month>5</month>
+<year>2023</year>
+</date>
+<date date-type="accepted" publication-format="dd mm yyyy">
+<day>10</day>
+<month>1</month>
+<year>2024</year>
+</date>
+</history>
+<permissions>
+<license xlink:href="https://creativecommons.org/licenses/by-nc/4.0/">
+<ali:license_ref>https://creativecommons.org/licenses/by-nc/4.0/</ali:license_ref>
+<license-p>Esta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</license-p>
+</license>
+</permissions>
+<abstract xml:lang="es-ES">
+<title>Resumen</title>
+<p>Este documento describe de modo resumido las características principales de ~!gurí. A su vez ejemplifica con la plantilla modelo de Word el modo en que deben definirse los diferentes bloques dentro del texto.</p>
+</abstract>
+<trans-abstract xml:lang="en">
+<title>Abstract</title>
+<p>This document summarises the main features of ~!gurí. It also uses the Word template to illustrate how the different blocks within the text should be defined.</p>
+</trans-abstract>
+<kwd-group kwd-group-type="author">
+<title>Palabras claves</title>
+<kwd>guri</kwd>
+<kwd>modelo de plantilla</kwd>
+<kwd>ejemplo</kwd>
+</kwd-group>
+<kwd-group kwd-group-type="author" xml:lang="en">
+<title>Keywords</title>
+<kwd>guri</kwd>
+<kwd>template</kwd>
+<kwd>example</kwd>
+</kwd-group>
+<counts>
+  <!-- <count count-type="contributors" count="3"/> -->
+    <fig-count count="2"/>
+      <table-count count="0"/>
+    
+  <!-- <equation-count count="10"/>
+  <ref-count count="26"/>
+  <page-count count="6"/>
+  <word-count count="2847"/> -->
+ </counts>
+</article-meta>
+</front>
+<body>
+<sec id="descripción-general-de-la-propuesta-heading-1">
+  <title>Descripción general de la propuesta (Heading 1)</title>
+  <p>La herramienta ~!gurí_ es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de ‘corrección de pruebas’. La herramienta se basa en el uso de Pandoc como herramienta de conversión entre formatos, a la cual se incorpora un conjunto de filtros Lua y plantillas personalizadas, así como un flujo de trabajo, lo cual permite en su conjunto la creación de los documentos finales.</p>
+  <fig id="FIG_01">
+  <label>Figura 1.</label>
+  <caption>
+  <p>Esquema general de gurí</p></caption>
+  <graphic xlink:href="FIG_01.png"/>
+  <attrib>Fuente: Elaboración propia (ver https://github.com/estedeahora/guri)</attrib>
+  </fig>
+  <p>En términos resumidos, la propuesta propone esquematizar y separar los principales elementos que componen un artículo científico. En particular, la propuesta considera el hecho de que muchas revistas utilizan como base de sus flujos de trabajos documentos docx.</p>
+</sec>
+<sec id="descripción-de-las-dependencias-de-software-heading-1">
+  <title>Descripción de las dependencias de software (Heading 1)</title>
+  <p>Esta herramienta se basa en el uso de <ext-link ext-link-type="uri" xlink:href="https://pandoc.org/">Pandoc</ext-link> (versión 3.1.10 o superior) como herramienta de conversión entre formatos. Si no tiene instalado este software deberá hacerlo directamente de la página oficial.</p>
+  <p>También es necesario instalar alguna versión de <ext-link ext-link-type="uri" xlink:href="https://cran.r-project.org/">R</ext-link> (recomendable versión 4.3 o superior), que es el encargado de coordinar el proceso de conversiones. También es necesario tener instalada alguna distribución de LaTeX. A las personas con poca experiencia en el uso de LaTeX, recomendamos utilizar la distribución <ext-link ext-link-type="uri" xlink:href="https://yihui.org/tinytex/">tinitex</ext-link>, por su integración con R y la facilidad para manejar las dependencia de paquetes. De hecho, esta versión se utiliza de forma predeterminada para la generación de archivos PDF.</p>
+</sec>
+<sec id="ejemplo-de-marcado-y-uso-de-estilos-heading-1">
+  <title>Ejemplo de marcado y uso de estilos (Heading 1)</title>
+  <sec id="descripción-de-la-lógica-de-marcado-heading-2">
+    <title>Descripción de la lógica de marcado (Heading 2)</title>
+    <p>Una vez que haya hecho las configuraciones generales de su revista, deberá dar formato a cada uno de los artículos. Para ello debe utilizar una plantilla de docx (similar a la que se usa en este ejemplo). Para esta tarea debe utilizar los “Estilos” de párrafo y de “caracter” que están predefinidos en la plantilla (dentro de <italic>Microsoft Word</italic> se encuentran la lista de estilos en la pestaña “Inicio” -&gt; “Estilos”). Es importante remarcar que no se trata de formatear el texto de manera similar a estos estilos, sino de usar los estilos predefinidos. Si usted genera estilos personalizados estos no serán tenidos en cuenta (o se usarán de formas impredecibles).</p>
+    <p>En los apartados siguiente se ejemplifican los estilos que soporta ~!gurí_.</p>
+  </sec>
+  <sec id="ejemplificación-de-los-principales-bloques-heading-2">
+    <title>Ejemplificación de los principales bloques (Heading 2)</title>
+    <p>Este es un párrafo de estilo normal del cuerpo. Para ellos se debe utilizar “Body Text” o “Texto independiente” (según su configuración regional). Dentro de este párrafo pueden existir diferentes tipos de “estilos de carácter”, como <italic>cursiva</italic> o <bold>negritas</bold> (aunque esta última no es recomendable por una cuestión estética). También puede incluir tipografías monoespaciadas (por ejemplo, para código informático) utilizando el estilo de caracter <monospace>Verbatim`` ``Char`` o ``Source`` ``code</monospace> (dependiendo de su configuración de idioma).</p>
+    <p>A su vez, puede usar <ext-link ext-link-type="uri" xlink:href="http://example.com">Hipervínculos o hyperlink</ext-link>, estilos que se formatearan automáticamente si establece una referencia al texto. De igual manera las notas al pie o “Footnote” se formatearán de forma automática si usted genera una nota con <italic>Microsoft Word</italic>.<xref ref-type="fn" rid="fn1">1</xref></p>
+    <p>También puede utilizar: listas (numeradas y no numeradas), bloques de citas, ecuaciones y definiciones y bloques de código. Para hacer una ejemplificación del uso de los diferentes niveles de título, vamos a abordar cada aspecto en un título propio.</p>
+    <sec id="listas-heading-3">
+      <title>Listas (Heading 3)</title>
+      <p>Puede incluir listas numeradas (y listas anidadas) mediante el uso de las funciones de <italic>Microsoft Word</italic>:</p>
+      <list list-type="order">
+        <list-item>
+          <p>Elemento 1</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <p>Esto es un aspecto del elemento 1</p>
+              <list list-type="roman-lower">
+                <list-item>
+                  <p>Esto es una lista profundamente anidada (no recomendable)</p>
+                </list-item>
+              </list>
+            </list-item>
+            <list-item>
+              <p>Esto es un segundo aspecto del elemento 1</p>
+            </list-item>
+          </list>
+        </list-item>
+        <list-item>
+          <p>Elemento 2</p>
+        </list-item>
+      </list>
+      <p>También puede incluir listas sin numerar de la siguiente manera:</p>
+      <list list-type="bullet">
+        <list-item>
+          <p>Esto es una lisa de elementos sin numerar.</p>
+          <list list-type="bullet">
+            <list-item>
+              <p>Acá la lista está anidada</p>
+            </list-item>
+            <list-item>
+              <p>Con dos elementos
+              Si desea agregar más de un párrafo dentro de un bullet use el salto de párrafo “blando” (shift + enter)</p>
+            </list-item>
+          </list>
+        </list-item>
+        <list-item>
+          <p>Esto es el segundo elemento.</p>
+        </list-item>
+      </list>
+      <p>Este es un fragmento de texto normal generado para mostrar cómo se intercalan párrafos de diferente tipo (por lo tanto, utiliza como estilo “Texto independiente” o “Body Text”). El resto del párrafo es sólo texto aleatorio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere dolor elementum leo feugiat pellentesque vitae porttitor diam. Ut tempus magna et velit suscipit finibus quis quis lacus. Duis euismod velit nec augue porttitor dictum. Vivamus efficitur, lorem eu varius tempus, tortor augue accumsan risus, in lacinia diam leo vel massa. Vivamus tempus sapien ut ante imperdiet ullamcorper.</p>
+    </sec>
+    <sec id="bloques-de-texto-o-cita-larga-heading-3">
+      <title>Bloques de texto o cita larga (Heading 3)</title>
+      <p>Es posible utilizar el estilo “Block text” o “Texto de bloque” para identificar un bloque de cita larga como el siguiente:</p>
+      <disp-quote>
+        <p>Esto es una cita larga (o “Block Text”). Habitualmente puede ser una cita de más de 40 palabras de un texto o bien una entrevista. Si usted posee un bloque con varios párrafos, puede mantenerlos “unidos” utilizando “saltos de línea blandos” (en <italic>Microsoft Word</italic> esto se consigue con shift + enter).
+        Esto es un ejemplo de salgo de línea blando.</p>
+        <p>Por otra parte, si se trata de diferentes bloques (por ejemplo: diferentes entrevistados), debe colocar un salto de párrafo “duro” (enter). De esta manera, cada bloque será separado por un espacio mayor.</p>
+      </disp-quote>
+      <p>Algo de texto aleatorio para separar: Phasellus vulputate aliquet scelerisque. Nullam vel tellus eget nisi dapibus auctor. Vivamus et dolor ac quam vestibulum iaculis. Curabitur varius elit in pellentesque fermentum. Cras pharetra mi id nibh laoreet vulputate. Integer tristique facilisis sapien ac ornare. Integer pretium ac eros et sollicitudin.</p>
+    </sec>
+    <sec id="ecuaciones-fórmulas-y-definiciones-heading-3">
+      <title>Ecuaciones, fórmulas y definiciones (Heading 3)</title>
+      <p>Para incluir una fórmula matemática dentro del texto puede hacerlo mediante el uso del editor de fórmulas de <italic>Microsoft Word</italic>. Estas pueden estar incluidas dentro del cuerpo del texto con el formato normal <inline-formula><alternatives>
+      <tex-math><![CDATA[y = a + bx + cx^{2}]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:mi>a</mml:mi><mml:mo>+</mml:mo><mml:mi>b</mml:mi><mml:mi>x</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> o bien en párrafo aparte:</p>
+      <p><disp-formula><alternatives>
+      <tex-math><![CDATA[y = a + bx + cx^{2}]]></tex-math>
+      <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:mi>a</mml:mi><mml:mo>+</mml:mo><mml:mi>b</mml:mi><mml:mi>x</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>En algunos casos en los que tenga “definiciones” en párrafo aparte (al estilo matemático) puede utilizar los estilos “Definition Term” (para el nombre de lo que va a definir) y “Definition” (para la definición en sí). Esto sería un ejemplo:</p>
+      <def-list>
+        <def-item>
+          <term>Término a definir</term>
+          <def>
+            <p>Esta es la definición del término anterior. La misma explica qué quiere decir lo que definió anteriormente</p>
+          </def>
+        </def-item>
+      </def-list>
+      <p>Más texto aleatorio: Curabitur nec odio vitae neque viverra ornare non posuere elit. Quisque placerat imperdiet velit, vel consequat nisl vestibulum ac. Fusce vitae velit et velit vestibulum volutpat eu nec eros.</p>
+    </sec>
+    <sec id="bloques-de-código-heading-3">
+      <title>Bloques de código (Heading 3)</title>
+      <p>A su vez, puede generar un bloque de código utilizando un párrafo sólo con “Surce code” como se hace a continuación:</p>
+      <preformat>for i in Source_code
+  print (i)
+  print(“hola mundo”)
+end</preformat>
+      <p>Algo de texto aleatorio: Lacinia quis vel eros donec ac odio tempor. Eu turpis egestas pretium aenean pharetra magna ac. Nec nam aliquam sem et. Eu sem integer vitae justo. A pellentesque sit amet porttitor eget dolor. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Vitae tempus quam pellentesque nec nam aliquam sem. Leo vel fringilla est ullamcorper eget.</p>
+    </sec>
+  </sec>
+  <sec id="marcador-de-elementos-flotantes-heading-2">
+    <title>Marcador de elementos flotantes (Heading 2)</title>
+    <p>Un aspecto particular de la propuesta es que los elementos flotantes (tablas o figuras) deben ser identificados con marcadores especiales. Para marcar elementos los flotantes debe utilizar el siguiente marcador:</p>
+    <fig id="FIG_02">
+    <label>Figura 2.</label>
+    <caption>
+    <p>Ejemplo de figura (logo gurí)</p></caption>
+    <graphic xlink:href="FIG_02.png"/>
+    <attrib>Fuente: Elaboración propia (ver https://github.com/estedeahora/guri)</attrib>
+    </fig>
+    <p>No es necesario que utilice el resaltado, aunque esto puede ayudarle para la edición de documentos. Tenga en cuenta que este marcador utiliza saltos de línea débiles (ctr + enter) entre sus diferentes líneas. Técnicamente es posible todo en una línea, separando los elementos del mismo por un espacio, pero es más difícil de leer. Por otra parte, tenga en cuenta que entre el símbolo igual (“=”) y el contenido del elemento no debe haber ningún espacio (o se producirá un error en el documento final). Si desea hacer referencia a un elemento flotante, puede hacerlo utilizando como marcador el siguiente marcador <xref alt="Figura 2" rid="FIG_02">Figura 2</xref> (nuevamente el resaltado es sólo para simplificar su ubicación durante la tarea y no será visible en la versión final). Tenga en cuenta que esta marca insertará la palabra “Figura” / “Tabla” y el número de la misma, con un hipervínculo a la misma.</p>
+    <p>Recuerde que cada una de estas figuras o tablas deben estar en una carpeta con el nombre “float” (dentro de la carpeta del artículo) y deben tener el mismo nombre que indica en el bloque de marcación (en el campo “include”). Este nombre no deberá incluir la extensión de formato del archivo (png, jpg, etc.). Por su parte, si el elemento flotante es una tabla, deberá proveer las mismas en formato tex (para la salida en pdf) y html (usada en la salida xml-jats y html).</p>
+  </sec>
+  <sec id="el-uso-de-la-herramienta-de-control-de-cambios-heading-2">
+    <title>El uso de la herramienta de “control de cambios” (Heading 2)</title>
+    <p>Usted puede introducir cambios con la herramienta “control de cambios” de <italic>Microsoft Word</italic>, de manera que el documento final será</p>
+  </sec>
+</sec>
+<sec id="comentarios-finales">
+  <title>Comentarios finales</title>
+  <p>Tenga en cuenta que este documento no es un manual, sino sólo un ejemplo de cómo puede realizarse la preparación de documentos finales en <italic>Microsoft Word</italic>. Para una explicación de la instalación, configuración global de su revista y del proceso de preparación de documentos debe leer los documentos disponibles en el repositorio: <ext-link ext-link-type="uri" xlink:href="https://github.com/estedeahora/guri/tree/main/manual">https://github.com/estedeahora/guri/tree/main/manual</ext-link></p>
+  <p>Recuerde que este software es distribuido bajo una licencia <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</ext-link>. El software no ofrece garantía de ningún tipo. Se solicita que si su revista utiliza esta herramienta como parte de su proceso editorial agregue el siguiente texto dentro de su página web (habitualmente dentro de la sección de ‘política editorial’) en los diferentes idiomas que utilice en la revista:</p>
+  <disp-quote>
+    <p><italic>Español:</italic>
+    Los documentos finales de esta revista fueron generados utilizando <ext-link ext-link-type="uri" xlink:href="https://github.com/estedeahora/guri">~!guri_</ext-link>.</p>
+    <p><italic>English:</italic>
+    The final documents of this journal were generated using <ext-link ext-link-type="uri" xlink:href="https://github.com/estedeahora/guri">~!guri_</ext-link>.</p>
+    <p><italic>Português:</italic>
+    Os documentos finais desta revista foram gerados usando <ext-link ext-link-type="uri" xlink:href="https://github.com/estedeahora/guri">~!guri_</ext-link>.</p>
+  </disp-quote>
+</sec>
+</body>
+<back>
+<fn-group>
+  <fn id="fn1">
+    <label>1</label><p>Footnote Text. No es necesario utilice un estilo específico para las notas al pie, sino que podrá usar estilo “Texto independiente”.</p>
+  </fn>
+</fn-group>
+
+</back>
+</article>
+
