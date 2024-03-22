@@ -1,27 +1,55 @@
+#' Función para generar archivos finales de un artículo individual
+#'
+#' @description
+#' describir
+#'
+#' @param art_path String...
+#' @param art_name String...
+#' @param verbose Logical...
+#' @param zip_file Logical...
+#' @param clean_files Logical...
+#'
+#' @return Invisible. ...
+#'
+#' @export
 
-# GURI() ----------------------------------------------------
+# art_path <- file.path(".","example", "num1", "art301_messi")
+# art_name <- "art301"
 
 GURI <- function(art_path, art_name, verbose = F,
                  zip_file = F, clean_files = T){
 
-  pandoc_req <- "3.1.10"
-  if(!pandoc_version() >= pandoc_req){
-    stop("Necesita actualizar su versión de Pandoc (se requiere ",
-         pandoc_req, " o posterior). Descargue la última versión",
-         "en el sitio de Pandoc: https://github.com/jgm/pandoc/releases/latest")
+  pandoc_req <- "3.1.12"
+
+  if(!pandoc::pandoc_version() >= pandoc_req){
+    cli_alert_info(paste0("To upgrade Pandoc run",
+                          cli::col_red("`GURI_install(pandoc = T, tinytex = F)`"),
+                          "; or Download manually the latest version from the Pandoc site:",
+                          "{.url https://github.com/jgm/pandoc/releases/latest}"))
+    stop("Upgrade the Pandoc version (", pandoc_req, " or later is required).")
   }
 
-  # Preprar archivos
-  cat("Artículo:", "\033[34m", art_name, "\033[39m", "\n")
-  cat("\033[33m", "* Preparación de archivos.", "\033[39m")
-  GURI_prepare(art_path, art_name)
-  cat("DONE\n")
+  cli_h1(col_blue( paste("Article:", art_name)))
 
-  # Convert files
-  # docx -> md
-  cat("\033[33m", "* Crear archivo markdown (", art_name, ".md ).", "\033[39m")
-  GURI_to_md(art_path, art_name, verbose = verbose)
-  cat("DONE\n")
+  # Modificar: art[~]_CREDIT.xlsx -> art[~]_CREDIT.csv
+
+  credit_xlsx <- file.path(art_path, paste0(art_name, "_credit.xlsx"))
+
+  if(file.exists(credit_xlsx)){
+    # TODO: Pasar a función independiente `CREDITtoCSV()`
+
+    cli_process_start(paste0(col_yellow("File preparation (converting "),
+                             "{.path ", art_name, "_CREDIT.xml}",
+                             col_yellow(" to csv file).")) )
+
+    credit_csv  <- stringr::str_replace(credit_xlsx, "\\.xlsx$", "\\.csv")
+    readxl::read_xlsx(credit_xlsx) |> write.csv(credit_csv, row.names = F, na = "")
+
+    cli_process_done()
+
+  }
+
+
   # docx -> biblio
   cat("\033[33m", "* Crear archivo de bibliografía (", art_name, "_biblio).", "\033[39m")
   GURI_biblio(art_path, art_name)
@@ -30,6 +58,13 @@ GURI <- function(art_path, art_name, verbose = F,
   cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
   GURI_to_AST(art_path, art_name)
   cat("DONE\n")
+
+  # Convert files
+  # docx -> md
+  cli_process_start(col_yellow("Crear archivo markdown"))
+  GURI_to_md(art_path, art_name, verbose = verbose)
+  cli_process_done()
+
   # md -> jats
   cat("\033[33m", "* Crear archivo jats-xml (", art_name, ".xml ).", "\033[39m")
   GURI_to_jats(art_path, art_name)
