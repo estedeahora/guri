@@ -1,8 +1,9 @@
-# GURI_appendix() ------------------------------------------
-# Transformación de archivos de anexos docx -> md
-# Devuelve el listado de archivos para anexos
+#' Converts files containing appendices in '.docx' format to markdown ('.md') format.
+#'
+#' @return Returns the name of the files containing the appendices in markdown format.
 
-GURI_appendix <- function(wdir, art){
+
+guri_appendix <- function(wdir, art){
   appendix_files <-  list.files(wdir, pattern = paste0(art, "_app[0-9]*\\.docx"))
 
   walk(appendix_files,

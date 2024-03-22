@@ -12,15 +12,15 @@
 #' and pandoc are available and two items with the installed versions of Tinitex and Pandoc.
 #'
 #' @export
-#
 
-GURI_install <- function(pandoc = T, tinytex = T, force = F){
+guri_install <- function(pandoc = T, tinytex = T, force = F){
 
+  # Pandoc
   if(pandoc){
     pandoc::pandoc_install(force = force)
   }
 
-  # Instalación de distribución tinytex y paquetes sugeridos
+  # tinytex & LaTeX packages
   if(tinytex){
     if(!tinytex::is_tinytex() | force){
 

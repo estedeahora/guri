@@ -1,6 +1,4 @@
-# Funciones auxiliares
-
-# Manejar archivos ---------------------------------
+# Manejar path a archivos inst/
 
 # devtools_loaded()
 # Adapted from rmarkdown
@@ -26,7 +24,7 @@ devtools_loaded <- function(x) {
 pkg_file <- function(..., package = "guri", mustWork = FALSE) {
   if (devtools_loaded(package)) {
     # used only if package has been loaded with devtools or pkgload
-    file.path(find.package(package), "inst", ...)
+    file.path(find.package(package), "inst", "files-pkg", ...)
   } else {
     system.file(..., package = package, mustWork = mustWork)
   }
@@ -40,7 +38,8 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
 
 pkg_file_lua <- function(filters = NULL, package = "guri") {
   files <- pkg_file(
-    "filters", if (is.null(filters)) '.' else filters,
+    # "filters", if (is.null(filters)) '.' else filters,
+    "filters", filters,
     package = package, mustWork = TRUE
   )
   # if (is.null(filters)) {
@@ -49,71 +48,12 @@ pkg_file_lua <- function(filters = NULL, package = "guri") {
   rmarkdown::pandoc_path_arg(files)
 }
 
-# GURI_to_AST() -----------------------------------
-# Genera archivo con estructura AST
 
-GURI_to_AST <- function(path_art, art) {
+# Comprimir archivos utilizados
 
-  wdir <- paste0(getwd(), path_art)
+zip_input <- function(id_art){
 
-  # Archivos de entrada / salida
-  file_input  <- paste0(art, ".md")
-  file_json    <- paste0(art, "_AST.json")
-
-  # Archivos de programa ('./files/')
-  program_path = "../../../files/"
-
-  # Opciones generales
-  op_gral <- c("--wrap=none", "--mathml",
-               "--metadata=link-citations",
-               "--reference-links=true")
-
-  # Filtros Lua
-  op_filters <- paste0("--lua-filter=",  program_path, "filters/",
-                       c("include-float-in-format",
-                         "metadata-format-in-text"),
-                       ".lua")
-
-  pandoc_convert(wd = wdir,
-                 input = file_input,
-                 from = "markdown",
-                 output = file_json,
-                 to = "json",
-                 citeproc = T,
-                 options = c(op_gral, op_filters))
-}
-
-# GURI_biblio() ----------------------------------
-# Genera archivo con bibliografía (en biblatex o csljson)
-
-GURI_biblio <- function(path_art, art, bib_type = "csljson"){
-
-  wdir <- paste0(getwd(), path_art)
-
-  # Archivos de entrada / salida
-  file_input  <- paste0(art, ".docx")
-
-  if(bib_type == "csljson"){
-    file_out <- paste0(art, "_biblio.json")
-  }else if(bib_type == "biblatex"){
-    file_out <- paste0(art, "_biblio.bib")
-  }else{
-    stop("'bib_type' debe ser 'biblatex' o 'csljson'")
-  }
-
-  pandoc_convert(wd = wdir,
-                 input = file_input,
-                 from = "docx+citations",
-                 output = file_out ,
-                 to = bib_type)
-
-}
-
-# GURI_zip_input() ----------------------------------------------------------
-
-GURI_zip_input <- function(id_art){
-
-  work_files <- paste0(paste0(id_art, c(".docx", #"_biblio.json",
+  work_files <- paste0(paste0(id_art, c(".docx",
                                         "_notes.md", ".yaml",
                                         "_credit.xlsx") ))
   float_dir <- paste0("float")
@@ -127,7 +67,7 @@ GURI_zip_input <- function(id_art){
 
 }
 
-# GURI_clean_temp() -------------------------------------------
+# Ordenar archivos temporales (-> .JOURNAL/ISSUE/_temp/)
 
 GURI_clean_temp <- function(id_art){
 
@@ -147,7 +87,7 @@ GURI_clean_temp <- function(id_art){
 
 }
 
-# GURI_output() -------------------------------------------
+# Ordenar archivos de salida (-> .JOURNAL/ISSUE/_output/)
 
 GURI_output <- function(id_art){
 

@@ -1,26 +1,35 @@
 
 # Generar documentos finales ---------------------------
 
-# GURI_to_md() --------------------------------------------------------------
+#' Converts the corrected manuscript in docx format to markdown format.
+#'
+#' @param path_art A string with the path to the article directory
+#' @param art A string with the article id.
+#' @param verbose Logical
+#'
+#' @return Invisible
+#'
+#' @export
 
 GURI_to_md <- function(path_art, art, verbose = F){
 
   wdir <- paste0(getwd(), path_art)
 
-  # Archivos de entrada / salida
+  # Input / output file names.
   file_input  <- paste0(art, ".docx")
   file_output <- paste0(art, ".md")
 
-  # Archivos de programa ('./files/') y configuración de revista ('./JOURNAL/_config')
-  program_path = "../../../files/"
-  config_path = "../../_config/"
-  config_files = list.files(paste0(wdir, config_path))
+  # Program files ('GURI/inst/') and customised journal configuration files ('./JOURNAL/_config').
+  program_path <- pkg_file()
+  config_path <- file.path("..", "..", "_config/")
+  config_files <- list.files(file.path(wdir, config_path))
 
-  # Opciones generales
+  # General options
   op_gral <- c( "-s", #"--log=./log_pandoc.log",
                 "--extract-media=./",
                 "--wrap=none")
 
+  # Appendix
   app_files <- GURI_appendix(wdir, art)
   if(length(app_files) > 0){
     app_files <- paste0("--metadata=appendix:", app_files)
@@ -28,30 +37,33 @@ GURI_to_md <- function(path_art, art, verbose = F){
     app_files <- NULL
   }
 
-  # Filtros Lua
-  op_filters <- paste0("--lua-filter=", program_path, "filters/",
-                       c("title",
-                         "unhighlight",
-                         "add-credit",
-                         "metadata-div-before-bib",
-                         "include-files",
-                         "cross-references",
-                         "translate-citation-elements",
-                         "include-float-marks",
-                         "author-to-canonical"),
-                       ".lua")
+  # Lua Filters
+  op_filters <- paste0("--lua-filter=",
+                       file.path(program_path, "filters",
+                                 paste0(c("title",
+                                          "unhighlight",
+                                          "add-credit",
+                                          "metadata-div-before-bib",
+                                          "include-files",
+                                          "cross-references",
+                                          "translate-citation-elements",
+                                          "include-float-marks",
+                                          "author-to-canonical"),
+                                        ".lua")
+                                 )
+                       )
 
-  # Opciones de bibliografía
+  # Bibliography options
   op_biblio <- c()#c(paste0("--bibliography=./", art, "_biblio.json"))
 
-  config_csl <- config_files[str_detect(config_files, ".*[.]csl$") ]
+  config_csl <- config_files[stringr::str_detect(config_files, ".*[.]csl$") ]
 
   if(length(config_csl) == 1){
     op_biblio <- c(op_biblio, paste0("--csl=", config_path, config_csl))
   }else if(length(conf_csl) > 1){
-    stop("\nExisten múltiples archivos csl en 'root/_config/'")
+    stop("There are multiple 'csl' files in 'JOURNAL/_config/'. Only one csl file should be provided.")
   }else{
-    cat("\nSe usará csl por defecto")
+    cli_alert_info("Default csl is used.")
   }
 
   # Archivos de metadatos
@@ -59,15 +71,18 @@ GURI_to_md <- function(path_art, art, verbose = F){
                "--metadata-file=../_issue.yaml",           # número
                "--metadata-file=../../_journal.yaml")      # revista
 
-  pandoc_convert(wd = wdir,
-                 input = file_input,
-                 from = "docx+citations",
-                 output = file_output,
-                 citeproc = T, verbose = verbose,
-                 to = "markdown", # +footnotes+citations+smart+grid_tables-implicit_figures+link_attributes
-                 options = c(op_gral, op_meta, app_files,
-                             op_filters, op_biblio)
+  rmarkdown::pandoc_convert(wd = wdir,
+                            input = file_input,
+                            from = "docx+citations",
+                            output = file_output,
+                            citeproc = T,
+                            verbose = verbose,
+                            to = "markdown",
+                            options = c(op_gral, op_meta, app_files,
+                                        op_filters, op_biblio)
   )
+
+  invisible(T)
 }
 
 # GURI_to_html() --------------------------------------------------------------
@@ -87,7 +102,6 @@ GURI_to_html <- function(path_art, art){
 
   # Opciones generales
   op_gral <- c("--wrap=none", "-s", "--metadata=link-citations",
-               #"-V link-citations=true",
                "--mathml",
                paste0("--template=", program_path, "template/template.html"),
                "--reference-links=true")
@@ -212,3 +226,64 @@ GURI_to_pdf <- function(path_art, art, verbose = F){
   lualatex(file_tex)
 
 }
+
+# Funciones auxiliares --------------------
+  # GURI_to_AST() -----------------------------------
+  # Genera archivo con estructura AST
+  
+  GURI_to_AST <- function(path_art, art) {
+    
+    wdir <- paste0(getwd(), path_art)
+    
+    # Archivos de entrada / salida
+    file_input  <- paste0(art, ".md")
+    file_json    <- paste0(art, "_AST.json")
+    
+    # Archivos de programa ('./files/')
+    program_path = "../../../files/"
+    
+    # Opciones generales
+    op_gral <- c("--wrap=none", "--mathml", 
+                 "--metadata=link-citations",
+                 "--reference-links=true")
+    
+    # Filtros Lua
+    op_filters <- paste0("--lua-filter=",  program_path, "filters/",
+                         c("include-float-in-format",
+                           "metadata-format-in-text"),
+                         ".lua")
+    
+    pandoc_convert(wd = wdir, 
+                   input = file_input,
+                   from = "markdown",
+                   output = file_json,
+                   to = "json",
+                   citeproc = T,
+                   options = c(op_gral, op_filters))
+  }
+  
+  # GURI_biblio() ----------------------------------
+  # Genera archivo con bibliografía (en biblatex o csljson)
+  
+  GURI_biblio <- function(path_art, art, bib_type = "csljson"){
+    
+    wdir <- paste0(getwd(), path_art)
+    
+    # Archivos de entrada / salida
+    file_input  <- paste0(art, ".docx")
+    
+    if(bib_type == "csljson"){
+      file_out <- paste0(art, "_biblio.json")
+    }else if(bib_type == "biblatex"){
+      file_out <- paste0(art, "_biblio.bib")
+    }else{
+      stop("'bib_type' debe ser 'biblatex' o 'csljson'")
+    }
+    
+    pandoc_convert(wd = wdir,
+                   input = file_input,
+                   from = "docx+citations",
+                   output = file_out ,
+                   to = bib_type)
+    
+  }

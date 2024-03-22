@@ -16,14 +16,14 @@
 # art_path <- file.path(".","example", "num1", "art301_messi")
 # art_name <- "art301"
 
-GURI <- function(art_path, art_name, verbose = F,
+guri <- function(art_path, art_name, verbose = F,
                  zip_file = F, clean_files = T){
 
   pandoc_req <- "3.1.12"
 
   if(!pandoc::pandoc_version() >= pandoc_req){
     cli_alert_info(paste0("To upgrade Pandoc run",
-                          cli::col_red("`GURI_install(pandoc = T, tinytex = F)`"),
+                          col_red("`GURI_install(pandoc = T, tinytex = F)`"),
                           "; or Download manually the latest version from the Pandoc site:",
                           "{.url https://github.com/jgm/pandoc/releases/latest}"))
     stop("Upgrade the Pandoc version (", pandoc_req, " or later is required).")
@@ -86,7 +86,7 @@ GURI <- function(art_path, art_name, verbose = F,
   # Zip file
   if(zip_file){
     cat("\033[33m", "* Crear zip con archivos usados como entrada", "\033[39m")
-    GURI_zip_input(art_name)
+    zip_input(art_name)
     cat("DONE\n")
   }
   # Clean files
