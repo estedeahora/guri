@@ -1,11 +1,16 @@
-bibentry(
-  bibtype  = "Article",
-  title    = ,
-  author   = ,
-  journal  = ,
-  year     = ,
-  volume   = ,
-  number   = ,
-  pages    = ,
-  doi      =
-)
+key <- paste0("R-", meta$Package)
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+doi <- "10.5281/zenodo.2543762"
+title <- paste0(meta$Package, ": ", meta$Title)
+
+citHeader("To cite ggnewscale in publications use:")
+bibentry(bibtype = "Manual",
+         key = key,
+         title = title,
+         author = person(given = "Pablo",
+                         family = "Serrati",
+                         comment = c(ORCID = "0000-0001-5300-2243")),
+         year = year,
+         note = note,
+         doi  = doi)

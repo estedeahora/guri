@@ -30,26 +30,46 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
   }
 }
 
-# pkg_file_lua()
-# Get the full paths of Lua filters in an R package
+# # pkg_file_lua()
+# # Get the full paths of Lua filters in an R package
+# #
+# # Adapted from rmarkdown:
+# # https://github.com/rstudio/rmarkdown/blob/ee69d59f8011ad7b717a409fcbf8060d6ffc4139/R/util.R#L58-L60
 #
-# Adapted from rmarkdown:
-# https://github.com/rstudio/rmarkdown/blob/ee69d59f8011ad7b717a409fcbf8060d6ffc4139/R/util.R#L58-L60
+# pkg_file_lua <- function(filters = NULL, package = "guri") {
+#   files <- pkg_file(
+#     # "filters", if (is.null(filters)) '.' else filters,
+#     "filters", filters,
+#     package = package, mustWork = TRUE
+#   )
+#   # if (is.null(filters)) {
+#   #   files <- list.files(dirname(files), "[.]lua$", full.names = TRUE)
+#   # }
+#   rmarkdown::pandoc_path_arg(files)
+# }
 
-pkg_file_lua <- function(filters = NULL, package = "guri") {
-  files <- pkg_file(
-    # "filters", if (is.null(filters)) '.' else filters,
-    "filters", filters,
-    package = package, mustWork = TRUE
-  )
-  # if (is.null(filters)) {
-  #   files <- list.files(dirname(files), "[.]lua$", full.names = TRUE)
-  # }
-  rmarkdown::pandoc_path_arg(files)
+#' Prepare the working directory for each article
+#'
+#' @param art_path A string with the path to the article folder.
+#' @param art_pre A string. This prefix is used to identify the folders where each issue of your journal will be stored. For example, if you use 'num' (default) the folders where you should store the issues of your journal will be 'num1', 'num2', and so on.
+#'
+#' @return Invisible True.
+
+guri_CREDITtoCSV <- function(art_path, art_pre){
+
+  # Generar "art[~]_credit.csv "
+  credit_xlsx <- file.path (art_path, paste0(art_pre, "_credit.xlsx"))
+  credit_csv  <- paste0(art_path, art_pre, "_credit.csv")
+
+  if(file.exists(credit_xlsx)){
+    readxl::read_xlsx(credit_xlsx) |> write.csv(credit_csv, row.names = F, na = "")
+  }
+
+  invisible(T)
+
 }
 
-
-# Comprimir archivos utilizados
+# zip files
 
 zip_input <- function(id_art){
 
@@ -61,7 +81,7 @@ zip_input <- function(id_art){
     work_files <- c(work_files, float_dir)
   }
 
-  zip_file <- paste0(id_art, "_", format(today(), "%Y.%m.%d"), ".zip")
+  zip_file <- paste0(id_art, "_", format(Sys.Date(), "%Y.%m.%d"), ".zip")
 
   zip(zipfile = zip_file, files = work_files)
 
@@ -69,7 +89,7 @@ zip_input <- function(id_art){
 
 # Ordenar archivos temporales (-> .JOURNAL/ISSUE/_temp/)
 
-GURI_clean_temp <- function(id_art){
+guri_clean_temp <- function(id_art){
 
   if(!dir.exists("./_temp")){
     dir.create("./_temp")
@@ -80,16 +100,16 @@ GURI_clean_temp <- function(id_art){
                              "_biblio\\.((json)|(bib))"
   )) |>
     paste0(collapse = "|")
-  archivos <- archivos[str_detect(archivos, patron)]
+  archivos <- archivos[stringr::str_detect(archivos, patron)]
 
-  walk2(archivos, paste0("./_temp/", archivos),
-        file.rename)
+  purrr::walk2(archivos, paste0("./_temp/", archivos),
+               file.rename)
 
 }
 
 # Ordenar archivos de salida (-> .JOURNAL/ISSUE/_output/)
 
-GURI_output <- function(id_art){
+guri_output <- function(id_art){
 
   if(!dir.exists("./_output")){
     dir.create("./_output")
@@ -97,7 +117,7 @@ GURI_output <- function(id_art){
 
   archivos <- paste0(id_art, c(".pdf", ".xml", ".html"))
 
-  walk2(archivos, paste0("./_output/", archivos),
-        file.rename)
+  purrr::walk2(archivos, paste0("./_output/", archivos),
+               file.rename)
 
 }

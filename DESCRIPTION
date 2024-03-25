@@ -1,6 +1,6 @@
 Package: guri
 Title: ~!gurí_: Unified Format Manager for Research Journals
-Version: 1.0.0
+Version: 0.1.0.9000
 Authors@R: 
     person("Pablo Santiago", "Serrati", , "pabloserrati@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5300-2243"))
@@ -13,7 +13,12 @@ Imports:
     cli,
     dplyr,
     pandoc,
+    purrr,
     readxl,
     rmarkdown,
     stringr,
-    tinytex
+    tinytex,
+    utils
+Depends: 
+    R (>= 2.10)
+LazyData: true

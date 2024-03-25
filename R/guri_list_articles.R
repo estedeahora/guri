@@ -17,11 +17,10 @@ guri_list_articles <- function(path_issue){
          "(example: art301_my-articule).")
   }
 
-  art <- dplyr::tibble(art_path = list.dirs(path_issue, recursive = F )) |>
-    dplyr::mutate(
-      art_id = stringr::str_remove(art_path, path_issue),
-      art_id = stringr::str_remove(art_id, "_.*$"),
-      art_path = paste0(art_path, "/"))
+  art <- dplyr::tibble(art_path = list.dirs(path_issue, recursive = F ))
+  art$art_id <- art$art_path |>
+    stringr::str_remove(path_issue) |>
+    stringr::str_remove("_.*$")
 
   return(art)
 }

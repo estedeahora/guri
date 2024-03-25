@@ -2,6 +2,8 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#'
+#' @importFrom cli cli_abort
 #' @importFrom cli cli_alert_info
 #' @importFrom cli cli_alert_success
 #' @importFrom cli cli_h1
@@ -11,5 +13,8 @@
 #' @importFrom cli col_green
 #' @importFrom cli col_red
 #' @importFrom cli col_yellow
+#' @importFrom utils file.edit
+#' @importFrom utils write.csv
+#' @importFrom utils zip
 ## usethis namespace: end
 NULL

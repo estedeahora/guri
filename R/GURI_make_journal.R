@@ -28,20 +28,22 @@
 #' @return Invisible returns the journal folder.
 #'
 #' @examples
+#' \dontrun{
 #' # Create a folder structure for a new journal.
 #' new_journal_folder <- guri_make_journal(journal = "new_journal")
 #'
-#' list.files(new_journal_folder, recursive = T, include.dirs = T)
+#' list.files(new_journal_folder, recursive = TRUE, include.dirs = TRUE)
 #'
 #' # Create a folder structure for the 'example journal'.
-#' guri_make_journal(example = T)
+#' guri_make_journal(example = TRUE)
 #'
-#' head(list.files("example", recursive = T, include.dirs = T))
+#' head(list.files("example", recursive = TRUE, include.dirs = TRUE))
 #' guri_list_articles("example/num1/")
-#'
+#' }
 #' @export
 
-guri_make_journal <- function(journal = NULL, issue_prefix = "num", example = FALSE){
+guri_make_journal <- function(journal = NULL, issue_prefix = "num",
+                              example = FALSE){
 
   if(example){
     if(!is.null(journal)){

@@ -51,32 +51,32 @@ guri <- function(art_path, art_name, verbose = F,
 
 
   # docx -> biblio
-  cat("\033[33m", "* Crear archivo de bibliografía (", art_name, "_biblio).", "\033[39m")
-  GURI_biblio(art_path, art_name)
+  cat("\033[33m", "* Crear archivo de bibliografia (", art_name, "_biblio).", "\033[39m")
+  guri_biblio(art_path, art_name)
   cat("DONE\n")
   # md -> AST
   cat("\033[33m", "* Crear AST (", art_name, "_AST.json ).", "\033[39m")
-  GURI_to_AST(art_path, art_name)
+  guri_to_AST(art_path, art_name)
   cat("DONE\n")
 
   # Convert files
   # docx -> md
   cli_process_start(col_yellow("Crear archivo markdown"))
-  GURI_to_md(art_path, art_name, verbose = verbose)
+  guri_to_md(art_path, art_name, verbose = verbose)
   cli_process_done()
 
   # md -> jats
   cat("\033[33m", "* Crear archivo jats-xml (", art_name, ".xml ).", "\033[39m")
-  GURI_to_jats(art_path, art_name)
+  guri_to_jats(art_path, art_name, verbose = verbose)
   cat("DONE\n")
   # md -> html
   cat("\033[33m", "* Crear archivo html (", art_name, ".html ).", "\033[39m")
-  GURI_to_html(art_path, art_name)
+  guri_to_html(art_path, art_name, verbose = verbose)
   cat("DONE\n")
   # md -> tex + pdf
   cat("\033[33m", "* Crear archivo latex (", art_name, ".tex ).",
       "y pdf (", art_name, "pdf ).", "\033[39m")
-  GURI_to_pdf(art_path, art_name, verbose = verbose)
+  guri_to_pdf(art_path, art_name, verbose = verbose)
   cat("DONE\n")
 
   # File reorganization
@@ -92,10 +92,10 @@ guri <- function(art_path, art_name, verbose = F,
   # Clean files
   if(clean_files){
     cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
-    GURI_clean_temp(art_name)
+    guri_clean_temp(art_name)
     cat("DONE\n")
     cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
-    GURI_output(art_name)
+    guri_output(art_name)
     cat("DONE\n")
   }
   setwd(wd_orig)
