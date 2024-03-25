@@ -6,6 +6,9 @@ Authors@R:
            comment = c(ORCID = "0000-0001-5300-2243"))
 Description: ~gurí_ (Gestor Unificado de formatos para Revistas de Investigación / Unified Format Manager for Research Journals) facilitates the generation of final documents for scientific journals from documents obtained in the 'proofreading' stage. The proposal seeks to solve the difficulties of some academic journals in generating final documents in different formats in a consistent way and without generating duplicated processes. It also takes into account that many scientific journals use docx documents as the basis of their workflows.
 License: CC BY-NC-SA 4.0 + file LICENSE
+URL: https://github.com/estedeahora/guri,
+     https://estedeahora.github.io/guri/
+BugReports: https://github.com/estedeahora/guri/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
