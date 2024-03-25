@@ -22,6 +22,8 @@ Imports:
     stringr,
     tinytex,
     utils
+Suggests:
+    fs
 Depends: 
     R (>= 2.10)
 LazyData: true
