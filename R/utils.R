@@ -26,7 +26,7 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
     # used only if package has been loaded with devtools or pkgload
     file.path(find.package(package), "inst", "files-pkg", ...)
   } else {
-    system.file(..., package = package, mustWork = mustWork)
+    system.file("files-pkg", ..., package = package, mustWork = mustWork)
   }
 }
 
