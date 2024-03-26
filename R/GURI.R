@@ -92,10 +92,10 @@ guri <- function(art_path, art_name, verbose = F,
   # Clean files
   if(clean_files){
     cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
-    GURI_clean_temp(art_name)
+    guri_clean_temp(art_name)
     cat("DONE\n")
     cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
-    GURI_output(art_name)
+    guri_output(art_name)
     cat("DONE\n")
   }
   setwd(wd_orig)
