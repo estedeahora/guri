@@ -50,6 +50,7 @@ Se aceptan solicitudes de extracción, informes de errores y solicitudes de func
 3.  [ ] Posibilitar uso desde línea de comando (y luego desde aplicación).
 4.  [ ] Transformar funciones en paquete de R.
 5.  [ ] Agregar soporte para permitir primer idioma diferente de español.
-6.  [ ] Permitir filtros personalizados.
-7.  [ ] Agregar ebook como formato de salida.
-8.  [ ] Incorporar requerimientos de *Scielo*.
+6.  [ ] Ofrecer múltiples templates como opción con `guri_make_journal`.
+7.  [ ] Permitir filtros personalizados.
+8.  [ ] Agregar ebook como formato de salida.
+9.  [ ] Incorporar requerimientos de *Scielo*.
