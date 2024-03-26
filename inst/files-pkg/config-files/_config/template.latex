@@ -458,7 +458,7 @@ $endif$
       hidelinks,
     $endif$
   $endif$
-    pdfcreator={LaTeX via pandoc & !~gurí}}
+    pdfcreator={LaTeX via pandoc & ~!gurí}}
 
 %%%% Inicio de documento
 
