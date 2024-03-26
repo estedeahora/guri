@@ -26,7 +26,7 @@ guri <- function(art_path, art_name, verbose = F,
                           col_red("`GURI_install(pandoc = T, tinytex = F)`"),
                           "; or Download manually the latest version from the Pandoc site:",
                           "{.url https://github.com/jgm/pandoc/releases/latest}"))
-    stop("Upgrade the Pandoc version (", pandoc_req, " or later is required).")
+    cli_abort(paste0("Upgrade the Pandoc version (", pandoc_req, " or later is required)."))
   }
 
   cli_h1(col_blue( paste("Article:", art_name)))
@@ -92,10 +92,10 @@ guri <- function(art_path, art_name, verbose = F,
   # Clean files
   if(clean_files){
     cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
-    guri_clean_temp(art_name)
+    GURI_clean_temp(art_name)
     cat("DONE\n")
     cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
-    guri_output(art_name)
+    GURI_output(art_name)
     cat("DONE\n")
   }
   setwd(wd_orig)

@@ -70,25 +70,25 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
   }else{
 
     if(is.null(journal)) {
-      stop("Provide a name for the journal.")
+      cli_abort("Provide a name for the journal.")
     }
 
     if(length(journal) != 1) {
-      stop("Provide a unique name for the journal.")
+      cli_abort("Provide a unique name for the journal.")
     }
 
     if(stringr::str_detect(journal, "^[a-zA-Z]([a-zA-Z0-9_])*$", negate = T)) {
-      stop("The name of the journal can only use letters [a-zA-Z], ",
-           "numbers[0-9] and low dash (_) and must begin with a letter.")
+      cli_abort(paste0("The name of the journal can only use letters [a-zA-Z], ",
+                  "numbers[0-9] and low dash (_) and must begin with a letter."))
     }
 
     if(journal == "example"){
-      stop("'example' is not a valid name for a journal.",
-           "This name is reserved for the 'example' journal.")
+      cli_abort(paste0("'example' is not a valid name for a journal.",
+                       "This name is reserved for the 'example' journal."))
     }
 
     if(length(issue_prefix) != 1) {
-      stop("Provide a unique value for the 'issue_prefix'.")
+      cli_abort("Provide a unique value for the 'issue_prefix'.")
     }
   }
 
@@ -98,10 +98,10 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
       cli_alert_info(paste("If you want to reinstall the 'example journal',",
                            "delete the './example/' folder",
                            "and run 'guri_make_journal(example = TRUE)'"))
-      stop("'example' is already present in folder.\n")
+      cli_abort("'example' is already present in folder.\n")
     }else{
-      stop("The journal name already exists. To create a new journal, ",
-           "choose a new journal name.")
+      cli_abort(paste0("The journal name already exists. To create a new journal, ",
+                  "choose a new journal name."))
     }
   }
 
