@@ -50,7 +50,7 @@ guri_convert <- function(path_art, art,
   opt_filters <- pandoc_options$lua[c("filter", output)]                            # select pandoc options
   opt_filters <- opt_filters$filter[order(opt_filters$md) & !is.na(opt_filters$md)] # filter NA and order filters
   if(verbose){
-    cli_alert_info(paste0("Internal lua filters used: ", paste(col_blue(opt_filters), collapse = "; "), ".") )
+    ui_alert_info("Internal lua filters used: ", paste(col_blue(opt_filters), collapse = "; "), ".")
   }
   opt_filters <- file.path(program_path, "filters", opt_filters)                    # make path to internal program filters
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
@@ -65,7 +65,7 @@ guri_convert <- function(path_art, art,
     app_files <- guri_appendix(wdir, art)
     if(length(app_files) > 0){
       if(verbose){
-        cli_alert_info(paste(length(app_files), "appendices are added."))
+        ui_alert_info(length(app_files), " appendices are added.")
       }
       app_files <- paste0("--metadata=appendix:", app_files)
     }
@@ -81,9 +81,9 @@ guri_convert <- function(path_art, art,
     if(length(config_csl) == 1){
       op_biblio <- c(op_biblio, paste0("--csl=", config_path, config_csl))
     }else if(length(config_csl) > 1){
-      cli_abort("There are multiple 'csl' files in 'JOURNAL/_config/'. Only one csl file should be provided.")
+      ui_abort("There are multiple 'csl' files in {.path 'JOURNAL/_config/'}. Only one csl file should be provided.")
     }else{
-      cli_alert_info("Default csl is used.")
+      ui_alert_info("Default csl is used. See: {.url https://pandoc.org/chunkedhtml-demo/9.2-specifying-a-citation-style.html}")
     }
   }
 

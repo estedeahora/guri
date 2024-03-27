@@ -3,9 +3,6 @@
 
 ## usethis namespace: start
 #'
-#' @importFrom cli cli_abort
-#' @importFrom cli cli_alert_info
-#' @importFrom cli cli_alert_success
 #' @importFrom cli cli_h1
 #' @importFrom cli cli_process_done
 #' @importFrom cli cli_process_start

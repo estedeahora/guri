@@ -45,7 +45,7 @@
 #' guri_make_journal(example = TRUE)
 #'
 #' if(requireNamespace("fs", quietly = TRUE)) {
-#'   fs::dir_tree("example")
+#'   fs::dir_tree("example", type =  "directory")
 #' }else{
 #'   head(list.files("example", recursive = TRUE, include.dirs = TRUE))
 #' }
@@ -59,10 +59,10 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
 
   if(example){
     if(!is.null(journal)){
-      cli_alert_info(paste("The name of the example journal is predefined",
-                           "and cannot be modified.",
-                           "The name 'example' will be used instead",
-                           "of the name given in the 'journal' parameter."))
+      ui_alert_info("The name of the example journal is predefined ",
+                    "and cannot be modified. ",
+                    "The name 'example' will be used instead ",
+                    "of the name given in the 'journal' parameter.")
     }
 
     journal <- "example"
@@ -70,51 +70,49 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
   }else{
 
     if(is.null(journal)) {
-      cli_abort("Provide a name for the journal.")
+      ui_abort("Provide a name for the journal.")
     }
 
     if(length(journal) != 1) {
-      cli_abort("Provide a unique name for the journal.")
+      ui_abort("Provide a unique name for the journal.")
     }
 
     if(stringr::str_detect(journal, "^[a-zA-Z]([a-zA-Z0-9_])*$", negate = T)) {
-      cli_abort(paste0("The name of the journal can only use letters [a-zA-Z], ",
-                  "numbers[0-9] and low dash (_) and must begin with a letter."))
+      ui_abort("The name of the journal can only use letters [a-zA-Z], ",
+               "numbers[0-9] and low dash (_) and must begin with a letter.")
     }
 
     if(journal == "example"){
-      cli_abort(paste0("'example' is not a valid name for a journal.",
-                       "This name is reserved for the 'example' journal."))
+      ui_abort("'example' is not a valid name for a journal. ",
+               "This name is reserved for the 'example' journal.")
     }
 
     if(length(issue_prefix) != 1) {
-      cli_abort("Provide a unique value for the 'issue_prefix'.")
+      ui_abort("Provide a unique value for the 'issue_prefix'.")
     }
   }
 
   journal_folder <- file.path(".", journal)
   if(dir.exists(journal_folder)){
     if(example){
-      cli_alert_info(paste("If you want to reinstall the 'example journal',",
-                           "delete the './example/' folder",
-                           "and run 'guri_make_journal(example = TRUE)'"))
-      cli_abort("'example' is already present in folder.\n")
+      ui_alert_info("If you want to reinstall the 'example journal',",
+                           "delete the {.path './example/'} folder",
+                           "and run 'guri_make_journal(example = TRUE)'")
+      ui_abort("'example' is already present in folder.\n")
     }else{
-      cli_abort(paste0("The journal name already exists. To create a new journal, ",
-                  "choose a new journal name."))
+      ui_abort("The journal name '", journal, "' already exists. To create a ",
+                  "new journal, choose a new journal name.")
     }
   }
 
   dir.create(journal_folder)
-  cli_alert_success(paste0("Create journal folder ({.path ", journal_folder, "})."))
+  ui_alert_success("Create journal folder ({.path ", journal_folder, "}).")
 
   config_folder <- pkg_file("config-files")
   file.copy(from = file.path(config_folder, c("_config", "_default-files")),
             to = journal_folder, recursive = T)
-  cli_alert_success(paste0("Copy configuration files in {.path ",
-                                journal_folder, "/_config/}."))
-  cli_alert_success(paste0("Copy default files in {.path ",
-                                journal_folder, "/_default-files/}."))
+  ui_alert_success("Copy configuration files in {.path ", journal_folder, "/_config/}.")
+  ui_alert_success("Copy default files in {.path ", journal_folder, "/_default-files/}.")
 
   if(example){
 
@@ -128,24 +126,24 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
     file.copy(from = file.path(example_folder, "_journal.yaml"),
               to = file.path(".", journal, "_journal.yaml"),
               overwrite = T)
-    cli_alert_success("Copy {.path ./_journal.yaml} file.")
+    ui_alert_success("Copy {.path ./_journal.yaml} file.")
 
     # TODO: Agregar función correcta
-    cli_alert_info(paste("To generate the output files for this 'example' journal run:\n",
-                         col_red("'GRUI_output_issue('num1', journal = 'example')'.")))
+    ui_alert_info("To generate the output files for this 'example' journal run:\n",
+                  col_red("'GRUI_output_issue('num1', journal = 'example')'."))
 
     journal <- "The 'example' journal"
   }else{
     file.copy(from = file.path(config_folder, "_journal.yaml"),
               to = file.path(journal_folder, "_journal.yaml"))
 
-    cli_alert_success("Copy {.path ./_journal.yaml} file.")
-    cli_alert_info("Edit manually {.path ./_journal.yaml} file.")
+    ui_alert_success("Copy {.path ./_journal.yaml} file.")
+    ui_alert_info("Edit manually {.path ./_journal.yaml} file.")
 
     file.edit(paste0(journal_folder, "/_journal.yaml"))
   }
 
-  cli_alert_success(col_green(paste0(journal, " was successfully created.")))
+  ui_alert_success(col_green(paste0(journal, " was successfully created.")))
 
   invisible(journal_folder)
 }
@@ -155,7 +153,7 @@ guri_make_journal <- function(journal = NULL, issue_prefix = "num",
 # TODO Generar script (y modificar para adaptar a revista?)
 
 # dir.create(paste0(journal_folder, "/_docs") )
-# cli::cli_alert_success(paste0("Create journal documents folder (",
+# ui_alert_success(paste0("Create journal documents folder (",
 #                              journal_folder, "/_docs)."))
 
 

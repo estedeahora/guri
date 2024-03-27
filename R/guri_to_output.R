@@ -164,7 +164,7 @@ guri_biblio <- function(path_art, art, verbose = F, bib_type = "csljson"){
   }else if(bib_type == "biblatex"){
     file_out <- paste0(art, "_biblio.bib")
   }else{
-    cli_abort("'bib_type' debe ser 'biblatex' o 'csljson'")
+    ui_abort("'bib_type' debe ser 'biblatex' o 'csljson'")
   }
 
   rmarkdown::pandoc_convert(wd = wdir,

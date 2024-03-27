@@ -22,14 +22,14 @@ guri <- function(art_path, art_name, verbose = F,
   pandoc_req <- "3.1.12"
 
   if(!pandoc::pandoc_version() >= pandoc_req){
-    cli_alert_info(paste0("To upgrade Pandoc run",
-                          col_red("`GURI_install(pandoc = T, tinytex = F)`"),
-                          "; or Download manually the latest version from the Pandoc site:",
-                          "{.url https://github.com/jgm/pandoc/releases/latest}"))
-    cli_abort(paste0("Upgrade the Pandoc version (", pandoc_req, " or later is required)."))
+    ui_alert_info("To upgrade Pandoc run",
+                  col_red("`GURI_install(pandoc = T, tinytex = F)`"),
+                  "; or Download manually the latest version from the Pandoc site:",
+                  "{.url https://github.com/jgm/pandoc/releases/latest}")
+    ui_abort("Upgrade the Pandoc version (", pandoc_req, " or later is required).")
   }
 
-  cli_h1(col_blue( paste("Article:", art_name)))
+  cli_h1(col_blue(paste("Article:", art_name)))
 
   # Modificar: art[~]_CREDIT.xlsx -> art[~]_CREDIT.csv
 

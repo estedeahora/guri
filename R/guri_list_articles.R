@@ -10,11 +10,11 @@
 guri_list_articles <- function(path_issue){
 
   if(!dir.exists(path_issue)){
-    cli_abort(paste0("The folder ", col_red(path_issue), " does not exist.\n",
-                     "Create the directory with the articles to format. ",
-                     "Remember to place a folder for each article using as folder name ",
-                     "'art' and three numbers, followed by the text of your choice ",
-                     "(example: art301_my-articule)."))
+    ui_abort("The folder {.path ", col_red(path_issue), "} does not exist.\n",
+             "Create the directory with the articles to format. ",
+             "Remember to place a folder for each article using as folder name ",
+             "'art' and three numbers, followed by the text of your choice ",
+             "(example: 'art301_my-articule').")
   }
 
   art <- dplyr::tibble(art_path = list.dirs(path_issue, recursive = F ))

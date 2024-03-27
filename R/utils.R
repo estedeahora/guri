@@ -1,3 +1,17 @@
+# {cli} wraps
+
+ui_alert_info <- function(..., sep = ""){
+  cli::cli_alert_info(paste(..., sep = sep))
+}
+
+ui_alert_success <- function(..., sep = ""){
+  cli::cli_alert_success(paste(..., sep = sep))
+}
+
+ui_abort <- function(..., sep = ""){
+  cli::cli_abort(paste(..., sep = sep))
+}
+
 # Manejar path a archivos inst/
 
 # devtools_loaded()

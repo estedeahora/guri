@@ -54,7 +54,7 @@ unlink("new_journal", recursive = TRUE)
 guri_make_journal(example = TRUE)
 
 if(requireNamespace("fs", quietly = TRUE)) {
-  fs::dir_tree("example")
+  fs::dir_tree("example", type =  "directory")
 }else{
   head(list.files("example", recursive = TRUE, include.dirs = TRUE))
 }
