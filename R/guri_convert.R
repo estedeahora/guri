@@ -52,8 +52,11 @@ guri_convert <- function(path_art, art,
   opt_filters <- file.path(program_path, "filters", opt_filters)                    # make path to internal program filters
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
-  # TODO Agregar filtros personalizados
-  # config_files[stringr::str_detect(config_files, paste0(output, "_.+\\.lua$"))]
+  # Customised filters
+  customised_filters <- config_files[stringr::str_detect(config_files, paste0(output, "_[0-9]_.+\\.lua$"))]
+  customised_filters <- file.path(config_path, sort(customised_filters))
+
+  opt_filters <- c(opt_filters, customised_filters)
 
   # Appendix (Only in docx -> md)
   app_files <- NULL
