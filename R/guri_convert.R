@@ -28,11 +28,8 @@ guri_convert <- function(path_art, art,
 
   # Geth paths: Program files ('GURI/inst/') and customised journal configuration files ('./JOURNAL/_config').
   program_path <- pkg_file()
-  config_files <- list.files(file.path(wdir, "..", "..", "_config"))
-
-  # TODO Revisar. Se deja para check()
-  config_path  <-file.path("..", "..", "_config"  )
-
+  config_path  <- file.path(wdir, "..", "..", "_config"  )
+  config_files <- list.files(config_path)
 
   # TODO
   #   [x] General options
