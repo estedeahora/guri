@@ -1,5 +1,5 @@
 --- add-credit.lua – filter to filter to add credit data to author metadata (in art[~]_credit.csv file)
---- https://github.com/estedeahora/guri/tree/main/files/filters/add-credit.lua
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/add-credit.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
@@ -22,9 +22,11 @@ local function credit_dict()
 	return credit_term, credit_uri
 end
 
--- Meta(m)
--- Incorpora roles credit (como tabla) dentro de author // Incorporates credit roles (as table) within author
--- Return: Meta modificado con tabla con roles credit dentro de meta.author 
+-- Meta(m) --------------------------------------------------------------------------------------
+-- Description: [en] Incorporates credit roles (as table) within author 
+--				[es] Incorpora roles credit (como tabla) dentro de author
+-- Return: [en] Modified 'Meta' containing a table with credit roles inside meta.author[i].credit. 
+--		   [es] Meta modificado conteniendo una tabla con roles credit dentro de meta.author[i].credit. 
 
 function Meta(m)
 
@@ -32,24 +34,26 @@ function Meta(m)
 
 	-- detect credit_file (art[XXX]_credit.csv)
     local archivos = pandoc.system.list_directory('.')
+
 	for i = 1, #archivos do
-        credit_file = archivos[i]:match('art[0-9][0-9][0-9]_credit%.csv')
+        credit_file = archivos[i]:match('^art[0-9][0-9][0-9]_credit%.csv')
         if credit_file then break end
     end 
 
 	if credit_file then
 		-- make credit dictionary terms and uri
 		local credit_term, credit_uri = credit_dict() 
-		
-		-- require csv library and read credit file
-		local csv = dofile("../../../files/filters/CSV.lua")
-		local datos, header = csv.load('./' .. credit_file, ',', true)
 
-		-- count authors ('n_aut') 
+		-- require csv library and read credit file
+		local csv = pandoc.system.with_working_directory(m.config_path, function() return dofile("CSV.lua") end)
+
+		local datos, header = csv.load(credit_file, ',', true)
+
+		-- count authors ('n_aut')
 		local n_aut = #header - 1
 		if #m.author ~= n_aut then
-			error('El numero de autores en article.yaml (' .. #m.author .. ') y en '
-					 .. credit_file .. ' (' .. n_aut .. ') no coincide.')
+			error('The number of authors in article.yaml  (' .. #m.author .. ') and '
+					 .. credit_file .. ' (' .. n_aut .. ') do not match.')
 		end
 
 		-- create 'credit' table ({cont, elem, uri})
@@ -61,7 +65,9 @@ function Meta(m)
 		for i, row in pairs(datos) do
 			for k = 2, n_aut + 1 do
 				if row[k] ~= "" then
-					table.insert(credit[k-1], {cont = row[1], elem = credit_term[i], uri = credit_uri[i]})
+					table.insert(credit[k-1], {cont = row[1], 
+											   elem = credit_term[i], 
+											   uri = credit_uri[i]})
 				end
 			end
 		end
@@ -72,7 +78,7 @@ function Meta(m)
 		end
 		m.credit = true
 	else
-		io.stderr:write('WARNING: No existe credit file".\n')
+		io.stderr:write('WARNING: There is no credit file.\n')
 	end
 
 	return m
