@@ -8,8 +8,12 @@
 
 guri_to_md <- function(path_art, art, verbose = F){
 
+  cli_process_start(col_yellow("Creating markdown file (docx -> md)."))
+
   guri_convert(path_art = path_art, art = art,
                output = "md", verbose = verbose)
+
+  cli_process_done()
 
   invisible(T)
 }
@@ -20,9 +24,14 @@ guri_to_md <- function(path_art, art, verbose = F){
 
 guri_to_html <- function(path_art, art, verbose = F){
 
+  cli_process_start(col_yellow("Creating html file (md -> html)."))
+
   guri_convert(path_art = path_art, art = art,
                output = "html", verbose = verbose)
 
+  cli_process_done()
+
+  invisible(T)
 }
 
 #' @rdname guri_to_md
@@ -31,8 +40,14 @@ guri_to_html <- function(path_art, art, verbose = F){
 
 guri_to_jats <- function(path_art, art, verbose = F){
 
+  cli_process_start(col_yellow("Creating xml-jats file (md -> xml)."))
+
   guri_convert(path_art = path_art, art = art,
                output = "jats", verbose = verbose)
+
+  cli_process_done()
+
+  invisible(T)
 
 }
 
@@ -44,33 +59,11 @@ guri_to_pdf <- function(path_art, art, verbose = F){
 
   # Directorio de trabajo
   wdir <- paste0(getwd(), path_art)
-  proj_dir <- setwd(wdir)
-  on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
-
-  # # Archivos de entrada / salida
-  # file_input  <- paste0(art, ".md")
-  file_tex    <- paste0(art, ".tex")
-  file_pdf    <- paste0(art, ".pdf")
 
   # # Archivos de programa ('./files/') y configuracion de revista ('./JOURNAL/_config')
   program_path = "../../../files/"
   config_path = "../../_config/"
   config_files = list.files(paste0(wdir, config_path))
-
-  # Retener warnings?
-  # ### tinytex_warn <- options()$tinytex.latexmk.warning
-  tinytex_warn <- options(tinytex.latexmk.warning = verbose)
-  on.exit(options(tinytex.latexmk.warning = tinytex_warn))
-
-  # # Opciones generales
-  # op_gral <- c( "-s", "--pdf-engine=lualatex" )
-  #
-  # # Filtros Lua
-  # op_filters <- paste0("--lua-filter=", program_path, "filters/",
-  #                      c("include-float-in-format",
-  #                        "metadata-format-in-text",
-  #                        "latex-prepare"),
-  #                      ".lua")
 
   # Busca archivo de TEMPLATE customizado (en ./JOURNAL/_config/)
   config_latex_template <- config_files[stringr::str_detect(config_files, "^template.latex$") ]
@@ -94,7 +87,6 @@ guri_to_pdf <- function(path_art, art, verbose = F){
     op_meta <- paste0("--metadata-file=", program_path, "pandoc/", config_latex_meta)
   }
 
-  # # Conversión md -> tex
   # pandoc_convert(wd = "./",
   #                input = file_input,
   #                from = "markdown",
@@ -105,8 +97,35 @@ guri_to_pdf <- function(path_art, art, verbose = F){
   #                options = c(op_gral, op_filters,
   #                            op_templ, op_meta))
 
+  # # Conversión md -> tex
+
+  cli_process_start(col_yellow("Creating latex file (md -> tex)."))
+
+  guri_convert(path_art = path_art, art = art,
+               output = "tex", verbose = verbose)
+
+  cli_process_done()
+
   # Conversión tex -> pdf
+
+  wdir <- paste0(getwd(), path_art)
+  file_tex    <- paste0(art, ".tex")
+
+  proj_dir <- setwd(wdir)
+  on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
+
+  # Retener warnings?
+  # ### tinytex_warn <- options()$tinytex.latexmk.warning
+  tinytex_warn <- options(tinytex.latexmk.warning = verbose)
+  on.exit(options(tinytex.latexmk.warning = tinytex_warn))
+
+  cli_process_start(col_yellow("Creating pdf file (md -> pdf)."))
+
   tinytex::lualatex(file_tex)
+
+  cli_process_done()
+
+  invisible(T)
 
 }
 
