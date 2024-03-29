@@ -6,8 +6,9 @@
 * Se simplifica estructura de funciones.
 * Se modifican funciones para permitir diferentes plataformas y sistemas operativos (rutas con `file.path`).
 * Se incorpora instalacion de dependencias de Pandoc y tinytex desde funcion integrada (ver `guri_install`).
-* Se modifica la generacio nde documentos finales unificando las funciones de generacion de documentos (`guri_to_*`) mediante funcion interna `guri_convert`.
-* Se mejoran los mensajes (usando `{cli}` en lugar de interface base y ) y se traducen a ingles
+* Se modifica la generacion de documentos finales unificando las funciones de generacion de documentos (`guri_to_*`) mediante funcion interna `guri_convert`.
+* Se mejoran los mensajes (usando `{cli}` en lugar de interface base y ) y se traducen a ingles.
+* Se permiten filtros personalizados.
 * Se actualiza templates para que sea compatible con Pandoc 3.1.12.3.
 * Se genera documentacion y ejemplos para todas las funciones.
 * Se soluciona problema de cambio de directorios usando `on.exit()`.
