@@ -1,13 +1,12 @@
---- include-float.lua – filter to include float elements (codeblock) from flags
---- https://github.com/estedeahora/guri/tree/main/files/filters/include-float.lua
+--- include-float.lua – filter to include float elements (pandoc.CodeBlock) from float flags
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/include-float.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
-local contador_tab = 0        --Inicializar contadores de tablas
-local contador_fig = 0        --Inicializar contadores de figuras
+local contador_tab = 0        --Initialise table counters
+local contador_fig = 0        --Initialise figure counters
 local root = "./float/"
 local nocite = {}
--- local no_float = nil
 
 local stringify = pandoc.utils.stringify
 local text = pandoc.text
@@ -15,11 +14,12 @@ local CodeBlock = pandoc.CodeBlock
 local concat = table.concat
 
 -- exists(path) ----------------------------------
--- Identifica si existe el directorio 'path' (debe ingresarse como './path/')
--- Return: true o nill
+-- Description: [en]  Identifies if the directory 'path' exists (must be entered as './path/')
+--              [es] Identifica si existe el directorio 'path' (debe ingresarse como './path/')
+-- Return: true / nill
 
-local function exists(file)
-  local ok, err, code = os.rename(file, file)
+local function exists(path)
+  local ok, err, code = os.rename(path, path)
   if not ok then
      if code == 13 then
         -- Permission denied, but it exists
@@ -30,7 +30,8 @@ local function exists(file)
 end
 
 -- is_float_element(el) -------------------------------------------------
--- Detecta marcadores de elementos flotantes en bloques ("^~!include=FIG" | "^~!include=TAB")
+-- Description: [en] Detects floating element markers in blocks ("^~!include=FIG..." | "^~!include=TAB...")
+--              [es] Detecta marcadores de elementos flotantes en bloques ("^~!include=FIG..." | "^~!include=TAB...")
 -- Return: 'FIG' / 'TAB' / nill
 
 local function is_float_element(el)
@@ -48,9 +49,18 @@ local function is_float_element(el)
   return res
 end
 
--- mark_cite(path) ----------------------------------
--- Identifica Inline de tipo "Cite" y obtiene formato de marcado para citas de la forma: "[{prefix}{@id}{suffix}]{cita textual}"
--- Return: inline
+-- mark_cite(inline) -----------------------------------------------------------------
+-- Description: [en] Identifies Inline of type 'Cite' and obtains markup formatting for citations  
+--                     within floats
+
+--              [es] Identifica Inline de tipo 'Cite' y obtiene formato de marcado para citas dentro 
+--                     de flotantes.
+-- Return: [en] Original inline element modified to contain citation marker in place of pandoc.Cite element. 
+--                 The citation marker has the form "[{prefix}{@id}{suffix}]{cita textual}". Cited elements 
+--                 within the floating element paratext are added to 'nocite'.
+--         [es] Elemento inline original modificado para contener marcador de cita en lugar de elemento 
+--                 pandoc.Cite. El marcador de cita tiene la forma: "[{prefix}{@id}{suffix}]{cita textual}".
+--                 Se agregan elementos citados dentro del paratexto del elemento flotante a 'nocite'.
 
 local function mark_cite(inline)
   if inline.t == 'Cite' then
@@ -76,7 +86,7 @@ local function mark_cite(inline)
                                 '}{' .. stringify(cita_i.suffix) .. '}]{' .. 
                                 cita_textual ..'}' .. concatenador
 
-      -- Agrega id del elemento a la lista nocite (para incluirlo en referencias)
+      -- Add element id to the nocite list (to include it in references)
       table.insert(nocite, '@' ..  cita_i.id) 
 
     end
@@ -85,14 +95,18 @@ local function mark_cite(inline)
   return(inline)
 end
 
--- detect_meta(marcador) ---------------------------------------------
--- Toma un Str con marcador de figuras e identifica el contenido (detect)
--- Return: Str con el contenido buscado (detect) sin marcadores
--- Ejemplo: 
---    marcador:      '~!include=FIG_01 ~!=title=Este es el título ~!source=Elaboración propia ~!note=Esta es una nota'
---    detect:        'title'
---    post_detect:   'post_detect'
---    -> Este es el título
+-- detect_meta(marcador, detect, detect_post) ---------------------------------------------------
+-- Description: [en] Takes a Str with a float flag and identifies the requested content type ('detect'), 
+--                     without the subsequent content.
+--              [es] Toma un Str con un marcador de float e identifica el tipo de contenido solicitado 
+--                     ('detect'), sin el contenido posterior.
+-- Return: [en] String with the searched content ('detect') without markers
+--         [es] Cadena de texto con el contenido buscado ('detect') sin marcadores.
+-- @example: 
+--    marcador:     '~!include=FIG_01 ~!=title=Este es el título ~!source=Elaboración propia ~!note=Esta es una nota'
+--    detect:       'title'
+--    post_detect:  'post_detect'
+--    --> Este es el título
 
 local function detect_meta(marcador, detect, detect_post)
   local res = marcador:match('~!' .. detect .. '=.*')
@@ -106,13 +120,14 @@ local function detect_meta(marcador, detect, detect_post)
   return res
 end
 
-
 -- meta_float(marcador) ---------------------------------------------
--- Toma un Str con marcador de figuras e identifica sus meta-elemtnos (título, fuente y notas).
--- Return: lista con tres Str {title, source, note}
--- Ejemplo: 
---    marcador:      '~!include=FIG_01 ~!=title=Este es el título ~!source=Elaboración propia ~!note=Esta es una nota'
---    -> {Este es el título, Elaboración propia, ""}
+-- Description: [en] Take a Str with figure marker and identify its meta-elements (title, source and notes).
+--              [es] Toma un Str con marcador de figuras e identifica sus meta-elementos (título, fuente y notas).
+-- Return: [en] List with three pandoc.String {title, source, note}.
+--         [es] Lista con tres pandoc.String {title, source, note}.
+-- @example: 
+--    marcador: '~!include=FIG_01 ~!=title=Este es el título ~!source=Elaboración propia ~!note=Esta es una nota'
+--    --> {title = "Este es el título", source = "Elaboración propia", note = ""}
 
 local function meta_float(marcador)
 
@@ -123,46 +138,57 @@ local function meta_float(marcador)
   return {title = title, source = source, note = note}
 end
 
-
--- Recorrido de bloques para buscar figuras y tablas.  
------------------------------------------------------
--- Recorre los Blocks buscando marcadores de elementos flotantes, para reemplazar estos marcadores por
---    bloques de tipo "CodeBlock" con los elementos que definen un elemento flotante.
--- Cuenta la cantidad de figuras y tablas (para pasarlo a los metadatos)
+-- Pandoc(p) ----------------------------------------------------------------------
+-- Description: [en] Walk through the Blocks looking for floating element markers, to replace
+--                     these markers by 'pandoc.CodeBlock' type blocks with the elements that
+--                     define a floating element.
+--              [es] Recorre los Blocks buscando marcadores de elementos flotantes, para 
+--                     reemplazar estos marcadores por bloques de tipo 'pandoc.CodeBlock' 
+--                     con los elementos que definen un elemento flotante.
+-- Return: [en] 'pandoc' document modified. In blocks, float element markers are replaced by 
+--                'pandoc.CodeBlock' elements with attributes defining floats. In addition, 
+--                float counters ('n_figs' and 'n_tabs') and elements quoted within float element 
+--                paratexts ('nocite') are added in the metadata. 
+--         [es] 'pandoc' document modificado. En bloques se reemplazan marcadores de elementos 
+--                flotantes por elementos 'pandoc.CodeBlock' con los atributos que definen a 
+--                los floats. Además se agrega en los metadatos contadores de floats ('n_figs'
+--                y 'n_tabs') y elementos citados dentro de los paratextos de elementos 
+--                flotantes ('nocite'). 
 
 function Pandoc(p)
   
-  -- Si existe floats recorrer bloques
+  -- If floats exist in float './float/', then map blocks. See 'exists(path)' definition above.
   if exists(root) then
     
-    -- Obtener conjunto de blocks
+    -- Get set of blocks ('blocks')
     local blocks = p.blocks
-    -- Obtener listado de archivos en ./float/
+    -- Get list of files in './float/' ('archivos')
     local archivos = pandoc.system.list_directory(root)
 
     for i = 1, #blocks, 1 do
       
       local bloque = blocks[i]
     
-      -- Obtener contenido textual del bloque
+      -- Get textual content from the block ('contenido')
       local contenido = stringify(bloque)
 
-      -- Detecta marcadores de elementos flotantes en bloques    
+      -- Detects floating element flags in blocks ('bloque_float'). Then  Filter blocks with floats flags.
+      -- See 'is_float_element(el)' definition above.
       local bloque_float = is_float_element(contenido)
 
-      -- -- Filtra bloques con marcador de figura
       if bloque_float then    
 
-        -- Define label (ej: FIG_01) 
+        -- Define 'label' (e.g. FIG_01) 
         local label = contenido:match('^~!include=' .. bloque_float .. '_[0-9][0-9]'):gsub("^~!include=", "")
 
-        -- Modifica contenido de los bloques para cambiar los elementos de citas (.t == Cite) por citas en la forma marckdown ("[@clave]")
-        local contenido = stringify(bloque.content:map(mark_cite))
+        -- [en] Modifies content of blocks to change citation elements (.t == Cite) to citation in the form marckdown ("[@key]")
+        -- [es] Modifica contenido de los bloques para cambiar los elementos de citas (.t == Cite) por citas en la forma marckdown ("[@clave]")
+        local contenido = stringify(bloque.content:map(mark_cite))    -- See 'mark_cite(inline)' definition above.
         
-        -- Obtiene metadatos de la figura (título, fuente y notas)
+        -- Gets figure metadata (title, source and notes). See 'meta_float(marcador)' definition above.
         local float_meta = meta_float(contenido)             
 
-        -- Crea bloque de código (CodeBlock) con elementos 
+        -- Creates code block (pandoc.CodeBlock) with float element attributes.
         blocks[i] = CodeBlock("", 
                               {id = label, 
                                 class = bloque_float, 
@@ -171,13 +197,13 @@ function Pandoc(p)
                                 note = float_meta.note}
                               )
 
-        if bloque_float == "FIG" then           -- Modifica bloques con figuras
+        if bloque_float == "FIG" then           -- Modify blocks with figures
           
           contador_fig = contador_fig + 1
           
           blocks[i].attributes.fignum = contador_fig
 
-          -- Identiica path a la figura
+          -- Identifies "path" to the figure
           local path_fig = ''
           for i = 1, #archivos, 1 do
             local float_file = archivos[i]:match(label .. '.[a-z]+')
@@ -188,29 +214,24 @@ function Pandoc(p)
 
           blocks[i].attributes.path = path_fig
 
-          -- blocks[i] = pandoc.Image({float_meta.title}, path_fig, "",
-          --                           {id = label, source = float_meta.source, note = float_meta.note} )
 
-        elseif bloque_float == "TAB" then       -- Modifica bloques con tablas
+        elseif bloque_float == "TAB" then       -- Modify blocks with tables
 
           contador_tab = contador_tab + 1
 
           blocks[i].attributes.tabnum = contador_tab
           
-          -- blocks[i] = CodeBlock("", {id = label, class = bloque_float, path = path_fig, 
-          --                                 title = float_meta.title, source = float_meta.source, note = float_meta.note})
         end
       end
     end
   else
-    print("No existe ./float/\n")
+    print("The folder './float/' does not exist.\n")
   end
-
 
   p.meta.n_figs = contador_fig
   p.meta.n_tabs = contador_tab
 
-  -- Agrega elementos nocite
+  -- Adds nocite elements
   if nocite ~= nil then
     p.meta.nocite = CodeBlock(concat(nocite, ", "))
   end

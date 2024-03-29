@@ -1,5 +1,5 @@
 --- metadata-div-before-bib.lua – filter to include credit, acknowledgements and appendices as div blocks before references (or at the end)
---- https://github.com/estedeahora/guri/tree/main/files/filters/metadata-div-before-bib.lua
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/metadata-div-before-bib.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
@@ -21,9 +21,13 @@ local cont_app = ''
 local with_ref = nil
 
 --  credit_Div(aut) ------------------------------------------------------------------------------------------
--- Toma un objeto del tipo Meta.author y devuelve  los datos de credit dentro de un Div con 
---     ID "credit" y class "paratext". El contenido de este Div está formateados de la forma:
---     "**Apellido:** Rol1 (rol_english); Rol2 (rol_english). **Apellido:** Rol1 (rol_english); Rol2 (rol_english)."
+-- Description: [en] Takes a Meta.author and returns a string with the credit data information inside a pandoc.Div.
+--              [es] Toma un Meta.author y devuelve una cadena de texto con los datos de credit dentro de un pandoc.Div.
+-- Return: [en] A string inside a pandoc.Div with ID="credit" and class="paratext", formated as:
+--         [es] Una cadena de texto dentro de un pandoc.Div con ID="credit" y class="paratext", formateado de la forma:
+-- 
+-- div{ID = "credit", class = "paratext"}
+-- **Surname:** rol1_spanish (rol1_english); rol2_spanish (rol2_english). **Surname:** rol1_spanish (rol_english); rol2_spanish (rol2_english).
 
 local function credit_Div(aut)
 
@@ -56,20 +60,31 @@ local function credit_Div(aut)
 end
 
 -- get_metadata() --------------------------------------------------------------------------------------
--- Obtiene la metadata necesaria para incorporar como Div al final (antes de las referencias)
+-- Description: [en] Gets the metadata about (a) credit, (b) acknowledgements and (c) appendices, adding each of these 
+--                      elements as a text string inside a pandoc.Div at the end of the text (before references).
+--              [es] Obtiene la metadata de (a) credit, (b) agradecimientos y (c) anexos, agregando cada uno de estos 
+--                      elementos como una cadena de texto dentro de un pandoc.Div al final del texto (antes de las referencias)
+-- Return: [en] 
+--         [es] Meta con elementos credit, ack y appendix modificados (si están presentes en meta). Los elemento credit y ack
+--                  son una cadena de texto dentro de un pandoc.Div con ID="credit"/"ack" y class="paratext". Los elementos
+--                  appendix formateado de la forma: 
+--
 
 local function get_metadata(meta)
   
+    -- Credit info
     if(meta.credit) then        
         cont_credit = credit_Div(meta.author)
     else
         io.stderr:write("\nSin datos de credit.\n")
     end
 
+    --- Acknowledgements
     if(meta.ack) then
         cont_ack = Div(Para(meta.ack), {id = "Ack", class = "Paratext"})
     end
 
+    -- Appendices
     if(meta.appendix) then
         -- local app = nil
         if(type(meta.appendix) == "string") then
@@ -83,15 +98,19 @@ local function get_metadata(meta)
 
         meta.appendix = cont_app
         cont_app = Div(cont_app, {id = "app", class = "Paratext"})
-
-
     end
-
 end
 
 -- add_metadata1(h) & add_metadata2(doc) ------------------------------------------------------------------
+-- Description: [en] Add multiple pandoc.div with credit metadata and acknowledgements  (if any) 
+--                      before references (add_metadata1) or at the end for articles without references (add_metadata2).
+--                      Also, add the appendices (if any) in a pandoc.div at the end of the text.
+--              [es] Agrega múltiples pandoc.div con metadata de credit y agradecimientos (si la hubiera) 
+--                      antes de las referencias (add_metadata1) o al final para artículos sin referencias (add_metadata2).
+--                      Además, agrega los anexos (si los hubiera) en un pandoc.div al final del texto.
+-- Return: [en]  Modify the block content of the pandoc object by adding in order blocks of the pandoc.div class for credit, acknowledgements, bibliography and appendices (if present).
+--         [es] Modifica el contenido de bloques del objeto pandoc agregando en orden bloques de la clase pandoc.div para credit, agradecimientos, bibliografía y apéndices (los que están presentes).
 
--- Agrega credit antes de referencias
 function add_metadata1(h) 
 
   local s = lower(stringify(h))
@@ -111,12 +130,11 @@ function add_metadata1(h)
 
 end
 
--- Agrega credit al final para artículos sin referencias
 function add_metadata2(doc) 
 
-  if(with_ref == nil and cont_credit) then
+  if(with_ref == nil and (cont_credit or cont_ack or cont_app)) then
 
-    io.stderr:write("\nSin referencias bibliográficas.\n")
+    io.stderr:write("\nArticle without references.\n")
 
     doc.blocks:extend({cont_credit, cont_ack, cont_app})
   

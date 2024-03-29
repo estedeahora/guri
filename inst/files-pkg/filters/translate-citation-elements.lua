@@ -5,6 +5,12 @@
 
 local stringify = pandoc.utils.stringify
 
+-- Cite(cite) --------------------------------------------------------------------------------------
+-- Description: [en] Translate citation elements (coming from zotero plug-in for word in 'fields').
+--				[es] Traducir elementos de cita (provenientes de complemento de zotero para word en 'campos').
+-- Return: [en] An element of type pandoc.cite with suffixes translated into Spanish.
+--		   [es] Un elemento de tipo pandoc.cite con sufijos traducidos al español.
+
 function Cite(cite)
 
     for i = 1, #cite.citations, 1 do

@@ -6,14 +6,15 @@
 local stringify = pandoc.utils.stringify
 
 -- get_country() --------------------------------------------------------------------------------
--- Description: [en] 
---				[es] 
--- Return: [en] 
---		   [es] Tabla con listado de paises (y código como clave)
+-- Description: [en] Generates a table with the list of countries and the country code as a key.
+--				[es] Genera una tabla con el listado de paises y el código como clave.
+-- Return: [en] Una tabla de la forma codigo:país (key:value)
+--		   [es] A table of the form code:country (key:value).
 -- 
 
 local function get_country(config_path)
 
+	-- require csv library and read countries file
     local csv = pandoc.system.with_working_directory(config_path, function() return dofile("CSV.lua") end)
     
     -- data from: https://gist.github.com/brenes/1095110#file-paises-csv
@@ -27,19 +28,20 @@ local function get_country(config_path)
     return paises
 end
 
-
 -- Meta(m) --------------------------------------------------------------------------------------
--- Description: [en] 
---				[es] Cambia autores a "forma canónica", como se consigue con el filtro scholarly-metadata.lua (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata)
--- Return: [en] 
---		   [es] 
+-- Description: [en] Changes authors and organization information to "canonical form", as achieved 
+--                      with the 'scholarly-metadata.lua' filter (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata).
+--				[es] Cambia autores y organizaciones a "forma canónica", como se consigue con el 
+--                      filtro 'scholarly-metadata.lua' (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata)
+-- Return: [en] Metadata modified. See <https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata>
+--		   [es] Metadata modificado. Ver <https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata>
 
 function Meta(m)
 
     if(m.affiliation) then
         local paises = get_country(m.config_path)
         
-        -- * Afiliaciones --> Institute
+        -- * affiliation --> institute
         local inst = m.affiliation
 
         local inst_dict = {}
@@ -58,7 +60,7 @@ function Meta(m)
             inst_dict[stringify(inst[i].id)] = i
         end
 
-        -- * Autores
+        -- * author
         local aut = m.author
         for i = 1, #aut do
             aut[i].name = stringify(aut[i]["given-names"]) ..
