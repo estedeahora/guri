@@ -1,3 +1,12 @@
+$-- Adapted from Pandoc template: 
+$-- * 'default.jats_publishing' <https://github.com/jgm/pandoc-templates/blob/5f0c7f8abff1e26b1334b9f632bae147eaebe134/default.jats_publishing>
+$-- * 'article.jats_publishing' <https://github.com/jgm/pandoc-templates/blob/5f0c7f8abff1e26b1334b9f632bae147eaebe134/article.jats_publishing>
+$-- 
+$-- Changes:
+$-- * DTD v1.3 used instaed of DTD v1.2
+$-- * Language specification (@xml:lang) in <journal_title>
+$-- * Attribute @abbrev-type in <abbrev-journal-title> (Scielo recomendation)
+
 <?xml version="1.0" encoding="utf-8" ?>
 $if(xml-stylesheet)$
 <?xml-model type="application/xml-dtd" href="https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd"?>
@@ -11,20 +20,20 @@ $else$
 $endif$
 <front>
 <journal-meta>
-$--         #### INFO REVISTA ###############
+$--         #### INFO JOURNAL ###############
 $if(journal.publisher-id)$
 <journal-id journal-id-type="redalyc">$journal.publisher-id-redalyc$</journal-id>
 $endif$
-$--         $if(journal.nlm-ta)$
-$--         <journal-id journal-id-type="nlm-ta">$journal.nlm-ta$</journal-id>
-$--         $endif$
-$--         $if(journal.pmc)$
-$--         <journal-id journal-id-type="pmc">$journal.pmc$</journal-id>
-$--         $endif$
-$-- # Fallback: an empty journal-id in case none is available.
+$if(journal.nlm-ta)$
+<journal-id journal-id-type="nlm-ta">$journal.nlm-ta$</journal-id>
+$endif$
+$if(journal.pmc)$
+<journal-id journal-id-type="pmc">$journal.pmc$</journal-id>
+$endif$
+$-- Fallback: an empty journal-id in case none is available.
 $if(journal.publisher-id)$
-$--         $elseif(journal.nlm-ta)$
-$--         $elseif(journal.pmc)$
+$elseif(journal.nlm-ta)$
+$elseif(journal.pmc)$
 $else$
 <journal-id></journal-id>
 $endif$
@@ -33,8 +42,7 @@ $if(journal.title)$
 <journal-title specific-use="original" xml:lang="$lang$">$journal.title$</journal-title>
 $endif$
 $if(journal.abbrev-title)$
-$-- # Scielo recomienda: <abbrev-journal-title abbrev-type="publisher">
-<abbrev-journal-title>$journal.abbrev-title$</abbrev-journal-title>
+<abbrev-journal-title abbrev-type="publisher">$journal.abbrev-title$</abbrev-journal-title>
 $endif$
 </journal-title-group>
 $if(journal.pissn)$
