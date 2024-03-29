@@ -1,5 +1,5 @@
 --- translate-citation-elements.lua – filter to translate citation elements (in zotero reference)
---- https://github.com/estedeahora/guri/tree/main/files/filters/translate-citation-elements.lua
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/translate-citation-elements.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
