@@ -29,7 +29,7 @@ guri <- function(art_path, art_name, verbose = F,
     ui_abort("Upgrade the Pandoc version (", pandoc_req, " or later is required).")
   }
 
-  cli_h1(col_blue(paste("Article:", art_name)))
+  cli_h1(col_green(paste("Article:", art_name)))
 
   # Modificar: art[~]_CREDIT.xlsx -> art[~]_CREDIT.csv
 
