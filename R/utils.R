@@ -62,21 +62,27 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
 #   rmarkdown::pandoc_path_arg(files)
 # }
 
-#' Prepare the working directory for each article
+#' TODO Prepare the working directory for each article.
 #'
 #' @param art_path A string with the path to the article folder.
 #' @param art_pre A string. This prefix is used to identify the folders where each issue of your journal will be stored. For example, if you use 'num' (default) the folders where you should store the issues of your journal will be 'num1', 'num2', and so on.
 #'
 #' @return Invisible True.
 
-guri_CREDITtoCSV <- function(art_path, art_pre){
+guri_CREDITtoCSV <- function(art_path, art_pre, verbose = F){
 
-  # Generar "art[~]_credit.csv "
-  credit_xlsx <- file.path (art_path, paste0(art_pre, "_credit.xlsx"))
-  credit_csv  <- paste0(art_path, art_pre, "_credit.csv")
+  file_type <- c("xlsx", "csv")
+  files_credit <- file.path(art_path, paste0(art_pre, "_credit.", file_type) )
+  names(files_credit) <- file_type
 
-  if(file.exists(credit_xlsx)){
-    readxl::read_xlsx(credit_xlsx) |> write.csv(credit_csv, row.names = F, na = "")
+
+  if(file.exists(files_credit[["xlsx"]])){
+    readxl::read_xlsx(files_credit[["xlsx"]]) |>
+      write.csv(files_credit[["csv"]], row.names = F, na = "")
+
+    # if(verbose){
+    #
+    # }
   }
 
   invisible(T)
