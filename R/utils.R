@@ -31,7 +31,7 @@ devtools_loaded <- function(x) {
 # pkg_file()
 # needs to handle the case when this function is used in a package loaded with
 # devtools or pkgload load_all(). Required for testing with testthat also.
-# adapted from rmarkdown:
+# Adapted from rmarkdown:
 # https://github.com/rstudio/rmarkdown/blob/ee69d59f8011ad7b717a409fcbf8060d6ffc4139/R/util.R#L45C1-L56C2
 # Also from pkgdown:
 # https://github.com/r-lib/pkgdown/blob/04d3a76892320ac4bd918b39604c157e9f83507a/R/utils-fs.R#L85
