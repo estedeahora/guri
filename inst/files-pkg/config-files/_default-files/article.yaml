@@ -6,7 +6,7 @@ article:
                             # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id:             # Identificador digital electrónico    
   doi: 
-  # art-access-id:          # Este número lo otorga Redalyc
+  # art-access-id:          # 
   # fpage:                  # Página inicial
   # lpage:                  # Página final
 
@@ -59,9 +59,11 @@ author:
 affiliation:
   - id: aff1
     organization: 
-    country-code: AR              # https://www.nationsonline.org/oneworld/country_code_list.htm
+    ror: 
+    country-code: AR              # ISO-3166-1 country identifier. See https://www.nationsonline.org/oneworld/country_code_list.htm
   # - id: aff2
   #   organization:
+  #   ror: 
   #   country-code: 
 
 # Datos de recepción del artículo
