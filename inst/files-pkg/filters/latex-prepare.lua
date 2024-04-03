@@ -37,7 +37,6 @@ function Meta(m)
           local mes_num = tonumber(m.history[i].month[1].text)
           m.history[i].mes = mes[mes_num]
           m.history[i].tipo = tipo[m.history[i].type[1].text]
-
         end
       end
 

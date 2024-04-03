@@ -1,5 +1,5 @@
 --- include-float-in-format.lua – filter to include floating element code (depending on output format)
---- https://github.com/estedeahora/guri/tree/main/files/filters/include-float-in-format.lua
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/include-float-in-format.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
@@ -10,14 +10,18 @@ local mark_citation = '%[{.-}{@.-}{.-}]{.-}'
 local RawBlock = pandoc.RawBlock 
 local open = io.open
 
--- citation_elements(cita) ----------------------------------
--- Toma un texto con un marcador de cita con la forma: "[{prefix}{@id}{suffix}]{cita textual}". Como resultado devuelve los elementos que componen la cita.
--- Return: Table con elementos de cita.
+-- citation_elements(cita) --------------------------------------------------
+-- Description: [en] Takes a text with a citation flag (in the form: "[{prefix}{@id}{suffix}]{textual citation}") 
+--                      and returns the elements that make up the citation.
+--				      [es] Toma un texto con un marcador de cita (con la forma: "[{prefix}{@id}{suffix}]{cita textual}") 
+--                      y devuelve los elementos que componen la cita.
+-- Return: [en] Table with citation elements: {id, quote_comp, prev, post}
+--		     [es] Tabla con elementos de cita: {id, cita_comp, prev, post}.
 
 local function citation_elements(cita)
   
   -- print(cita)                                      -- [{}{@21909}{, p. 3 }]{(Weber, 2002, p. 3)}
-  
+
   local pre = cita:match('^%[{.-}{@'):gsub('^%[{', ''):gsub('}{@', '')
   -- print("prefix", pre)                             -- prefix	
   local id = cita:match('@.+%}'):gsub('}.+', ''):gsub('@', '')
@@ -26,7 +30,7 @@ local function citation_elements(cita)
   -- print("suffix", suf)                             -- suffix	, p. 3 
   local cita_comp = cita:gsub('^%[{' .. pre .. '}{@' .. id .. '}{' .. suf .. '}]{', ''):gsub('}$', '')
   
-  -- Retiene delimitadores previo y posterior "()"
+  -- Retains pre- and post delimiters "(" & ")"
   local prev = cita_comp:match('^%(', 1, "")
   if(prev == nil) then prev = '' end
 
@@ -34,11 +38,9 @@ local function citation_elements(cita)
   if(post == nil) then post = '' end
 
   cita_comp = cita_comp:gsub('^%(', ''):gsub('%)$', '') 
-  -- print(prev, cita_comp, post)                                 -- (    Weber, 2002, p. 3   )
+  -- print(prev, cita_comp, post)                     -- (    Weber, 2002, p. 3   )
 
-  
   return {id = id, 
-          -- pre = pre, suf = suf, 
           cita_comp = cita_comp,
           prev = prev, 
           post = post
@@ -47,10 +49,10 @@ local function citation_elements(cita)
 end
 
 -- add_citation(str) ----------------------------------
--- Toma un texto en formato de cadena plana en el que identifica si existe un marcador de cita, el cual reemplaza 
---      por el formato adecuado para xmljats.
--- Return: Cadena de texto plano (con cita transformada de marca a formato específico).
-
+-- Description: [en] 
+--				      [es] Toma un texto en formato de cadena plana en el que identifica si existe un marcador de cita, el cual reemplaza por el formato adecuado para xmljats.
+-- Return: [en] 
+--		     [es] Cadena de texto plano (con cita transformada de marca a formato específico).
 
 local function add_citation(str)
 
@@ -90,10 +92,11 @@ local function add_citation(str)
 
 end
 
-
 -- fig_latex(label, float_attr) ----------------------------------------
--- Genera un texto de código plano (RawBlock) para latex que incluye figuras
--- Return: RawBlock con ambiente figure (latex)
+-- Description: [en] 
+--              [es] Genera un texto de código plano (RawBlock) para latex que incluye figuras
+-- Return: [en]
+--         [es] RawBlock con ambiente figure (latex)
 
 local function fig_latex(label, float_attr)
 
@@ -116,8 +119,10 @@ local function fig_latex(label, float_attr)
 end
 
 -- fig_html(label, float_attr) ----------------------------------------
--- Genera un texto de código plano (RawBlock) para html que incluye figuras
--- Return: RawBlock con ambiente figure (html)
+-- Description: [en] 
+--              [es] Genera un texto de código plano (RawBlock) para html que incluye figuras
+-- Return: [en]
+--         [es] RawBlock con ambiente figure (html)
 
 local function fig_html(label, float_attr)
 
@@ -139,8 +144,10 @@ local function fig_html(label, float_attr)
 end
 
 -- fig_jats(path, float_attr) --------------------------------
--- Genera un texto de código plano (RawBlock) para jats que incluye figuras
--- Return: RawBlock con ambiente figure (jats)
+-- Description: [en] 
+--              [es] Genera un texto de código plano (RawBlock) para jats que incluye figuras
+-- Return: [en]
+--         [es] RawBlock con ambiente figure (jats)
 
 local function fig_jats(label, float_attr)
 
@@ -165,8 +172,10 @@ local function fig_jats(label, float_attr)
 end
   
 -- tab_float(label, float_attr) ----------------------------------
--- Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas.
--- Return: RawBlock con ambiente table.
+-- Description: [en] 
+--              [es]  Genera un texto de código plano (RawBlock) para latex/html/jats que incluye tablas.
+-- Return: [en]
+--         [es] RawBlock con ambiente table.
 
 local function tab_float(label, float_attr)
   
@@ -279,6 +288,10 @@ local function tab_float(label, float_attr)
 end
 
 ---  CodeBlock(cb) --------------------------------------------------------
+-- Description: [en] 
+--              [es]
+-- Return: [en]
+--         [es]
 
 function CodeBlock(cb)
 
@@ -306,7 +319,12 @@ function CodeBlock(cb)
   return cb
 end
 
--- Contar figuras y tablas (para xml-jats)
+-- Meta(m) ------------------------------------------------------------
+-- Description: [en] Allows to pass to Latex header packages needed for the construction of tables.
+--              [es] Permite pasar a header de Latex paquetes necesarios para la construcción de tablas.
+-- Return: [en] A modified Meta object to which a header (if any) is added.
+--         [es] Un objeto Meta modificado al que se le agrega header (si existe).
+
 function Meta(m)
   if to_header then
     m.to_header = pandoc.RawBlock('latex', to_header)
