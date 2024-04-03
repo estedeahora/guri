@@ -10,15 +10,21 @@
 # path_art <- "./example/num1/art101_lorem-ipsum"
 # art <- "art101"
 # verbose <- T
-# output <- "md"
+# output <- "jats"
 
 # TODO
 #   [x] General options
 #   [x] Lua Filters
 #   [x] Appendix (md)
 #   [x] Bibliography (md)
-#   [-] Templates (pdf y html)
-#   [-] Metadata (md y pdf)
+#   [-] Templates (pdf y html, jats?)
+#   [-] Metadata (md y pdf, jats?)
+
+# Outputs:
+#   [x] md
+#   [-] jats
+#   [ ] html
+#   [ ] pdf
 
 guri_convert <- function(path_art, art,
                          output,
@@ -41,13 +47,17 @@ guri_convert <- function(path_art, art,
 
   # General options
   opt_gral <- pandoc_options$opts[c("option", output)]
-  opt_gral <- opt_gral$option[order(opt_gral$md) & !is.na(opt_gral$md)]
+  opt_gral <- opt_gral$option[order(opt_gral[[output]]) & !is.na(opt_gral[[output]])]
 
   opt_gral <- c(opt_gral, paste0("--metadata=config_path:", file.path(program_path, "filters")))
 
+  if(verbose){
+    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log"))
+  }
+
   # Lua Filters
   opt_filters <- pandoc_options$lua[c("filter", output)]                            # select pandoc options
-  opt_filters <- opt_filters$filter[order(opt_filters$md) & !is.na(opt_filters$md)] # filter NA and order filters
+  opt_filters <- opt_filters$filter[order(opt_filters[[output]]) & !is.na(opt_filters[[output]])] # filter NA and order filters
   if(verbose){
     ui_alert_info("Internal lua filters used: ", paste(col_blue(opt_filters), collapse = "; "), ".")
   }
@@ -95,24 +105,32 @@ guri_convert <- function(path_art, art,
     }
   }
 
-  # Templates (Only in md -> tex/html)
+  # Templates (Only in md -> tex/html/jats)
   opt_templ <- NULL
 
   if(!is.na(opt_type[["template"]])) {
 
     template_file <- paste0("template.",  opt_type[["template"]])
 
-    config_template <- config_files[config_files ==  template_file]
+    # detect if custom template exists in '_config' (only if 'custom')
+    if(!is.na(opt_type[["custom"]])){
+      config_template <- config_files[config_files ==  template_file]
+    }
 
-    if(config_template == "template.latex"){
-      opt_templ <- paste0("--template=", config_path, config_latex_template)
-    }else{
+    if(!is.na(opt_type[["custom"]]) && length(config_template) == 1 ){
+      # TODO latex + html
+      opt_templ <- paste0("--template=", file.path(program_path, config_template))
+
       if(verbose){
-        ui_alert_info("Default ", opt_type["to"],  " template is used.")
+        ui_alert_info("Default template is used ({.path ",
+                      "JOURNAL/_config/", config_template,"}).")
       }
-      cat("No existe archivo 'root/_config/latex.template'.",
-          "Se usará latex.template por defecto")
-      opt_templ <- paste0("--template=", program_path, "template/", config_latex_template)
+    }else{
+      if(verbose && !is.na(opt_type[["custom"]])){
+        ui_alert_info("No custom template file exists in {.path 'JORUNAL/_config/'}. ",
+                      "Default ", opt_type["template"], " template is used.")
+      }
+      opt_templ <- paste0("--template=", file.path(program_path, "template", template_file))
     }
   }
 
@@ -146,9 +164,9 @@ guri_convert <- function(path_art, art,
                             output = file_output,
                             to = opt_type["to"],
                             citeproc = T,
-                            verbose = verbose,
+                            verbose = F,
                             options = c(opt_gral, opt_meta, app_files,
-                                        opt_filters, opt_biblio)
+                                        opt_filters, opt_biblio, opt_templ)
   )
 
 }
