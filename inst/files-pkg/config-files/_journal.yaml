@@ -1,7 +1,7 @@
 # If you do not have any of the required elements, you must comment with "#".
 # Si no tiene alguno de los elementos requeridos, debe comentar con "#"
 
-lang: es-ES
+lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
 
 journal:
   title: journal title

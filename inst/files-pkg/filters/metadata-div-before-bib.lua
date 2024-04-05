@@ -15,6 +15,7 @@ local Div = pandoc.Div
 local RawBlock = pandoc.RawBlock
 local CodeBlock = pandoc.CodeBlock
 
+local reference_title
 local cont_credit = ''
 local cont_ack = ''
 local cont_app = ''
@@ -29,17 +30,29 @@ local with_ref = nil
 -- div{ID = "credit", class = "paratext"}
 -- **Surname:** rol1_spanish (rol1_english); rol2_spanish (rol2_english). **Surname:** rol1_spanish (rol_english); rol2_spanish (rol2_english).
 
-local function credit_Div(aut)
+local function credit_Div(aut, lang)
 
     local credit_text = {}
-    
+
+    if not (lang:match('^es') or lang:match('^en')) then
+        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined translation of "credit".' ..
+        ' The credit role names are taken from the first column of the excel file.\n')
+    end
+
     for i, aut_i in pairs(aut) do
 
         local aux_rol = ''
 
         for k, rol_i in pairs(aut_i.credit) do
             
-            aux_rol = aux_rol .. stringify(rol_i.cont) ..  " (" .. stringify(rol_i.elem) .. ")"
+            if lang:match('^en') then
+                aux_rol = aux_rol .. stringify(rol_i.elem)
+            elseif lang:match('^es') then
+                aux_rol = aux_rol .. stringify(rol_i.cont) ..  " (" .. stringify(rol_i.elem) .. ")"
+            else
+                aux_rol = aux_rol .. stringify(rol_i.cont) ..  " (" .. stringify(rol_i.elem) .. ")"
+            end
+
 
             if k ~= #aut_i.credit then 
                 aux_rol = aux_rol .. "; "
@@ -74,17 +87,17 @@ local function get_metadata(meta)
   
     -- Credit info
     if(meta.credit) then        
-        cont_credit = credit_Div(meta.author)
+        cont_credit = credit_Div(meta.author, stringify(meta.lang))
     else
         io.stderr:write("\nSin datos de credit.\n")
     end
 
-    --- Acknowledgements
+    --- Acknowledgements info
     if(meta.ack) then
         cont_ack = Div(Para(meta.ack), {id = "Ack", class = "Paratext"})
     end
 
-    -- Appendices
+    -- Appendices info
     if(meta.appendix) then
 
         local app_file
@@ -111,6 +124,20 @@ local function get_metadata(meta)
         cont_app = Div(all_app, {id = "apps", class = "Paratext"})
 
     end
+
+    local lang = pandoc.utils.stringify(meta.lang)
+
+    if lang:match('^en') then
+        reference_title = 'references'
+    elseif lang:match('^es') then
+        reference_title = 'referencias bibliográficas'
+    elseif lang:match('^pt') then
+        reference_title = 'referências'
+    else
+        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references. It uses "reference".\n')
+        reference_title = 'references'
+    end
+
 end
 
 -- add_metadata1(h) & add_metadata2(doc) ------------------------------------------------------------------
@@ -128,7 +155,7 @@ function add_metadata1(h)
   local s = lower(stringify(h))
   s = s:gsub("%s*$", "")
 
-  if(s == "referencias bibliográficas") then
+  if(s == reference_title) then
 
     local res = {cont_credit, cont_ack, h, 
                 RawBlock('markdown', '::: {#refs}\n:::'),
@@ -146,7 +173,7 @@ function add_metadata2(doc)
 
   if(with_ref == nil and (cont_credit or cont_ack or cont_app)) then
 
-    io.stderr:write("\nArticle without references.\n")
+    io.stderr:write("NOTE: Article without references.\n")
 
     doc.blocks:extend({cont_credit, cont_ack, cont_app})
   

@@ -9,28 +9,26 @@ article:
   # fpage:                  # Página inicial
   # lpage:                  # Página final
 
-# Datos del artículo (español)
-title_es: Documento de referencia para ~!gurí_ (Gestor Unificado de formatos para Revistas de Investigación)
-subtitle_es: 
-
-abstract_es: |
-  Este documento describe de modo resumido las características principales de ~!gurí. A su vez ejemplifica con la plantilla modelo de Word el modo en que deben definirse los diferentes bloques dentro del texto.
-
-keyword_es: 
-  - guri
-  - modelo de plantilla
-  - ejemplo
+# Datos del artículo
+metadata:
+  title: Documento de referencia para ~!gurí_ (Gestor Unificado de formatos para Revistas de Investigación)
+  # subtitle_es: 
+  abstract: |
+    Este documento describe de modo resumido las características principales de ~!gurí. A su vez ejemplifica con la plantilla modelo de Word el modo en que deben definirse los diferentes bloques dentro del texto.
+  keyword:
+    - guri
+    - modelo de plantilla
+    - ejemplo
   
-# Datos del artículo (inglés)
-title_en: Reference Document for ~!gurí_ (Unified Format Manager for Research Journals)
-
-abstract_en: |
-  This document summarises the main features of ~!gurí. It also uses the Word template to illustrate how the different blocks within the text should be defined.
-
-keyword_en: 
-  - guri
-  - template
-  - example
+metadata_lang:
+  - lang: en
+    title: Reference Document for ~!gurí_ (Unified Format Manager for Research Journals)
+    abstract_en: |
+      This document summarises the main features of ~!gurí. It also uses the Word template to illustrate how the different blocks within the text should be defined.
+    keyword: 
+      - guri
+      - template model
+      - example
 
 # Texto libre en title (dedication en latex-pdf)
 # Puede usar cursiva (*texto*) o negritas (**texto**)

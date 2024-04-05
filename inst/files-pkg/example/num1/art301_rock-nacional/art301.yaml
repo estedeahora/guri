@@ -1,4 +1,5 @@
-# TODO    Averiguar cómo incorporar AoP (online first)
+# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
+
 article:
   heading: Dossier
   type: research-article # https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
@@ -9,24 +10,24 @@ article:
   # lpage:                  # Página final
 
 # Datos del artículo
-title_es: Lorem ipsum
-subtitle_es: Duis aute irure dolor
+metadata:
+  title: Lorem ipsum
+  subtitle: Duis aute irure dolor
+  abstract: |
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  keyword: 
+    - kw1_es
+    - kw2_es
+    # artic-lang: en               # Se puede modificar el idioma predefinido en _journal.yaml
 
-abstract_es: |
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-keyword_es: 
-  - kw1_es
-  - kw2_es
-  
-title_en: English lorem ipsum
-
-abstract_en: |
-  Maecenas risus nisl, vehicula a molestie eget, varius ut quam. Vestibulum quis blandit metus, at fringilla magna. Morbi finibus dui lacus, viverra faucibus dolor laoreet ac. Praesent vehicula neque tempor lacus scelerisque, id tincidunt nulla condimentum. Etiam convallis lobortis nulla ut fringilla. Phasellus aliquet euismod mauris ac commodo. Nam dictum, nunc sed tempus dictum, sapien tortor commodo tortor, ac fermentum lacus metus nec ex. Nunc ac finibus est. Integer ut vestibulum ante. 
-
-keyword_en: 
-  - kw1_en
-  - kw2_en
+metadata_lang:
+  - lang: en
+    title: English lorem ipsum
+    abstract: |
+      It is important to take care of the patient, to be followed by the client, but at the same time they will be affected by some great pains and sufferings. For to come to the smallest detail, no one should practice any kind of work unless he derives some benefit from it. Do not be angry with the pain in the rebuke, in the pleasure he wants to be a hair from the pain, let him run away from the pain. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.
+    keyword: 
+      - kw1_en
+      - kw2_en
 
 # Texto libre en title (dedication en latex-pdf)
 # Puede usar cursiva (*texto*) o negritas (**texto**)

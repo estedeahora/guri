@@ -1,35 +1,43 @@
 # Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
 
 article:
-  heading:                  # Presentación / Dossier / Espacio Abierto / Urbanidades / Novedades / Nota editorial
+  heading:                  # Nombre de sección (interno de la revista).
   type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
                             # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id:             # Identificador digital electrónico    
   doi: 
-  # art-access-id:          # 
+  # art-access-id:
   # fpage:                  # Página inicial
   # lpage:                  # Página final
 
-# Datos del artículo (español)
-title_es: 
-subtitle_es: 
+# Datos del artículo (principal language)
+metadata:
+  title:
+  subtitle: 
+  abstract: |
+    colocar abstract en lenguaje principal.
+  keyword: 
+    - kw1
+    - kw2
+  # artic-lang: en          # Se puede modificar el idioma predefinido en _journal.yaml
 
-abstract_es: |
-  colocar abstract en español.
-
-keyword_es: 
-  - kw1
-  - kw2
   
-# Datos del artículo (inglés)
-title_en: 
-
-abstract_en: |
-  colocar abstract en inglés
-
-keyword_en: 
-  - kw1
-  - kw2
+# Datos del artículo en otros idiomas
+metada_lang:
+  - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+    title: 
+    abstract: |
+      colocar abstract en inglés
+    keyword: 
+      - kw1
+      - kw2
+  # - lang: pt                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+  #   title: 
+  #   abstract: |
+  #     colocar abstract en tercer idioma
+  #   keyword: 
+  #     - kw1
+  #     - kw2
 
 # Texto libre en title (dedication en latex-pdf)
 # Puede usar cursiva (*texto*) o negritas (**texto**)
@@ -37,6 +45,8 @@ keyword_en:
 # Puede usar comandos latex.
 # book_info: |
 #   Texto
+
+# ack: Texto de agradecimiento.
 
 # Datos de autores (un bloque por autor)
 author:

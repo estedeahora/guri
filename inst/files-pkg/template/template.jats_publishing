@@ -5,10 +5,10 @@ $--
 $-- Changes:
 $-- * DTD v1.3 used instaed of DTD v1.2
 $-- * Add journal-id for Redalyc ('journal.redalyc')
-$-- * Add language specification (@xml:lang) in <journal_title>, <article-title>, <subtitle>
+$-- * Add language specification (@xml:lang) in: <journal_title>, <article-title>, <subtitle> and translations
 $-- * Attribute @abbrev-type in <abbrev-journal-title> (Scielo recomendation)
 $-- * Add location information about the journal's publisher (<publisher-loc>, <>).
-$-- * Add <trans-title-group> with title and subtitle in english (second language).
+$-- * Add <trans-title-group> with title and subtitle in second language.
 $-- * Remove author.cor-id field (seems an inconvenient way of declaring correspondence, it is preferred as an 
 $--      attribute within <contrib>.)
 $-- * Add credit data in <role> (inside <contrib>).
@@ -16,8 +16,7 @@ $-- * Add optional <season> element inside <pub-date>.
 $-- * The <history> element is modified and expanded. It was underdeveloped in the original template.
 $-- * Add <ali:free_to_read/> element.
 $-- * Modifies <licence> to include the @link attribute and the <ali:license_ref> element to the licence (if present).
-$-- * Modify preliminary elements (<abstract> and <kwd>) to adapt to multiple languages (currently only two with 
-$--      Spanish as the first language and English as the second).
+$-- * Modify preliminary elements (<abstract> and <kwd>) to adapt to multiple languages.
 $-- * Add <counts> element with <fig-count> and <table-count>.
 $-- * Add <ack> and <app-group> elements in <back>
 $--
@@ -133,13 +132,15 @@ $if(title)$
 $if(subtitle)$
 <subtitle xml:lang="$lang$">$subtitle$</subtitle>
 $endif$
-$if(title_en)$
+$if(metadata_lang)$
+$for(metadata_lang)$
 <trans-title-group>
-<trans-title xml:lang="en">$title_en$</trans-title>
-$if(subtitle_en)$
-<trans-subtitle xml:lang="en">$subtitle_en$</trans-subtitle>
+<trans-title xml:lang="$it.lang$">$it.title$</trans-title>
+$if(it.subtitle)$
+<trans-subtitle xml:lang="$it.lang$">$it.subtitle$</trans-subtitle>
 $endif$
 </trans-title-group>
+$endfor$
 $endif$
 </title-group>
 $endif$
@@ -288,34 +289,40 @@ $endif$
 $endfor$
 </permissions>
 $--         #### PRELIMINARIES ###################
-$if(abstract_es)$
+$if(abstract)$
 $-- # Scielo recomienda no usar el atributo lang
 <abstract xml:lang="$lang$">
 <title>Resumen</title>
-$abstract_es$
+$abstract$
 </abstract>
 $endif$
-$if(abstract_en)$
-<trans-abstract xml:lang="en">
+$if(metadata_lang)$
+$for(metadata_lang)$
+$if(it.abstract)$
+<trans-abstract xml:lang="$it.lang$">
 <title>Abstract</title>
-$abstract_en$
+$it.abstract$
 </trans-abstract>
 $endif$
-$if(keyword_es)$
+$endfor$
+$endif$
+$if(keyword)$
 <kwd-group kwd-group-type="author">
 <title>Palabras claves</title>
-$for(keyword_es)$
-<kwd>$keyword_es$</kwd>
+$for(keyword)$
+<kwd>$keyword$</kwd>
 $endfor$
 </kwd-group>
 $endif$
-$if(keyword_en)$
-<kwd-group kwd-group-type="author" xml:lang="en">
+$if(metadata_lang)$
+$for(metadata_lang)$
+<kwd-group kwd-group-type="author" xml:lang="$it.lang$">
 <title>Keywords</title>
-$for(keyword_en)$
-<kwd>$keyword_en$</kwd>
+$for(it.keyword)$
+<kwd>$it$</kwd>
 $endfor$
 </kwd-group>
+$endfor$
 $endif$
 $if(article.funding-statement)$
 <funding-group>
@@ -323,18 +330,17 @@ $if(article.funding-statement)$
 </funding-group>
 $endif$
 <counts>
-  <!-- <count count-type="contributors" count="3"/> -->
-  $if(n_figs)$
-  <fig-count count="$n_figs$"/>
-  $else$
-  <fig-count count="0"/>
-  $endif$
-  $if(n_tabs)$
-  <table-count count="$n_tabs$"/>
-  $else$
-  <table-count count="0"/>
-  $endif$  
- </counts>
+$if(n_figs)$
+<fig-count count="$n_figs$"/>
+$else$
+<fig-count count="0"/>
+$endif$
+$if(n_tabs)$
+<table-count count="$n_tabs$"/>
+$else$
+<table-count count="0"/>
+$endif$
+</counts>
 </article-meta>
 $if(notes)$
 <notes>$notes$</notes>

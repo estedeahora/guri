@@ -1,3 +1,5 @@
+# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
+
 article:
   heading: Artículos    
   type: research-article        # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
@@ -8,26 +10,35 @@ article:
   # publisher-id:           # REVISAR ESTE PUNTO. NO SE SI PUEDE IR ID DIGITAL DE PUB CONTINUA. HAY CAMBIOS CON 1.2
   # fpage:                  # Página inicial
   # lpage:                  # Página final
-# Datos del artículo (español)
-title_es: Ejecución de Tiros Libres en Fútbol
-subtitle_es: Un Análisis Científico
 
-# abstract_es: |
-#   colocar abstract en español
+# Datos del artículo
+metadata:
+  title: Ejecución de Tiros Libres en Fútbol
+  subtitle: Un Análisis Científico
+  # abstract: |
+  #   colocar abstract en español
+  # keyword: 
+  #   - kw1
+  #   - kw2
+  # artic-lang: en               # Se puede modificar el idioma predefinido en _journal.yaml
 
-# keyword_es: 
-#   - kw1
-#   - kw2
-  
-# Datos del artículo (inglés)
-title_en: "Free Kicks in Football. A Scientific Analysis"
+metadata_lang:
+  - lang: en
+    title: Free Kicks in Football. A Scientific Analysis
+    # abstract: |
+    #   colocar abstract en inglés
+    # keyword: 
+    #   - kw1
+    #   - kw2
 
-# abstract_en: |
-#   colocar abstract en inglés
+# Texto libre en title (dedication en latex-pdf)
+# Puede usar cursiva (*texto*) o negritas (**texto**)
+# En caso de que necesite un salto de línea (\newline)
+# Puede usar comandos latex.
+# book_info: |
+#   Texto
 
-# keyword_en: 
-#   - kw1
-#   - kw2
+# ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
 
 # Datos de autores
 author:

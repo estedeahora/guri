@@ -47,7 +47,7 @@ function Meta(m)
 
     -- Modify the journal's default language for the article.
     if m.metadata['artic-lang'] then
-        io.stderr:write("WARNING: The article uses a different main language than the journal.\n")
+        io.stderr:write("NOTE: The article uses a different main language than the journal.\n")
         m.lang = m.metadata['artic-lang']
     end
 

@@ -4,6 +4,13 @@
 --- License: CC-by-nc-sa
 
 local stringify = pandoc.utils.stringify
+local lang
+
+function Meta(meta)
+
+    lang = stringify(meta.lang)
+
+end
 
 -- Cite(cite) --------------------------------------------------------------------------------------
 -- Description: [en] Translate citation elements (coming from zotero plug-in for word in 'fields').
@@ -13,16 +20,28 @@ local stringify = pandoc.utils.stringify
 
 function Cite(cite)
 
-    for i = 1, #cite.citations, 1 do
+    if not lang:match('^en') then
 
-        local c = cite.citations[i].suffix
+        for i = 1, #cite.citations, 1 do
 
-        if c ~= nil then
-            c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo"):gsub("paragraph", "párrafo")
-            cite.citations[i].suffix = c
+            local c = cite.citations[i].suffix
+
+            if c ~= nil then
+                if lang:match('^es') or lang:match('^pt')  then
+                    c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo"):gsub("paragraph", "párrafo")
+                end
+
+                cite.citations[i].suffix = c
+            end
+
         end
 
     end
 
     return cite
 end
+
+return {
+    { Meta = Meta },
+    { Cite = Cite }
+  }

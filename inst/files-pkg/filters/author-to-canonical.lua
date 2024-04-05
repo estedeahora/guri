@@ -12,7 +12,7 @@ local stringify = pandoc.utils.stringify
 --		   [es] A table of the form code:country (key:value).
 -- 
 
-local function get_country(config_path)
+local function get_country(config_path, lang)
 
 	-- require csv library and read countries file
     local csv = pandoc.system.with_working_directory(config_path, function() return dofile("CSV.lua") end)
@@ -20,9 +20,21 @@ local function get_country(config_path)
     -- data from: https://gist.github.com/brenes/1095110#file-paises-csv
     local datos, header = pandoc.system.with_working_directory(config_path, function() return csv.load("paises.csv",  ',', true) end)
 
+    local lang_index
+    -- English or spanish country name?
+    if lang:match('^es') then
+        lang_index = 1
+    elseif lang:match('^en') then
+        lang_index = 2
+    else
+        io.stderr:write('WARNING: The language provided ("' .. lang .. '") is not supported. International countries names are used".\n')
+        lang_index = 3
+    end
+
+
     local paises = {}
     for _, v in pairs(datos) do
-        paises[v[4]] = v[1]
+        paises[v[4]] = v[lang_index]
     end
     
     return paises
@@ -39,7 +51,7 @@ end
 function Meta(m)
 
     if(m.affiliation) then
-        local paises = get_country(m.config_path)
+        local paises = get_country(m.config_path, stringify(m.lang))
         
         -- * affiliation --> institute
         local inst = m.affiliation

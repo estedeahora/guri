@@ -14,4 +14,4 @@ license:
   link: https://creativecommons.org/licenses/by-nc/4.0/
   free_to_read: true
 
-lang: es-ES
+lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
