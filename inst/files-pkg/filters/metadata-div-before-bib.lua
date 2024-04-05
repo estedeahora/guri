@@ -86,18 +86,30 @@ local function get_metadata(meta)
 
     -- Appendices
     if(meta.appendix) then
-        -- local app = nil
+
+        local app_file
+
         if(type(meta.appendix) == "string") then
-            cont_app = meta.appendix
+            app_file = {meta.appendix}
         else
-            cont_app = concat(meta.appendix, "\n")
+            app_file = meta.appendix
         end
         
-        cont_app = CodeBlock(cont_app, {class = "include", format = "markdown"})
-        cont_app.attributes["shift-heading-level-by"] = 0
+        local all_app = {}
 
-        meta.appendix = cont_app
-        cont_app = Div(cont_app, {id = "app", class = "Paratext"})
+        for i = 1, #app_file, 1 do
+
+            local single_app
+
+            single_app = CodeBlock(app_file[i], {class = "include", format = "markdown"})
+            single_app.attributes["shift-heading-level-by"] = 0
+
+            all_app[i] = Div(single_app, {id = "app", class = "Paratext"})
+        end
+
+        meta.appendix = app_file
+        cont_app = Div(all_app, {id = "apps", class = "Paratext"})
+
     end
 end
 
