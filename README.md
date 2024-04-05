@@ -46,12 +46,12 @@ Se aceptan solicitudes de extracción, informes de errores y solicitudes de func
 
 ## Futuras mejoras
 
-1.  [ ] Desarrollar aplicación web para facilitar la generación de archivos yaml.
-2.  [ ] Integrar con OJS.
-3.  [ ] Posibilitar uso desde línea de comando (y luego desde aplicación).
-4.  [ ] Transformar funciones en paquete de R.
-5.  [ ] Agregar soporte para permitir primer idioma diferente de español.
-6.  [ ] Ofrecer múltiples templates como opción con `guri_make_journal`.
-7.  [ ] Permitir filtros personalizados.
+1.  [x] Transformar funciones en paquete de R.
+2.  [x] Permitir filtros personalizados.
+3.  [x] Agregar soporte para permitir primer idioma diferente de español.
+4.  [ ] Desarrollar aplicación web para facilitar la generación de archivos yaml.
+5.  [ ] Integrar con OJS.
+6.  [ ] Posibilitar uso desde línea de comando (y luego desde aplicación).
+7.  [ ] Ofrecer múltiples templates como opción con `guri_make_journal`.
 8.  [ ] Agregar ebook como formato de salida.
 9.  [ ] Incorporar requerimientos de *Scielo*.

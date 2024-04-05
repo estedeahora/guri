@@ -9,6 +9,8 @@
 * Se modifica la generacion de documentos finales unificando las funciones de generacion de documentos (`guri_to_*`) mediante funcion interna `guri_convert`.
 * Se mejoran los mensajes (usando `{cli}` en lugar de interface base y ) y se traducen a ingles.
 * Se permiten filtros personalizados.
+* El idioma principal no necesita ser el español. Actualmente se da soporte completo para inglés y, parcialmente, para portugués. Nuevos idiomas pueden ser incorporados agregando diccionario de palabras.
+* Se permite el uso de múltiples idiomas para metadatos.
 * Se actualiza templates para que sea compatible con Pandoc 3.1.12.3.
 * Se genera documentacion y ejemplos para todas las funciones.
 * Se soluciona problema de cambio de directorios usando `on.exit()`.
