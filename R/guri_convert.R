@@ -1,16 +1,7 @@
-#' Converts the corrected manuscript between the formats required by `~!guri_`.
-#'
-#' @param path_art A string with the path to the article directory
-#' @param art A string with the article id.
-#' @param verbose Logical
-#' @param output String
-#'
-#' @return Invisible
-
 # path_art <- "./example/num1/art101_lorem-ipsum"
 # art <- "art101"
 # verbose <- T
-# output <- "jats"
+# output <- "tex"
 
 # TODO
 #   [x] General options
@@ -22,9 +13,18 @@
 
 # Outputs:
 #   [x] md
-#   [-] jats
-#   [ ] html
+#   [x] jats
 #   [ ] pdf
+#   [ ] html
+
+#' Converts the corrected manuscript between the formats required by `~!guri_`.
+#'
+#' @param path_art A string with the path to the article directory
+#' @param art A string with the article id.
+#' @param verbose Logical
+#' @param output String
+#'
+#' @return Invisible
 
 guri_convert <- function(path_art, art,
                          output,
@@ -42,7 +42,7 @@ guri_convert <- function(path_art, art,
 
   # Geth paths: Program files ('GURI/inst/') and customised journal configuration files ('./JOURNAL/_config').
   program_path <- pkg_file()
-  config_path  <- file.path(wdir, "..", "..", "_config"  )
+  config_path  <- fs::path_abs( file.path(wdir, "..", "..", "_config"  ) )
   config_files <- list.files(config_path)
 
   # General options
@@ -65,7 +65,7 @@ guri_convert <- function(path_art, art,
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
   # Customised filters
-  customised_filters <- config_files[stringr::str_detect(config_files, paste0(output, "_[0-9]_.+\\.lua$"))]
+  customised_filters <- config_files[stringr::str_detect(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))]
   if(verbose & length(customised_filters) > 0){
     ui_alert_info("Customized lua filters used: ", paste(col_blue(customised_filters), collapse = "; "), ".")
   }
@@ -94,7 +94,7 @@ guri_convert <- function(path_art, art,
     config_csl <- config_files[stringr::str_detect(config_files, ".*\\.csl$") ]
 
     if(length(config_csl) == 1){
-      opt_biblio <- c(op_biblio, paste0("--csl=", file.path(config_path, config_csl) ))
+      opt_biblio <- c(opt_biblio, paste0("--csl=", file.path(config_path, config_csl) ))
       if(verbose){
         ui_alert_info("Citation style used: {.path ", config_csl, "}.")
       }
@@ -112,18 +112,13 @@ guri_convert <- function(path_art, art,
 
     template_file <- paste0("template.",  opt_type[["template"]])
 
-    # detect if custom template exists in '_config' (only if 'custom')
-    if(!is.na(opt_type[["custom"]])){
-      config_template <- config_files[config_files ==  template_file]
-    }
-
-    if(!is.na(opt_type[["custom"]]) && length(config_template) == 1 ){
-      # TODO latex + html
-      opt_templ <- paste0("--template=", file.path(program_path, config_template))
+    # Detects: (a) if customizable; + (b) if custom template exists in '_config'
+    if(!is.na(opt_type[["custom"]]) && any(stringr::str_detect(config_files, paste0("^", template_file, "$")))){
+      opt_templ <- paste0("--template=", file.path(config_path, template_file))
 
       if(verbose){
         ui_alert_info("Default template is used ({.path ",
-                      "JOURNAL/_config/", config_template,"}).")
+                      "JOURNAL/_config/", template_file,"}).")
       }
     }else{
       if(verbose && !is.na(opt_type[["custom"]])){
@@ -152,10 +147,13 @@ guri_convert <- function(path_art, art,
 
     opt_meta <- paste0("--metadata-file=", metadata_files)
 
-  }else if(!is.na(opt_type[["metadata"]])){
+  }else if(!is.na(opt_type[["metadata"]])  ){
 
-    # TODO TEX/HTML
+    !is.na(opt_type[["custom"]])
+    # TODO
 
+  }else{
+    # TODO
   }
 
   rmarkdown::pandoc_convert(wd = wdir,
