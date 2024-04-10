@@ -292,7 +292,7 @@ $--         #### PRELIMINARIES ###################
 $if(abstract)$
 $-- # Scielo recomienda no usar el atributo lang
 <abstract xml:lang="$lang$">
-<title>Resumen</title>
+<title>$abstract_title$</title>
 $abstract$
 </abstract>
 $endif$
@@ -300,7 +300,7 @@ $if(metadata_lang)$
 $for(metadata_lang)$
 $if(it.abstract)$
 <trans-abstract xml:lang="$it.lang$">
-<title>Abstract</title>
+<title>$it.abstract_title$</title>
 $it.abstract$
 </trans-abstract>
 $endif$
@@ -308,7 +308,7 @@ $endfor$
 $endif$
 $if(keyword)$
 <kwd-group kwd-group-type="author">
-<title>Palabras claves</title>
+<title>$keyword_title$</title>
 $for(keyword)$
 <kwd>$keyword$</kwd>
 $endfor$
@@ -317,7 +317,7 @@ $endif$
 $if(metadata_lang)$
 $for(metadata_lang)$
 <kwd-group kwd-group-type="author" xml:lang="$it.lang$">
-<title>Keywords</title>
+<title>$it.keyword_title$</title>
 $for(it.keyword)$
 <kwd>$it$</kwd>
 $endfor$
@@ -339,6 +339,9 @@ $if(n_tabs)$
 <table-count count="$n_tabs$"/>
 $else$
 <table-count count="0"/>
+$endif$
+$if(n_refs)$
+<ref-count count="$n_refs$"/>
 $endif$
 </counts>
 </article-meta>
