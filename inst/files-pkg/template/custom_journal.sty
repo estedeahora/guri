@@ -111,13 +111,13 @@ $endif$
 
 $if(book_info)$\dedication{$book_info$}$endif$
 
-
 %%% Credit, Ack and app Enviroment
-
-\newenvironment{Credit}[1][Declaración de contribuciones de autoría (CRediT)]
+\newenvironment{Div}[1][]
     {\subsection*{#1}
     \sffamily\small}
 
-\newenvironment{Ack}{\begin{Credit}[Agradecimiento]}{\end{Credit}}%
 
-\newenvironment{app}{\newpage}{}
+\newenvironment{Credit}{\begin{Div}[Declaración de contribuciones de autoría (CRediT)]}{\end{Div}}%
+\newenvironment{Ack}{\begin{Div}[Agradecimiento]}{\end{Div}}%
+\newenvironment{apps}{\newpage}{}
+\newenvironment{app}{}{}

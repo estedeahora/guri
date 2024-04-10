@@ -447,19 +447,19 @@ $endif$
   $if(lang)$
     pdflang={$lang$},
   $endif$
-  $if(keyword_es)$
-    pdfkeywords={$for(keyword_es)$$keyword_es$$sep$, $endfor$},
+  $if(keyword)$
+    pdfkeywords={$for(keyword)$$keyword$$sep$, $endfor$},
   $endif$
   pdfinfo={
     $if(article.doi)$
       DOI={$article.doi$},
     $endif$
-    $if(abstract_es)$
-      abstract={$abstract_es$},
+    $if(abstract)$
+      abstract={$abstract$},
     $endif$
     journal=$journal.title$
       },
-  % Define color de links
+$-- Define color de links
   $if(colorlinks)$
     colorlinks=true,
     linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
@@ -485,15 +485,15 @@ pdfcreator={LaTeX via pandoc \& \textasciitilde!guri\_}}
   \maketitle
 
   $-- Resumen / Abstract
-  $if(abstract_es)$  
+  $if(abstract)$  
     
     \begin{abstract}
 
-      \noindent{$abstract_es$}
+      \noindent{$abstract$}
 
       \nopagebreak
 
-      \noindent\sffamily\textit{Palabras claves: $for(keyword_es)$$it$$sep$; $endfor$}.%
+      \noindent\sffamily\textit{Palabras claves: $for(keyword)$$it$$sep$; $endfor$}.%
 
     \end{abstract}
     
