@@ -11,7 +11,8 @@
 * Se permiten filtros personalizados.
 * El idioma principal no necesita ser el español. Actualmente se da soporte completo para inglés y, parcialmente, para portugués. Nuevos idiomas pueden ser incorporados agregando diccionario de palabras.
 * Se permite el uso de múltiples idiomas para metadatos.
-* Se actualiza templates para que sea compatible con Pandoc 3.1.12.3.
+* Se permite idioma del artículo diferente del idioma principal de la revista.
+* Se actualiza templates para que sea compatible con Pandoc 3.1.13.
 * Se genera documentacion y ejemplos para todas las funciones.
 * Se soluciona problema de cambio de directorios usando `on.exit()`.
 * La revistas de ejemplo se incorpora como opcional dentro de `guri_make_journal`.
