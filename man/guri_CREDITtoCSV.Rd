@@ -2,18 +2,20 @@
 % Please edit documentation in R/utils.R
 \name{guri_CREDITtoCSV}
 \alias{guri_CREDITtoCSV}
-\title{Prepare the working directory for each article}
+\title{TODO Prepare the working directory for each article.}
 \usage{
-guri_CREDITtoCSV(art_path, art_pre)
+guri_CREDITtoCSV(art_path, art_pre, verbose = F)
 }
 \arguments{
 \item{art_path}{A string with the path to the article folder.}
 
 \item{art_pre}{A string. This prefix is used to identify the folders where each issue of your journal will be stored. For example, if you use 'num' (default) the folders where you should store the issues of your journal will be 'num1', 'num2', and so on.}
+
+\item{verbose}{Logical}
 }
 \value{
-Invisible True.
+Invisible True if succesfull.
 }
 \description{
-Prepare the working directory for each article
+TODO Prepare the working directory for each article.
 }

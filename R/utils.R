@@ -66,8 +66,9 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
 #'
 #' @param art_path A string with the path to the article folder.
 #' @param art_pre A string. This prefix is used to identify the folders where each issue of your journal will be stored. For example, if you use 'num' (default) the folders where you should store the issues of your journal will be 'num1', 'num2', and so on.
+#' @param verbose Logical
 #'
-#' @return Invisible True.
+#' @return Invisible True if succesfull.
 
 guri_CREDITtoCSV <- function(art_path, art_pre, verbose = F){
 
