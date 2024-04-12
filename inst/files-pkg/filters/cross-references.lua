@@ -3,6 +3,38 @@
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
+-- Meta(meta) ------------------------------------------------------------------------------------
+
+local stringify = pandoc.utils.stringify
+
+local lang
+local table_title
+local figure_title
+
+local dic = {
+  es = {TAB = 'Tabla', FIG = "Figura"},
+  en = {TAB = 'Table', FIG = "Figure"},
+  pt = {TAB = 'Tabela', FIG = 'Figura'}
+}
+
+function Meta(meta)
+
+  lang = stringify(meta.lang):match("[a-zA-Z][a-zA-Z]")
+
+  -- add customised titles to the dictionary. 
+  if not dic[lang] then
+    dic[lang] = {}
+  end
+
+  if meta.table_title then
+    dic[lang]['TAB'] = stringify(meta.table_title)
+  end
+
+  if meta.figure_title then
+    dic[lang]['FIG'] = stringify(meta.figure_title)
+  end
+end
+
 -- Str(str) --------------------------------------------------------------------------------------
 -- Description: [en] Changes cross-reference flags to links (pandoc.Link) to floating elements.
 --				      [es] Cambia  marcas de referencias cruzadas por vínculos (pandoc.Link) a elementos flotantes.
@@ -19,12 +51,11 @@ function Str(str)
     
     -- Identify float type ('FIG' or 'TAB') and assigns associated label.
     local tipo = texto:gsub('^.*<!', ''):gsub('_[0-9][0-9]>.*$', '')
-    if tipo == 'FIG' then
-      flotante = 'Figura'
-    elseif tipo == 'TAB' then
-      flotante = 'Tabla'
-    else
-      print('Warning: "', texto, '" no es un marcador válido.')
+
+    flotante = dic[lang][tipo]
+
+    if not flotante then
+      error('ERROR: Language ("' .. lang .. '") requires you to provide custom values for "table_title" and "figure_title".')
     end
 
     -- Extracts pre- and post-float content.
@@ -43,3 +74,8 @@ function Str(str)
   return str
   
 end
+
+return {
+  { Meta = Meta },
+  { Str = Str }
+}
