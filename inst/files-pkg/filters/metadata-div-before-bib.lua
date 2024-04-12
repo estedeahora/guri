@@ -15,11 +15,12 @@ local Div = pandoc.Div
 local RawBlock = pandoc.RawBlock
 local CodeBlock = pandoc.CodeBlock
 
-local reference_title
+local n_refs = 0
+
+local references_title
 local cont_credit = ''
 local cont_ack = ''
 local cont_app = ''
-local with_ref = nil
 
 --  credit_Div(aut) ------------------------------------------------------------------------------------------
 -- Description: [en] Takes a Meta.author and returns a string with the credit data information inside a pandoc.Div.
@@ -28,7 +29,10 @@ local with_ref = nil
 --         [es] Una cadena de texto dentro de un pandoc.Div con ID="credit" y class="paratext", formateado de la forma:
 -- 
 -- div{ID = "credit", class = "paratext"}
--- **Surname:** rol1_spanish (rol1_english); rol2_spanish (rol2_english). **Surname:** rol1_spanish (rol_english); rol2_spanish (rol2_english).
+-- **Surname:** rol1_main_lang (rol1_english); rol2_main_lang (rol2_english). **Surname:** rol1_main_lang (rol_english); rol2_main_lang (rol2_english).
+--
+-- Note: [en] If main_lang = 'en' → **Surname:** rol1_english; rol2_english. **Surname:** rol_english; rol2_english.
+--       [es] Si main_lang = 'en' → **Surname:** rol1_english; rol2_english. **Surname:** rol_english; rol2_english.
 
 local function credit_Div(aut, lang)
 
@@ -77,11 +81,18 @@ end
 --                      elements as a text string inside a pandoc.Div at the end of the text (before references).
 --              [es] Obtiene la metadata de (a) credit, (b) agradecimientos y (c) anexos, agregando cada uno de estos 
 --                      elementos como una cadena de texto dentro de un pandoc.Div al final del texto (antes de las referencias)
--- Return: [en] 
---         [es] Meta con elementos credit, ack y appendix modificados (si están presentes en meta). Los elemento credit y ack
---                  son una cadena de texto dentro de un pandoc.Div con ID="credit"/"ack" y class="paratext". Los elementos
---                  appendix formateado de la forma: 
---
+-- Return: [en]  Modified meta, adding credit, ack and appendix elements (depending on which are present in meta). The credit
+--                  and ack elements are a text string inside a pandoc.Div with ID="credit"/"ack" and class="paratext". The 
+--                  appendix elements (as a whole) are placed inside a pandoc.Div (ID="apps" and class="paratext"), 
+--                  containing in turn a pandoc.Div (ID="app" and class="paratext") containing a pandoc.CodeBlock with
+--                  the path to the md-file containing the appendix (class = "include", format = "markdown", "shift-heading-level-by" = 0).
+--         [es] Meta Modificado, agregando  elementos credit, ack y appendix (dependiendo de cuáles  están presentes en meta).
+--                  Los elemento credit y ack son una cadena de texto dentro de un pandoc.Div con ID="credit"/"ack" y 
+--                  class="paratext". Los elementos de appendix (en conjunto) se colocan dentro de un pandoc.Div (ID="apps" 
+--                  y class="paratext"), conteniendo a su vez un pandoc.Div (ID="app" y class="paratext") que contiene un 
+--                  pandoc.CodeBlock con el path al archivo md que tiene el apéndice (class = "include", format = "markdown",
+--                  "shift-heading-level-by" = 0).
+
 
 local function get_metadata(meta)
   
@@ -125,62 +136,77 @@ local function get_metadata(meta)
 
     end
 
+
     local lang = pandoc.utils.stringify(meta.lang)
 
-    if lang:match('^en') then
-        reference_title = 'references'
+    if meta.references_title then
+        references_title = lower(stringify(meta.references_title) )
+    elseif lang:match('^en') then
+        references_title = 'references'
     elseif lang:match('^es') then
-        reference_title = 'referencias bibliográficas'
+        references_title = 'referencias bibliográficas'
     elseif lang:match('^pt') then
-        reference_title = 'referências'
+        references_title = 'referências'
     else
-        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references. It uses "reference".\n')
-        reference_title = 'references'
+        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references ("reference" is used).\n')
+        references_title = 'references'
     end
+
+    if meta.references then
+        n_refs = #meta.references
+    end
+
+    meta.n_refs = n_refs
+    
+    return meta
 
 end
 
 -- add_metadata1(h) & add_metadata2(doc) ------------------------------------------------------------------
--- Description: [en] Add multiple pandoc.div with credit metadata and acknowledgements  (if any) 
---                      before references (add_metadata1) or at the end for articles without references (add_metadata2).
---                      Also, add the appendices (if any) in a pandoc.div at the end of the text.
---              [es] Agrega múltiples pandoc.div con metadata de credit y agradecimientos (si la hubiera) 
---                      antes de las referencias (add_metadata1) o al final para artículos sin referencias (add_metadata2).
---                      Además, agrega los anexos (si los hubiera) en un pandoc.div al final del texto.
--- Return: [en]  Modify the block content of the pandoc object by adding in order blocks of the pandoc.div class for credit, acknowledgements, bibliography and appendices (if present).
---         [es] Modifica el contenido de bloques del objeto pandoc agregando en orden bloques de la clase pandoc.div para credit, agradecimientos, bibliografía y apéndices (los que están presentes).
+-- Description: [en] Add multiple pandoc.divs with credit metadata and acknowledgements (if any)  before references
+--                      or at the end (for articles without references). Also, add annexes (if any) in a pandoc.div 
+--                      at the end of the text.
+--                     Also, add the appendices (if any) in a pandoc.div at the end of the text.
+--              [es] Agrega múltiples pandoc.div con metadata de credit y agradecimientos (si la hubiera) antes
+--                     de las referencias o al final (para artículos sin referencias). Además, agrega los anexos
+--                     (si los hubiera) en un pandoc.div al final del texto.
+-- Return: [en] A modified pandoc document, adding the contents of the pandoc.div class blocks for credit, 
+--                acknowledgements, title references, references and appendices (if present).
+--         [es] Un documento de pandoc modificado, agregando el contenido de los bloques de clase pandoc.div 
+--                para credit, agradecimientos, título de referencias, referencias y apéndices (los que 
+--                estubieran presentes).
 
-function add_metadata1(h) 
+function add_metadata(doc) 
 
-  local s = lower(stringify(h))
-  s = s:gsub("%s*$", "")
+    local blocks = doc.blocks
+    local last_block = blocks[#blocks]
+    local last_text = lower(stringify(last_block)):gsub("%s*$", "")
+    
+    if n_refs > 0 and not last_text:match(references_title) then
+        error('ERROR: There is more than zero references, but the expected heading of references does not exist ("' .. references_title ..'")') 
+    elseif n_refs == 0 and last_text:match(references_title) then
+        error('ERROR: There is zero references, but the "reference" header is present.')
+    elseif n_refs > 0 and last_text:match(references_title) and not last_block.t == "Header" then
+        error('ERROR: The reference header is present, but it is not an element of type "Heading".')
+    end
 
-  if(s == reference_title) then
+    -- 
+    if n_refs == 0 then
 
-    local res = {cont_credit, cont_ack, h, 
-                RawBlock('markdown', '::: {#refs}\n:::'),
-                cont_app 
-                } 
-    with_ref = true
+        io.stderr:write("NOTE: Article without references.\n")
 
-    return(res)
+        doc.blocks:extend({cont_credit, cont_ack, cont_app})
+    
+    else
+        blocks[#blocks] = nil
 
-  end
+        blocks:extend({cont_credit, cont_ack,
+                        last_block, RawBlock('markdown', '::: {#refs}\n:::'),
+                        cont_app})
+    end
+
+    return doc
 
 end
 
-function add_metadata2(doc) 
-
-  if(with_ref == nil and (cont_credit or cont_ack or cont_app)) then
-
-    io.stderr:write("NOTE: Article without references.\n")
-
-    doc.blocks:extend({cont_credit, cont_ack, cont_app})
-  
-  end
-
-  return doc
-
-end
-
-return {{Meta = get_metadata}, {Header = add_metadata1}, {Pandoc = add_metadata2}}
+return {{Meta = get_metadata}, {Pandoc = add_metadata}}

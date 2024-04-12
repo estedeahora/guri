@@ -56,8 +56,8 @@ function Meta(m)
             m.lang = m.customized['artic-lang']
         end
 
-        if m.customized['reference_title'] then
-            m.reference_title = m.customized['reference_title']
+        if m.customized['references_title'] then
+            m.references_title = m.customized['references_title']
         end
 
         if m.customized['abstract_title'] then
