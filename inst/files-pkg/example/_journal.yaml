@@ -19,7 +19,7 @@ license:
   free_to_read: true
 
 doi_register:
-  doi_suffix_constructor: guri.i%i_$m
+  doi_suffix_constructor: guri.v%vi%i_$m       # example: www.doi.org/10.1234/guri.v10i1_a101
   doi_depositor:
     name: Joe Depositor
     mail: joe@depositor.com
