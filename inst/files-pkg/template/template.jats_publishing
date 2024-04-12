@@ -227,11 +227,11 @@ $endif$
 <year>$date.year$</year>
 </pub-date>
 $endif$
-$if(article.volume)$
-<volume>$article.volume$</volume>
+$if(volume)$
+<volume>$volume$</volume>
 $endif$
-$if(article.issue)$
-<issue>$article.issue$</issue>
+$if(issue)$
+<issue>$issue$</issue>
 $endif$
 $if(article.fpage)$
 <fpage>$article.fpage$</fpage>

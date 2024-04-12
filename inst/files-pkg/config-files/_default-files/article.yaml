@@ -5,10 +5,11 @@ article:
   type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
                             # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id:             # Identificador digital electrónico    
-  doi: 
-  # art-access-id:
+  ojs_id:
   # fpage:                  # Página inicial
   # lpage:                  # Página final
+  # doi: 
+  # publisher-id:
 
 # Datos del artículo (principal language)
 metadata:

@@ -6,9 +6,11 @@ lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards
 journal:
   title: journal title
   abbrev-title: abreviated journal title
-  pissn: 0123-4567 # print ISSN
-  eissn: 0987-6543 # electronic ISSN
+  pissn: 0123-4567          # print ISSN
+  eissn: 0987-6543          # electronic ISSN
+  doi_prefix: "10.XXXX"     # DOI prefix 
   publisher-name: Publisher name
+
 publisher-loc:
    country: Publisher institution country
    email: publisher@university.edu
@@ -19,4 +21,21 @@ license:
   link: https://creativecommons.org/licenses/by/4.0/
   free_to_read: true
 
+doi_register:
+  doi_suffix_constructor:     # DOI suffix builder (only used if article.doi is not provided).
+  doi_depositor:              # Depositor
+    name:                     
+    mail: 
+  registrant:                 # Registrant's name (institution)
+  resource_ojs_url:           # URL' prefix in ojs. Example:  https://publicaciones.uba.ar/index.php/guri/
 
+# 'doi_suffix_constructor' follows OJS conventions: 
+#    %j journal initials (first letter of journal.title); 
+#    %v volume nomber (volume); 
+#    %i issue number (issue); 
+#    %Y Year (date.year); 
+#    %a OJS article ID (article.ojs_id); 
+#    %p article pages (article.fpage-article.lpage).
+# In addition, guri uses two markers that can be used more freely to customise your doi suffix: 
+#    %n article.elocation-id; 
+#    %x article.publisher-id. 
