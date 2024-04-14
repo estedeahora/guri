@@ -1,9 +1,11 @@
+# Si no se utiliza información de volumen/issue debe comentarse
 issue: 1
 volume: 1
 
+# Si se utiliza publicación continua y no hay fecha de publicación para el volumen/issue, debe usar en el archivo article el campo history (epub).
 date:
   type: pub
   # day:                    # Utilizar cuando haya prepublicación continua
   # month:
-  # season:                   # Julio-Diciembre / Enero-Junio
+  # season:
   year: 2024

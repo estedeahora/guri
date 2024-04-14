@@ -1,12 +1,13 @@
-# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
-
 article:
   heading: Modelo
   type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id: a101            
-  doi: 10.1223/3344445.55555333
+  # doi: guri_45.5555
   # fpage:                  # Página inicial
   # lpage:                  # Página final
+  # resource_url:
+  # resources:
+
 
 # Datos del artículo
 metadata:
@@ -18,7 +19,6 @@ metadata:
     - Lorem
     - Ipsum
     - Dolor
-  # artic-lang: en               # Se puede modificar el idioma predefinido en _journal.yaml
 
 metadata_lang:
   - lang: en
@@ -29,6 +29,18 @@ metadata_lang:
       - Home
       - He himself
       - Pain
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
+  - lang: pt
+    title: Título em português
+    abstract: |
+      Otro abstract en otro idioma
+    keyword: 
+      - kw1_ar
+      - kw2_ar
+      - kw3_ar
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
 
 # Texto libre en title (dedication en latex-pdf)
 # Puede usar cursiva (*texto*) o negritas (**texto**)
@@ -41,7 +53,7 @@ ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse i
 
 # Datos de autores (un bloque por autor)
 author:
-  - given-names: Marcus Tullius  
+  - given-names: Marcus Tullius
     surname: Cicero
     email: ciceron@instute.com
     orcid: 0000-0000-1234-5678
@@ -67,3 +79,11 @@ history:
     day: 11
     month: 11
     year: 2023
+    
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)

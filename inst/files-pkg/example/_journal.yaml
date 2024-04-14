@@ -1,11 +1,12 @@
 lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+ojs: true
 
 journal:
   title: ~!guri_ {An example journal}
   abbrev-title: ~!guri_
   # pissn:                 #print issn
   eissn: 0001-2000
-  doi_prefix: "10.1234"
+  doi_prefix: 10.1234
   publisher-name: guri
 
 publisher-loc:
@@ -19,10 +20,15 @@ license:
   free_to_read: true
 
 doi_register:
-  doi_suffix_constructor: guri.v%vi%i_$m       # example: www.doi.org/10.1234/guri.v10i1_a101
+  doi_suffix_constructor: guri.v%vi%i_%e       # example: www.doi.org/10.1234/guri.v10i1_a101
   doi_depositor:
     name: Joe Depositor
     mail: joe@depositor.com
   registrant: University Registrant
-  resource_ojs_url: https://publicaciones.uba.ar/index.php/guri/
+  resource_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a
+  resource_files:
+    - type: pdf                   # file type: pdf/html/xml-jats
+      resource_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a/
+      tm:  true
+  
 

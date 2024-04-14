@@ -1,5 +1,10 @@
 # Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
 
+# Identificadores del artículo
+# ----------------------------
+# Otras varialbes disponibles: 
+#   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier)
+#   'funding-statement' (describe la financiación, en jats <funding-statement>)
 article:
   heading:                  # Nombre de sección (interno de la revista).
   type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
@@ -8,10 +13,13 @@ article:
   ojs_id:
   # fpage:                  # Página inicial
   # lpage:                  # Página final
-  # doi: 
-  # publisher-id:
-
-# Datos del artículo (principal language)
+  # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
+  # publisher-id:           # Identificador externo del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">. 
+  # resource_url:
+  # resources:
+  
+# Metadatos del artículo (language principal)
+# -------------------------------------------
 metadata:
   title:
   subtitle: 
@@ -20,15 +28,17 @@ metadata:
   keyword: 
     - kw1
     - kw2
-  # artic-lang: en          # Se puede modificar el idioma predefinido en _journal.yaml
-
   
-# Datos del artículo en otros idiomas
-metada_lang:
+# Metadatos del artículo en otros idiomas
+# ---------------------------------------
+# Otras varialbes disponibles: 
+#   'abstract_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+#   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+metadata_lang:
   - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
     title: 
     abstract: |
-      colocar abstract en inglés
+      colocar abstract en segundo idioma
     keyword: 
       - kw1
       - kw2
@@ -40,22 +50,17 @@ metada_lang:
   #     - kw1
   #     - kw2
 
-# Texto libre en title (dedication en latex-pdf)
-# Puede usar cursiva (*texto*) o negritas (**texto**)
-# En caso de que necesite un salto de línea (\newline)
-# Puede usar comandos latex.
-# book_info: |
-#   Texto
+# Autores (un bloque por autor)
+# -----------------------------
+# Otras varialbes disponibles: 
+#   'equal-contrib: yes' (permite definir igual contribución, pero sólo se recomienda usar si no se usa credit).
 
-# ack: Texto de agradecimiento.
-
-# Datos de autores (un bloque por autor)
 author:
   - given-names: 
     surname: 
     email: 
     orcid: 
-    cor-id: yes               # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+    cor-id: yes               # si no es autor de correspondencia comentar.
     affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
       - aff1
       # - aff2
@@ -67,17 +72,27 @@ author:
   #   affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
   #     - aff1
 
-affiliation:
+# Afiliaciones insitucionales
+# ---------------------------
+# Otras varialbes disponibles: 
+#   'group' (nombre del grupo de investigación -bajo nivel-, en jats <institution content-type='group'>).
+#   'department' (nombre del departamento -nivel medio-, en jats <institution content-type='dept'>).
+#   identificadores de instituciones alternativos: 'isni' (ej: 0000 0001 2297 3151); 'ringgold' (ej: 1846)
+#   información de ubicación: 'street-address', 'city'
+
+
+affiliation:                    # Se permiten 
   - id: aff1
     organization: 
-    ror: 
-    country-code: AR              # ISO-3166-1 country identifier. See https://www.nationsonline.org/oneworld/country_code_list.htm
+    ror:                        # Ej: https://ror.org/03cqe8w59
+    country-code: AR            # ISO-3166-1 country identifier. See https://www.nationsonline.org/oneworld/country_code_list.htm
   # - id: aff2
   #   organization:
   #   ror: 
   #   country-code: 
 
 # Datos de recepción del artículo
+# -------------------------------
 history:
   - type: received
     day: 
@@ -91,3 +106,21 @@ history:
   #   day: 
   #   month: 
   #   year: 
+
+# Otros elementos
+# ---------------
+# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
+# book_info: |
+#   Texto libre preliminar
+
+# ack: Agradecimiento.
+
+# Variables de customización del artículo
+# ---------------------------------------
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
