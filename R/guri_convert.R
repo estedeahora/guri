@@ -1,7 +1,7 @@
 # path_art <- "./example/num1/art101_lorem-ipsum"
 # art <- "art101"
 # verbose <- T
-# output <- "tex"
+# output <- "md"
 
 # TODO
 #   [x] General options
@@ -65,6 +65,7 @@ guri_convert <- function(path_art, art,
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
   # Customised filters
+  # TODO: config_files[stringr::str_detect(config_files, pattern)] → a <- stringr::str_extract(config_files, pattern); a[!is.na(a)] // a |> na.omit()
   customised_filters <- config_files[stringr::str_detect(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))]
   if(verbose & length(customised_filters) > 0){
     ui_alert_info("Customized lua filters used: ", paste(col_blue(customised_filters), collapse = "; "), ".")
@@ -134,11 +135,12 @@ guri_convert <- function(path_art, art,
 
   if(output == "md"){
 
-    metadata_files <- c(art = file.path(paste0(art, ".yaml")),              # article
+    metadata_files <- c(article = file.path(paste0(art, ".yaml")),          # article
                         issue = file.path("..", "_issue.yaml"),             # issue
                         journal = file.path("..", "..", "_journal.yaml"))   # journal
 
-    metadata_exist <- file.exists(file.path(wdir, metadata_files) )
+    metadata_files <- fs::path_abs(file.path(wdir, metadata_files))
+    metadata_exist <- file.exists(metadata_files)
 
     if(any(!metadata_exist)){
       ui_abort("Configuration file is not present. Missing: {.path ",
