@@ -85,13 +85,13 @@ function Meta(m)
 					local cont 
 
 					-- if lang == 'en', then cont = elem
-					if pandoc.utils.stringify(m.lang):match('en') then
-						cont = credit_term[i]
-					else
-						cont = row[1]
-					end
+					-- if pandoc.utils.stringify(m.lang):match('en') then
+					-- 	cont = credit_term[i]
+					-- else
+					-- 	cont = row[1]
+					-- end
 
-					table.insert(credit[k-1], {cont = cont,--row[1],
+					table.insert(credit[k-1], {cont = row[1], 
 											   elem = credit_term[i], 
 											   uri = credit_uri[i]})
 				end

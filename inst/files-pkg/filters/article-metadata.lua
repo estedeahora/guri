@@ -1,4 +1,4 @@
---- title.lua – filter to check content of titles
+--- article-metadata.lua – filter to check content of titles
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/article-metadata.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
@@ -46,36 +46,6 @@ function Meta(m)
     end
 
     m.metadata = nil
-
-    -- Modify the journal's default language for the article.
-    -- m.customized.* -> to -> m.*
-
-    if m.customized then
-        if m.customized['artic-lang'] then
-            io.write("NOTE: The article uses a different main language than the journal.\n")
-            m.lang = m.customized['artic-lang']
-        end
-
-        if m.customized['references_title'] then
-            m.references_title = m.customized['references_title']
-        end
-
-        if m.customized['abstract_title'] then
-            m.abstract_title = m.customized['abstract_title']
-        end
-
-        if m.customized['keyword_title'] then
-            m.keyword_title = m.customized['keyword_title']
-        end
-
-        if m.customized['table_title'] then
-            m.table_title = m.customized['table_title']
-        end
-
-        if m.customized['figure_title'] then
-            m.figure_title = m.customized['figure_title']
-        end
-    end
 
     return m
 end

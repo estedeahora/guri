@@ -6,9 +6,9 @@
 local stringify = pandoc.utils.stringify
 local lang
 
--- get_metatitle(lang_metadata) -----------------------------------------------------------------------
+-- get_metadata_title(lang_metadata) -----------------------------------------------------------------------
 
-function get_metatitle(lang_metadata)
+function get_metadata_title(lang_metadata)
     
     local tit_abstract
     local tit_kws
@@ -48,7 +48,7 @@ function add_metatitle(other_langs_metadata)
                       'Only one is present (language: ' .. lang_i .. ')\n')
             end
 
-            meta_i.abstract_title, meta_i.keyword_title = get_metatitle(lang_i)
+            meta_i.abstract_title, meta_i.keyword_title = get_metadata_title(lang_i)
 
             other_langs_metadata[k] = meta_i
         end
@@ -60,15 +60,45 @@ end
 
 function Meta(meta)
 
+       -- Modify the journal's default language for the article.
+    -- m.customized.* -> to -> m.*
+
+    if m.customized then
+        if m.customized['artic-lang'] then
+            io.write("NOTE: The article uses a different main language than the journal.\n")
+            m.lang = m.customized['artic-lang']
+        end
+
+        if m.customized['abstract_title'] then
+            m.abstract_title = m.customized['abstract_title']
+        end
+
+        if m.customized['keyword_title'] then
+            m.keyword_title = m.customized['keyword_title']
+        end
+
+        if m.customized['table_title'] then
+            m.table_title = m.customized['table_title']
+        end
+
+        if m.customized['figure_title'] then
+            m.figure_title = m.customized['figure_title']
+        end
+
+        if m.customized['references_title'] then
+            m.references_title = m.customized['references_title']
+        end
+    end
+
     lang = stringify(meta.lang)
 
     -- Abstract / kw main language
     if not meta.abstract_title then
-        meta.abstract_title, _ = get_metatitle(lang)
+        meta.abstract_title, _ = get_metadata_title(lang)
     end
 
     if not meta.keyword_title then
-        _, meta.keyword_title = get_metatitle(lang)
+        _, meta.keyword_title = get_metadata_title(lang)
     end
 
     if not meta.abstract_title or not meta.keyword_title then
@@ -86,36 +116,4 @@ function Meta(meta)
 
 end
 
--- Cite(cite) --------------------------------------------------------------------------------------
--- Description: [en] Translate citation elements (coming from zotero plug-in for word in 'fields').
---				[es] Traducir elementos de cita (provenientes de complemento de zotero para word en 'campos').
--- Return: [en] An element of type pandoc.cite with suffixes translated into Spanish.
---		   [es] Un elemento de tipo pandoc.cite con sufijos traducidos al español.
 
-function Cite(cite)
-
-    if not lang:match('^en') then
-
-        for i = 1, #cite.citations, 1 do
-
-            local c = cite.citations[i].suffix
-
-            if c ~= nil then
-                if lang:match('^es') or lang:match('^pt')  then
-                    c = stringify(c):gsub("page", "p."):gsub("pages", "pp."):gsub("chapter", "capítulo"):gsub("paragraph", "párrafo")
-                end
-
-                cite.citations[i].suffix = c
-            end
-
-        end
-
-    end
-
-    return cite
-end
-
-return {
-    { Meta = Meta },
-    { Cite = Cite }
-  }
