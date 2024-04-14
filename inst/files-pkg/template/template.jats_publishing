@@ -15,7 +15,7 @@ $-- * Add credit data in <role> (inside <contrib>).
 $-- * Add optional <season> element inside <pub-date>.
 $-- * The <history> element is modified and expanded. It was underdeveloped in the original template.
 $-- * Add <ali:free_to_read/> element.
-$-- * Modifies <licence> to include the @link attribute and the <ali:license_ref> element to the licence (if present).
+$-- * Modifies <license> to include the @link attribute and the <ali:license_ref> element to the license (if present).
 $-- * Modify preliminary elements (<abstract> and <kwd>) to adapt to multiple languages.
 $-- * Add <counts> element with <fig-count> and <table-count>.
 $-- * Add <ack> and <app-group> elements in <back>
@@ -212,7 +212,7 @@ $if(article.author-notes.con)$
 $endif$
 </author-notes>
 $endif$
-$--         #### CURRENT ISSUE ###############
+$--         #### PUBDATE ###############
 $if(date)$
 <pub-date date-type="$if(date.type)$$date.type$$else$pub$endif$" publication-format="electronic"$if(date.iso-8601)$ iso-8601-date="$date.iso-8601$"$endif$>
 $if(date.season)$
@@ -227,6 +227,7 @@ $endif$
 <year>$date.year$</year>
 </pub-date>
 $endif$
+$--         #### CURRENT ISSUE ###############
 $if(volume)$
 <volume>$volume$</volume>
 $endif$
