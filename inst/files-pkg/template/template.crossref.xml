@@ -138,13 +138,15 @@ $-- <!-- <scn_policies> -->
 <doi>$article.doi$</doi>
 <timestamp>$doi_register.unix_epoch$</timestamp>
 <resource content_version="vor">$doi_register.resource$</resource>
-<!-- TODO Archivos asociados (ej: pdf, xml, html)
-<collection property="crawler-based">
+<!-- TODO Asociar archivos asociados (ej: pdf, xml, html) -->
+<!-- <collection property="crawler-based">
+$for(doi_register.resource_files)$
 <item crawler="iParadigms">
-<resource>https://publicaciones.sociales.uba.ar/index.php/quid16/article/viewFile/7620/pdf</resource>
+<resource>$it.url$</resource>
 </item>
-</collection>
-<collection property="text-mining">
+$endfor$
+</collection> -->
+<!-- <collection property="text-mining">
 <item>
 <resource mime_type="application/pdf">https://publicaciones.sociales.uba.ar/index.php/quid16/article/viewFile/7620/pdf</resource>
 </item>
@@ -160,9 +162,6 @@ $-- <!-- <scn_policies> -->
 
 
 <!-- 
-    
-    
-
     doi_register
         - doi_depositor:
             - name: nombre de depositor
@@ -170,16 +169,25 @@ $-- <!-- <scn_policies> -->
         - registrant: Nombre del registrant (institución)
         - resource_ojs_url: prefijo base de ojs
         - unix_epoch: marca de tiempo en unix epoch. Con Filtro.
+        TODO 
         - resource: Debe contener la página web en la que estará disponible el artículo. Con Filtro.
                         En OJS se construye como 'https://' + portal + revista + '/article/view/' + art_ojs_id
-                                                 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id                          
+                                                 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
                         ej: https://publicaciones.sociales.uba.ar/index.php/quid16/article/view/7620
+        - resource_files:
+            - url
+              tipo
+            - 
+        Resumen
+        - url resource:      'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
+        - url resource_pdf:  'https://' + resource_ojs_url + '/article/viewFile/' + article.art_ojs_id + "/pdf"
+        - url resource_html: 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id + "/html"
     journal:
         - title: nombre de la revista. Obligatorio
         - abbrev-title: nombre abreviado de la revista
         - abbrev-title2: nombre abreviado sin espacios. Con Filtro.
         - eissn/pissn: issn electrónico e impreso.
-        - doi
+        - doi. Con filtro
     date:
         - year: fecha de publicación (año). Obligatorio
         - month: fecha de publicación (mes)
