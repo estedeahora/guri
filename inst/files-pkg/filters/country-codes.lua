@@ -6,6 +6,7 @@
 local stringify = pandoc.utils.stringify
 local with_working_directory = pandoc.system.with_working_directory
 local upper = pandoc.text.upper
+
 -- get_country() --------------------------------------------------------------------------------
 -- Description: [en] Generates a table with the list of countries and the country code as a key.
 --				[es] Genera una tabla con el listado de paises y el código como clave.

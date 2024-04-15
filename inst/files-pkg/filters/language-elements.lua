@@ -4,25 +4,33 @@
 --- License: CC-by-nc-sa
 
 local stringify = pandoc.utils.stringify
+local lower = pandoc.text.lower
+
 local lang
 local translate
 
+local function tocode(lang)
+    return lower(stringify(lang):match('^..'))
+end
+
 local dic = {
-    en = {abstract = 'Abstract', kw = 'Keywords', TAB = 'Table', FIG = 'Figure', ref = 'References'},
-    es = {abstract = 'Resumen', kw = 'Palabras claves', TAB = 'Tabla', FIG = 'Figura', ref = 'Referencias bibliográficas'},
-    pt = {abstract = 'Resumo', kw = 'Palavras chave', TAB = 'Tabela', FIG = 'Figura', ref = 'Referências'},
-    fr = {abstract = 'Résumé', kw = 'Mots clés', TAB = 'Tableau', FIG = 'Figure', ref = 'Bibliographie'},
-    it = {abstract = 'Sommario', kw = 'Parole chiave', TAB = 'Tabella', FIG = 'Figura', ref = 'Riferimenti bibliografici'},
-    de = {abstract = 'Zusammenfassung', kw = 'Schlüsselwörter ', TAB = 'Tabelle', FIG = 'Abbildung', ref = 'Literatur'},
-    zh = {abstract = '摘要', kw = '关键词', TAB = '表', FIG = '图', ref = '参考文献'},                  -- Chino simplificado
-    la = {abstract = 'Summarium', kw = 'Keywords', TAB = 'Tab.', FIG = 'Fig.', ref = 'References'}    -- Latin (for Lorem Itsum in 'example')
+    en = {abstract = 'Abstract',        kw = 'Keywords',         TAB = 'Table',   FIG = 'Figure',    source = 'Source', note = 'Note',      ref = 'References'},
+    es = {abstract = 'Resumen',         kw = 'Palabras claves',  TAB = 'Tabla',   FIG = 'Figura',    source = 'Fuente', note = 'Nota',      ref = 'Referencias bibliográficas'},
+    pt = {abstract = 'Resumo',          kw = 'Palavras chave',   TAB = 'Tabela',  FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Referências'},
+    fr = {abstract = 'Résumé',          kw = 'Mots clés',        TAB = 'Tableau', FIG = 'Figure',    source = 'Source', note = 'Note',      ref = 'Bibliographie'},
+    it = {abstract = 'Sommario',        kw = 'Parole chiave',    TAB = 'Tabella', FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Riferimenti bibliografici'},
+    de = {abstract = 'Zusammenfassung', kw = 'Schlüsselwörter ', TAB = 'Tabelle', FIG = 'Abbildung', source = 'Quelle', note = 'Anmerkung', ref = 'Literatur'},
+    zh = {abstract = '摘要',            kw = '关键词',            TAB = '表',      FIG = '图',        source = '来源',    note = '备注',      ref = '参考文献'},                  -- Chino simplificado
+    la = {abstract = 'Summarium',       kw = 'Keywords',         TAB = 'Tab.',    FIG = 'Fig.',      source = 'Source', note = 'Note',      ref = 'References'}    -- Latin (for Lorem Itsum in 'example')
   }
 
 local custom_titles = {
     {m = 'abstract-title',   k = 'abstract_title',   v = 'abstract' },
     {m = 'keyword-title',    k = 'keyword_title',    v = 'kw'},
-    {m = 'table-title',      k = 'table_title',      v = 'TAB'},
-    {m = 'figure-title',     k = 'figure_title',     v = 'FIG'},
+    {m = 'table-title',      k = 'table_title',      v = 'TAB', float = true},
+    {m = 'figure-title',     k = 'figure_title',     v = 'FIG', float = true},
+    {m = 'source-title',     k = 'none',             v = 'source', float = true},
+    {m = 'note-title',       k = 'none',             v = 'note', float = true},
     {m = 'references-title', k = 'references_title', v = 'ref', }
 }
 
@@ -36,7 +44,8 @@ local custom_titles = {
 
 function add_metatitle(meta_i)
 
-    local lang_i = stringify(meta_i.lang)
+    -- local lang_i = lower(stringify(meta_i.lang):match('^..') )
+    local lang_i = tocode(meta_i.lang)
     local dic_i = dic[lang_i]
 
     if not meta_i.abstract_title and dic_i then
@@ -75,12 +84,14 @@ function Meta(meta)
         meta.lang = meta.customized['artic-lang']
     end
     
-    lang = stringify(meta.lang)
+    lang = tocode(meta.lang)
 
     -- Definir palabras para títulos de elementos main language.
     translate = dic[lang]
     if not translate then translate = {} end
-           
+
+    meta.floats = {}
+
     for _, t in ipairs(custom_titles)  do
             
         if meta.customized and meta.customized[t.k] then
@@ -90,7 +101,12 @@ function Meta(meta)
 
         -- translate['v'] -> to -> meta['m']
         if translate[t.v] then
-            meta[t.m] = translate[t.v]
+
+            if t.float then
+                meta.floats[t.m] = translate[t.v]
+            else
+                meta[t.m] = translate[t.v]
+            end
         else
             error('ERROR: The "' ..  t.k .. '" element must be provided ' .. 'for the "' .. lang .. '" language.\n')
         end
