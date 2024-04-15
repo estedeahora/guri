@@ -49,7 +49,7 @@ doi_register:
 #    %f OJS file ID (articule.ojs.files_id['type'])
 #    %p article pages (article.fpage-article.lpage).
 #
-# In addition, guri uses two markers that can be used more freely to customise your doi suffix: 
+# In addition, guri uses other markers that can be used more freely to customise your doi and resources: 
 #    %e article.elocation-id; 
 #    %x article.publisher-id;
 #    %D doi prefix (journal.prefix);

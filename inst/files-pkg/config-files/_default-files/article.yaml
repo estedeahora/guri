@@ -102,7 +102,7 @@ history:
     day: 
     month: 
     year: 
-  # - type: epub         # Para fecha de publicación electrónica (si se usa AoP o continua)
+  # - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
   #   day: 
   #   month: 
   #   year: 
