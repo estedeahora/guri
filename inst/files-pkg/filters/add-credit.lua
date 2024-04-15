@@ -34,14 +34,15 @@ end
 -- Description: [en] Incorporates credit roles (as table) within author 
 --				[es] Incorpora roles credit (como tabla) dentro de author
 -- Return: [en] Modified 'Meta' containing a table with the credit roles inside meta.author[i].credit
---					(according to the role it has in the article). Each table contains 'cont' with
---					the role translated into the language of the article (if it is in English, 'elem' 
---					is replicated); 'elem' with the translated credit role; and 'uri' with the url to
---					 the credit role.
+--				  (according to the role it has in the article). Each table contains 'cont' with
+--				  the role translated into the language of the article (take the terms from the 
+--				  first column of art[~]_credit.xlsx);  'elem' with the credit role in english; 
+--				  and 'uri' with the url to the credit role.
 --		   [es] Meta modificado conteniendo una tabla con los roles credit dentro de meta.author[i].credit 
---					(según el rol que tiene en el artículo). Cada tabla contiene 'cont' con el rol 
---					traducido al idioma del artículo (si es en inglés se replica 'elem'); 'elem' con
---					 el rol credit traducido; y 'uri' con la url al rol credit.
+--				  (según el rol que tiene en el artículo). Cada tabla contiene 'cont' con el rol 
+--				  traducido al idioma del artículo (toma los términos de la primera columna de 
+--				  art[~]_credit.xlsx); 'elem' con el rol credit traducido; y 'uri' con la url al 
+--				  rol credit.
 
 function Meta(m)
 
@@ -81,15 +82,6 @@ function Meta(m)
 		for i, row in pairs(datos) do
 			for k = 2, n_aut + 1 do
 				if row[k] ~= "" then
-
-					local cont 
-
-					-- if lang == 'en', then cont = elem
-					-- if pandoc.utils.stringify(m.lang):match('en') then
-					-- 	cont = credit_term[i]
-					-- else
-					-- 	cont = row[1]
-					-- end
 
 					table.insert(credit[k-1], {cont = row[1], 
 											   elem = credit_term[i], 

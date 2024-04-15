@@ -1,5 +1,5 @@
 --- doi-builder.lua – filter to doi construct from patterns
---- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/article-metadata.lua
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/doi-builder.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
