@@ -5,93 +5,56 @@
 
 local stringify = pandoc.utils.stringify
 
--- get_country() --------------------------------------------------------------------------------
--- Description: [en] Generates a table with the list of countries and the country code as a key.
---				[es] Genera una tabla con el listado de paises y el código como clave.
--- Return: [en] Una tabla de la forma codigo:país (key:value)
---		   [es] A table of the form code:country (key:value).
--- 
-
-local function get_country(config_path, lang)
-
-	-- require csv library and read countries file
-    local csv = pandoc.system.with_working_directory(config_path, function() return dofile("CSV.lua") end)
-    
-    -- data from: https://gist.github.com/brenes/1095110#file-paises-csv
-    local datos, header = pandoc.system.with_working_directory(config_path, function() return csv.load("paises.csv",  ',', true) end)
-
-    local lang_index
-    -- English or spanish country name?
-    if lang:match('^es') then
-        lang_index = 1
-    elseif lang:match('^en') then
-        lang_index = 2
-    else
-        io.stderr:write('WARNING: The language provided ("' .. lang .. '") is not supported. International countries names are used".\n')
-        lang_index = 3
-    end
-
-
-    local paises = {}
-    for _, v in pairs(datos) do
-        paises[v[4]] = v[lang_index]
-    end
-    
-    return paises
-end
-
 -- Meta(m) --------------------------------------------------------------------------------------
 -- Description: [en] Changes authors and organization information to "canonical form", as achieved 
---                      with the 'scholarly-metadata.lua' filter (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata).
+--                     with the 'scholarly-metadata.lua' filter (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata).
+--                     This allows the use of 'author-info-blocks.lua' (https://github.com/pandoc/lua-filters/tree/master/author-info-blocks).
 --				[es] Cambia autores y organizaciones a "forma canónica", como se consigue con el 
---                      filtro 'scholarly-metadata.lua' (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata)
+--                     filtro 'scholarly-metadata.lua' (https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata).
+--                     Esto permite utilizar 'author-info-blocks.lua' (https://github.com/pandoc/lua-filters/tree/master/author-info-blocks).
 -- Return: [en] Metadata modified. See <https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata>
 --		   [es] Metadata modificado. Ver <https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata>
 
-function Meta(m)
+function Meta(meta)
 
-    if(m.affiliation) then
-        local paises = get_country(m.config_path, stringify(m.lang))
+    if(meta.affiliation) then
         
-        -- * affiliation --> institute
-        local inst = m.affiliation
-
+        -- meta.affiliation --> to meta.institute (con sólo 'index' y 'name')
+        local inst = {}
         local inst_dict = {}
-        for i = 1, #inst do
-            inst[i].index = i
-            inst[i].name = inst[i].organization
-            
-            local country = pandoc.text.upper(stringify(inst[i]["country-code"]))
-            inst[i].country =  paises[country]
-            
-            if inst[i].country == nill then
-                io.stderr:write("Invalid country code (".. country .. "). You must enter code according to ISO 3166-1 alpha-2. " ..
-                                "See https://www.nationsonline.org/oneworld/country_code_list.htm")
-            end
 
-            inst_dict[stringify(inst[i].id)] = i
+        for k, v in ipairs(meta.affiliation) do
+            inst[k] = {}
+            inst[k].index = k
+            inst[k].name = v.organization
+
+            -- Add meta.affiliation[i].id and meta.affiliation[i].name
+            v.index = k
+            v.name = v.organization
+
+            inst_dict[stringify(v.id)] = k
         end
 
-        -- * author
-        local aut = m.author
+        -- Modifies meta.author
+        local aut = meta.author
         for i = 1, #aut do
-            aut[i].name = stringify(aut[i]["given-names"]) ..
-                        " " .. stringify(aut[i]["surname"]) 
+
+            -- Add meta.aut[i].id and meta.aut[i].name
+            aut[i].name = stringify(aut[i]["given-names"]) .. " " .. stringify(aut[i]["surname"]) 
             aut[i].name = pandoc.MetaInlines{pandoc.Str(aut[i].name)}
             aut[i].id = aut[i].name
 
+            -- Add to meta.author[i].institute a table with 'institute indexes' 
             aut[i].institute = {}
-
-            for j = 1, #aut[i].affiliation do
-                local v_str = stringify(aut[i].affiliation[j])
-                aut[i].institute[j] = inst_dict[v_str]
+            for j, aff in ipairs(aut[i].affiliation)  do
+                aut[i].institute[j] = inst_dict[stringify(aff)]
             end
+
         end
 
-        m.author = aut
-        m.affiliation = inst
-        m.institute = inst
+        meta.author = aut
+        meta.institute = inst
         
-        return m
+        return meta
     end
 end
