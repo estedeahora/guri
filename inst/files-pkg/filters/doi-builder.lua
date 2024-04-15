@@ -15,9 +15,8 @@ local function pattern_match(m)
         {p = '%%Y', v = m.year, t = 'year'},
         {p = '%%a', v = m.article.ojs_id, t = 'ojs id'},
         {p = '%%p', v = {m.article.fpage, "-", m.article.lpage}, t = 'pages'},
-        {p = '%%n', v = m.article['elocation-id'], t = 'elocation id'},
+        {p = '%%e', v = m.article['elocation-id'], t = 'elocation id'},
         {p = '%%x', v = m.article['publisher-id'], t = 'publisher id'},
-    
             }
 end
 
@@ -56,7 +55,6 @@ function Meta(meta)
         end
 
         meta.article.doi = stringify(meta.journal.doi_prefix) .. '/' .. doi_suffix
-        print(meta.article.doi)
     end
     
     return meta
