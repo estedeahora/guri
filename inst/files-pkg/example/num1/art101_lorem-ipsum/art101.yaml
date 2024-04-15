@@ -80,8 +80,8 @@ history:
     month: 11
     year: 2023
     
-# customized:
-  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+customized:
+  artic-lang: la                        # Se puede modificar el idioma predefinido en _journal.yaml
   # reference_title:                      # Se puede modificar el título predefinido para las referencias
   # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
   # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
