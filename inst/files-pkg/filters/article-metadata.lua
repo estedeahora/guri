@@ -6,14 +6,11 @@
 -- Meta(m) ---------------------------------------------------------------------------
 -- Description: [en] Moves the fields associated with meta.metadata (title, subtitle, abstract, and kw) to meta, preventing 
 --                      them from being overwritten if they are present in the docx document (store these in 'title_word'/
---                      'subtitle_word'). In addition, lang is modified if the language of the article is different from 
---                      the main article of the journal.
+--                      'subtitle_word'). 
 --              [es] Traslada los campos asociados a meta.metadata (title, subtitle, abstract, y kw) a meta, evitando que
 --                      se sobrescriban si están presentes en el documento docx (guarda estos en 'title_word'/'subtitle_word').
---                      Además, se modifica lang si el lenguaje del artículo es diferente del artículo principal de la revista. 
--- Return: [en] Meta modified. Article metadata (m.metadata.*) and article customizations (m.customized) are dropped to m.* 
---         [es] Meta modificado. Los metadatos del artículo (m.metadata.*) y las personalizaciones del artículo (m.customized) 
---                pasan a m.*. 
+-- Return: [en] Meta modified. Article metadata (m.metadata.*) is dropped to m.* 
+--         [es] Meta modificado. Los metadatos del artículo (m.metadata.*) pasan a m.*. 
 
 local stringify = pandoc.utils.stringify
 
