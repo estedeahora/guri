@@ -28,7 +28,7 @@ function Meta(m)
     end
 
     if stringify(m.title_word) ~= stringify(m.metadata.title) then
-        io.write("WARNING: Title does not match in docx and yaml file.\n")
+        warn("WARNING: Title does not match in docx and yaml file.\n")
 
         io.write('* Title in Word:', '"' .. stringify(m.title_word) .. "'\n") 
         io.write('* Title in YAML:', '"' .. stringify(m.metadata.title) .. "'\n") 

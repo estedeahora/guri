@@ -96,7 +96,7 @@ function Meta(m)
 		end
 		m.credit = true
 	else
-		io.stderr:write('WARNING: There is no credit file.\n')
+		warn('WARNING: There is no credit file.\n')
 	end
 
 	return m

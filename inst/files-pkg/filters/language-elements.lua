@@ -31,7 +31,7 @@ local custom_titles = {
     {m = 'figure-title',     k = 'figure_title',     v = 'FIG',     float = true},
     {m = 'source-title',     k = 'none',             v = 'source',  float = true},
     {m = 'note-title',       k = 'none',             v = 'note',    float = true},
-    {m = 'references-title', k = 'references_title', v = 'ref', }
+    {m = 'references-title', k = 'references_title', v = 'ref'}
 }
 
 -- add_metatitle(meta_i) -----------------------------------------------------------------------
@@ -80,7 +80,7 @@ function Meta(meta)
 
     -- Modify the journal's default language for the article.
     if meta.customized and stringify(meta.customized['artic-lang']) ~= meta.lang then
-        io.write("NOTE: The article uses a different main language than the journal.\n")
+        warn("NOTE: The article uses a different main language than the journal.\n")
         meta.lang = meta.customized['artic-lang']
     end
     

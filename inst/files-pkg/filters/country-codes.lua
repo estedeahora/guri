@@ -29,7 +29,7 @@ local function get_country(config_path, lang)
     elseif lang:match('^en') then
         lang_index = 2
     else
-        io.stderr:write('WARNING: The language provided ("' .. lang .. '") is not supported. International countries names are used".\n')
+        warn('WARNING: The language provided ("' .. lang .. '") is not supported. International countries names are used".\n')
         lang_index = 3
     end
 

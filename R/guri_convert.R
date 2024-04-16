@@ -52,7 +52,7 @@ guri_convert <- function(path_art, art,
   opt_gral <- c(opt_gral, paste0("--metadata=config_path:", file.path(program_path, "filters")))
 
   if(verbose){
-    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log"))
+    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log"), "--metadata=verbose")
   }
 
   # Lua Filters

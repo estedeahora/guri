@@ -31,7 +31,7 @@ function Meta(meta)
     elseif meta.article.doi then
 
         meta.article.doi = stringify(meta.journal.doi_prefix).. "/" .. stringify(meta.article.doi)
-        io.write('NOTE: Custom DOI is used (' .. meta.article.doi .. '). ' ..
+        warn('NOTE: Custom DOI is used (' .. meta.article.doi .. '). ' ..
                  'No patterns are used for its construction.\n')
 
     else

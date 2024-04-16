@@ -38,11 +38,6 @@ local function credit_Div(aut, lang)
 
     local credit_text = {}
 
-    if not (lang:match('^es') or lang:match('^en')) then
-        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined translation of "credit".' ..
-        ' The credit role names are taken from the first column of the excel file.\n')
-    end
-
     for i, aut_i in pairs(aut) do
 
         local aux_rol = ''
@@ -51,12 +46,9 @@ local function credit_Div(aut, lang)
             
             if lang:match('^en') then
                 aux_rol = aux_rol .. stringify(rol_i.elem)
-            elseif lang:match('^es') then
-                aux_rol = aux_rol .. stringify(rol_i.cont) ..  " (" .. stringify(rol_i.elem) .. ")"
             else
                 aux_rol = aux_rol .. stringify(rol_i.cont) ..  " (" .. stringify(rol_i.elem) .. ")"
             end
-
 
             if k ~= #aut_i.credit then 
                 aux_rol = aux_rol .. "; "
@@ -99,8 +91,6 @@ local function get_metadata(meta)
     -- Credit info
     if(meta.credit) then        
         cont_credit = credit_Div(meta.author, stringify(meta.lang))
-    else
-        io.stderr:write("\nSin datos de credit.\n")
     end
 
     --- Acknowledgements info
@@ -136,19 +126,10 @@ local function get_metadata(meta)
 
     end
 
-
-    local lang = pandoc.utils.stringify(meta.lang)
-
-    if meta.references_title then
-        references_title = lower(stringify(meta.references_title) )
-    elseif lang:match('^en') then
-        references_title = 'references'
-    elseif lang:match('^es') then
-        references_title = 'referencias bibliográficas'
-    elseif lang:match('^pt') then
-        references_title = 'referências'
+    if meta['references-title'] then
+        references_title = lower(stringify(meta['references-title']) )
     else
-        io.stderr:write('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references ("reference" is used).\n')
+        warn('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references ("reference" is used).\n')
         references_title = 'references'
     end
 
