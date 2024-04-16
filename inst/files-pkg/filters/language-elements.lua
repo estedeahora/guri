@@ -17,7 +17,7 @@ local dic = {
     en = {abstract = 'Abstract',        kw = 'Keywords',         TAB = 'Table',   FIG = 'Figure',    source = 'Source', note = 'Note',      ref = 'References'},
     es = {abstract = 'Resumen',         kw = 'Palabras claves',  TAB = 'Tabla',   FIG = 'Figura',    source = 'Fuente', note = 'Nota',      ref = 'Referencias bibliográficas'},
     pt = {abstract = 'Resumo',          kw = 'Palavras chave',   TAB = 'Tabela',  FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Referências'},
-    fr = {abstract = 'Résumé',          kw = 'Mots clés',        TAB = 'Tableau', FIG = 'Figure',    source = 'Source', note = 'Note',      ref = 'Bibliographie'},
+    fr = {abstract = 'Résumé',          kw = 'Mots clés',        TAB = 'Tableau', FIG = 'Figure',    source = 'Source', note = 'Notes',      ref = 'Bibliographie'},
     it = {abstract = 'Sommario',        kw = 'Parole chiave',    TAB = 'Tabella', FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Riferimenti bibliografici'},
     de = {abstract = 'Zusammenfassung', kw = 'Schlüsselwörter ', TAB = 'Tabelle', FIG = 'Abbildung', source = 'Quelle', note = 'Anmerkung', ref = 'Literatur'},
     zh = {abstract = '摘要',            kw = '关键词',            TAB = '表',      FIG = '图',        source = '来源',    note = '备注',      ref = '参考文献'},                  -- Chino simplificado
@@ -25,12 +25,12 @@ local dic = {
   }
 
 local custom_titles = {
-    {m = 'abstract-title',   k = 'abstract_title',   v = 'abstract' },
+    {m = 'abstract-title',   k = 'abstract_title',   v = 'abstract'},
     {m = 'keyword-title',    k = 'keyword_title',    v = 'kw'},
-    {m = 'table-title',      k = 'table_title',      v = 'TAB', float = true},
-    {m = 'figure-title',     k = 'figure_title',     v = 'FIG', float = true},
-    {m = 'source-title',     k = 'none',             v = 'source', float = true},
-    {m = 'note-title',       k = 'none',             v = 'note', float = true},
+    {m = 'table-title',      k = 'table_title',      v = 'TAB',     float = true},
+    {m = 'figure-title',     k = 'figure_title',     v = 'FIG',     float = true},
+    {m = 'source-title',     k = 'none',             v = 'source',  float = true},
+    {m = 'note-title',       k = 'none',             v = 'note',    float = true},
     {m = 'references-title', k = 'references_title', v = 'ref', }
 }
 
