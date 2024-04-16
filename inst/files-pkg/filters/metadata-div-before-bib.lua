@@ -3,26 +3,29 @@
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
-local stringify = pandoc.utils.stringify
-local lower = pandoc.text.lower
-local concat = table.concat
-
 local Str = pandoc.Str
 local Strong = pandoc.Strong
 
 local Para = pandoc.Para
 local Div = pandoc.Div
+local Header = pandoc.Header
 local RawBlock = pandoc.RawBlock
 local CodeBlock = pandoc.CodeBlock
+
+local stringify = pandoc.utils.stringify
+local lower = pandoc.text.lower
+local concat = table.concat
 
 local n_refs = 0
 
 local references_title
+
 local cont_credit = ''
 local cont_ack = ''
 local cont_app = ''
 
---  credit_Div(aut) ------------------------------------------------------------------------------------------
+
+--  credit_Div(aut, lang) ------------------------------------------------------------------------------------------
 -- Description: [en] Takes a Meta.author and returns a string with the credit data information inside a pandoc.Div.
 --              [es] Toma un Meta.author y devuelve una cadena de texto con los datos de credit dentro de un pandoc.Div.
 -- Return: [en] A string inside a pandoc.Div with ID="credit" and class="paratext", formated as:
@@ -68,7 +71,7 @@ local function credit_Div(aut, lang)
 
 end
 
--- get_metadata() --------------------------------------------------------------------------------------
+-- get_metadata(meta) --------------------------------------------------------------------------------------
 -- Description: [en] Gets the metadata about (a) credit, (b) acknowledgements and (c) appendices, adding each of these 
 --                      elements as a text string inside a pandoc.Div at the end of the text (before references).
 --              [es] Obtiene la metadata de (a) credit, (b) agradecimientos y (c) anexos, agregando cada uno de estos 
@@ -126,15 +129,15 @@ local function get_metadata(meta)
 
     end
 
-    if meta['references-title'] then
-        references_title = lower(stringify(meta['references-title']) )
-    else
-        warn('WARNING: The language provided ("' .. lang .. '") does not have a predefined title for references ("reference" is used).\n')
-        references_title = 'references'
-    end
-
+    -- References info
     if meta.references then
+        -- References count
         n_refs = #meta.references
+
+        -- Reference title
+        if meta['references-title'] then
+            references_title = stringify(meta['references-title']) 
+        end
     end
 
     meta.n_refs = n_refs
@@ -143,7 +146,7 @@ local function get_metadata(meta)
 
 end
 
--- add_metadata1(h) & add_metadata2(doc) ------------------------------------------------------------------
+-- add_metadata(block) ------------------------------------------------------------------
 -- Description: [en] Add multiple pandoc.divs with credit metadata and acknowledgements (if any)  before references
 --                      or at the end (for articles without references). Also, add annexes (if any) in a pandoc.div 
 --                      at the end of the text.
@@ -157,32 +160,54 @@ end
 --                para credit, agradecimientos, título de referencias, referencias y apéndices (los que 
 --                estubieran presentes).
 
-function add_metadata(doc) 
+function add_metadata(doc)
 
     local blocks = doc.blocks
     local last_block = blocks[#blocks]
-    local last_text = lower(stringify(last_block)):gsub("%s*$", "")
-    
-    if n_refs > 0 and not last_text:match(references_title) then
-        error('ERROR: There is more than zero references, but the expected heading of references does not exist ("' .. references_title ..'")') 
-    elseif n_refs == 0 and last_text:match(references_title) then
-        error('ERROR: There is zero references, but the "reference" header is present.')
-    elseif n_refs > 0 and last_text:match(references_title) and not last_block.t == "Header" then
-        error('ERROR: The reference header is present, but it is not an element of type "Heading".')
+
+    if last_block.t == "Header" then
+
+        if n_refs > 0 then    
+            
+            local lang = stringify(doc.meta.lang)
+
+            references_title = stringify(last_block):gsub("%s*$", "")
+            blocks[#blocks] = nil
+
+            if references_title then
+                warn('WARNING: The article language ("' .. lang .. '") has a defined title ' .. 
+                        'for references, but the last element is a Header#1: this header is ' .. 
+                        'used instaed of the predefined title for the references (content: "' .. 
+                        references_title .. '").\n')
+            else
+                warn('WARNING: The article language ("' .. lang .. '") has no predefined title' .. 
+                                'for references and no customized.reference_title is provided,' .. 
+                                'but the last element is a Header#1: this header is used as the ' .. 
+                                'title of references (content: "' .. references_title .. '").\n')
+            end
+        
+        else
+            error('ERROR: There is zero references, but there is a Header#1 in the last Block.')
+        end
     end
 
-    -- 
     if n_refs == 0 then
 
-        io.stderr:write("NOTE: Article without references.\n")
+        warn('NOTE: Article without references.\n')
 
         doc.blocks:extend({cont_credit, cont_ack, cont_app})
     
     else
-        blocks[#blocks] = nil
+
+        if not references_title then
+            error('ERROR: No predefined title for "references".')
+        elseif references_title == "" then
+            error('ERROR: References title is empty.')
+        end
 
         blocks:extend({cont_credit, cont_ack,
-                        last_block, RawBlock('markdown', '::: {#refs}\n:::'),
+                        Header(1, references_title),
+                        Div(Para(""), {id = "refs"}),
                         cont_app})
     end
 
@@ -190,4 +215,7 @@ function add_metadata(doc)
 
 end
 
-return {{Meta = get_metadata}, {Pandoc = add_metadata}}
+return {
+    {Meta = get_metadata}, 
+    {Pandoc = add_metadata}
+}
