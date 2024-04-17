@@ -77,12 +77,14 @@ end
 --                personalizados si hubiera). Además, se modifica metadata_lang para agregar título de abstract y kw. 
 
 function Meta(meta)
-
+    
     -- Modify the journal's default language for the article.
     if meta.customized and stringify(meta.customized['artic-lang']) ~= meta.lang then
         warn("NOTE: The article uses a different main language than the journal.\n")
+        meta.journal.lang = meta.lang
         meta.lang = meta.customized['artic-lang']
     end
+
     
     lang = tocode(meta.lang)
 

@@ -25,12 +25,7 @@ $if(xml-stylesheet)$
 <?xml-model type="application/xml-dtd" href="https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd"?>
 $endif$
 <!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd">
-
-$if(article.type)$
-<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type="$article.type$" xml:lang="$lang$">
-$else$
-<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type="other" xml:lang="$lang$">
-$endif$
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" specific-use="~!guri_0.1" article-type=$if(article.type)$"$article.type$"$else$"other"$endif$ xml:lang="$lang$">
 <front>
 <journal-meta>
 $--         #### JOURNAL ###############
@@ -48,6 +43,7 @@ $if(journal.pmc)$
 $endif$
 $-- Fallback: an empty journal-id in case none is available.
 $if(journal.publisher-id)$
+$elseif(journal.redalyc)$
 $elseif(journal.nlm-ta)$
 $elseif(journal.pmc)$
 $else$
@@ -55,7 +51,7 @@ $else$
 $endif$
 <journal-title-group>
 $if(journal.title)$
-<journal-title specific-use="original" xml:lang="$lang$">$journal.title$</journal-title>
+<journal-title specific-use="original" xml:lang="$if(journal.lang)$$journal.lang$$else$$lang$$endif$">$journal.title$</journal-title>
 $endif$
 $if(journal.abbrev-title)$
 <abbrev-journal-title abbrev-type="publisher">$journal.abbrev-title$</abbrev-journal-title>
@@ -74,14 +70,13 @@ $else$
 <issn></issn>
 $endif$
 $--         #### PUBLISHER ###############
+$if(journal.publisher-name)$
 <publisher>
 <publisher-name>$journal.publisher-name$</publisher-name>
 $if(journal.publisher-loc)$
 <publisher-loc>
 $if(journal.publisher-loc.country)$
 <country>$journal.publisher-loc.country$</country>
-$else$
-$journal.publisher-loc$
 $endif$
 $if(journal.publisher-loc.email)$
 <email>$journal.publisher-loc.email$</email>
@@ -92,6 +87,7 @@ $endif$
 </publisher-loc>
 $endif$
 </publisher>
+$endif$
 </journal-meta>
 <article-meta>
 $--         #### ARTICLE IDs ###############
@@ -110,7 +106,7 @@ $endif$
 $if(article.art-access-id)$
 <article-id pub-id-type="art-access-id">$article.art-access-id$</article-id>
 $endif$
-$--         #### HEADING ###############
+$--         #### HEADING Y CATEGORIES ###############
 $if(article.heading)$
 <article-categories>
 <subj-group subj-group-type="heading">
@@ -213,20 +209,19 @@ $endif$
 </author-notes>
 $endif$
 $--         #### PUBDATE ###############
-$if(date)$
 <pub-date date-type="$if(date.type)$$date.type$$else$pub$endif$" publication-format="electronic"$if(date.iso-8601)$ iso-8601-date="$date.iso-8601$"$endif$>
 $if(date.season)$
 <season>$date.season$</season>
-$endif$
+$else$
 $if(date.day)$
 <day>$date.day$</day>
 $endif$
 $if(date.month)$
 <month>$date.month$</month>
 $endif$
+$endif$
 <year>$date.year$</year>
 </pub-date>
-$endif$
 $--         #### CURRENT ISSUE ###############
 $if(volume)$
 <volume>$volume$</volume>
@@ -234,14 +229,18 @@ $endif$
 $if(issue)$
 <issue>$issue$</issue>
 $endif$
-$if(article.fpage)$
-<fpage>$article.fpage$</fpage>
-$endif$
-$if(article.lpage)$
-<lpage>$article.lpage$</lpage>
+$if(issue-title)$
+<issue-title>$issue-title$</issue-title>
 $endif$
 $if(article.elocation-id)$
 <elocation-id>$article.elocation-id$</elocation-id>
+$else$
+$if(article.fpage)$
+$if(article.lpage)$
+<fpage>$article.fpage$</fpage>
+<lpage>$article.lpage$</lpage>
+$endif$
+$endif$
 $endif$
 $--         #### HISTORY ##############################
 $if(history)$
@@ -254,14 +253,12 @@ $endif$
 $if(history.month)$
 <month>$history.month$</month>
 $endif$
-$if(history.year)$
 <year>$history.year$</year>
-$endif$
 </date>
 $endfor$
 </history>
 $endif$
-$--         #### PERMISSIONS LICENCIAS Y COPYRIGHT ###############
+$--         #### PERMISSIONS: LICENCIAS Y COPYRIGHT ###############
 <permissions>
 $for(copyright.statement)$
 <copyright-statement>$copyright.statement$</copyright-statement>
@@ -277,7 +274,7 @@ $if(copyright.text)$
 <license-p>$copyright.text$</license-p>
 </license>
 $endif$
-$if(free_to_read)$
+$if(license.free_to_read)$
 <ali:free_to_read/>
 $endif$
 $for(license)$
@@ -293,7 +290,7 @@ $--         #### PRELIMINARIES ###################
 $if(abstract)$
 $-- # Scielo recomienda no usar el atributo lang
 <abstract xml:lang="$lang$">
-<title>$abstract_title$</title>
+<title>$abstract-title$</title>
 $abstract$
 </abstract>
 $endif$
@@ -309,7 +306,7 @@ $endfor$
 $endif$
 $if(keyword)$
 <kwd-group kwd-group-type="author">
-<title>$keyword_title$</title>
+<title>$keyword-title$</title>
 $for(keyword)$
 <kwd>$keyword$</kwd>
 $endfor$
@@ -325,11 +322,15 @@ $endfor$
 </kwd-group>
 $endfor$
 $endif$
-$if(article.funding-statement)$
+$--         #### FINANCIAMIENTO ###################
+$if(funding)$
 <funding-group>
-<funding-statement>$article.funding-statement$</funding-statement>
+$if(funding.statement)$
+<funding-statement>$funding.statement$</funding-statement>
+$endif$
 </funding-group>
 $endif$
+$--         #### CONTEOS ###################
 <counts>
 $if(n_figs)$
 <fig-count count="$n_figs$"/>
@@ -347,7 +348,9 @@ $endif$
 </counts>
 </article-meta>
 $if(notes)$
-<notes>$notes$</notes>
+$for(notes)$
+<notes$if(notes.type)$ notes-type="$notes.type$"$endif$>$notes.text$</notes>
+$endfor$
 $endif$
 </front>
 <body>
