@@ -3,10 +3,12 @@
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
-local root = "./float/"                       
-local to_header = ''
+local root = "./float/"
 local mark_citation = '%[{.-}{@.-}{.-}]{.-}'
+local to_header = ''
+local dic_float
 
+local stringify = pandoc.utils.stringify
 local RawBlock = pandoc.RawBlock 
 local open = io.open
 
@@ -130,12 +132,12 @@ local function fig_html(label, float_attr)
   path = path:gsub('^%' .. root, "")
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-  if source ~= "" then source = '<figcaption class="extra"><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
-  if note ~= "" then note = '<figcaption class="extra">Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
+  if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</em></figcaption>\n' end
+  if note ~= "" then note = '<figcaption class="extra">' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</figcaption>\n' end
 
   local raw_elem = '<figure id="' .. label .. '">\n' ..
                     '<img src="' .. path .. '" alt="' .. label .. '"/>\n' .. 
-                    '<figcaption>Figura ' .. fignum .. ". " .. title .. '</figcaption>\n' ..
+                    '<figcaption>' .. dic_float.FIG .. ' ' .. fignum .. ". " .. title .. '</figcaption>\n' ..
                     source .. note ..
                     '</figure>'
 
@@ -155,11 +157,11 @@ local function fig_jats(label, float_attr)
   path = path:gsub('^%' .. root, "")
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-  if source ~= '' then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
-  if note ~= '' then note = '<p content-type="Figure-Notes">Notas: ' ..  add_citation(note) .. '</p>\n' end
+  if source ~= '' then source = '<attrib>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</attrib>\n' end
+  if note ~= '' then note = '<p content-type="Figure-Notes">' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</p>\n' end
 
   local raw_elem = '<fig id="' .. label .. '">\n' ..
-                    '<label>Figura ' ..  fignum .. '.</label>\n' ..
+                    '<label>' .. dic_float.FIG .. ' ' ..  fignum .. '.</label>\n' ..
                     '<caption>\n' ..
                     '<p>' .. title .. '</p>' .. 
                     '</caption>\n' ..
@@ -201,16 +203,16 @@ local function tab_float(label, float_attr)
       format_ext = '.html'
 
       -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-      if source ~= "" then source = '<figcaption class="extra"><em>Fuente: ' ..  add_citation(source) .. '</em></figcaption>\n' end
-      if note ~= "" then note = '<figcaption class="extra">Nota: ' ..  add_citation(note) .. '</figcaption>\n' end
+      if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</em></figcaption>\n' end
+      if note ~= "" then note = '<figcaption class="extra">' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</figcaption>\n' end
 
   elseif FORMAT:match 'jats' then
       format_out = 'jats'
       format_ext = '.html'
 
       -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-      if source ~= "" then source = '<attrib>Fuente: ' ..  add_citation(source) .. '</attrib>\n' end
-      if note ~= "" then note = '<table-wrap-foot><p>Notas: ' ..  add_citation(note) .. '</p></table-wrap-foot>\n' end
+      if source ~= "" then source = '<attrib>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</attrib>\n' end
+      if note ~= "" then note = '<table-wrap-foot><p>' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</p></table-wrap-foot>\n' end
   end
     
   -- Abrir conexión con archivo
@@ -262,7 +264,7 @@ local function tab_float(label, float_attr)
     
     if format_out == 'html' then        -- Salida html
       raw_content = '<figure id="' .. label .. '">\n' ..
-                    '<figcaption>Tabla ' .. tabnum .. ". " .. title .. '</figcaption>\n' ..
+                    '<figcaption>' .. dic_float.TAB .. ' ' .. tabnum .. ". " .. title .. '</figcaption>\n' ..
                     raw_content .. source .. note ..
                     '</figure>'
     elseif format_out == 'jats' then    -- Salida jats
@@ -274,7 +276,7 @@ local function tab_float(label, float_attr)
                                       '<em>', '<italic>'):gsub('</em>', '</italic>')
 
       raw_content = '<table-wrap id="' .. label .. '">\n' ..
-                    '<label>Tabla ' .. tabnum .. '.</label>\n' ..
+                    '<label>' .. dic_float.TAB .. ' ' .. tabnum .. '.</label>\n' ..
                     '<caption>\n' .. 
                     '<title>' .. title .. '</title>\n' ..
                     '</caption>\n' ..
@@ -319,15 +321,28 @@ function CodeBlock(cb)
   return cb
 end
 
--- Meta(m) ------------------------------------------------------------
+-- header_to_meta(m) ------------------------------------------------------------
 -- Description: [en] Allows to pass to Latex header packages needed for the construction of tables.
 --              [es] Permite pasar a header de Latex paquetes necesarios para la construcción de tablas.
 -- Return: [en] A modified Meta object to which a header (if any) is added.
 --         [es] Un objeto Meta modificado al que se le agrega header (si existe).
-
-function Meta(m)
-  if to_header then
-    m.to_header = pandoc.RawBlock('latex', to_header)
-  end
-  return m
+function lang_dic(meta)
+  dic_float = {TAB = stringify(meta.floats['table-title']),
+               FIG = stringify(meta.floats['figure-title']),
+               SRC = stringify(meta.floats['source-title']),
+               NTE = stringify(meta.floats['note-title'])}
 end
+
+function header_to_meta(meta)
+  if to_header then
+    meta.to_header = pandoc.RawBlock('latex', to_header)
+  end
+  return meta
+end
+
+return {
+  { Meta = lang_dic },
+  { CodeBlock = CodeBlock },
+  { Meta = header_to_meta }
+  
+}

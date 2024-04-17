@@ -6,33 +6,11 @@
 -- Meta(meta) ------------------------------------------------------------------------------------
 
 local stringify = pandoc.utils.stringify
-
-local lang
-local table_title
-local figure_title
-
-local dic = {
-  es = {TAB = 'Tabla', FIG = "Figura"},
-  en = {TAB = 'Table', FIG = "Figure"},
-  pt = {TAB = 'Tabela', FIG = 'Figura'}
-}
+local dic
 
 function Meta(meta)
-
-  lang = stringify(meta.lang):match("[a-zA-Z][a-zA-Z]")
-
-  -- add customised titles to the dictionary. 
-  if not dic[lang] then
-    dic[lang] = {}
-  end
-
-  if meta.table_title then
-    dic[lang]['TAB'] = stringify(meta.table_title)
-  end
-
-  if meta.figure_title then
-    dic[lang]['FIG'] = stringify(meta.figure_title)
-  end
+  dic = {TAB = meta.floats['table-title'],
+         FIG = meta.floats['figure-title']}
 end
 
 -- Str(str) --------------------------------------------------------------------------------------
@@ -52,11 +30,7 @@ function Str(str)
     -- Identify float type ('FIG' or 'TAB') and assigns associated label.
     local tipo = texto:gsub('^.*<!', ''):gsub('_[0-9][0-9]>.*$', '')
 
-    flotante = dic[lang][tipo]
-
-    if not flotante then
-      error('ERROR: Language ("' .. lang .. '") requires you to provide custom values for "table_title" and "figure_title".')
-    end
+    flotante = dic[tipo]
 
     -- Extracts pre- and post-float content.
     local extra_pre = texto:gsub('<!' .. tipo .. '_[0-9][0-9]>.*$', '')  
