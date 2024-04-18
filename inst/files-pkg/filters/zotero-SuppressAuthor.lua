@@ -18,5 +18,6 @@ function Cite(cite)
             citation.mode = "SuppressAuthor"
         end
     end
-    
+   
+    return cite
 end
