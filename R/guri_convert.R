@@ -1,7 +1,7 @@
 # path_art <- "./example/num1/art101_lorem-ipsum"
 # art <- "art101"
 # verbose <- T
-# output <- "md"
+# output <- "tex"
 
 # TODO
 #   [x] General options
@@ -30,6 +30,8 @@ guri_convert <- function(path_art, art,
                          output,
                          verbose = F){
 
+  guri_version <- "1.0.0"
+
   # Working directory
   wdir <- file.path(getwd(), path_art)
 
@@ -49,10 +51,12 @@ guri_convert <- function(path_art, art,
   opt_gral <- pandoc_options$opts[c("option", output)]
   opt_gral <- opt_gral$option[order(opt_gral[[output]]) & !is.na(opt_gral[[output]])]
 
-  opt_gral <- c(opt_gral, paste0("--metadata=config_path:", file.path(program_path, "filters")))
+  opt_gral <- c(opt_gral,
+                paste0("--metadata=config_path:", file.path(program_path, "filters")),
+                paste0("--metadata=GURI_VERSION:", guri_version))
 
   if(verbose){
-    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log"), "--metadata=verbose")
+    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log")) #, "--metadata=verbose")
   }
 
   # Lua Filters
@@ -155,7 +159,7 @@ guri_convert <- function(path_art, art,
     # TODO
 
   }else{
-    # TODO
+    # TODO: xml pasa por acá. CREO QUE NO HAY QUE DEJAR ESTO, TODOS PASAN SIN PROBLEMAS.
   }
 
   rmarkdown::pandoc_convert(wd = wdir,
