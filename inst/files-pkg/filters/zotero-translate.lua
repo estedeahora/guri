@@ -1,5 +1,5 @@
---- translate-zotero.lua – filter to translate elements
---- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/translate-zotero.lua
+--- zotero-translate.lua – filter to translate elements
+--- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/zotero-translate.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
