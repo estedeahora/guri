@@ -5,7 +5,6 @@
 
 local RawBlock = pandoc.RawBlock
 local app = nil
--- local app = {}
 
 -- Div(div) ------------------------------------------------------------------------------
 -- Description: [en] Access pandoc.Div elements with class attribute "Paratext": (a) in latex generate environments of type
@@ -31,9 +30,9 @@ function Div(div)
     if(div.classes[1] == "Paratext") then
         
         if FORMAT:match 'jats' then
-            if(div.identifier == "app") then
+            if div.attr.attributes.app then
 
-                if(not app) then
+                if not app then
                     app = {}
                 end
                 
@@ -45,9 +44,15 @@ function Div(div)
 
         elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
 
-            div = {RawBlock('latex', '\\begin{'.. div.identifier .. '}'),
+            if  div.attr.attributes.app then
+                 env = 'app'
+            else
+                env = div.identifier
+            end
+
+            div = {RawBlock('latex', '\\begin{'.. env .. '}'),
                    div, 
-                   RawBlock('latex', '\\end{' .. div.identifier .. '}')}
+                   RawBlock('latex', '\\end{' .. env .. '}')}
         end
     
     end
