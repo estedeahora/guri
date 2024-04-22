@@ -1,7 +1,7 @@
-# path_art <- "./example/num1/art101_lorem-ipsum"
-# art <- "art101"
-# verbose <- T
-# output <- "tex"
+path_art <- "./example/num1/art101_lorem-ipsum"
+art <- "art101"
+verbose <- T
+output <- "tex"
 
 # TODO
 #   [x] General options
@@ -69,12 +69,14 @@ guri_convert <- function(path_art, art,
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
   # Customised filters
-  # TODO: config_files[stringr::str_detect(config_files, pattern)] → a <- stringr::str_extract(config_files, pattern); a[!is.na(a)] // a |> na.omit()
-  customised_filters <- config_files[stringr::str_detect(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))]
-  if(verbose & length(customised_filters) > 0){
-    ui_alert_info("Customized lua filters used: ", paste(col_blue(customised_filters), collapse = "; "), ".")
+  customised_filters <- stringr::str_extract(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))  |> na.omit()
+  if(length(customised_filters) > 0){
+    if(verbose){
+      ui_alert_info("Customized lua filters used: ", paste(col_blue(customised_filters), collapse = "; "), ".")
+    }
+    customised_filters <- file.path(config_path, sort(customised_filters))
+    customised_filters <- paste0("--lua-filter=", customised_filters)
   }
-  customised_filters <- file.path(config_path, sort(customised_filters))
 
   opt_filters <- c(opt_filters, customised_filters)
 
@@ -96,7 +98,7 @@ guri_convert <- function(path_art, art,
 
   if(!is.na(opt_type[["biblio"]])) {
 
-    config_csl <- config_files[stringr::str_detect(config_files, ".*\\.csl$") ]
+    config_csl <- stringr::str_extract(config_files, ".*\\.csl$") |> na.omit()
 
     if(length(config_csl) == 1){
       opt_biblio <- c(opt_biblio, paste0("--csl=", file.path(config_path, config_csl) ))
@@ -122,9 +124,10 @@ guri_convert <- function(path_art, art,
       opt_templ <- paste0("--template=", file.path(config_path, template_file))
 
       if(verbose){
-        ui_alert_info("Default template is used ({.path ",
+        ui_alert_info("Customised template is used ({.path ",
                       "JOURNAL/_config/", template_file,"}).")
       }
+    # Default template is used
     }else{
       if(verbose && !is.na(opt_type[["custom"]])){
         ui_alert_info("No custom template file exists in {.path 'JORUNAL/_config/'}. ",
@@ -153,13 +156,30 @@ guri_convert <- function(path_art, art,
 
     opt_meta <- paste0("--metadata-file=", metadata_files)
 
-  }else if(!is.na(opt_type[["metadata"]])  ){
+  }else if(!is.na(opt_type[["metadata"]]) ){
 
-    !is.na(opt_type[["custom"]])
-    # TODO
+    metadata_file <- paste0(opt_type[["metadata"]], "_metadata.yaml")
+
+    # Detects: (a) if customizable; + (b) if custom metadata exists in '_config'
+    if(!is.na(opt_type[["custom"]]) && any(stringr::str_detect(config_files, paste0("^", metadata_file, "$")))){
+      opt_meta <- paste0("--metadata-file=", file.path(config_path, metadata_file))
+
+      if(verbose){
+        ui_alert_info("Customised metadata is used ({.path ",
+                      "JOURNAL/_config/", metadata_file,"}).")
+      }
+    # Default metadata is used
+    }else{
+      if(verbose && !is.na(opt_type[["custom"]])){
+        ui_alert_warning("No custom metadata file exists in {.path ", config_path, "}. ",
+                         "It is desirable to provide a custom {.path ",  metadata_file, "}. ",
+                          "Default ", opt_type["metadata"], " metadata is used.")
+      }
+      opt_meta <- paste0("--metadata-file=", file.path(program_path, "pandoc", metadata_file))
+    }
 
   }else{
-    # TODO: xml pasa por acá. CREO QUE NO HAY QUE DEJAR ESTO, TODOS PASAN SIN PROBLEMAS.
+    # xml pasa por acá
   }
 
   rmarkdown::pandoc_convert(wd = wdir,
