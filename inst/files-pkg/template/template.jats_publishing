@@ -376,7 +376,7 @@ $endif$
 $if(app)$
 <app-group>
    $for(app)$<app>
-   <title>Appendix $it.N/alpha/uppercase$</title>
+   <title>$if(it.title)$$it.title$$else$Appendix $it.N/alpha/uppercase$$endif$</title>
    $it.content$
    </app>
 $endfor$</app-group>

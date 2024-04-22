@@ -4,6 +4,8 @@
 --- License: CC-by-nc-sa
 
 local RawBlock = pandoc.RawBlock
+local stringify = pandoc.utils.stringify
+
 local app = nil
 
 -- Div(div) ------------------------------------------------------------------------------
@@ -27,34 +29,43 @@ local app = nil
 
 function Div(div)
 
-    if(div.classes[1] == "Paratext") then
+    if div.classes[1] == "Paratext" then
         
         if FORMAT:match 'jats' then
-            if div.attr.attributes.app then
 
-                if not app then
-                    app = {}
-                end
-                
-                table.insert(app, {content = div.content, N = #app + 1})
-
-            else
-                div = RawBlock('jats', '')
-            end
+            div = RawBlock('jats', '')
 
         elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
 
-            if  div.attr.attributes.app then
-                 env = 'app'
-            else
-                env = div.identifier
-            end
-
-            div = {RawBlock('latex', '\\begin{'.. env .. '}'),
+            div = {RawBlock('latex', '\\begin{'.. div.identifier .. '}'),
                    div, 
-                   RawBlock('latex', '\\end{' .. env .. '}')}
+                   RawBlock('latex', '\\end{' .. div.identifier .. '}')}
         end
     
+    elseif div.classes[1] == "app" then
+
+        if FORMAT:match 'jats' then
+                
+            if not app then
+                app = {}
+            end
+
+            -- Retain title for <title>
+            local app_title
+
+            if div.content[1].t == 'Header' then
+                app_title = stringify(div.content[1])
+                div.content:remove(1)
+            end
+            
+            table.insert(app, {content = div.content, N = #app + 1, title = app_title})
+
+        elseif FORMAT:match 'latex' or FORMAT:match 'pdf' then
+            div = {RawBlock('latex', '\\begin{app}'),
+                   div, 
+                   RawBlock('latex', '\\end{app}')}
+        end
+
     end
 
     return div

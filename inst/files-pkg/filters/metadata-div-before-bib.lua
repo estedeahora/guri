@@ -121,8 +121,7 @@ local function get_metadata(meta)
             single_app = CodeBlock(app_file[i], {class = "include", format = "markdown"})
             single_app.attributes["shift-heading-level-by"] = 0
 
-            -- all_app[i] = Div(single_app, {id = "app", class = "Paratext"})
-            all_app[i] = Div(single_app, {class = "Paratext", app = "true"})
+            all_app[i] = Div(single_app, {class = "app"})
         end
 
         meta.appendix = app_file
@@ -208,7 +207,6 @@ function add_metadata(doc)
 
         blocks:extend({cont_credit, cont_ack,
                         Header(1, references_title),
-                        -- Div(Para(""), {id = "refs"}),
                         RawBlock('markdown', '::: {#refs}\n:::'),
                         cont_app})
     end

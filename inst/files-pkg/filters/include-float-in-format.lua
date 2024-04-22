@@ -334,9 +334,9 @@ function lang_dic(meta)
 end
 
 function header_to_meta(meta)
-  if to_header then
-    meta.to_header = pandoc.RawBlock('latex', to_header)
-  end
+
+  meta.to_header = pandoc.RawBlock('latex', to_header)
+  
   return meta
 end
 
