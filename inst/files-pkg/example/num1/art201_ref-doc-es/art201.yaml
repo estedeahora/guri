@@ -1,25 +1,40 @@
 # Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
 
+# Identificadores del artículo
+# ----------------------------
+# Otras varialbes disponibles: 
+#   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier), art-access-id (id personalizado)
+#   'funding-statement' (describe la financiación, en jats <funding-statement>)
+#   'categories' (Lista. Enumera asunto o temas del artículo. En jats: solo $if(article.heading)$: <subj-group>$for$<subject subj-group-type="categories">$$</subject></subj-group>)
 article:
-  heading: Presentación de la propuesta
-  type: research-article                      # https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
-  elocation-id: a201            # Identificador digital electrónico    
-  doi: 10.1223/3344443.33221333
-  # art-access-id:          # Este número lo otorga Redalyc
+  heading: Presentación de la propuesta # Nombre de sección (interno de la revista).
+  type: research-article                # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+                                        # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id: a201                    # Identificador digital electrónico (sustituye a la página cuando estas no son utlizadas como parte de los artículos)
+  # publisher-id:           # Identificador personalizado del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">. 
+  # ojs_id:                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
   # fpage:                  # Página inicial
   # lpage:                  # Página final
+  # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
+  # resource_url:
+  # resources:
 
-# Datos del artículo
-metadata:
+# Metadatos del artículo (language principal)
+# -------------------------------------------metadata:
   title: Documento de referencia para ~!gurí_ (Gestor Unificado de formatos para Revistas de Investigación)
-  # subtitle_es: 
+  # subtitle: 
   abstract: |
     Este documento describe de modo resumido las características principales de ~!gurí. A su vez ejemplifica con la plantilla modelo de Word el modo en que deben definirse los diferentes bloques dentro del texto.
   keyword:
     - guri
-    - modelo de plantilla
-    - ejemplo
-  
+    - Modelo de plantilla
+    - Ejemplo
+
+# Metadatos del artículo en otros idiomas
+# ---------------------------------------
+# Otras varialbes disponibles: 
+#   'abstract_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+#   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
 metadata_lang:
   - lang: en
     title: Reference Document for ~!gurí_ (Unified Format Manager for Research Journals)
@@ -29,16 +44,14 @@ metadata_lang:
       - guri
       - template model
       - example
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
 
-# Texto libre en title (dedication en latex-pdf)
-# Puede usar cursiva (*texto*) o negritas (**texto**)
-# En caso de que necesite un salto de línea (\newline)
-# Puede usar comandos latex.
-# book_info: |
-#   Texto
-
-# ack:                          # Párrafo de agradecimiento (si lo hubiere)
-
+# Autores (un bloque por autor)
+# -----------------------------
+# Otras varialbes disponibles: 
+#   'equal-contrib: yes' (permite definir igual contribución, pero sólo se recomienda usar si no se usa credit).
+#   'author-notes' See https://pandoc.org/jats.html -> "author-notes"
 # Datos de autores (un bloque por autor)
 author:
   - given-names: Pablo
@@ -49,16 +62,26 @@ author:
     affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
       - aff1
       - aff2
-  
+
+# Afiliaciones insitucionales
+# ---------------------------
+# Otras varialbes disponibles: 
+#   'group' (nombre del grupo de investigación -bajo nivel-, en jats <institution content-type='group'>).
+#   'department' (nombre del departamento -nivel medio-, en jats <institution content-type='dept'>).
+#   identificadores de instituciones alternativos: 'isni' (ej: 0000 0001 2297 3151); 'ringgold' (ej: 1846)
+#   información de ubicación: 'street-address', 'city'
 affiliation:
   - id: aff1
     organization: Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET)
+    ror: 03cqe8w59                   # Ej: 03cqe8w59
     country-code: AR              # https://www.nationsonline.org/oneworld/country_code_list.htm
   - id: aff2
     organization: Universidad de Buenos Aires, Facultad de Ciencias Sociales, Instituto de Investigaciones Gino Germani
+    # ror:                        # Ej: 03cqe8w59
     country-code: AR
 
-# Datos de recepción del artículo
+# Historia de publicación del artículo
+# ------------------------------------
 history:
   - type: received
     day: 2
@@ -68,3 +91,29 @@ history:
     day: 10
     month: 1
     year: 2024
+  - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
+    day: 22
+    month: 4
+    year: 2024
+
+# Otros elementos
+# ---------------
+# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
+# book_info: |
+#   Texto libre preliminar
+
+# ack: Agradecimiento.
+# funding:
+#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+
+# Variables de customización del artículo
+# ---------------------------------------
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para las referencias
+  # credit_title:                         # Se puede modificar el título predefinido para las referencias

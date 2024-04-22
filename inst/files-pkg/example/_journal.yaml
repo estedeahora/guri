@@ -1,24 +1,32 @@
-lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
-ojs: true
+# If you do not have any of the required elements, you must comment with "#".
+# Si no tiene alguno de los elementos requeridos, debe comentar con "#"
 
+lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+
+# Datos de revista
+# ----------------
 journal:
   title: ~!guri_ {An example journal}
   abbrev-title: ~!guri_
   # pissn:                 #print issn
   eissn: 0001-2000
   doi_prefix: 10.1234
-  publisher-name: guri
+  publisher-name: Editor de la Revista
+  publisher-loc:
+    country: Argentina
+   email: publisher@university.edu
+   institution: Institution editora
 
-publisher-loc:
-   country: Argentina
-  #  email: publisher@university.edu
-  #  institution: Institution
-
+# Licencia
+# --------
+# Para usar 'copyright' (ver https://pandoc.org/jats.html -> copyright)
 license: 
   text: Esta obra está bajo una licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
   link: https://creativecommons.org/licenses/by-nc/4.0/
   free_to_read: true
 
+# Datos para generar doi y xml para crosref
+# -----------------------------------------
 doi_register:
   doi_suffix_constructor: guri.v%vi%i_%e       # example: www.doi.org/10.1234/guri.v10i1_a101
   doi_depositor:
@@ -30,5 +38,3 @@ doi_register:
     - type: pdf                   # file type: pdf/html/xml-jats
       resource_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a/
       tm:  true
-  
-

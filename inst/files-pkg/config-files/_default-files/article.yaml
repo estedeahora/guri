@@ -18,7 +18,7 @@ article:
   # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
   # resource_url:
   # resources:
-  
+
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:
@@ -29,7 +29,7 @@ metadata:
   keyword: 
     - kw1
     - kw2
-  
+
 # Metadatos del artículo en otros idiomas
 # ---------------------------------------
 # Otras varialbes disponibles: 
@@ -37,19 +37,25 @@ metadata:
 #   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
 metadata_lang:
   - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
-    title: 
+    title:
+    subtitle:
     abstract: |
       colocar abstract en segundo idioma
     keyword: 
       - kw1
       - kw2
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
   # - lang: pt                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
-  #   title: 
+  #   title:
+  #   subtitle:
   #   abstract: |
   #     colocar abstract en tercer idioma
   #   keyword: 
   #     - kw1
   #     - kw2
+  #   abstract_title:           # Sólo necesario si lang no es es/en/pt
+  #   keyword_title:            # Sólo necesario si lang no es es/en/pt
 
 # Autores (un bloque por autor)
 # -----------------------------
@@ -80,8 +86,6 @@ author:
 #   'department' (nombre del departamento -nivel medio-, en jats <institution content-type='dept'>).
 #   identificadores de instituciones alternativos: 'isni' (ej: 0000 0001 2297 3151); 'ringgold' (ej: 1846)
 #   información de ubicación: 'street-address', 'city'
-
-
 affiliation:                    # Se permiten 
   - id: aff1
     organization: 
@@ -92,8 +96,8 @@ affiliation:                    # Se permiten
   #   ror: 
   #   country-code: 
 
-# Datos de recepción del artículo
-# -------------------------------
+# Historia de publicación del artículo
+# ------------------------------------
 history:
   - type: received
     day: 
@@ -118,8 +122,6 @@ history:
 # funding:
 #   statement: fuente de financiación de la investigación en la que se basa el trabajo.
 
-
-
 # Variables de customización del artículo
 # ---------------------------------------
 # customized:
@@ -129,5 +131,5 @@ history:
   # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
   # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
   # reference_title:                      # Se puede modificar el título predefinido para las referencias
-  # ack_title:                      # Se puede modificar el título predefinido para las referencias
-  # credit_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para las referencias
+  # credit_title:                         # Se puede modificar el título predefinido para las referencias

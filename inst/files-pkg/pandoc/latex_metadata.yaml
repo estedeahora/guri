@@ -1,9 +1,6 @@
 # Latex variable
 # Description in: https://pandoc.org/MANUAL.html#variables-for-latex
 
-babel-otherlangs: 
-  - english
-  
 # Page layout ----------------------------------
 
 documentclass: scrartcl 
@@ -31,6 +28,8 @@ papersize: a4
 
 # linestretch: 1.25
 # ident: true
+# pagestyle: plain
+# secnumdepth
 
 # header-includes:           # arbitrary text in latex (placed before personal customizations in the template)
 
@@ -38,6 +37,7 @@ papersize: a4
 
 # fontsize:
 
+fontenc: T1
 fontfamily: Alegreya
 # fontfamilyoptions:
 
@@ -60,7 +60,9 @@ fontfamily: Alegreya
 #     font: 
 
 # microtypeoptions: 
-fontenc: T1
+
+# babelfonts:               a map of Babel language names to the font to be used with the language: 
+#                                 babelfonts: chinese-hant: “Noto Serif CJK TC” russian: “Noto Serif” …
 
 # Links options --------------------------------------
 
@@ -81,12 +83,3 @@ citecolor: CadetBlue
 # toc
 # lof
 # lot
-
-# BibLaTeX Bibliographies --------------------
-# Do not use
-
-# biblatexoptions
-# biblio-style
-# biblio-title
-# bibliography
-# natbiboptions

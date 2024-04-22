@@ -1,5 +1,7 @@
+# Identificadores del artículo
+# ----------------------------
 article:
-  heading: Modelo
+  heading: Inroducción
   type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id: a101            
   # doi: guri_45.5555
@@ -8,8 +10,8 @@ article:
   # resource_url:
   # resources:
 
-
-# Datos del artículo
+# Metadatos del artículo (language principal)
+# -------------------------------------------
 metadata:
   title: Lorem ipsum
   subtitle: Duis aute irure dolor
@@ -20,9 +22,12 @@ metadata:
     - Ipsum
     - Dolor
 
+# Metadatos del artículo en otros idiomas
+# ---------------------------------------
 metadata_lang:
   - lang: en
     title: Pain itself
+    subtitle: Do not let the pain go away
     abstract: |
       It is important to take care of the patient, to be followed by the client, but at the same time they will be affected by some great pains and sufferings. For to come to the smallest detail, no one should practice any kind of work unless he derives some benefit from it. Do not be angry with the pain in the rebuke, in the pleasure he wants to be a hair from the pain, let him run away from the pain. Unless they are blinded by lust, they do not come forth; they are in fault who abandon their duties and soften their hearts, that is, their labors.
     keyword: 
@@ -31,28 +36,20 @@ metadata_lang:
       - Pain
     # abstract_title:           # Sólo necesario si lang no es es/en/pt
     # keyword_title:            # Sólo necesario si lang no es es/en/pt
-  - lang: pt
-    title: Título em português
+  - lang: es
+    title: El propio dolor
+    subtitle: No dejes que el dolor se vaya
     abstract: |
-      Otro abstract en otro idioma
+      Es importante cuidar al paciente, ser seguido por el cliente, pero al mismo tiempo se verán afectados por algunos grandes dolores y sufrimientos. Para llegar al más mínimo detalle, nadie debe practicar ningún tipo de trabajo a menos que obtenga algún beneficio de él. No se enfaden con el dolor en la reprimenda, en el placer quiere ser un pelo del dolor, que huya del dolor. A menos que estén cegados por la lujuria, no salen adelante; están en falta quienes abandonan sus deberes y ablandan sus corazones, es decir, sus labores.
     keyword: 
-      - kw1_ar
-      - kw2_ar
-      - kw3_ar
+      - Hogar
+      - Él mismo
+      - Dolor
     # abstract_title:           # Sólo necesario si lang no es es/en/pt
     # keyword_title:            # Sólo necesario si lang no es es/en/pt
 
-# Texto libre en title (dedication en latex-pdf)
-# Puede usar cursiva (*texto*) o negritas (**texto**)
-# En caso de que necesite un salto de línea (\newline)
-# Puede usar comandos latex.
-# book_info: |
-#   Texto
-
-ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
-
-# Datos de autores (un bloque por autor)
-author:
+# Autores (un bloque por autor)
+# -----------------------------
   - given-names: Marcus Tullius
     surname: Cicero
     email: ciceron@instute.com
@@ -62,14 +59,20 @@ author:
       - aff1
       - aff2
 
+# Afiliaciones insitucionales
+# ---------------------------
 affiliation:
   - id: aff1
     organization: Ancient Rome
+    ror: 01abc2z98
     country-code: IT
   - id: aff2
     organization: Platonic Academy
+    ror: 45fje4n94
     country-code: GR # https://www.nationsonline.org/oneworld/country_code_list.htm
 
+# Historia de publicación del artículo
+# ------------------------------------
 history:
   - type: received
     day: 1
@@ -79,11 +82,29 @@ history:
     day: 11
     month: 11
     year: 2023
-    
+  - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
+    day: 18
+    month: 2
+    year: 2024
+
+# Otros elementos
+# ---------------
+# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
+# book_info: |
+#   Texto libre preliminar
+
+ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
+# funding:
+#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+
+# Variables de customización del artículo
+# ---------------------------------------
 customized:
   artic-lang: la                        # Se puede modificar el idioma predefinido en _journal.yaml
-  # reference_title:                      # Se puede modificar el título predefinido para las referencias
   # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
   # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
   # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
   # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                      # Se puede modificar el título predefinido para las referencias
+  # credit_title:                      # Se puede modificar el título predefinido para las referencias

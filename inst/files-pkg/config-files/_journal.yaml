@@ -3,7 +3,7 @@
 
 lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
 
-# Datos de journal
+# Datos de revista
 # ----------------
 # Otras varialbes disponibles: 
 #   identificadores de la revista (en jats dentro de <journal-id journal-id-type='$id$' >): 'publisher-id', 'redalyc' (Redalyc), 'nlm-ta' (PubMed), 'pmc' (PubMed Central).

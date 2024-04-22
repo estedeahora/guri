@@ -1,46 +1,57 @@
 # Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
 
+# Identificadores del artículo
+# ----------------------------
+# Otras varialbes disponibles: 
+#   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier), art-access-id (id personalizado)
+#   'funding-statement' (describe la financiación, en jats <funding-statement>)
+#   'categories' (Lista. Enumera asunto o temas del artículo. En jats: solo $if(article.heading)$: <subj-group>$for$<subject subj-group-type="categories">$$</subject></subj-group>)
 article:
-  heading: Artículos    
-  type: research-article        # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+  heading: Dossier          # Nombre de sección (interno de la revista).
+  type: research-article    # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
                             # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
-  elocation-id: 020201      # Identificador digital electrónico    
-  doi: 10.1177/004209802311733
-  # art-access-id:          # Este número lo otorga Redalyc
-  # publisher-id:           # REVISAR ESTE PUNTO. NO SE SI PUEDE IR ID DIGITAL DE PUB CONTINUA. HAY CAMBIOS CON 1.2
+  elocation-id: a302        # Identificador digital electrónico (sustituye a la página cuando estas no son utlizadas como parte de los artículos)
+  # publisher-id:           # Identificador personalizado del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">. 
+  # ojs_id:                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
   # fpage:                  # Página inicial
   # lpage:                  # Página final
+  # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
+  # resource_url:
+  # resources:
 
-# Datos del artículo
+# Metadatos del artículo (language principal)
+# -------------------------------------------
 metadata:
   title: Ejecución de Tiros Libres en Fútbol
   subtitle: Un Análisis Científico
   # abstract: |
-  #   colocar abstract en español
+  #   colocar abstract en lenguaje principal.
   # keyword: 
   #   - kw1
   #   - kw2
-  # artic-lang: en               # Se puede modificar el idioma predefinido en _journal.yaml
 
+# Metadatos del artículo en otros idiomas
+# ---------------------------------------
+# Otras varialbes disponibles: 
+#   'abstract_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+#   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
 metadata_lang:
-  - lang: en
+  - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
     title: Free Kicks in Football. A Scientific Analysis
     # abstract: |
-    #   colocar abstract en inglés
+    #   colocar abstract en segundo idioma
     # keyword: 
     #   - kw1
     #   - kw2
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
 
-# Texto libre en title (dedication en latex-pdf)
-# Puede usar cursiva (*texto*) o negritas (**texto**)
-# En caso de que necesite un salto de línea (\newline)
-# Puede usar comandos latex.
-# book_info: |
-#   Texto
 
-# ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
-
-# Datos de autores
+# Autores (un bloque por autor)
+# -----------------------------
+# Otras varialbes disponibles: 
+#   'equal-contrib: yes' (permite definir igual contribución, pero sólo se recomienda usar si no se usa credit).
+#   'author-notes' See https://pandoc.org/jats.html -> "author-notes"
 author:
   - given-names: Diego Armando
     surname: Maradona
@@ -57,18 +68,54 @@ author:
     affiliation: 
       - aff1
 
+# Afiliaciones insitucionales
+# ---------------------------
+# Otras varialbes disponibles: 
+#   'group' (nombre del grupo de investigación -bajo nivel-, en jats <institution content-type='group'>).
+#   'department' (nombre del departamento -nivel medio-, en jats <institution content-type='dept'>).
+#   identificadores de instituciones alternativos: 'isni' (ej: 0000 0001 2297 3151); 'ringgold' (ej: 1846)
+#   información de ubicación: 'street-address', 'city'
 affiliation:
   - id: aff1
     organization: Selección de Futbol Argentina
+    # ror:
     country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
 
-# Datos de recepción del artículo
-# history:
-  # - type: received
-  #   day: 10
-  #   month: 08
-  #   year: 2023
-  # - type: accepted
-  #   day: 15
-  #   month: 09
-  #   year: 2023
+
+# Historia de publicación del artículo
+# ------------------------------------
+history:
+  - type: received
+    day: 10
+    month: 8
+    year: 2023
+  - type: accepted
+    day: 15
+    month: 9
+    year: 2023
+  # - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
+  #   day: 
+  #   month: 
+  #   year: 
+
+# Otros elementos
+# ---------------
+# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
+book_info: |
+  Este texto fue parcialmente generado mediatne el uso de generadores de texto basados en inteligencia artificial.
+
+# ack: Agradecimiento.
+# funding:
+#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+
+# Variables de customización del artículo
+# ---------------------------------------
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para las referencias
+  # credit_title:                         # Se puede modificar el título predefinido para las referencias
