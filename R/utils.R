@@ -4,6 +4,10 @@ ui_alert_info <- function(..., sep = ""){
   cli::cli_alert_info(paste(..., sep = sep))
 }
 
+ui_alert_warning <- function(..., sep = ""){
+  cli::cli_alert_warning(paste(..., sep = sep))
+}
+
 ui_alert_success <- function(..., sep = ""){
   cli::cli_alert_success(paste(..., sep = sep))
 }
