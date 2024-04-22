@@ -55,49 +55,9 @@ guri_to_jats <- function(path_art, art, verbose = F){
 #'
 #' @export
 
-guri_to_pdf <- function(path_art, art, verbose = F){
+guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
 
-  # Directorio de trabajo
-  wdir <- paste0(getwd(), path_art)
-
-  # # Archivos de programa ('./files/') y configuracion de revista ('./JOURNAL/_config')
-  program_path = "../../../files/"
-  config_path = "../../_config/"
-  config_files = list.files(paste0(wdir, config_path))
-
-  # Busca archivo de TEMPLATE customizado (en ./JOURNAL/_config/)
-  config_latex_template <- config_files[stringr::str_detect(config_files, "^template.latex$") ]
-
-  if(config_latex_template == "template.latex"){
-    op_templ <- paste0("--template=", config_path, config_latex_template)
-  }else{
-    cat("No existe archivo 'root/_config/latex.template'.",
-        "Se usara latex.template por defecto")
-    op_templ <- paste0("--template=", program_path, "template/", config_latex_template)
-  }
-
-  # Busca archivo de METADATA customizado (en ./JOURNAL/_config/)
-  config_latex_meta <- config_files[stringr::str_detect(config_files, "^latex_metadata.yaml$") ]
-
-  if(config_latex_meta == "latex_metadata.yaml"){
-    op_meta <- paste0("--metadata-file=", config_path, config_latex_meta)
-  }else{
-    cat("No existe archivo 'root/_config/latex_metadata.yaml'.",
-        "Se usara latex_metadata.yaml por defecto")
-    op_meta <- paste0("--metadata-file=", program_path, "pandoc/", config_latex_meta)
-  }
-
-  # pandoc_convert(wd = "./",
-  #                input = file_input,
-  #                from = "markdown",
-  #                output = file_tex,
-  #                to = "latex",
-  #                citeproc = T,
-  #                verbose = verbose,
-  #                options = c(op_gral, op_filters,
-  #                            op_templ, op_meta))
-
-  # # Conversión md -> tex
+  # Conversión md -> tex
 
   cli_process_start(col_yellow("Creating latex file (md -> tex)."))
 
@@ -108,22 +68,25 @@ guri_to_pdf <- function(path_art, art, verbose = F){
 
   # Conversión tex -> pdf
 
-  wdir <- paste0(getwd(), path_art)
+  wdir <- file.path(getwd(), path_art)
   file_tex    <- paste0(art, ".tex")
 
   proj_dir <- setwd(wdir)
   on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
 
   # Retener warnings?
+  # if(verbose){
   # ### tinytex_warn <- options()$tinytex.latexmk.warning
-  tinytex_warn <- options(tinytex.latexmk.warning = verbose)
-  on.exit(options(tinytex.latexmk.warning = tinytex_warn))
+  # tinytex_warn <- options(tinytex.latexmk.warning = verbose)
+  # on.exit(options(tinytex.latexmk.warning = tinytex_warn))
+  # }
 
-  cli_process_start(col_yellow("Creating pdf file (md -> pdf)."))
 
-  tinytex::lualatex(file_tex)
-
-  cli_process_done()
+  if(pdf){
+    cli_process_start(col_yellow("Creating pdf file (md -> pdf)."))
+    tinytex::lualatex(file_tex)
+    cli_process_done()
+  }
 
   invisible(T)
 
