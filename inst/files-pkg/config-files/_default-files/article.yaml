@@ -85,7 +85,7 @@ author:
 affiliation:                    # Se permiten 
   - id: aff1
     organization: 
-    ror:                        # Ej: https://ror.org/03cqe8w59
+    ror:                        # Ej: 03cqe8w59
     country-code: AR            # ISO-3166-1 country identifier. See https://www.nationsonline.org/oneworld/country_code_list.htm
   # - id: aff2
   #   organization:
@@ -129,3 +129,5 @@ history:
   # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
   # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
   # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                      # Se puede modificar el título predefinido para las referencias
+  # credit_title:                      # Se puede modificar el título predefinido para las referencias
