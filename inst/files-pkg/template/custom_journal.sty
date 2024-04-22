@@ -13,9 +13,15 @@
 \IfPackageLoadedTF{graphicx}{}{\usepackage{graphicx}}
 % Carga `etoolbox' 
 \IfPackageLoadedTF{etoolbox}{}{\usepackage{etoolbox}}
+% Carga `rorlink' (generar link a ROR)
+\IfPackageLoadedTF{rorlink}{}{\usepackage{rorlink}}
 
 % Carga de paquetes y configuraciones pedidas por el documento
+$if(to_header)$
+$for(to_header)$
 $to_header$
+$endfor$
+$endif$
 
 %%%% COLORES CUSTOMIZADOS
 
@@ -29,21 +35,22 @@ $to_header$
 
 %%%% TABLAS Y FGURAS
 
+% Definir título de tablas/figuras
+\addto\captions$babel-lang${\renewcommand{\figurename}{$floats.figure-title$}}
+\addto\captions$babel-lang${\renewcommand{\tablename}{$floats.table-title$}}
+
 % Agregado de \source y \notes para titulos secundarios de las tablas y figuras
 \usepackage{caption}
-\captionsetup{format=plain,labelsep=period,singlelinecheck=false,justification=centerlast,
-              font={small,singlespacing,sf},labelfont={sc,bf},width=0.8\textwidth}
-\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Fuente:} {#1}}}}
-\newcommand{\notes}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{Notas:} {#1}}}}
+\captionsetup{format=hang,labelsep=period,singlelinecheck=false,justification=justified,
+              font={small,singlespacing,sf},labelfont={sc,bf},width=0.9\textwidth}
+\newcommand{\source}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{$floats.source-title$:} {#1}}}}
+\newcommand{\notes}[1]{\vspace{-9pt}\caption*{\footnotesize{\textit{$floats.note-title$:} {#1}}}}
 
 $if(twocolumn)$ 
 % Permite tablas y figuras de ancho completo en documentos a dos columnas
 \RenewEnvironmentCopy{figure}{figure*}
 \RenewEnvironmentCopy{table}{table*}
 $endif$
-
-% Cambia denominación de "Cuadro" a "Tabla"
-\renewcommand{\spanishtablename}{Tabla}
 
 % Cambiar fuente y tamaño de letra para entorno de tablas (table)
 \AtBeginEnvironment{tabular}{\sffamily\footnotesize}
@@ -62,15 +69,15 @@ $endif$
 \ohead{\textbf{$journal.title$}}
 
 \setkomafont{pagefoot}{\normalfont\footnotesize}
-\ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em Publicación de \emph{$journal.publisher-name$}.
+\ifoot[\rule{0.4\textwidth}{0.5pt} \vskip 0.5em $journal.publisher-name$$if(journal.publisher-loc.institution)$ ($journal.publisher-loc.institution$)$endif$.
       $if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$\\
       $license.text$ ($license.link$).]{}
 \cfoot[]{\pagemark}
 
 % Definir primera página del artícul (si se utiliza paginación personalizada)
 $if(article.fpage)$
-  \usepackage{lastpage}
-  \setcounter{page}{$article.fpage$}
+\usepackage{lastpage}
+\setcounter{page}{$article.fpage$}
 $endif$
 
 %%%% PÁGINA DE TÍTULO 
@@ -81,7 +88,7 @@ $endif$
 \setkomafont{dedication}{\raggedright\sffamily\small}
 
 \titlehead{%
-  \textbf$if(article.heading)$\textbf{$article.heading/uppercase$}$endif$\hfill\textbf{$journal.title$}\\%
+  \textbf$if(article.heading)$\textbf{$article.heading$}$endif$\hfill\textbf{$journal.title$}\\%
   \vspace{4pt}
   \hfill $if(volume)$Vol. $volume$$endif$$if(issue)$ Núm. $issue$$endif$$if(article.fpage)$ pp. $article.fpage$-\pageref*{LastPage}$endif$ ($date.year$)
   $if(article.doi)$\\ \hfill DOI: \href{https://doi.org/$article.doi$}{$article.doi$}$endif$%
@@ -90,14 +97,16 @@ $endif$
 \title{$title$}
 
 $if(subtitle)$
-  \subtitle{$subtitle$\\ \vspace{1em} \textit{$title_en$}}
+  \subtitle{$subtitle$\\ \vspace{1em}}
 $else$
-  \subtitle{\vspace{1em} \textit{$title_en$}}
+  \subtitle{\vspace{1em}}
 $endif$
+
+\newcommand{\datejl}{\$journal.lang-babel$date}
 
 $if(author)$
 \author{{\begin{tabular}[l]{@{}l@{}}%
-  $for(author)$\large{$author.given-names$ {$author.surname$}}\textsuperscript{$for(author.institute)$$it/alpha$$sep$;$endfor$} $if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}$endif$$sep$ \\ $endfor$
+  $for(author)$\large{$author.given-names$ $author.surname$}\textsuperscript{$for(author.institute)$$it/alpha$$sep$;$endfor$} $if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\textcolor{verde_orcid}{\faOrcid}}$endif$$sep$ \\ $endfor$
 \end{tabular}}%
 }
 $endif$    
@@ -105,19 +114,18 @@ $endif$
 
 \publishers{
   \vspace{1em}
-  $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$sep$\\$endfor$$endif$
-  $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.tipo$:} $it.day$ de $it.mes$ de $it.year$$sep$; $endfor$.\\$endif$%
+  $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$if(it.ror)$ \rorlink{https://ror.org/$it.ror$}$endif$$sep$\\$endfor$$endif$
+  $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.type-title$:} \datejl{$it.year$}{$it.month$}{$it.day$}$sep$; $endfor$.\\$endif$%
 }
 
 $if(book_info)$\dedication{$book_info$}$endif$
 
-%%% Credit, Ack and app Enviroment
+%%% New enviroment: Credit (\Credit), Agradecimientos (\Ack), Sección de apéndices (\apps) y apéndices (\app) 
 \newenvironment{Div}[1][]
     {\subsection*{#1}
     \sffamily\small}
 
-
-\newenvironment{Credit}{\begin{Div}[Declaración de contribuciones de autoría (CRediT)]}{\end{Div}}%
-\newenvironment{Ack}{\begin{Div}[Agradecimiento]}{\end{Div}}%
+\newenvironment{Credit}{\begin{Div}[$credit-title$]}{\end{Div}}%
+\newenvironment{Ack}{\begin{Div}[$ack-title$]}{\end{Div}}%
 \newenvironment{apps}{\newpage}{}
 \newenvironment{app}{}{}

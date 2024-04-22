@@ -14,14 +14,25 @@ local function tocode(lang)
 end
 
 local dic = {
-    en = {abstract = 'Abstract',        kw = 'Keywords',         TAB = 'Table',   FIG = 'Figure',    source = 'Source', note = 'Note',      ref = 'References'},
-    es = {abstract = 'Resumen',         kw = 'Palabras claves',  TAB = 'Tabla',   FIG = 'Figura',    source = 'Fuente', note = 'Nota',      ref = 'Referencias bibliográficas'},
-    pt = {abstract = 'Resumo',          kw = 'Palavras chave',   TAB = 'Tabela',  FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Referências'},
-    fr = {abstract = 'Résumé',          kw = 'Mots clés',        TAB = 'Tableau', FIG = 'Figure',    source = 'Source', note = 'Notes',      ref = 'Bibliographie'},
-    it = {abstract = 'Sommario',        kw = 'Parole chiave',    TAB = 'Tabella', FIG = 'Figura',    source = 'Fonte',  note = 'Nota',      ref = 'Riferimenti bibliografici'},
-    de = {abstract = 'Zusammenfassung', kw = 'Schlüsselwörter ', TAB = 'Tabelle', FIG = 'Abbildung', source = 'Quelle', note = 'Anmerkung', ref = 'Literatur'},
-    zh = {abstract = '摘要',            kw = '关键词',            TAB = '表',      FIG = '图',        source = '来源',    note = '备注',      ref = '参考文献'},                  -- Chino simplificado
-    la = {abstract = 'Summarium',       kw = 'Keywords',         TAB = 'Tab.',    FIG = 'Fig.',      source = 'Source', note = 'Note',      ref = 'References'}    -- Latin (for Lorem Itsum in 'example')
+    en = {abstract = 'Abstract',        kw = 'Keywords',         TAB = 'Table',   FIG = 'Figure',     source = 'Source', note = 'Note',      ref = 'References'                },
+    es = {abstract = 'Resumen',         kw = 'Palabras claves',  TAB = 'Tabla',   FIG = 'Figura',     source = 'Fuente', note = 'Nota',      ref = 'Referencias bibliográficas'},
+    pt = {abstract = 'Resumo',          kw = 'Palavras chave',   TAB = 'Tabela',  FIG = 'Figura',     source = 'Fonte',  note = 'Nota',      ref = 'Referências'               },
+    fr = {abstract = 'Résumé',          kw = 'Mots clés',        TAB = 'Tableau', FIG = 'Figure',     source = 'Source', note = 'Notes',     ref = 'Bibliographie'             },
+    it = {abstract = 'Sommario',        kw = 'Parole chiave',    TAB = 'Tabella', FIG = 'Figura',     source = 'Fonte',  note = 'Nota',      ref = 'Riferimenti bibliografici' },
+    de = {abstract = 'Zusammenfassung', kw = 'Schlüsselwörter ', TAB = 'Tabelle', FIG = 'Abbildung',  source = 'Quelle', note = 'Anmerkung', ref = 'Literatur'                 },
+    zh = {abstract = '摘要',            kw = '关键词',            TAB = '表',      FIG = '图',         source = '来源',    note = '备注',      ref = '参考文献'                   }, -- Chino simplificado
+    la = {abstract = 'Summarium',       kw = 'Keywords',         TAB = 'Tabula',  FIG = 'Descriptio', source = 'Source', note = 'Note',      ref = 'References'                }  -- Latin (for Lorem Itsum in 'example')
+  }
+
+local dic_paratext = {
+    en = {ack = 'Acknowledgements', credit = 'CRediT (Contributor Roles Taxonomy)'},
+    es = {ack = 'Agradecimientos',  credit = 'CRediT (Contributor Roles Taxonomy)'},
+    pt = {ack = 'Reconhecimentos',  credit = 'CRediT (Contributor Roles Taxonomy)'},
+    fr = {ack = 'Remerciements',    credit = 'CRediT (Contributor Roles Taxonomy)'},
+    it = {ack = 'Ringraziamenti',   credit = 'CRediT (Contributor Roles Taxonomy)'},
+    de = {ack = 'Danksagungen',     credit = 'CRediT (Contributor Roles Taxonomy)'},
+    zh = {ack = '致谢',             credit = 'CRediT (Contributor Roles Taxonomy)'},
+    la = {ack = 'Agnitiones',       credit = 'CRediT (Contributor Roles Taxonomy)'}
   }
 
 local custom_titles = {
@@ -31,8 +42,21 @@ local custom_titles = {
     {m = 'figure-title',     k = 'figure_title',     v = 'FIG',     float = true},
     {m = 'source-title',     k = 'none',             v = 'source',  float = true},
     {m = 'note-title',       k = 'none',             v = 'note',    float = true},
-    {m = 'references-title', k = 'references_title', v = 'ref'}
-}
+    {m = 'references-title', k = 'references_title', v = 'ref'},
+    {m = 'ack-title',        k = 'ack_title',        v = 'ack'},
+    {m = 'credit-title',     k = 'credit_title',     v = 'credit'}
+  }
+
+local dic_date = {
+    en = {received = 'Received', accepted = 'Accepted',   epub = 'Published online'},
+    es = {received = 'Recibido', accepted = 'Aceptado',   epub = 'Publicacdo en línea'},
+    pt = {received = 'Recebido', accepted = 'Aceito',     epub = 'Publicado on-line'},
+    fr = {received = 'Reçu',     accepted = 'Accepté',    epub = 'Publié en ligne'},
+    it = {received = 'Ricevuto', accepted = 'Accettato',  epub = 'Pubblicato in linea'},
+    de = {received = 'Erhalten', accepted = 'Akzeptiert', epub = 'Online veröffentlicht'}, 
+    zh = {received = 'Received', accepted = 'Accepted',   epub = 'Published online'},
+    la = {received = 'Received', accepted = 'Accepted',   epub = 'Published online'}
+  }
 
 -- add_metatitle(meta_i) -----------------------------------------------------------------------
 -- Description: [en] Take a metadata element and define the title of the abstract and the kw 
@@ -79,17 +103,23 @@ end
 function Meta(meta)
     
     -- Modify the journal's default language for the article.
+    meta.journal.lang = meta.lang
+
     if meta.customized and stringify(meta.customized['artic-lang']) ~= meta.lang then
         warn("NOTE: The article uses a different main language than the journal.\n")
-        meta.journal.lang = meta.lang
         meta.lang = meta.customized['artic-lang']
     end
-
     
+    -- Definir palabras para títulos de elementos main language (translate) y journal lang (translate_journal).
     lang = tocode(meta.lang)
-
-    -- Definir palabras para títulos de elementos main language.
     translate = dic[lang]
+    
+    lang_journal = tocode(meta.journal.lang)
+    translate_journal = dic_paratext[lang_journal]
+
+    translate.ack = translate_journal.ack
+    translate.credit = translate_journal.credit
+
     if not translate then translate = {} end
 
     meta.floats = {}
@@ -120,6 +150,14 @@ function Meta(meta)
             meta.metadata_lang[k] = add_metatitle(meta_i) 
         end
     end
+
+    -- History type names
+    if(meta.history) then
+        for _, history in ipairs(meta.history) do
+            history['type-title'] = dic_date[lang_journal][stringify(history.type)]
+        end
+    end
+
 
     return meta
 
