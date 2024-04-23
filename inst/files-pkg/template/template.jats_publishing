@@ -1,0 +1,385 @@
+$-- Adapted from Pandoc template: 
+$-- * 'default.jats_publishing' <https://github.com/jgm/pandoc-templates/blob/5f0c7f8abff1e26b1334b9f632bae147eaebe134/default.jats_publishing>
+$-- * 'article.jats_publishing' <https://github.com/jgm/pandoc-templates/blob/5f0c7f8abff1e26b1334b9f632bae147eaebe134/article.jats_publishing>
+$-- 
+$-- Changes:
+$-- * DTD v1.3 used instaed of DTD v1.2
+$-- * Add journal-id for Redalyc ('journal.redalyc')
+$-- * Add language specification (@xml:lang) in: <journal_title>, <article-title>, <subtitle> and translations
+$-- * Attribute @abbrev-type in <abbrev-journal-title> (Scielo recomendation)
+$-- * Add location information about the journal's publisher (<publisher-loc>, <>).
+$-- * Add <trans-title-group> with title and subtitle in second language.
+$-- * Remove author.cor-id field (seems an inconvenient way of declaring correspondence, it is preferred as an 
+$--      attribute within <contrib>.)
+$-- * Add credit data in <role> (inside <contrib>).
+$-- * Add optional <season> element inside <pub-date>.
+$-- * The <history> element is modified and expanded. It was underdeveloped in the original template.
+$-- * Add <ali:free_to_read/> element.
+$-- * Modifies <license> to include the @link attribute and the <ali:license_ref> element to the license (if present).
+$-- * Modify preliminary elements (<abstract> and <kwd>) to adapt to multiple languages.
+$-- * Add <counts> element with <fig-count> and <table-count>.
+$-- * Add <ack> and <app-group> elements in <back>
+$--
+<?xml version="1.0" encoding="utf-8" ?>
+$if(xml-stylesheet)$
+<?xml-model type="application/xml-dtd" href="https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd"?>
+$endif$
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "https://jats.nlm.nih.gov/publishing/1.3/JATS-journalpublishing1-3.dtd">
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" dtd-version="1.3" article-type=$if(article.type)$"$article.type$"$else$"other"$endif$ xml:lang="$lang$">
+$--         #### XML-JATS ###############
+<processing-meta tagset-family="jats" base-tagset="publishing" mathml-version="3.0" table-model="xhtml">
+<restricted-by xlink:href="https://jats4r.org/">jats4r</restricted-by>
+<custom-meta-group content-type="jats-creator"> 
+<custom-meta xlink:href="https://github.com/estedeahora/guri">
+<meta-name>Conversion Vendor</meta-name>
+<meta-value>guri $GURI_VERSION$</meta-value>
+</custom-meta>
+</custom-meta-group>
+</processing-meta>
+<front>
+<journal-meta>
+$--         #### JOURNAL ###############
+$if(journal.publisher-id)$
+<journal-id journal-id-type="publisher-id">$journal.publisher-id$</journal-id>
+$endif$
+$if(journal.redalyc)$
+<journal-id journal-id-type="redalyc">$journal.redalyc$</journal-id>
+$endif$
+$if(journal.nlm-ta)$
+<journal-id journal-id-type="nlm-ta">$journal.nlm-ta$</journal-id>
+$endif$
+$if(journal.pmc)$
+<journal-id journal-id-type="pmc">$journal.pmc$</journal-id>
+$endif$
+$-- Fallback: an empty journal-id in case none is available.
+$if(journal.publisher-id)$
+$elseif(journal.redalyc)$
+$elseif(journal.nlm-ta)$
+$elseif(journal.pmc)$
+$else$
+<journal-id></journal-id>
+$endif$
+<journal-title-group>
+$if(journal.title)$
+<journal-title specific-use="original" xml:lang="$if(journal.lang)$$journal.lang$$else$$lang$$endif$">$journal.title$</journal-title>
+$endif$
+$if(journal.abbrev-title)$
+<abbrev-journal-title abbrev-type="publisher">$journal.abbrev-title$</abbrev-journal-title>
+$endif$
+</journal-title-group>
+$if(journal.pissn)$
+<issn publication-format="print">$journal.pissn$</issn>
+$endif$
+$if(journal.eissn)$
+<issn publication-format="electronic">$journal.eissn$</issn>
+$endif$
+$-- At least one issn element is required; use empty issn as fallback
+$if(journal.pissn)$
+$elseif(journal.eissn)$
+$else$
+<issn></issn>
+$endif$
+$--         #### PUBLISHER ###############
+$if(journal.publisher-name)$
+<publisher>
+<publisher-name>$journal.publisher-name$</publisher-name>
+$if(journal.publisher-loc)$
+<publisher-loc>
+$if(journal.publisher-loc.country)$
+<country>$journal.publisher-loc.country$</country>
+$endif$
+$if(journal.publisher-loc.email)$
+<email>$journal.publisher-loc.email$</email>
+$endif$
+$if(journal.publisher-loc.institution)$
+<institution content-type="edu">$journal.publisher-loc.institution$</institution>
+$endif$
+</publisher-loc>
+$endif$
+</publisher>
+$endif$
+</journal-meta>
+<article-meta>
+$--         #### ARTICLE IDs ###############
+$if(article.publisher-id)$
+<article-id pub-id-type="publisher-id">$article.publisher-id$</article-id>
+$endif$
+$if(article.doi)$
+<article-id pub-id-type="doi">$article.doi$</article-id>
+$endif$
+$if(article.pmid)$
+<article-id pub-id-type="pmid">$article.pmid$</article-id>
+$endif$
+$if(article.pmcid)$
+<article-id pub-id-type="pmcid">$article.pmcid$</article-id>
+$endif$
+$if(article.art-access-id)$
+<article-id pub-id-type="art-access-id">$article.art-access-id$</article-id>
+$endif$
+$--         #### HEADING Y CATEGORIES ###############
+$if(article.heading)$
+<article-categories>
+<subj-group subj-group-type="heading">
+<subject>$article.heading$</subject>
+</subj-group>
+$if(article.categories)$
+<subj-group subj-group-type="categories">
+$for(article.categories)$
+<subject>$article.categories$</subject>
+$endfor$
+</subj-group>
+$endif$
+</article-categories>
+$endif$
+$--         #### TITLES ###############
+$if(title)$
+<title-group>
+<article-title xml:lang="$lang$">$title$</article-title>
+$if(subtitle)$
+<subtitle xml:lang="$lang$">$subtitle$</subtitle>
+$endif$
+$if(metadata_lang)$
+$for(metadata_lang)$
+<trans-title-group>
+<trans-title xml:lang="$it.lang$">$it.title$</trans-title>
+$if(it.subtitle)$
+<trans-subtitle xml:lang="$it.lang$">$it.subtitle$</trans-subtitle>
+$endif$
+</trans-title-group>
+$endfor$
+$endif$
+</title-group>
+$endif$
+$--         #### AUTHORS & AFFILIATIONS ###############
+$if(author)$
+<contrib-group>
+$for(author)$
+<contrib contrib-type="author"$if(author.equal-contrib)$ equal-contrib="yes"$endif$$if(author.cor-id)$ corresp="yes"$endif$>
+$if(author.orcid)$
+<contrib-id contrib-id-type="orcid">$author.orcid$</contrib-id>
+$endif$
+$if(author.surname)$
+<name>
+<surname>$if(author.non-dropping-particle)$${author.non-dropping-particle} $endif$$author.surname$</surname>
+<given-names>$author.given-names$$if(author.dropping-particle)$ ${author.dropping-particle}$endif$</given-names>
+$if(author.prefix)$
+<prefix>${author.suffix}</prefix>
+$endif$
+$if(author.suffix)$
+<suffix>${author.suffix}</suffix>
+$endif$
+</name>
+$elseif(author.name)$
+<string-name>$author.name$</string-name>
+$else$
+<string-name>$author$</string-name>
+$endif$
+$if(author.email)$
+<email>$author.email$</email>
+$endif$
+$-- if affiliations are listed separately, then create links. Otherwise
+$-- include them here.
+$if(affiliation)$
+$for(author.affiliation)$
+<xref ref-type="aff" rid="aff-$author.affiliation$"/>
+$endfor$
+$else$
+$for(author.affiliation)$
+${ it:affiliations.jats() }
+$endfor$
+$endif$
+<!-- $if(author.cor-id)$ -->
+<!-- <xref ref-type="corresp" rid="cor-$author.cor-id$"><sup>*</sup></xref> -->
+<!-- $endif$ -->
+$if(author.credit)$
+$for(author.credit)$
+<role vocab="credit" vocab-identifier="https://credit.niso.org/" vocab-term="$it.elem$" vocab-term-identifier="$it.uri$">$it.cont$</role>
+$endfor$
+$endif$
+</contrib>
+$endfor$
+$for(affiliation)$
+${ it:affiliations.jats() }
+$endfor$
+</contrib-group>
+$endif$
+$if(article.author-notes)$
+<author-notes>
+$if(article.author-notes.corresp)$
+$for(article.author-notes.corresp)$
+<corresp id="cor-$article.author-notes.corresp.id$">* E-mail: <email>$article.author-notes.corresp.email$</email></corresp>
+$endfor$
+$endif$
+$if(article.author-notes.conflict)$
+<fn fn-type="conflict"><p>$article.author-notes.conflict$</p></fn>
+$endif$
+$if(article.author-notes.con)$
+<fn fn-type="con"><p>$article.author-notes.con$</p></fn>
+$endif$
+</author-notes>
+$endif$
+$--         #### PUBDATE ###############
+<pub-date date-type="$if(date.type)$$date.type$$else$pub$endif$" publication-format="electronic"$if(date.iso-8601)$ iso-8601-date="$date.iso-8601$"$endif$>
+$if(date.season)$
+<season>$date.season$</season>
+$else$
+$if(date.day)$
+<day>$date.day$</day>
+$endif$
+$if(date.month)$
+<month>$date.month$</month>
+$endif$
+$endif$
+<year>$date.year$</year>
+</pub-date>
+$--         #### CURRENT ISSUE ###############
+$if(volume)$
+<volume>$volume$</volume>
+$endif$
+$if(issue)$
+<issue>$issue$</issue>
+$endif$
+$if(issue-title)$
+<issue-title>$issue-title$</issue-title>
+$endif$
+$if(article.elocation-id)$
+<elocation-id>$article.elocation-id$</elocation-id>
+$else$
+$if(article.fpage)$
+$if(article.lpage)$
+<fpage>$article.fpage$</fpage>
+<lpage>$article.lpage$</lpage>
+$endif$
+$endif$
+$endif$
+$--         #### HISTORY ##############################
+$if(history)$
+<history>
+$for(history)$
+<date date-type="$history.type$" publication-format="dd mm yyyy">
+$if(history.day)$
+<day>$history.day$</day>
+$endif$
+$if(history.month)$
+<month>$history.month$</month>
+$endif$
+<year>$history.year$</year>
+</date>
+$endfor$
+</history>
+$endif$
+$--         #### PERMISSIONS: LICENCIAS Y COPYRIGHT ###############
+<permissions>
+$for(copyright.statement)$
+<copyright-statement>$copyright.statement$</copyright-statement>
+$endfor$
+$for(copyright.year)$
+<copyright-year>$copyright.year$</copyright-year>
+$endfor$
+$for(copyright.holder)$
+<copyright-holder>$copyright.holder$</copyright-holder>
+$endfor$
+$if(copyright.text)$
+<license license-type="$copyright.type$" xlink:href="$copyright.link$">
+<license-p>$copyright.text$</license-p>
+</license>
+$endif$
+$if(license.free_to_read)$
+<ali:free_to_read/>
+$endif$
+$for(license)$
+<license$if(it.type)$ license-type="${it.type}"$endif$$if(it.link)$ xlink:href="$it.link$"$endif$>
+$if(it.link)$
+<ali:license_ref>${it.link}</ali:license_ref>
+$endif$
+<license-p>$if(it.text)$${it.text}$else$${it}$endif$</license-p>
+</license>
+$endfor$
+</permissions>
+$--         #### PRELIMINARIES ###################
+$if(abstract)$
+$-- # Scielo recomienda no usar el atributo lang
+<abstract xml:lang="$lang$">
+<title>$abstract-title$</title>
+$abstract$
+</abstract>
+$endif$
+$if(metadata_lang)$
+$for(metadata_lang)$
+$if(it.abstract)$
+<trans-abstract xml:lang="$it.lang$">
+<title>$it.abstract_title$</title>
+$it.abstract$
+</trans-abstract>
+$endif$
+$endfor$
+$endif$
+$if(keyword)$
+<kwd-group kwd-group-type="author">
+<title>$keyword-title$</title>
+$for(keyword)$
+<kwd>$keyword$</kwd>
+$endfor$
+</kwd-group>
+$endif$
+$if(metadata_lang)$
+$for(metadata_lang)$
+<kwd-group kwd-group-type="author" xml:lang="$it.lang$">
+<title>$it.keyword_title$</title>
+$for(it.keyword)$
+<kwd>$it$</kwd>
+$endfor$
+</kwd-group>
+$endfor$
+$endif$
+$--         #### FINANCIAMIENTO ###################
+$if(funding)$
+<funding-group>
+$if(funding.statement)$
+<funding-statement>$funding.statement$</funding-statement>
+$endif$
+</funding-group>
+$endif$
+$--         #### CONTEOS ###################
+<counts>
+$if(n_figs)$
+<fig-count count="$n_figs$"/>
+$else$
+<fig-count count="0"/>
+$endif$
+$if(n_tabs)$
+<table-count count="$n_tabs$"/>
+$else$
+<table-count count="0"/>
+$endif$
+$if(n_refs)$
+<ref-count count="$n_refs$"/>
+$endif$
+</counts>
+</article-meta>
+$if(notes)$
+$for(notes)$
+<notes$if(notes.type)$ notes-type="$notes.type$"$endif$>$notes.text$</notes>
+$endfor$
+$endif$
+</front>
+<body>
+$body$
+</body>
+<back>
+$if(back)$
+$back$
+$endif$
+$if(ack)$
+<ack><p>$ack$</p></ack>
+$endif$
+$if(app)$
+<app-group>
+   $for(app)$<app>
+   <title>$if(it.title)$$it.title$$else$Appendix $it.N/alpha/uppercase$$endif$</title>
+   $it.content$
+   </app>
+$endfor$</app-group>
+$endif$
+</back>
+</article>

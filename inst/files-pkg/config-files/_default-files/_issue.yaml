@@ -1,0 +1,13 @@
+# Si no se utiliza información de volumen/issue debe comentarse
+volume: 1
+issue: 1
+# issue-title:             # Título del número (si hubiera)
+
+# Si se utiliza publicación continua y no hay fecha de publicación del número, para el volumen/issue, debe usar en el archivo article el campo history (con tipe: epub).
+# No puede usar conjuntamente 'season' y el mes. Es decir: (year) + ( (season) | (month + day) )
+date:
+  type: pub
+  # day:                    # Utilizar cuando haya prepublicación continua
+  # month:
+  # season:
+  year: 

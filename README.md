@@ -2,7 +2,10 @@
 
 ## Gestor Unificado de formatos para Revistas de Investigación
 
+<!-- badges: start -->
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/) [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/estedeahora/guri/blob/main/README.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/estedeahora/guri/blob/main/README.en.md) <!-- [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.pt-br.md)-->
+[![R-CMD-check](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 La herramienta `~!gurí_` es un flujo de trabajo y un conjunto de herramientas que facilitan una automatización del proceso de generación de documentos finales para revistas científicas a partir de documentos obtenidos en la etapa de 'corrección de pruebas'. La herramienta se basa en el uso de [Pandoc](https://pandoc.org/) como herramienta de conversión entre formatos, a la cual se incorpora un conjunto de filtros *Lua* y plantillas personalizadas, así como un flujo de trabajo que permite la correcta conversión de los documentos ingresados.
 
@@ -43,11 +46,12 @@ Se aceptan solicitudes de extracción, informes de errores y solicitudes de func
 
 ## Futuras mejoras
 
-1.  [ ] Desarrollar aplicación web para facilitar la generación de archivos yaml.
-2.  [ ] Integrar con OJS.
-3.  [ ] Posibilitar uso desde línea de comando (y luego desde aplicación).
-4.  [ ] Transformar funciones en paquete de R.
-5.  [ ] Agregar soporte para permitir primer idioma diferente de español.
-6.  [ ] Permitir filtros personalizados.
-7.  [ ] Agregar ebook como formato de salida.
-8.  [ ] Incorporar requerimientos de *Scielo*.
+1.  [x] Transformar funciones en paquete de R.
+2.  [x] Permitir filtros personalizados.
+3.  [x] Agregar soporte para permitir primer idioma diferente de español.
+4.  [ ] Desarrollar aplicación web para facilitar la generación de archivos yaml.
+5.  [ ] Integrar con OJS.
+6.  [ ] Posibilitar uso desde línea de comando (y luego desde aplicación).
+7.  [ ] Ofrecer múltiples templates como opción con `guri_make_journal`.
+8.  [ ] Agregar ebook como formato de salida.
+9.  [ ] Incorporar requerimientos de *Scielo*.

@@ -1,0 +1,56 @@
+# If you do not have any of the required elements, you must comment with "#".
+# Si no tiene alguno de los elementos requeridos, debe comentar con "#"
+
+lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+
+# Datos de revista
+# ----------------
+# Otras varialbes disponibles: 
+#   identificadores de la revista (en jats dentro de <journal-id journal-id-type='$id$' >): 'publisher-id', 'redalyc' (Redalyc), 'nlm-ta' (PubMed), 'pmc' (PubMed Central).
+journal:
+  title: journal title
+  abbrev-title: abreviated journal title
+  pissn: 0123-4567          # print ISSN
+  eissn: 0987-6543          # electronic ISSN
+  doi_prefix: 10.XXXX       # DOI prefix (comment for journals without DOI)
+  publisher-name: Publisher name
+  publisher-loc:
+    country: Publisher institution country
+    email: publisher@university.edu
+    institution: Institution
+
+# Licencia
+# --------
+license:
+  text: This work is licensed under a Creative Commons Attribution 4.0 License, whereby the author retains the copyright, and which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+  link: https://creativecommons.org/licenses/by/4.0/
+  free_to_read: true
+
+# Datos para generar doi y xml para crosref
+# -----------------------------------------
+doi_register:
+  doi_suffix_constructor:     # DOI suffix builder (only used if article.doi is not provided). See pattern constructors.
+  doi_depositor:              # Depositor
+    name:                     
+    mail: 
+  registrant:                 # Registrant's name (institution)
+  resource_url_constructor:   # URL'constructor (only used if article.resource_url is not provided). See pattern constructors.
+  resource_files:
+    - type:                   # file type: pdf/html/xml-jats/epub
+      resource_constructor:   
+      tm:  true
+
+
+# 'doi_suffix_constructor' and 'resource_constructor' follows the OJS conventions: 
+#    %v volume nomber (volume); 
+#    %i issue number (issue); 
+#    %Y Year (date.year); 
+#    %a OJS article ID (article.ojs_id); 
+#    %f OJS file ID (articule.ojs.files_id['type'])
+#    %p article pages (article.fpage-article.lpage).
+#
+# In addition, guri uses other markers that can be used more freely to customise your doi and resources: 
+#    %e article.elocation-id; 
+#    %x article.publisher-id;
+#    %D doi prefix (journal.prefix);
+#    %d doi suffix (article.suffix).
