@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doi_batch xmlns="http://www.crossref.org/schema/5.3.0" version="5.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:fr="http://www.crossref.org/fundref.xsd" xsi:schemaLocation="http://www.crossref.org/schema/5.3.0 https://www.crossref.org/schemas/crossref5.3.0.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<head>
+<doi_batch_id>$journal.abbrev-title2$_$doi_register.unix_epoch$</doi_batch_id>
+<timestamp>$doi_register.unix_epoch$</timestamp>
+<depositor>
+<depositor_name>$doi_register.doi_depositor.name$</depositor_name>
+<email_address>$doi_register.doi_depositor.mail$</email_address>
+</depositor>
+<registrant>$doi_register.registrant$</registrant>
+</head>
+<body>
+<journal>
+<journal_metadata> $-- <!--  language="$lang$" reference_distribution_opts="any" -->
+$if(journal.title)$
+<full_title>$journal.title$</full_title>
+$endif$
+$if(journal.abbrev-title)$
+<abbrev_title>$journal.abbrev-title$</abbrev_title>   
+$endif$
+$if(journal.pissn)$
+<issn media_type="print">$journal.pissn$</issn>
+$endif$
+$if(journal.eissn)$
+<issn media_type="electronic">$journal.eissn$</issn>
+$endif$
+$-- <!-- <coden>"string"</coden> -->
+$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
+$-- <!-- DOI de la revista <doi_data><doi>10.XXXX/XXXXXX</doi><resource content_version="vor/am" mime_type="string"></resource></doi_data>-->
+</journal_metadata>
+<journal_issue>
+$if(date)$
+<publication_date media_type="online">
+$if(date.month)$
+<month>$date.month$</month>
+$endif$
+$if(date.day)$
+<day>$date.day$</day>
+$endif$
+<year>$date.year$</year>
+</publication_date>
+$endif$
+$if(volume)$
+<journal_volume><volume>$volume$</volume></journal_volume>
+$endif$
+$if(issue)$
+<issue>$issue$</issue>
+$endif$
+$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
+$-- <!-- DOI del número <doi_data><doi>10.XXXX/XXXXXX</doi><resource content_version="vor/am" mime_type="string"></resource></doi_data>-->
+</journal_issue>
+<journal_article language="$lang$" publication_type="full_text" reference_distribution_opts="any">
+$if(title)$
+<titles>
+<title>$title$</title>
+$if(subtitle)$
+<subtitle>$subtitle$</subtitle>
+$endif$
+</titles>
+$endif$
+$if(author)$
+<contributors>
+$for(author)$
+<person_name sequence="$it.sequence$" contributor_role="author">
+$if(it.given-names)$
+<given_name>$it.given-names$$if(it.dropping-particle)$ ${it.dropping-particle}$endif$</given_name>
+$endif$
+<surname>$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$$it.surname$</surname>
+<affiliations>
+$for(author.institution)$
+<institution>
+$if(it.name)$<institution_name>$it.name$</institution_name>$endif$
+$if(it.ror)$
+<institution_id type="ror">https://ror.org/$it.ror$</institution_id>
+$endif$
+$if(it.isni)$
+<institution_id type="ror">https://www.isni.org/$it.isni$</institution_id>
+$endif$
+$if(it.country)$<institution_place>$it.country$</institution_place>$endif$
+</institution>
+$endfor$
+</affiliations>
+$if(it.orcid)$
+<ORCID authenticated="true">https://orcid.org/$it.orcid$</ORCID>
+$endif$
+</person_name>
+$endfor$
+</contributors>
+$endif$
+$-- Abstracts are optional but encouraged, multiple abstracts may be provided
+$if(abstract)$
+<jats:abstract>
+<jats:p xml:lang="$lang$">$abstract$</jats:p>
+</jats:abstract>
+$endif$
+$if(metadata_lang)$
+$for(metadata_lang)$
+$if(it.abstract)$
+<jats:abstract>
+<jats:p xml:lang="$it.lang$">$it.abstract$</jats:p>
+</jats:abstract>
+$endif$
+$endfor$
+$endif$
+<publication_date media_type="online">
+$if(date.month)$
+<month>$date.month$</month>
+$endif$
+$if(date.day)$
+<day>$date.day$</day>
+$endif$
+<year>$date.year$</year>
+</publication_date>
+<!-- TODO 
+<acceptance_date media_type="online">
+<month>07</month>
+<day>07</day>
+<year>2021</year>
+</acceptance_date> -->
+$if(article.fpage)$
+$if(article.lpage)$
+<pages>
+<first_page>$article.fpage$</first_page>
+<last_page>$article.lpage$</last_page>
+</pages>
+$endif$
+$endif$
+$if(article.elocation-id)$
+<publisher_item>
+<item_number item_number_type="article_number">$article.elocation-id$</item_number>
+</publisher_item>
+$endif$
+$-- <!-- Para contenido vinculado <crossmark></crossmark> -->
+$-- <!-- Para contenido vinculado <program></program> -->
+$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
+$-- <!-- <scn_policies> -->
+<doi_data>
+<doi>$article.doi$</doi>
+<timestamp>$doi_register.unix_epoch$</timestamp>
+<resource content_version="vor">$doi_register.resource$</resource>
+<!-- TODO Asociar archivos asociados (ej: pdf, xml, html) -->
+<!-- <collection property="crawler-based">
+$for(doi_register.resource_files)$
+<item crawler="iParadigms">
+<resource>$it.url$</resource>
+</item>
+$endfor$
+</collection> -->
+<!-- <collection property="text-mining">
+<item>
+<resource mime_type="application/pdf">https://publicaciones.sociales.uba.ar/index.php/quid16/article/viewFile/7620/pdf</resource>
+</item>
+</collection> -->
+</doi_data>
+<!-- TODO -->
+<!-- <citation_list>
+</citation_list> -->
+</journal_article>
+</journal>
+</body>
+</doi_batch>
+
+
+<!-- 
+    doi_register
+        - doi_depositor:
+            - name: nombre de depositor
+            - mail: mail de depositor
+        - registrant: Nombre del registrant (institución)
+        - resource_ojs_url: prefijo base de ojs
+        - unix_epoch: marca de tiempo en unix epoch. Con Filtro.
+        TODO 
+        - resource: Debe contener la página web en la que estará disponible el artículo. Con Filtro.
+                        En OJS se construye como 'https://' + portal + revista + '/article/view/' + art_ojs_id
+                                                 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
+                        ej: https://publicaciones.sociales.uba.ar/index.php/quid16/article/view/7620
+        - resource_files:
+            - url
+              tipo
+            - 
+        Resumen
+        - url resource:      'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
+        - url resource_pdf:  'https://' + resource_ojs_url + '/article/viewFile/' + article.art_ojs_id + "/pdf"
+        - url resource_html: 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id + "/html"
+    journal:
+        - title: nombre de la revista. Obligatorio
+        - abbrev-title: nombre abreviado de la revista
+        - abbrev-title2: nombre abreviado sin espacios. Con Filtro.
+        - eissn/pissn: issn electrónico e impreso.
+        - doi. Con filtro
+    date:
+        - year: fecha de publicación (año). Obligatorio
+        - month: fecha de publicación (mes)
+        - day: fecha de publicación (día)
+    volume: volumen de la revista
+    issue: número de la revista
+    title/subtitle: título y subtítulo del artículo
+    article:
+        - fpage/lpage: primera/última página
+        - elocation-id: identificador del artículo
+        - doi: DOI construido prefijo + sufijo (ej: 10.5555/n0HRokm)
+        - art_ojs_id: id de artículo en OJS
+ -->

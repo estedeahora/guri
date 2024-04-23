@@ -1,0 +1,85 @@
+# Latex variable
+# Description in: https://pandoc.org/MANUAL.html#variables-for-latex
+
+# Page layout ----------------------------------
+
+documentclass: scrartcl 
+classoption: 
+  - DIV=calc
+  - abstract=true
+  # - twoside=true
+
+papersize: a4
+# twocolumn: true
+
+# geometry:
+# - top=30mm
+# - bottom=20mm
+# - right=20mm
+# - left=20mm
+# - heightrounded
+# - ...                       # see complete list in https://ctan.org/pkg/koma-script
+
+# hyperrefoptions: 
+# - linktoc=all
+# - pdfwindowui
+# - pdfpagemode=FullScreen
+# - ...                       # see complete list in https://ctan.org/pkg/hyperref
+
+# linestretch: 1.25
+# ident: true
+# pagestyle: plain
+# secnumdepth
+
+# header-includes:           # arbitrary text in latex (placed before personal customizations in the template)
+
+# Fonts options --------------------------------------
+
+# fontsize:
+
+fontenc: T1
+fontfamily: Alegreya
+# fontfamilyoptions:
+
+# mainfont:
+# mainfontoptions:
+# sansfont: Alegreya Sans
+# sansfontoptions:
+# monofont: 
+# monofontoptions:
+# mathfont:
+# mathfontoptions:
+# CJKmainfont:
+# CJKsansfont:
+# CJKmonofont:
+# CJKoptions:
+
+# Custom font families (example: name: \name font: fontname)
+# fontfamilies:
+#   - name: 
+#     font: 
+
+# microtypeoptions: 
+
+# babelfonts:               a map of Babel language names to the font to be used with the language: 
+#                                 babelfonts: chinese-hant: “Noto Serif CJK TC” russian: “Noto Serif” …
+
+# Links options --------------------------------------
+
+link-citations: true
+
+colorlinks: true
+urlcolor: CadetBlue
+linkcolor: CadetBlue
+filecolor: CadetBlue
+citecolor: CadetBlue
+# toccolor:
+# boxlinks:
+# links-as-notes: true
+# urlstyle: 
+
+# Front matter -------------------------------
+
+# toc
+# lof
+# lot

@@ -1,0 +1,135 @@
+# Si no tiene alguno de los elementos requeridos se debe comentar el mismo (#)
+
+# Identificadores del artículo
+# ----------------------------
+# Otras varialbes disponibles: 
+#   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier), art-access-id (id personalizado)
+#   'funding-statement' (describe la financiación, en jats <funding-statement>)
+#   'categories' (Lista. Enumera asunto o temas del artículo. En jats: solo $if(article.heading)$: <subj-group>$for$<subject subj-group-type="categories">$$</subject></subj-group>)
+article:
+  heading:                  # Nombre de sección (interno de la revista).
+  type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
+                            # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
+  elocation-id:             # Identificador digital electrónico (sustituye a la página cuando estas no son utlizadas como parte de los artículos)
+  # publisher-id:           # Identificador personalizado del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">. 
+  # ojs_id:                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
+  # fpage:                  # Página inicial
+  # lpage:                  # Página final
+  # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
+  # resource_url:
+  # resources:
+
+# Metadatos del artículo (language principal)
+# -------------------------------------------
+metadata:
+  title:
+  subtitle: 
+  abstract: |
+    colocar abstract en lenguaje principal.
+  keyword: 
+    - kw1
+    - kw2
+
+# Metadatos del artículo en otros idiomas
+# ---------------------------------------
+# Otras varialbes disponibles: 
+#   'abstract_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+#   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+metadata_lang:
+  - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+    title:
+    subtitle:
+    abstract: |
+      colocar abstract en segundo idioma
+    keyword: 
+      - kw1
+      - kw2
+    # abstract_title:           # Sólo necesario si lang no es es/en/pt
+    # keyword_title:            # Sólo necesario si lang no es es/en/pt
+  # - lang: pt                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
+  #   title:
+  #   subtitle:
+  #   abstract: |
+  #     colocar abstract en tercer idioma
+  #   keyword: 
+  #     - kw1
+  #     - kw2
+  #   abstract_title:           # Sólo necesario si lang no es es/en/pt
+  #   keyword_title:            # Sólo necesario si lang no es es/en/pt
+
+# Autores (un bloque por autor)
+# -----------------------------
+# Otras varialbes disponibles: 
+#   'equal-contrib: yes' (permite definir igual contribución, pero sólo se recomienda usar si no se usa credit).
+#   'author-notes' See https://pandoc.org/jats.html -> "author-notes"
+author:
+  - given-names: 
+    surname: 
+    email: 
+    orcid: 
+    cor-id: yes               # si no es autor de correspondencia comentar.
+    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+      - aff1
+      # - aff2
+  # - given-names:
+  #   surname: 
+  #   email: 
+  #   orcid: 
+  #   # cor-id: yes             # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
+  #   affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+  #     - aff1
+
+# Afiliaciones insitucionales
+# ---------------------------
+# Otras varialbes disponibles: 
+#   'group' (nombre del grupo de investigación -bajo nivel-, en jats <institution content-type='group'>).
+#   'department' (nombre del departamento -nivel medio-, en jats <institution content-type='dept'>).
+#   identificadores de instituciones alternativos: 'isni' (ej: 0000 0001 2297 3151); 'ringgold' (ej: 1846)
+#   información de ubicación: 'street-address', 'city'
+affiliation:                    # Se permiten 
+  - id: aff1
+    organization: 
+    ror:                        # Ej: 03cqe8w59
+    country-code: AR            # ISO-3166-1 country identifier. See https://www.nationsonline.org/oneworld/country_code_list.htm
+  # - id: aff2
+  #   organization:
+  #   ror: 
+  #   country-code: 
+
+# Historia de publicación del artículo
+# ------------------------------------
+history:
+  - type: received
+    day: 
+    month: 
+    year: 
+  - type: accepted
+    day: 
+    month: 
+    year: 
+  # - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
+  #   day: 
+  #   month: 
+  #   year: 
+
+# Otros elementos
+# ---------------
+# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
+# book_info: |
+#   Texto libre preliminar
+
+# ack: Agradecimiento.
+# funding:
+#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+
+# Variables de customización del artículo
+# ---------------------------------------
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para las referencias
+  # credit_title:                         # Se puede modificar el título predefinido para las referencias
