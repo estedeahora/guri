@@ -1,2 +1,6 @@
 ^guri\.Rproj$
 ^\.Rproj\.user$
+^data-raw$
+^\.github$
+^README.en.md$
+^figures$
