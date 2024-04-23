@@ -69,7 +69,7 @@ guri_convert <- function(path_art, art,
   opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
   # Customised filters
-  customised_filters <- stringr::str_extract(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))  |> na.omit()
+  customised_filters <- stringr::str_extract(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))  |> stats::na.omit()
   if(length(customised_filters) > 0){
     if(verbose){
       ui_alert_info("Customized lua filters used: ", paste(col_blue(customised_filters), collapse = "; "), ".")
@@ -98,7 +98,7 @@ guri_convert <- function(path_art, art,
 
   if(!is.na(opt_type[["biblio"]])) {
 
-    config_csl <- stringr::str_extract(config_files, ".*\\.csl$") |> na.omit()
+    config_csl <- stringr::str_extract(config_files, ".*\\.csl$") |> stats::na.omit()
 
     if(length(config_csl) == 1){
       opt_biblio <- c(opt_biblio, paste0("--csl=", file.path(config_path, config_csl) ))

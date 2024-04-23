@@ -1,7 +1,7 @@
 #' Create the basic file structure for a new journal
 #'
 #' @description
-#' Create the basic file structure for a new journal.
+#' Create the basic file structure for a new journal/journal repository.
 #'
 #' @param journal A string with the short name of the journal. This 'short name'
 #'   can contain only letters, numbers or a low dash (_) and must begin with a

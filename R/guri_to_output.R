@@ -52,6 +52,7 @@ guri_to_jats <- function(path_art, art, verbose = F){
 }
 
 #' @rdname guri_to_md
+#' @param pdf Logical. Should the pdf be generated? (default = TRUE)
 #'
 #' @export
 
@@ -132,7 +133,6 @@ guri_to_AST <- function(path_art, art, verbose = F) {
 #' @rdname guri_to_md
 #'
 #' @param bib_type description
-
 
 guri_biblio <- function(path_art, art, verbose = F, bib_type = "csljson"){
 

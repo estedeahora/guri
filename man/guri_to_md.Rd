@@ -15,7 +15,7 @@ guri_to_html(path_art, art, verbose = F)
 
 guri_to_jats(path_art, art, verbose = F)
 
-guri_to_pdf(path_art, art, verbose = F)
+guri_to_pdf(path_art, art, verbose = F, pdf = TRUE)
 
 guri_to_AST(path_art, art, verbose = F)
 
@@ -27,6 +27,8 @@ guri_biblio(path_art, art, verbose = F, bib_type = "csljson")
 \item{art}{A string with the article id.}
 
 \item{verbose}{Logical}
+
+\item{pdf}{Logical. Should the pdf be generated? (default = TRUE)}
 
 \item{bib_type}{description}
 }
