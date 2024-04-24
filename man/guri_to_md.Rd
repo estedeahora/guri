@@ -33,7 +33,7 @@ guri_biblio(path_art, art, verbose = F, bib_type = "csljson")
 \item{bib_type}{description}
 }
 \value{
-Invisible
+Invisible \code{TRUE}
 }
 \description{
 Converts the corrected manuscript in docx format to markdown format.

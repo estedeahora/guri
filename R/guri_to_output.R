@@ -2,7 +2,7 @@
 #'
 #' @inheritParams guri_convert
 #'
-#' @return Invisible
+#' @return Invisible `TRUE`
 #'
 #' @export
 
