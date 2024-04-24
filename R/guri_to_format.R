@@ -1,8 +1,28 @@
 #' Converts the corrected manuscript in docx format to markdown format.
 #'
+#' @description
+#' They convert between the different formats required for the `~!guri_` workflow,
+#' applying the appropriate lua filters at each stage and using the appropriate
+#' templates and metadata. The `~!guri_to_md` function converts between the revised
+#' (and formatted) manuscript in `docx` format to markdown format. The `guri_to_html`,
+#' `guri_to_jats` and `guri_to_pdf` functions convert from the markdown file to
+#' `html`, `xml` (xml-jats) and `pdf` (`tex`) formats, respectively. Last, `guri_to_AST` and
+#' `guri_biblio` are auxiliary functions that generate a file with the Abstract
+#' Syntax Tree (mostly for debugging purposes) and a file with the references used
+#'  by the article, respectively.
+#'
 #' @inheritParams guri_convert
 #'
-#' @return Invisible
+#' @details
+#' These functions are, mostly, a wrapper of the internal function [guri_convert].
+#' The functions are exported primarily for debugging and error detection purposes.
+#' For day-to-day work it is advisable to use the [guri] function directly, which
+#' coordinates the generation of all these formats and ensures the correct
+#' definition of the parameters.
+#'
+#' For the generation of pdf files, LuaTex ([tinytex::lualatex]) is used internally.
+#'
+#' @return Invisible `TRUE`
 #'
 #' @export
 
@@ -48,7 +68,6 @@ guri_to_jats <- function(path_art, art, verbose = F){
   cli_process_done()
 
   invisible(T)
-
 }
 
 #' @rdname guri_to_md
@@ -82,7 +101,6 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   # on.exit(options(tinytex.latexmk.warning = tinytex_warn))
   # }
 
-
   if(pdf){
     cli_process_start(col_yellow("Creating pdf file (md -> pdf)."))
     tinytex::lualatex(file_tex)
@@ -90,12 +108,13 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   }
 
   invisible(T)
-
 }
 
-#' Genera archivo con bibliografia (en biblatex o csljson)
-#'
+# Genera archivo con bibliografia (en biblatex o csljson)
+
 #' @rdname guri_to_md
+#'
+#' @export
 
 guri_to_AST <- function(path_art, art, verbose = F) {
 
@@ -128,11 +147,11 @@ guri_to_AST <- function(path_art, art, verbose = F) {
                             options = c(op_gral, op_filters))
 }
 
-#' Genera archivo con bibliografia (en biblatex o csljson)
-#'
 #' @rdname guri_to_md
 #'
 #' @param bib_type description
+#'
+#' @export
 
 guri_biblio <- function(path_art, art, verbose = F, bib_type = "csljson"){
 

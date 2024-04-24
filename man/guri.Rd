@@ -4,12 +4,21 @@
 \alias{guri}
 \title{Función para generar archivos finales de un artículo individual}
 \usage{
-guri(art_path, art_name, verbose = F, zip_file = F, clean_files = T)
+guri(
+  art_path,
+  art_name,
+  journal = NULL,
+  verbose = F,
+  zip_file = F,
+  clean_files = T
+)
 }
 \arguments{
 \item{art_path}{String...}
 
 \item{art_name}{String...}
+
+\item{journal}{String... description}
 
 \item{verbose}{Logical...}
 

@@ -3,6 +3,7 @@
 #' @description
 #' describir
 #'
+#' @param journal String... description
 #' @param art_path String...
 #' @param art_name String...
 #' @param verbose Logical...
@@ -13,13 +14,9 @@
 #'
 #' @export
 
-# art_path <- file.path(".","example", "num1", "art301_messi")
-# art_name <- "art301"
 
-guri <- function(art_path, art_name, verbose = F,
-                 zip_file = F, clean_files = T){
-
-  pandoc_req <- "3.1.12"
+guri <- function(art_path, art_name, journal = NULL,
+                 verbose = F, zip_file = F, clean_files = T){
 
   if(!pandoc::pandoc_version() >= pandoc_req){
     ui_alert_info("To upgrade Pandoc run",

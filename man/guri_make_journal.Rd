@@ -2,7 +2,7 @@
 % Please edit documentation in R/guri_make_journal.R
 \name{guri_make_journal}
 \alias{guri_make_journal}
-\title{Create the basic file structure for a new journal/journal repository.}
+\title{Create the basic file structure for a new journal/journal repository}
 \usage{
 guri_make_journal(
   journal = NULL,
@@ -35,15 +35,23 @@ Invisible returns the journal folder.
 }
 \description{
 Create the basic file structure for a new journal or journal repository
-(manage multiple journals).
+(to manage multiple journals).
 }
 \details{
-Create the journal folder (if repository \code{TRUE}) and the configuration and
-template files. The journal directory includes a folder with the files used
-to configure the journal output (\verb{_config}) and a folder with the basic files
-you will use for the production process (\code{default-files}). In addition, the
-\verb{_journal.yaml} file will be generated, which you will have to edit manually
-with the journal data.
+Create the journal folder (if repository \code{TRUE}). The journal directory
+includes a configuration folder with the files used to configure the journal
+output (\verb{_config}) and a folder with the basic files you will use for the
+production process (\code{default-files}). In addition, the \verb{_journal.yaml} file
+will be generated, which you will have to edit manually with the basic journal
+data.
+
+The folder structure can contain one journal (repository = TRUE) or multiple
+journals (repository = TRUE). Journal repositories allow to manage multiple
+journals in a single working environment. The internal structure of the
+journals within a repository is identical to that of a single journal.
+
+The configuration file features (in \verb{_config}) can be defined with this function
+during journal creation or independently using (see \link{guri_config_journal}).
 
 If 'example = TRUE' a directory of the journal 'example' (\verb{.\\example}) is
 created with the necessary file structure to generate the final output files.

@@ -11,8 +11,6 @@ guri_convert <- function(path_art, art,
                          output,
                          verbose = F){
 
-  guri_version <- "1.0.0"
-
   # Working directory
   wdir <- file.path(getwd(), path_art)
 
