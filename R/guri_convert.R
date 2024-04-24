@@ -1,22 +1,3 @@
-path_art <- "./example/num1/art101_lorem-ipsum"
-art <- "art101"
-verbose <- T
-output <- "tex"
-
-# TODO
-#   [x] General options
-#   [x] Lua Filters
-#   [x] Appendix (md)
-#   [x] Bibliography (md)
-#   [-] Templates (pdf y html, jats?)
-#   [-] Metadata (md y pdf, jats?)
-
-# Outputs:
-#   [x] md
-#   [x] jats
-#   [ ] pdf
-#   [ ] html
-
 #' Converts the corrected manuscript between the formats required by `~!guri_`.
 #'
 #' @param path_art A string with the path to the article directory
