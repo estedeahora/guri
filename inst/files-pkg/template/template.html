@@ -45,46 +45,49 @@ $for(include-before)$
 $include-before$
 $endfor$
 <header id="title-block-header">
+$if(article.heading)$ 
+<h3 class="header"><span class="smallcaps">$article.heading$</span></h3>
+$endif$
 <h1 class="title">$title$</h1>
 $if(subtitle)$
 <h2 class="subtitle"><i>$subtitle$</i></h2>
 $endif$
+$if(author)$
 $for(author)$
-<p class="author">$it.given-names$ <span class="smallcaps">$it.surname$</span> <a href=“https://orcid.org/$it.orcid$/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>
+<p class="author">$it.given-names$ <span class="smallcaps">$it.surname$</span> <sup>$for(it.institute)$$it/alpha$$sep$;$endfor$</sup>$if(it.orcid)$ <a href=“https://orcid.org/$it.orcid$/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>$endif$</p>
 $endfor$
-<!-- $if(date)$
-<p class="date">$date$</p>
-$endif$ -->
+<p>$for(affiliation)$<sup>$it.index/alpha$</sup> $it.name$, $it.country$.$if(it.ror)$ <a href="//ror.org/$it.ror$"><img style="height:1em" src="https://raw.githubusercontent.com/ror-community/ror-logos/main/ror-icon-rgb-16.png" alt="ROR"></a> $endif$$sep$<br>$endfor$</p>
+$endif$
 
-$if(abstract_es)$
+$if(abstract)$
 <div class="abstract">
 <div class="abstract-title"><span class="smallcaps">$abstract-title$</span></div>
-$abstract_es$
-$if(keyword_es)$
-<i>Palabras claves:</i> $for(keyword_es)$$it$$sep$;$endfor$.
+$abstract$
+$if(keyword)$
+<i>$keyword-title$:</i> $for(keyword)$$it$$sep$; $endfor$.
 $endif$
 </div>
 $endif$
 
-$if(abstract_en)$
+$if(metadata_lang)$
+$for(metadata_lang)$
 <div class="abstract">
-<div class="abstract-title"><span class="smallcaps">Abstract</span></div>
-$abstract_en$
-$if(keyword_en)$
-<i>Palabras claves:</i> $for(keyword_en)$$it$$sep$;$endfor$.
+<p></p>
+<div class="metadata_lang-title">$it.title$$if(it.subtitle)$. $it.subtitle$$endif$</div>
+<div class="abstract-title"><span class="smallcaps">$it.abstract_title$</span></div>
+$it.abstract$
+$if(it.keyword)$
+<i>$it.keyword_title$</i> $for(it.keyword)$$it$$sep$; $endfor$.
 $endif$
 </div>
-$endif$
+$endfor$
+$endif$ 
 </header>
 
-<!-- $if(toc)$
-<nav id="$idprefix$TOC" role="doc-toc">
-$if(toc-title)$
-<h2 id="$idprefix$toc-title">$toc-title$</h2>
-$endif$
-$table-of-contents$
-</nav>
-$endif$ -->
+$if(history)$<p>$for(history)$<i>$it.type-title$:</i> $it.year$/$it.month$/$it.day$$sep$; $endfor$.$endif$</p>
+
+$if(article.doi)$<p>DOI: <a href="www.doi.org/$article.doi$">$article.doi$</a></p>$endif$
+
 $body$
 $for(include-after)$
 $include-after$
@@ -94,14 +97,14 @@ $endfor$
   var divAck = document.getElementById("Ack");
 
   if (divAck) {
-      divAck.insertAdjacentHTML("afterbegin", "<h3>Agradecimiento</h3>");
+      divAck.insertAdjacentHTML("afterbegin", "<h2>$ack-title$</h2>");
       divAck.innerHTML = "<p>" + divAck.innerHTML + "</p>";
   }
 
   var divCredit = document.getElementById("Credit");
 
   if (divCredit) {
-    divCredit.insertAdjacentHTML("afterbegin", "<h3>Declaración de contribuciones de autoría (CRediT)</h3>");
+    divCredit.insertAdjacentHTML("afterbegin", "<h2>$credit-title$</h2>");
     divCredit.innerHTML = "<p>" + divCredit.innerHTML + "</p>";
   }
 </script>

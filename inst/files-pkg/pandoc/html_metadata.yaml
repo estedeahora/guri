@@ -1,1 +1,18 @@
+# HTML/CSS variables
+# Description in: https://pandoc.org/MANUAL.html#variables-for-html
+
+# mainfont:                     # sets the CSS font-family property on the html element.
+# fontsize:                     # sets the base CSS font-size, which you’d usually set to e.g. 20px, but it also accepts pt (12pt = 16px in most browsers).
+# fontcolor:                    # sets the CSS color property on the html element.
+# monofont:                     # sets the CSS font-family property on code elements.
+# monobackgroundcolor:          # sets the CSS background-color property on code elements and adds extra padding.
+
 colorlinks: true
+# linkcolor:                    # sets the CSS color property on all links.
+
+# linestretch:                  # sets the CSS line-height property on the html element, which is preferred to be unitless.
+# maxwidth:                     # sets the CSS max-width property (default is 32em).
+# backgroundcolor:              # sets the CSS background-color property on the html element.
+
+# sets the corresponding CSS padding properties on the body element.
+# margin-left, margin-right, margin-top, margin-bottom 

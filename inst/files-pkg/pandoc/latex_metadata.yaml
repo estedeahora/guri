@@ -1,7 +1,8 @@
-# Latex variable
+# Latex variables
 # Description in: https://pandoc.org/MANUAL.html#variables-for-latex
 
-# Page layout ----------------------------------
+# Page layout
+# -----------
 
 documentclass: scrartcl 
 classoption: 
@@ -33,7 +34,8 @@ papersize: a4
 
 # header-includes:           # arbitrary text in latex (placed before personal customizations in the template)
 
-# Fonts options --------------------------------------
+# Fonts options 
+# -------------
 
 # fontsize:
 
@@ -64,7 +66,8 @@ fontfamily: Alegreya
 # babelfonts:               a map of Babel language names to the font to be used with the language: 
 #                                 babelfonts: chinese-hant: “Noto Serif CJK TC” russian: “Noto Serif” …
 
-# Links options --------------------------------------
+# Links options 
+# -------------
 
 link-citations: true
 
@@ -78,7 +81,8 @@ citecolor: CadetBlue
 # links-as-notes: true
 # urlstyle: 
 
-# Front matter -------------------------------
+# Front matter 
+# ------------
 
 # toc
 # lof

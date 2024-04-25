@@ -89,7 +89,10 @@ blockquote {
   border-left: 2px solid #e6e6e6;
   color: #606060;
 }
-$if(abstract_es)$
+.header {
+  text-align: right;
+}
+$if(abstract)$
   div.abstract {
     margin: 2em 2em 2em 2em;
     text-align: left;
@@ -101,10 +104,20 @@ $if(abstract_es)$
     margin-bottom: 0.5em;
   }
 $endif$
+$if(metadata_lang)$
+  div.metadata_lang-title {
+    font-size: 1.5em;
+    font-style: italic;
+    padding: 0;
+    margin-bottom: 0.5em;
+  }
+$endif$
+
 div.Paratext {
   margin: 2em 2em 2em 0em;
   text-align: left;
   font-size: 85%;
+}
 code {
   font-family: $if(monofont)$$monofont$$else$Menlo, Monaco, Consolas, 'Lucida Console', monospace$endif$;
 $if(monobackgroundcolor)$

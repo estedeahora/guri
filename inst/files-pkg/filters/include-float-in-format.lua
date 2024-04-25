@@ -132,8 +132,8 @@ local function fig_html(label, float_attr)
   path = path:gsub('^%' .. root, "")
 
   -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-  if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</em></figcaption>\n' end
-  if note ~= "" then note = '<figcaption class="extra">' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</figcaption>\n' end
+  if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ':</em> ' ..  add_citation(source) .. '</figcaption>\n' end
+  if note ~= "" then note = '<figcaption class="extra"><em>' .. dic_float.NTE .. ':</em> ' ..  add_citation(note) .. '</figcaption>\n' end
 
   local raw_elem = '<figure id="' .. label .. '">\n' ..
                     '<img src="' .. path .. '" alt="' .. label .. '"/>\n' .. 
@@ -203,8 +203,8 @@ local function tab_float(label, float_attr)
       format_ext = '.html'
 
       -- add citation toma el str y devuelve str modificado reemplazando marca de cita con formato adecuado de cita (según FORMAT)
-      if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ': ' ..  add_citation(source) .. '</em></figcaption>\n' end
-      if note ~= "" then note = '<figcaption class="extra">' .. dic_float.NTE .. ': ' ..  add_citation(note) .. '</figcaption>\n' end
+      if source ~= "" then source = '<figcaption class="extra"><em>' .. dic_float.SRC .. ':</em> ' ..  add_citation(source) .. '</figcaption>\n' end
+      if note ~= "" then note = '<figcaption class="extra"><em>' .. dic_float.NTE .. ':</em> ' ..  add_citation(note) .. '</figcaption>\n' end
 
   elseif FORMAT:match 'jats' then
       format_out = 'jats'
