@@ -36,22 +36,24 @@ guri_biblio(path_art, art, verbose = F, bib_type = "csljson")
 Invisible \code{TRUE}
 }
 \description{
-They convert between the different formats required for the \code{~!guri_} workflow,
-applying the appropriate lua filters at each stage and using the appropriate
-templates and metadata. The \code{~!guri_to_md} function converts between the revised
-(and formatted) manuscript in \code{docx} format to markdown format. The \code{guri_to_html},
-\code{guri_to_jats} and \code{guri_to_pdf} functions convert from the markdown file to
-\code{html}, \code{xml} (xml-jats) and \code{pdf} (\code{tex}) formats, respectively. Last, \code{guri_to_AST} and
-\code{guri_biblio} are auxiliary functions that generate a file with the Abstract
-Syntax Tree (mostly for debugging purposes) and a file with the references used
-by the article, respectively.
+They convert between the different formats required for the
+\code{~!guri_} workflow, applying the appropriate lua filters at each stage and
+using the appropriate templates and metadata. The \code{~!guri_to_md} function
+converts between the revised (and formatted) manuscript in \code{docx} format to
+markdown format. The \code{guri_to_html}, \code{guri_to_jats} and \code{guri_to_pdf}
+functions convert from the markdown file to \code{html}, \code{xml} (xml-jats) and
+\code{pdf} (\code{tex}) formats, respectively. Last, \code{guri_to_AST} and \code{guri_biblio}
+are auxiliary functions that generate a file with the Abstract Syntax Tree
+(mostly for debugging purposes) and a file with the references used by the
+article, respectively.
 }
 \details{
-These functions are, mostly, a wrapper of the internal function \link{guri_convert}.
-The functions are exported primarily for debugging and error detection purposes.
-For day-to-day work it is advisable to use the \link{guri} function directly, which
-coordinates the generation of all these formats and ensures the correct
-definition of the parameters.
+These functions are, mostly, a wrapper of the internal function
+\link{guri_convert}. The functions are exported primarily for debugging and error
+detection purposes. For day-to-day work it is advisable to use the \link{guri}
+function directly, which coordinates the generation of all these formats and
+ensures the correct definition of the parameters.
 
-For the generation of pdf files, LuaTex (\link[tinytex:latexmk]{tinytex::lualatex}) is used internally.
+For the generation of pdf files, LuaTex (\link[tinytex:latexmk]{tinytex::lualatex}) is used
+internally.
 }

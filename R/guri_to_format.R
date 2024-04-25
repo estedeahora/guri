@@ -1,26 +1,26 @@
 #' Converts the corrected manuscript in docx format to markdown format.
 #'
-#' @description
-#' They convert between the different formats required for the `~!guri_` workflow,
-#' applying the appropriate lua filters at each stage and using the appropriate
-#' templates and metadata. The `~!guri_to_md` function converts between the revised
-#' (and formatted) manuscript in `docx` format to markdown format. The `guri_to_html`,
-#' `guri_to_jats` and `guri_to_pdf` functions convert from the markdown file to
-#' `html`, `xml` (xml-jats) and `pdf` (`tex`) formats, respectively. Last, `guri_to_AST` and
-#' `guri_biblio` are auxiliary functions that generate a file with the Abstract
-#' Syntax Tree (mostly for debugging purposes) and a file with the references used
-#'  by the article, respectively.
+#' @description They convert between the different formats required for the
+#' `~!guri_` workflow, applying the appropriate lua filters at each stage and
+#' using the appropriate templates and metadata. The `~!guri_to_md` function
+#' converts between the revised (and formatted) manuscript in `docx` format to
+#' markdown format. The `guri_to_html`, `guri_to_jats` and `guri_to_pdf`
+#' functions convert from the markdown file to `html`, `xml` (xml-jats) and
+#' `pdf` (`tex`) formats, respectively. Last, `guri_to_AST` and `guri_biblio`
+#' are auxiliary functions that generate a file with the Abstract Syntax Tree
+#' (mostly for debugging purposes) and a file with the references used by the
+#' article, respectively.
 #'
 #' @inheritParams guri_convert
 #'
-#' @details
-#' These functions are, mostly, a wrapper of the internal function [guri_convert].
-#' The functions are exported primarily for debugging and error detection purposes.
-#' For day-to-day work it is advisable to use the [guri] function directly, which
-#' coordinates the generation of all these formats and ensures the correct
-#' definition of the parameters.
+#' @details These functions are, mostly, a wrapper of the internal function
+#' [guri_convert]. The functions are exported primarily for debugging and error
+#' detection purposes. For day-to-day work it is advisable to use the [guri]
+#' function directly, which coordinates the generation of all these formats and
+#' ensures the correct definition of the parameters.
 #'
-#' For the generation of pdf files, LuaTex ([tinytex::lualatex]) is used internally.
+#' For the generation of pdf files, LuaTex ([tinytex::lualatex]) is used
+#' internally.
 #'
 #' @return Invisible `TRUE`
 #'

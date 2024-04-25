@@ -1,8 +1,7 @@
 #' Create the basic file structure for a new journal/journal repository
 #'
-#' @description
-#' Create the basic file structure for a new journal or journal repository
-#'   (to manage multiple journals).
+#' @description Create the basic file structure for a new journal or journal
+#' repository (to manage multiple journals).
 #'
 #' @param journal A string with the short name of the journal. This 'short name'
 #'   can contain only letters, numbers or a low dash (_) and must begin with a
@@ -12,28 +11,29 @@
 #' @param repository Logical. Will it work with the journal repository model
 #'   (Default: `FALSE`). If `TRUE` is chosen, you must set a value for `journal`
 #'   (unless `example = TRUE`) and a separate folder will be created for each
-#'   journal. If `FALSE` the root folder will contain the files needed to
-#'   manage your journal.
+#'   journal. If `FALSE` the root folder will contain the files needed to manage
+#'   your journal.
 #' @param example Logical. Do you want to create the journal provided as an
 #'   example? (Default = FALSE)
-#' @param force Logical. Should the journal be generated even if it already exists
-#'   in the folder? This will ignore the '.guri' file if present. (Default: FALSE)
+#' @param force Logical. Should the journal be generated even if it already
+#'   exists in the folder? This will ignore the '.guri' file if present.
+#'   (Default: FALSE)
 #'
-#' @details
-#' Create the journal folder (if repository `TRUE`). The journal directory
-#' includes a configuration folder with the files used to configure the journal
-#' output (`_config`) and a folder with the basic files you will use for the
-#' production process (`default-files`). In addition, the `_journal.yaml` file
-#' will be generated, which you will have to edit manually with the basic journal
-#' data.
+#' @details Create the journal folder (if repository `TRUE`). The journal
+#' directory includes a configuration folder with the files used to configure
+#' the journal output (`_config`) and a folder with the basic files you will use
+#' for the production process (`default-files`). In addition, the
+#' `_journal.yaml` file will be generated, which you will have to edit manually
+#' with the basic journal data.
 #'
 #' The folder structure can contain one journal (repository = TRUE) or multiple
 #' journals (repository = TRUE). Journal repositories allow to manage multiple
 #' journals in a single working environment. The internal structure of the
 #' journals within a repository is identical to that of a single journal.
 #'
-#' The configuration file features (in `_config`) can be defined with this function
-#' during journal creation or independently using (see [guri_config_journal]).
+#' The configuration file features (in `_config`) can be defined with this
+#' function during journal creation or independently using (see
+#' [guri_config_journal]).
 #'
 #' If 'example = TRUE' a directory of the journal 'example' (`.\example`) is
 #' created with the necessary file structure to generate the final output files.
