@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc+~!guri" />
+  <meta name="generator" content="pandoc $pandoc-version$ & ~!guri_ $GURI_VERSION$" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 $for(author)$
   <meta name="author" content="$it.surname$, $it.given-names$" />
@@ -45,16 +45,23 @@ $for(include-before)$
 $include-before$
 $endfor$
 <header id="title-block-header">
+<div class="header">
 $if(article.heading)$ 
-<h3 class="header"><span class="smallcaps">$article.heading$</span></h3>
+  <h3 class="header"><span class="smallcaps">$article.heading$</span></h3>
 $endif$
+<p>$journal.title$.<br/>
+  $if(volume)$Vol. $volume$$endif$$if(issue)$ Núm. $issue$$endif$ ($date.year$)<br/>
+$if(article.doi)$DOI: <a href="www.doi.org/$article.doi$">$article.doi$</a></p>$endif$
+
+</div>
+  
 <h1 class="title">$title$</h1>
 $if(subtitle)$
 <h2 class="subtitle"><i>$subtitle$</i></h2>
 $endif$
 $if(author)$
 $for(author)$
-<p class="author">$it.given-names$ <span class="smallcaps">$it.surname$</span> <sup>$for(it.institute)$$it/alpha$$sep$;$endfor$</sup>$if(it.orcid)$ <a href=“https://orcid.org/$it.orcid$/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>$endif$</p>
+<p class="author">$it.given-names$ <span class="smallcaps">$it.surname$</span> <sup>$for(it.institute)$$it/alpha$$sep$;$endfor$</sup>$if(it.orcid)$ <a href=“https://orcid.org/$it.orcid$/”><img style="height:1em" src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID"></a>$endif$$if(it.email)$<br><a href="mailto:$it.email$">$it.email$</a>$endif$</p>
 $endfor$
 <p>$for(affiliation)$<sup>$it.index/alpha$</sup> $it.name$, $it.country$.$if(it.ror)$ <a href="//ror.org/$it.ror$"><img style="height:1em" src="https://raw.githubusercontent.com/ror-community/ror-logos/main/ror-icon-rgb-16.png" alt="ROR"></a> $endif$$sep$<br>$endfor$</p>
 $endif$
@@ -86,12 +93,22 @@ $endif$
 
 $if(history)$<p>$for(history)$<i>$it.type-title$:</i> $it.year$/$it.month$/$it.day$$sep$; $endfor$.$endif$</p>
 
-$if(article.doi)$<p>DOI: <a href="www.doi.org/$article.doi$">$article.doi$</a></p>$endif$
-
 $body$
 $for(include-after)$
 $include-after$
 $endfor$
+
+<div class="guri_attribution">
+<p>$journal.title$.$if(journal.publisher-name)$ $journal.publisher-name$$endif$$if(journal.publisher-loc.institution)$ ($journal.publisher-loc.institution$)$endif$.<br>
+$if(journal.pissn)$ISSN: $journal.pissn$. $endif$$if(journal.eissn)$ISSN-e: $journal.eissn$.$endif$</p>
+$if(license)$
+  <p><i>$license.text$. <a href="$license.link$">(link)</a></i></p>
+$endif$
+
+
+  <p>This documents were generated using <a href="https://github.com/estedeahora/guri">~!guri_</a> $GURI_VERSION$ (<a href="https://pandoc.org/">pandoc</a> $pandoc-version$).<br/>
+  Este documento gue generado utilizando <a href="https://github.com/estedeahora/guri">~!guri_</a> $GURI_VERSION$ (<a href="https://pandoc.org/">pandoc</a> $pandoc-version$).</p>  
+</div>
 
 <script>
   var divAck = document.getElementById("Ack");

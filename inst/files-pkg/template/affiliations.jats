@@ -24,7 +24,7 @@ $if(it.ringgold)$
 <institution-id institution-id-type="Ringgold">${it.ringgold}</institution-id>
 $endif$
 $if(it.ror)$
-<institution-id institution-id-type="ROR">${it.ror}</institution-id>
+<institution-id institution-id-type="ROR">https://ror.org/${it.ror}</institution-id>
 $endif$
 $for(it.pid)$
 <institution-id institution-id-type="${it.type}">${it.id}</institution-id>
