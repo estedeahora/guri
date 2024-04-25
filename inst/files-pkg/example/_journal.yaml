@@ -14,8 +14,8 @@ journal:
   publisher-name: Editor de la Revista
   publisher-loc:
     country: Argentina
-   email: publisher@university.edu
-   institution: Institution editora
+    email: publisher@university.edu
+    institution: Institution editora
 
 # Licencia
 # --------

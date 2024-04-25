@@ -50,6 +50,7 @@ metadata_lang:
 
 # Autores (un bloque por autor)
 # -----------------------------
+author:
   - given-names: Marcus Tullius
     surname: Cicero
     email: ciceron@instute.com
