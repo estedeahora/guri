@@ -188,9 +188,9 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
 
     journal_yaml <- file.path(journal_folder, "_journal.yaml")
 
-    if(rstudioapi::isAvailable() && rstudioapi::hasFun("navigateToFile")) {
+    if(interactive() && rstudioapi::isAvailable() && rstudioapi::hasFun("navigateToFile")) {
       invisible(rstudioapi::navigateToFile(journal_yaml))
-    }else {
+    }else if(interactive()){
       utils::file.edit(journal_yaml)
     }
   }
