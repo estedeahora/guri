@@ -60,7 +60,7 @@
 #' @export
 
 guri_make_journal <- function(journal = NULL, repository = FALSE,
-                              example = FALSE, force = FALSE ){
+                              example = FALSE, force = FALSE){
 
   # TEST: arguments
   if(repository){
