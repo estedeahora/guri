@@ -10,7 +10,7 @@ ui_alert_warning <- function(..., sep = ""){
 
 ui_alert_success <- function(..., sep = ""){ # , color = "grey50"
   # cli_div(theme = list (.alert = list(color = color)))
-  cli::cli_alert_success(cli::col_grey(paste(..., sep = sep)))
+  cli::cli_alert_success(col_grey(paste(..., sep = sep)))
   # cli_end()
 }
 
