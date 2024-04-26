@@ -326,6 +326,7 @@ end
 --              [es] Permite pasar a header de Latex paquetes necesarios para la construcción de tablas.
 -- Return: [en] A modified Meta object to which a header (if any) is added.
 --         [es] Un objeto Meta modificado al que se le agrega header (si existe).
+
 function lang_dic(meta)
   dic_float = {TAB = stringify(meta.floats['table-title']),
                FIG = stringify(meta.floats['figure-title']),

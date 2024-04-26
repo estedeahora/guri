@@ -118,33 +118,14 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
 
 guri_to_AST <- function(path_art, art, verbose = F) {
 
-  wdir <- paste0(getwd(), path_art)
+  cli_process_start(col_yellow("Creating AST file (md -> native)."))
 
-  # Archivos de entrada / salida
-  file_input  <- paste0(art, ".md")
-  file_json    <- paste0(art, "_AST.json")
+  guri_convert(path_art = path_art, art = art,
+               output = "AST", verbose = verbose)
 
-  # Archivos de programa ('./files/')
-  program_path = "../../../files/"
+  cli_process_done()
 
-  # Opciones generales
-  op_gral <- c("--wrap=none", "--metadata=link-citations",
-               "--mathml",
-               "--reference-links=true")
-
-  # Filtros Lua
-  op_filters <- paste0("--lua-filter=",  program_path, "filters/",
-                       c("include-float-in-format",
-                         "metadata-format-in-text"),
-                       ".lua")
-
-  rmarkdown::pandoc_convert(wd = wdir,
-                            input = file_input,
-                            from = "markdown",
-                            output = file_json,
-                            to = "json",
-                            citeproc = T,
-                            options = c(op_gral, op_filters))
+  invisible(T)
 }
 
 #' @rdname guri_to_md
@@ -153,9 +134,9 @@ guri_to_AST <- function(path_art, art, verbose = F) {
 #'
 #' @export
 
-guri_biblio <- function(path_art, art, verbose = F, bib_type = "csljson"){
+guri_biblio <- function(path_art, art, bib_type = "csljson"){
 
-  wdir <- paste0(getwd(), path_art)
+  cli_process_start(col_yellow("Creating biblio file (md -> ", bib_type, ")."))
 
   # Archivos de entrada / salida
   file_input  <- paste0(art, ".docx")
@@ -165,14 +146,16 @@ guri_biblio <- function(path_art, art, verbose = F, bib_type = "csljson"){
   }else if(bib_type == "biblatex"){
     file_out <- paste0(art, "_biblio.bib")
   }else{
-    ui_abort("'bib_type' debe ser 'biblatex' o 'csljson'")
+    ui_abort("'bib_type' argument must be 'biblatex' or 'csljson'.")
   }
 
-  rmarkdown::pandoc_convert(wd = wdir,
+  rmarkdown::pandoc_convert(wd = file.path(getwd(), path_art),
                             input = file_input,
                             from = "docx+citations",
                             output = file_out ,
                             to = bib_type)
+  cli_process_done()
 
+  invisible(T)
 }
 

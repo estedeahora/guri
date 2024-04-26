@@ -19,7 +19,7 @@
 #' @export
 
 guri <- function(art_path, art_id, journal = NULL,
-                 verbose = F, clean_files = T){
+                 verbose = FALSE, clean_files = TRUE){
 
   # CHECK: dependences version (pandoc)
   if(!pandoc::pandoc_version() >= pandoc_req){
@@ -62,7 +62,7 @@ guri <- function(art_path, art_id, journal = NULL,
     path <- fs::path_abs(file.path(journal, art_path))
   }
 
-  # CHECK: exist files
+  # CHECK: Do mandatory files and folders exist?
   art_files <- paste0(art_id, c(".docx", ".yaml"))
   if(!dir.exists(path)){
     ui_abort("Check `journal` and `art_path`. ",
@@ -84,46 +84,15 @@ guri <- function(art_path, art_id, journal = NULL,
   guri_to_html(path_relative, art_id, verbose = verbose)
   guri_to_pdf(path_relative, art_id, verbose = verbose)
 
-  guri_biblio(path, art_id)
-  guri_to_AST(path, art_id)
+  # Auxiliary files
+  guri_to_AST(path_relative, art_id)
+  guri_biblio(path_relative, art_id)
 
-  # docx -> md
-  # cli_process_start(col_yellow("Crear archivo markdown"))
-  # cli_process_done()
+  # Cleaning of temporary files, log and output
+  guri_clean_files(path_relative, art_id)
 
-  # md -> jats
-  # cat("\033[33m", "* Crear archivo jats-xml (", art_id, ".xml ).", "\033[39m")
-  # cat("DONE\n")
-  # md -> html
-  # cat("\033[33m", "* Crear archivo html (", art_id, ".html ).", "\033[39m")
-  # cat("DONE\n")
-  # md -> tex + pdf
-  # cat("\033[33m", "* Crear archivo latex (", art_id, ".tex ).",
-  #     "y pdf (", art_id, "pdf ).", "\033[39m")
-  # cat("DONE\n")
+  ui_alert_success(col_green("Output files generated correctly."))
 
-  # docx -> biblio
-  # cat("\033[33m", "* Crear archivo de bibliografia (", art_id, "_biblio).", "\033[39m")
-  # cat("DONE\n")
-  # md -> AST
-  # cat("\033[33m", "* Crear AST (", art_id, "_AST.json ).", "\033[39m")
-  # cat("DONE\n")
-
-  # File reorganization
-  wd_orig <- getwd()
-  setwd(art_path)
-
-
-  # Clean files
-  if(clean_files){
-    cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
-    guri_clean_temp(art_id)
-    cat("DONE\n")
-    cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
-    guri_output(art_id)
-    cat("DONE\n")
-  }
-  setwd(wd_orig)
 }
 
 #' Convert the 'xlsx' file with the credit information to csv format.
@@ -153,3 +122,62 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
   invisible(T)
 
 }
+
+# Cleaning of temporary files, log and output
+# ------------------------------------------*
+# (-> .JOURNAL/ISSUE/_temp/)
+# (-> .JOURNAL/ISSUE/_output/)
+# (-> .JOURNAL/ISSUE/log/)
+
+guri_clean_files <- function(path, art_id, verbose){
+
+  if(verbose){
+    cli_process_start("Cleaning up working directory and temporary files.")
+  }
+  path_temp <- fs::dir_create(file.path(path, "_temp"))
+  path_out <- fs::dir_create(file.path(path, "_output"))
+  path_log <- fs::dir_create(file.path(path, "_log"))
+
+  archivos <- fs::dir_ls(path, recurse = F)
+
+  sel_temp <- c("\\.tex", "\\.native", "\\.md", "_app[0-9]\\.md",
+              "_credit\\.csv", "_biblio\\.((json)|(bib))")
+  pat_temp <- make_pattern(sel_temp, art_id )
+  move_files(pat_temp, path_dest = path_temp, file_list = archivos)
+  # ui_alert_success("Move temporary files to './_temp/'")
+
+  sel_out <- c("\\.pdf", "\\.xml", "\\.html")
+  pat_out <- make_pattern(sel_out, art_id )
+  move_files(pat_out, path_dest = path_out, file_list = archivos)
+  # ui_alert_success("Move output files to './_output/'")
+
+  pat_log <- paste0(".*log-.*\\.log")
+  move_files(pat_log, path_dest = path_log, file_list = archivos)
+  # ui_alert_success("Move log files to './_log/'")
+
+  if(verbose){
+    cli_process_done(msg_done = col_grey("Cleaning up working directory and temporary files."))
+  }
+  invisible(TRUE)
+}
+
+make_pattern <- function(string, root){
+
+  groups <- paste0("(", string, ")")
+  groups_collapsed <- paste0(groups, collapse = "|")
+
+  pattern <- paste0(".*", root, "(", groups_collapsed,")" )
+  return(pattern)
+}
+
+move_files <- function(pattern, path_dest, file_list){
+
+  files <- stringr::str_extract(file_list, pattern)
+  files <- stats::na.omit(files)
+  fs::file_move(path = files, new_path = path_dest)
+
+  invisible(TRUE)
+}
+
+
+

@@ -4,7 +4,7 @@
 \alias{guri}
 \title{Función para generar archivos finales de un artículo individual}
 \usage{
-guri(art_path, art_id, journal = NULL, verbose = F, clean_files = T)
+guri(art_path, art_id, journal = NULL, verbose = FALSE, clean_files = TRUE)
 }
 \arguments{
 \item{art_path}{String...}

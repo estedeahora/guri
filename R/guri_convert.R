@@ -35,17 +35,19 @@ guri_convert <- function(path_art, art,
                 paste0("--metadata=GURI_VERSION:", guri_version))
 
   if(verbose){
-    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log")) #, "--metadata=verbose")
+    opt_gral <- c(opt_gral, paste0("--log=log-", output, ".log"))
   }
 
   # Lua Filters
   opt_filters <- pandoc_options$lua[c("filter", output)]                            # select pandoc options
   opt_filters <- opt_filters$filter[order(opt_filters[[output]]) & !is.na(opt_filters[[output]])] # filter NA and order filters
-  if(verbose){
-    ui_alert_info("Internal lua filters used: ", paste(col_blue(opt_filters), collapse = "; "), ".")
+  if(length(opt_filters) > 0 ){
+    if(verbose){
+      ui_alert_info("Internal lua filters used: ", paste(col_blue(opt_filters), collapse = "; "), ".")
+    }
+    opt_filters <- file.path(program_path, "filters", opt_filters)                    # make path to internal program filters
+    opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
   }
-  opt_filters <- file.path(program_path, "filters", opt_filters)                    # make path to internal program filters
-  opt_filters <- paste0("--lua-filter=", opt_filters, ".lua")                       # add pandoc flags and lua extension
 
   # Customised filters
   customised_filters <- stringr::str_extract(config_files, paste0("^", output, "_[0-9]{1,2}_.+\\.lua$"))  |> stats::na.omit()
@@ -158,7 +160,7 @@ guri_convert <- function(path_art, art,
     }
 
   }else{
-    # xml pasa por acá
+    # xml/AST/biblio pasa por acá
   }
 
   rmarkdown::pandoc_convert(wd = wdir,

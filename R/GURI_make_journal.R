@@ -135,7 +135,7 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
       }
     }
 
-    dir.create(journal_folder)
+    fs::dir_create(journal_folder)
     ui_alert_success("Create journal folder ('./", journal, "').")
 
   }else{              # repository = F
@@ -159,7 +159,7 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
   ui_alert_success("Copy default files in '", fs::path_rel(file.path(journal_folder, "_default-files")), "'.")
 
   # MAKE: './_config'
-  dir.create(file.path(journal_folder, "_config"))
+  fs::dir_create(file.path(journal_folder, "_config"))
   ui_alert_success("Create configuration folder ('", fs::path_rel(file.path(journal_folder, "_config")), "').")
 
   # COPY: template and metadata to './_config/*' (config_options)
@@ -199,7 +199,7 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
     file.copy(from = file.path(use_folder, "num1"),
               to = journal_folder, recursive = T,
               overwrite = T)
-    cli_process_done(msg_done = paste0(col_grey("Copy example journal issue ('./example/num1/')"), " ... done"))
+    cli_process_done(msg_done = col_grey("Copy example journal issue ('./example/num1/')"))
 
     # TODO: Agregar función correcta
     ui_alert_info("To generate the output files for this 'example' journal run:\n",

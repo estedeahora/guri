@@ -19,7 +19,7 @@ guri_to_pdf(path_art, art, verbose = F, pdf = TRUE)
 
 guri_to_AST(path_art, art, verbose = F)
 
-guri_biblio(path_art, art, verbose = F, bib_type = "csljson")
+guri_biblio(path_art, art, bib_type = "csljson")
 }
 \arguments{
 \item{path_art}{A string with the path to the article directory}

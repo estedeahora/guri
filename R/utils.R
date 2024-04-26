@@ -19,8 +19,8 @@ ui_abort <- function(..., sep = ""){
   cli::cli_abort(paste(..., sep = sep))
 }
 
-# Manejar path a archivos inst/
-# ----------------------------*
+# Manejar path a archivos dentro de 'inst'
+# -------------------------------------*
 
 # devtools_loaded()
 # Adapted from rmarkdown
@@ -177,41 +177,4 @@ write_guri_file <- function(journal = NULL, repository = NULL,
   cat(raw, file= ".guri", sep = "\n")
 
   invisible(TRUE)
-}
-
-
-# Ordenar archivos temporales y output
-# -----------------------------------*
-# (-> .JOURNAL/ISSUE/_temp/)
-# (-> .JOURNAL/ISSUE/_output/)
-
-guri_clean_temp <- function(id_art){
-
-  if(!dir.exists("./_temp")){
-    dir.create("./_temp")
-  }
-  archivos <- list.files(".")
-  patron <- paste0(id_art, c("\\.tex", "_AST\\.json", "\\.md",
-                             "_app[0-9]\\.md", "_credit\\.csv",
-                             "_biblio\\.((json)|(bib))"
-  )) |>
-    paste0(collapse = "|")
-  archivos <- archivos[stringr::str_detect(archivos, patron)]
-
-  purrr::walk2(archivos, paste0("./_temp/", archivos),
-               file.rename)
-
-}
-
-guri_output <- function(id_art){
-
-  if(!dir.exists("./_output")){
-    dir.create("./_output")
-  }
-
-  archivos <- paste0(id_art, c(".pdf", ".xml", ".html"))
-
-  purrr::walk2(archivos, paste0("./_output/", archivos),
-               file.rename)
-
 }
