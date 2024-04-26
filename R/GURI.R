@@ -18,8 +18,11 @@
 #'
 #' @export
 
-guri <- function(art_path, art_id, journal = NULL,
-                 verbose = FALSE, clean_files = TRUE){
+guri <- function(art_path,
+                 art_id,
+                 journal = NULL,
+                 verbose = FALSE,
+                 clean_files = TRUE){
 
   # CHECK: dependences version (pandoc)
   if(!pandoc::pandoc_version() >= pandoc_req){
@@ -97,9 +100,8 @@ guri <- function(art_path, art_id, journal = NULL,
 
 #' Convert the 'xlsx' file with the credit information to csv format.
 #'
-#' @param path A string with the path to the article folder.
-#' @param art_id A string. The 'article id'.
-#' @param verbose Logical.
+#' @inheritParams guri
+#' @inheritParams guri_clean_files
 #'
 #' @return Invisible TRUE.
 
@@ -123,11 +125,12 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
 
 }
 
-# Cleaning of temporary files, log and output
-# ------------------------------------------*
-# (-> .JOURNAL/ISSUE/_temp/)
-# (-> .JOURNAL/ISSUE/_output/)
-# (-> .JOURNAL/ISSUE/log/)
+#' Clean temporary log and output files
+#'
+#' @param path A string with the path to the article folder.
+#' @inheritParams guri
+#'
+#' @return Invisible TRUE.
 
 guri_clean_files <- function(path, art_id, verbose){
 
