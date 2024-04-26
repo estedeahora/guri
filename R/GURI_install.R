@@ -41,7 +41,8 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
                    "bookmark", "xurl", "parskip", "svg", "geometry", "multirow",
                    "etoolbox", "luacolor",  "lua-ul",
                    "adjustbox", "fontawesome5", "caption",  "ccicons",
-                   "relsize", "koma-script", "truncate", "lastpage")
+                   "relsize", "koma-script", "truncate", "lastpage",
+                   "rorlink")
 
     cli_process_start("Checking necessary latex packages")
     latex_pkg_installed <- lapply(latex_pkg, tinytex::check_installed)  |>
@@ -59,17 +60,3 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
                  tinytex_version = tinytex::tlmgr_version(),
                  pandoc_version = pandoc::pandoc_version() ))
 }
-
-
-# dep <- c("tidyverse", "rmarkdown", "readxl", "tinytex", "crayon")
-# pkg <- .packages(all.available = TRUE)
-#
-# dep_needed <- dep [!dep %in% pkg]
-#
-# if(length(dep_needed) > 0){
-#   cat("\n", "Instalando paquetes R faltantes:",
-#       paste0(dep_needed, collapse = ", ") )
-#   install.packages(dep_needed)
-# }else{
-#   cat("\n", "Paquetes R necesarios presentes")
-# }
