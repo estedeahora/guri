@@ -1,4 +1,5 @@
 # {cli} wraps
+# ----------*
 
 ui_alert_info <- function(..., sep = ""){
   cli::cli_alert_info(paste(..., sep = sep))
@@ -51,45 +52,10 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
   }
 }
 
-# # pkg_file_lua()
-# # Get the full paths of Lua filters in an R package
-# #
-# # Adapted from rmarkdown:
-# # https://github.com/rstudio/rmarkdown/blob/ee69d59f8011ad7b717a409fcbf8060d6ffc4139/R/util.R#L58-L60
-#
-# pkg_file_lua <- function(filters = NULL, package = "guri") {
-#   files <- pkg_file(
-#     # "filters", if (is.null(filters)) '.' else filters,
-#     "filters", filters,
-#     package = package, mustWork = TRUE
-#   )
-#   # if (is.null(filters)) {
-#   #   files <- list.files(dirname(files), "[.]lua$", full.names = TRUE)
-#   # }
-#   rmarkdown::pandoc_path_arg(files)
-# }
-
-
-
-# zip files
-
-zip_input <- function(id_art){
-
-  work_files <- paste0(paste0(id_art, c(".docx",
-                                        "_notes.md", ".yaml",
-                                        "_credit.xlsx") ))
-  float_dir <- paste0("float")
-  if(dir.exists(float_dir) ){
-    work_files <- c(work_files, float_dir)
-  }
-
-  zip_file <- paste0(id_art, "_", format(Sys.Date(), "%Y.%m.%d"), ".zip")
-
-  zip(zipfile = zip_file, files = work_files)
-
-}
-
-# Ordenar archivos temporales (-> .JOURNAL/ISSUE/_temp/)
+# Ordenar archivos temporales y output
+# -----------------------------------*
+# (-> .JOURNAL/ISSUE/_temp/)
+# (-> .JOURNAL/ISSUE/_output/)
 
 guri_clean_temp <- function(id_art){
 
@@ -108,8 +74,6 @@ guri_clean_temp <- function(id_art){
                file.rename)
 
 }
-
-# Ordenar archivos de salida (-> .JOURNAL/ISSUE/_output/)
 
 guri_output <- function(id_art){
 

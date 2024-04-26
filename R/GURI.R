@@ -100,8 +100,8 @@ guri <- function(art_path, art_id, journal = NULL,
   # cat("\033[33m", "* Crear archivo html (", art_id, ".html ).", "\033[39m")
   # cat("DONE\n")
   # md -> tex + pdf
-  # cat("\033[33m", "* Crear archivo latex (", art_name, ".tex ).",
-  #     "y pdf (", art_name, "pdf ).", "\033[39m")
+  # cat("\033[33m", "* Crear archivo latex (", art_id, ".tex ).",
+  #     "y pdf (", art_id, "pdf ).", "\033[39m")
   # cat("DONE\n")
 
   # docx -> biblio
@@ -119,10 +119,10 @@ guri <- function(art_path, art_id, journal = NULL,
   # Clean files
   if(clean_files){
     cat("\033[33m", "* Mover archivos temporales a './_temp/'", "\033[39m")
-    guri_clean_temp(art_name)
+    guri_clean_temp(art_id)
     cat("DONE\n")
     cat("\033[33m", "* Mover archivos finales a './_output/'", "\033[39m")
-    guri_output(art_name)
+    guri_output(art_id)
     cat("DONE\n")
   }
   setwd(wd_orig)
@@ -155,11 +155,3 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
   invisible(T)
 
 }
-
-# zip_file <- function(zip_file){
-#   if(zip_file){
-#     cat("\033[33m", "* Crear zip con archivos usados como entrada", "\033[39m")
-#     zip_input(art_name)
-#     cat("DONE\n")
-#   }
-# }

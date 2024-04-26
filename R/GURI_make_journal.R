@@ -154,6 +154,7 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
   ui_alert_success("Create configuration folder '(", fs::path_rel(file.path(journal_folder, "_config", "*")), "').")
 
   # COPY: templates and metadata files to './_config/*'
+  csl_name <- ""
   guri_config_journal(journal_folder, csl_name = csl_name)
 
   # COPY: '_journal.yaml'
