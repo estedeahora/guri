@@ -7,6 +7,7 @@
 guri_make_journal(
   journal = NULL,
   repository = FALSE,
+  config_options = FALSE,
   example = FALSE,
   force = FALSE
 )
@@ -23,6 +24,14 @@ allowed.}
 (unless \code{example = TRUE}) and a separate folder will be created for each
 journal. If \code{FALSE} the root folder will contain the files needed to manage
 your journal.}
+
+\item{config_options}{Options to generate the configuration files in
+'_config'. If FALSE (default), configuration files are not generated in the
+'_config' folder. If "default" or TRUE, the template and metadata files
+used by default are copied to the '_config' folder (so that they can be
+later modified to customise the journal). If it is a \emph{named list} with the
+parameters from \link{guri_config_journal}, they will be passed to this function
+(e.g. customized = list(csl_name = "chicago-author-date-16th-edition").}
 
 \item{example}{Logical. Do you want to create the journal provided as an
 example? (Default = FALSE)}
@@ -41,22 +50,24 @@ repository (to manage multiple journals).
 \details{
 Create the journal folder (if repository \code{TRUE}). The journal
 directory includes a configuration folder with the files used to configure
-the journal output (\verb{_config}) and a folder with the basic files you will use
-for the production process (\code{default-files}). In addition, the
-\verb{_journal.yaml} file will be generated, which you will have to edit manually
-with the basic journal data.
+the journal output (\verb{_config}) and a folder with the basic files you will
+use for the production process (\code{default-files}). In addition, the
+\verb{_journal.yaml} file will be generated, which you will have to edit
+manually with the basic journal data.
 
-The folder structure can contain one journal (repository = TRUE) or multiple
-journals (repository = TRUE). Journal repositories allow to manage multiple
-journals in a single working environment. The internal structure of the
-journals within a repository is identical to that of a single journal.
+The folder structure can contain one journal (repository = TRUE) or
+multiple journals (repository = TRUE). Journal repositories allow to manage
+multiple journals in a single working environment. The internal structure
+of the journals within a repository is identical to that of a single
+journal.
 
 The configuration file features (in \verb{_config}) can be defined with this
 function during journal creation or independently using (see
 \link{guri_config_journal}).
 
 If 'example = TRUE' a directory of the journal 'example' (\verb{.\\example}) is
-created with the necessary file structure to generate the final output files.
+created with the necessary file structure to generate the final output
+files.
 }
 \examples{
 # Create a folder structure for a new journal.

@@ -6,7 +6,7 @@ ui_alert_info <- function(..., sep = ""){
 }
 
 ui_alert_warning <- function(..., sep = ""){
-  cli::cli_alert_warning(paste(..., sep = sep))
+  cli::cli_alert_warning(paste(col_yellow("[WARNING] "), ..., sep = sep))
 }
 
 ui_alert_success <- function(..., sep = ""){ # , color = "grey50"
@@ -51,6 +51,134 @@ pkg_file <- function(..., package = "guri", mustWork = FALSE) {
     system.file("files-pkg", ..., package = package, mustWork = mustWork)
   }
 }
+
+# Lectura/escritura de '.guri' file
+# --------------------------------*
+
+read_guri_file <- function(){
+
+  if(file.exists('.guri')){
+
+    con <- file('.guri')
+    raw <- readLines(con)
+    close(con)
+
+    if(length(raw) == 0){
+      ui_alert_warning("The '.guri' file is empty. NULL is returned.")
+      return(NULL)
+    }
+
+    guri_file <- list()
+
+    guri_file$raw <- raw
+    guri_file$repository <- any(stringr::str_detect(raw, "^repository: TRUE$"))
+
+    if(guri_file$repository){
+      guri_file$journals <- any(stringr::str_detect(raw, paste0("^journals: .*", "$")))
+      guri_file$journals_list <- stringr::str_extract(raw, paste0("^journals: .*", "$")) |>
+        stats::na.omit() |>
+        stringr::str_remove("^journals: ") |>
+        stringr::str_remove_all("\\s*") |>
+        stringr::str_split_1(",")
+    }else{
+      guri_file$journals <- FALSE
+      guri_file$journals_list <- NULL
+    }
+
+
+    return(guri_file)
+  }else{
+
+  }
+  return(NULL)
+}
+
+write_guri_file <- function(journal = NULL, repository = NULL,
+                            check_exists = TRUE, force = FALSE){
+
+  guri_file <- read_guri_file()
+
+  if(is.null(guri_file) || force){     # no existe .guri -> hay que generarlo desde cero.
+
+    if(is.null(repository)){      # Es obligatorio tener repository
+      ui_abort("It is mandatory to provide the 'repository' field to generate ",
+               "the '.guri' file.")
+    }
+    raw <- paste0("repository: ", repository)
+
+    if(repository){
+      if(is.null(journal)){    # Es obligatorio tener 'journal' si repository = TRUE
+        ui_abort("It is mandatory to provide the 'journal' field to generate ",
+                 "the '.guri' file.")
+      }
+      raw <- c(raw, paste0("journals: ", journal))
+    }else if(!is.null(journal)){
+      ui_alert_warning("Field 'journal' is ignored if repository = FALSE.")
+    }
+    ui_alert_info("{.path .guri} file created in the root folder.")
+
+  }else{        # existe .guri -> hay que modificarlo
+    raw <- guri_file$raw
+
+    # Chequea si existen los directorios de las revistas
+    if(check_exists && guri_file$repository){
+
+      journal_exists <- dir.exists(guri_file$journals_list)
+
+      if(!all(journal_exists)){
+        guri_journal_fail <- guri_file$journals_list[!journal_exists]
+        ui_alert_warning("The folder(s) ",
+                         paste0(paste0("'", guri_journal_fail, "'"), collapse = ", "),
+                         " do not exist, but are listed as an active journals ",
+                         "in guri file.\n",
+                         "            Do you want to remove these journals from ",
+                         "your guri archive?\n",
+                         col_yellow("Press: Y/n"))
+        confirm <- readline()
+        if(!confirm %in% c("n", "N")){
+          ui_alert_info("'", guri_file$journals_list[!journal_exists],
+                        "' is removed from {.path .guri}.")
+
+          guri_file$journals_list <- guri_file$journals_list[journal_exists]
+          new_journal_list <- paste0("journals: ",
+                                     paste0(guri_file$journals_list, collapse = ", "))
+          raw <- stringr::str_replace(raw, "^journals: .*", new_journal_list)
+        }
+      }
+    }
+
+    # se brinda 'repository' -> no es posible modificar repository (da error en la llamada)
+    # if(!is.null(repository)){
+    #   NULL
+    # }
+
+    # se brinda 'journal'
+    if(!is.null(journal)){
+
+      if(guri_file$repository){
+        if(journal %in% guri_file$journals_list){
+          ui_alert_warning("The journal '", journal,
+                           "' already exists in '.guri'. The file is not modified.")
+
+        }else{                    # hay que agregar journal a la lista
+          guri_file$journals_list <- c(guri_file$journals_list, journal)
+          new_journal_list <- paste0("journals: ",
+                                     paste0(guri_file$journals_list, collapse = ", "))
+          raw <- stringr::str_replace(raw, "^journals: .*", new_journal_list)
+
+          ui_alert_info("'", journal, "' is added to {.path .guri}.")
+        }
+      }else{
+        ui_alert_warning("Cannot add a 'journal' if 'repository' is not TRUE.")
+      }
+    }
+  }
+
+  cat(raw, file= ".guri", sep = "\n")
+
+  invisible(TRUE)
+}
+
 
 # Ordenar archivos temporales y output
 # -----------------------------------*

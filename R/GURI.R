@@ -30,22 +30,20 @@ guri <- function(art_path, art_id, journal = NULL,
   }
 
   # CHECK: '.guri' file
-  if(file.exists('.guri')){
+  guri_file <- read_guri_file()
+  if(!is.null(guri_file)){
 
-    con <- file('.guri')
-    guri_file <- readLines(con)
-    close(con)
+    # guri_repository <- any(stringr::str_detect(guri_file$raw, "^repository: TRUE$"))
+    # guri_journal <- any(stringr::str_detect(guri_file, paste0("^journals:.*", journal)))
 
-    guri_repository <- any(stringr::str_detect(guri_file, "^repository: TRUE$"))
-    guri_journal <- any(stringr::str_detect(guri_file, paste0("^journals:.*", journal)))
-
-    if(is.null(journal) &&  guri_repository){
+    # if(is.null(journal) &&  guri_repository){
+    if(is.null(journal) &&  guri_file$repository){
       ui_abort("No `journal` field was provided, but it seems to be working in ",
                "a journal repository (see `.guri` file).  The `journal` parameter ",
                "is mandatory.")
     }
 
-    if(guri_repository && !guri_journal){
+    if(guri_file$repository && !(journal %in% guri_file$journals_list)){
       ui_alert_warning("The journal ('", journal, "') is not listed in the ",
                        "`.guri` file. It is advisable to generate your journals ",
                        "with `.guri_make_journal`.")
@@ -149,7 +147,7 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
       ui_alert_success("File preparation (converting '", credit_files[[1]], "' to csv file)")
     }
   }else{
-    ui_alert_warning("There is no '", credit_files[[1]],"' file with the credit data.")
+    ui_alert_info("There is no '", credit_files[[1]],"' file with the credit data.")
   }
 
   invisible(T)

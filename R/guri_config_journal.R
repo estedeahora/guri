@@ -58,6 +58,11 @@ guri_config_journal <- function(journal_folder = NULL,
   #                 quiet = T)
   #   file.copy(from = temp,
   #             to = )
+  # {a <- rlang::try_fetch({download.file(paste0("https://raw.githubusercontent.com/citation-style-language/styles/master/das",
+  #                                              "chicago-author-date-16th-edition", ".csl"),
+  #                                       file.path("example", "_config", paste0("dsa", ".csl")),
+  #                                       quiet = F)}, warning = \(x){ return(1)})
+  #   print("da")}
   # }
 
   invisible(TRUE)
