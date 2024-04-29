@@ -98,7 +98,7 @@ local function get_metadata(meta)
 
     --- Acknowledgements info
     if(meta.ack) then
-        cont_ack = Div(Para(meta.ack), {id = "Ack", class = "Paratext"})
+        cont_ack = Div(meta.ack, {id = "Ack", class = "Paratext"})
     end
 
     -- Appendices info
