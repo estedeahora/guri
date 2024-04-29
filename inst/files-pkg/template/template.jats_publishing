@@ -324,12 +324,14 @@ $endfor$
 $endif$
 $if(metadata_lang)$
 $for(metadata_lang)$
+$if(metadata_lang.keyword)$
 <kwd-group kwd-group-type="author" xml:lang="$it.lang$">
 <title>$it.keyword_title$</title>
 $for(it.keyword)$
 <kwd>$it$</kwd>
 $endfor$
 </kwd-group>
+$endif$
 $endfor$
 $endif$
 $--         #### FINANCIAMIENTO ###################
@@ -371,7 +373,7 @@ $if(back)$
 $back$
 $endif$
 $if(ack)$
-<ack><p>$ack$</p></ack>
+<ack>$ack$</ack>
 $endif$
 $if(app)$
 <app-group>
