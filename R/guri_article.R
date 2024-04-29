@@ -18,7 +18,7 @@
 #'
 #' @export
 
-guri <- function(art_path,
+guri_article <- function(art_path,
                  art_id,
                  journal = NULL,
                  verbose = FALSE,
@@ -92,7 +92,7 @@ guri <- function(art_path,
   guri_biblio(path_relative, art_id)
 
   # Cleaning of temporary files, log and output
-  guri_clean_files(path_relative, art_id)
+  guri_clean_files(path_relative, art_id, verbose = verbose)
 
   ui_alert_success(col_green("Output files generated correctly."))
 
@@ -100,7 +100,7 @@ guri <- function(art_path,
 
 #' Convert the 'xlsx' file with the credit information to csv format.
 #'
-#' @inheritParams guri
+#' @inheritParams guri_article
 #' @inheritParams guri_clean_files
 #'
 #' @return Invisible TRUE.
@@ -128,7 +128,7 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
 #' Clean temporary log and output files
 #'
 #' @param path A string with the path to the article folder.
-#' @inheritParams guri
+#' @inheritParams guri_article
 #'
 #' @return Invisible TRUE.
 
@@ -181,6 +181,3 @@ move_files <- function(pattern, path_dest, file_list){
 
   invisible(TRUE)
 }
-
-
-

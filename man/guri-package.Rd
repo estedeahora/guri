@@ -2,6 +2,7 @@
 % Please edit documentation in R/guri-package.R
 \docType{package}
 \name{guri-package}
+\alias{guri}
 \alias{guri-package}
 \title{guri: ~!gurí_: Unified Format Manager for Research Journals}
 \description{
