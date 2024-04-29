@@ -74,12 +74,6 @@ $endif$
       $license.text$ ($license.link$).]{}
 \cfoot[]{\pagemark}
 
-% Definir primera página del artícul (si se utiliza paginación personalizada)
-$if(article.fpage)$
-\usepackage{lastpage}
-\setcounter{page}{$article.fpage$}
-$endif$
-
 %%%% PÁGINA DE TÍTULO 
 \setkomafont{titlehead}{\raggedright\sffamily\small}
 \setkomafont{title}{\raggedright\sffamily}
@@ -93,6 +87,12 @@ $endif$
   \hfill $if(volume)$Vol. $volume$$endif$$if(issue)$ Núm. $issue$$endif$$if(article.fpage)$ pp. $article.fpage$-\pageref*{LastPage}$endif$ ($date.year$)
   $if(article.doi)$\\ \hfill DOI: \href{https://doi.org/$article.doi$}{$article.doi$}$endif$%
  }%
+
+% Definir primera página del artículo (si se utiliza paginación personalizada)
+$if(article.fpage)$
+\usepackage{lastpage}
+\setcounter{page}{$article.fpage$}
+$endif$
 
 \title{$title$}
 
@@ -112,7 +112,7 @@ $if(author)$
 $endif$    
 \date{}
 
-\publishers{
+\publishers{%
   \vspace{1em}
   $if(author)$$for(affiliation)$\textsuperscript{$it.index/alpha$} $it.name$, $it.country$.$if(it.ror)$ \rorlink{https://ror.org/$it.ror$}$endif$$sep$\\$endfor$$endif$
   $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.type-title$:} \datejl{$it.year$}{$it.month$}{$it.day$}$sep$; $endfor$.\\$endif$%

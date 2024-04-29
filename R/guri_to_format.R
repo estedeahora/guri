@@ -102,7 +102,7 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   # }
 
   if(pdf){
-    cli_process_start(col_yellow("Creating pdf file (md -> pdf)."))
+    cli_process_start(col_yellow("Creating pdf file (tex -> pdf)."))
     tinytex::lualatex(file_tex)
     cli_process_done()
   }

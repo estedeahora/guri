@@ -459,7 +459,9 @@ $if(abstract)$
 \begin{abstract}
 \nopagebreak
 \noindent{$abstract$}
+
 \nopagebreak
+
 $if(keyword)$
 \noindent{\vspace{4pt}$keyword-title$: \textit{$for(keyword)$$it$$sep$; $endfor$}}.%
 $endif$
@@ -471,6 +473,7 @@ $for(metadata_lang)$
 \nopagebreak
 \noindent{$it.abstract$}
 \nopagebreak
+
 $if(it.keyword)$
 \noindent{\vspace{4pt}$it.keyword_title$: \textit{$for(it.keyword)$$it$$sep$; $endfor$}}.%
 $endif$
