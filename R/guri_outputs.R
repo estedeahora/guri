@@ -3,6 +3,9 @@
 # art_path <- "num1/art101_lorem-ipsum/"
 # verbose = T; clean_files = T
 
+# Opciones: guri_publishing / guri_outputs / guri_to_formats /
+# guri_format_generator / guri_publish_formatter / guri_output_generator
+
 #' Función para generar archivos finales de un artículo individual
 #'
 #' @description
@@ -18,7 +21,7 @@
 #'
 #' @export
 
-guri_article <- function(art_path,
+guri_outputs <- function(art_path,
                  art_id,
                  journal = NULL,
                  verbose = FALSE,
