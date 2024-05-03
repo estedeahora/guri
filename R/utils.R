@@ -15,6 +15,11 @@ ui_alert_success <- function(..., sep = ""){ # , color = "grey50"
   # cli_end()
 }
 
+ui_alert_danger <- function(..., sep = ""){
+  cli::cli_alert_danger(paste(..., sep = sep))
+
+}
+
 ui_abort <- function(..., sep = ""){
   cli::cli_abort(paste(..., sep = sep))
 }
