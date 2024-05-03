@@ -8,6 +8,10 @@ guri_clean_files(path, art_id, verbose)
 }
 \arguments{
 \item{path}{A string with the path to the article folder.}
+
+\item{art_id}{String...}
+
+\item{verbose}{Logical...}
 }
 \value{
 Invisible TRUE.

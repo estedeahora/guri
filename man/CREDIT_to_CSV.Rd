@@ -4,10 +4,12 @@
 \alias{CREDIT_to_CSV}
 \title{Convert the 'xlsx' file with the credit information to csv format.}
 \usage{
-CREDIT_to_CSV(path, art_id, verbose)
+CREDIT_to_CSV(art_path, art_id, verbose)
 }
 \arguments{
-\item{path}{A string with the path to the article folder.}
+\item{art_id}{String...}
+
+\item{verbose}{Logical...}
 }
 \value{
 Invisible TRUE.

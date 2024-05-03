@@ -3,7 +3,6 @@
 export(guri_biblio)
 export(guri_config_journal)
 export(guri_install)
-export(guri_list_articles)
 export(guri_make_journal)
 export(guri_outputs)
 export(guri_to_AST)

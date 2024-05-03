@@ -4,8 +4,6 @@
 #'   articles in the issue.
 #'
 #' @return A tibble with two columns: articles path (art_path) and articles id (art_id).
-#'
-#' @export
 
 guri_list_articles <- function(path_issue){
 
@@ -17,10 +15,18 @@ guri_list_articles <- function(path_issue){
              "(example: art301_my-article).")
   }
 
-  art <- dplyr::tibble(art_path = list.dirs(path_issue, recursive = F ))
-  art$art_id <- art$art_path |>
-    stringr::str_remove(path_issue) |>
-    stringr::str_remove("_.*$")
+  art_path <- fs::dir_ls(path_issue, type = "directory")
+
+  art_dir <- art_path |>
+    fs::path_split() |>
+    purrr::map_chr(~.x[length(.x)])
+
+  art_id <- art_dir |>
+    stringr::str_extract("^art[0-9]{3}")
+
+  art <- dplyr::tibble(path = art_path,
+                       dir  = art_dir,
+                       id   = art_id)
 
   return(art)
 }

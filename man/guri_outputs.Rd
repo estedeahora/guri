@@ -5,17 +5,17 @@
 \title{Función para generar archivos finales de un artículo individual}
 \usage{
 guri_outputs(
-  art_path,
   art_id,
+  issue,
   journal = NULL,
   verbose = FALSE,
   clean_files = TRUE
 )
 }
 \arguments{
-\item{art_path}{String...}
-
 \item{art_id}{String...}
+
+\item{issue}{String...}
 
 \item{journal}{String... description}
 

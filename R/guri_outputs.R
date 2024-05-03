@@ -1,6 +1,6 @@
 # art_id <- "art101"
 # journal <-  "example"
-# art_path <- "num1/art101_lorem-ipsum/"
+# issue <- "num1"
 # verbose = T; clean_files = T
 
 # Opciones: guri_publishing / guri_outputs / guri_to_formats /
@@ -11,8 +11,8 @@
 #' @description
 #' describir
 #'
-#' @param art_path String...
 #' @param art_id String...
+#' @param issue String...
 #' @param journal String... description
 #' @param verbose Logical...
 #' @param clean_files Logical...
@@ -21,11 +21,11 @@
 #'
 #' @export
 
-guri_outputs <- function(art_path,
-                 art_id,
-                 journal = NULL,
-                 verbose = FALSE,
-                 clean_files = TRUE){
+guri_outputs <- function(art_id,
+                         issue,
+                         journal = NULL,
+                         verbose = FALSE,
+                         clean_files = TRUE){
 
   # CHECK: dependences version (pandoc)
   if(!pandoc::pandoc_version() >= pandoc_req){
@@ -39,10 +39,6 @@ guri_outputs <- function(art_path,
   guri_file <- read_guri_file()
   if(!is.null(guri_file)){
 
-    # guri_repository <- any(stringr::str_detect(guri_file$raw, "^repository: TRUE$"))
-    # guri_journal <- any(stringr::str_detect(guri_file, paste0("^journals:.*", journal)))
-
-    # if(is.null(journal) &&  guri_repository){
     if(is.null(journal) &&  guri_file$repository){
       ui_abort("No `journal` field was provided, but it seems to be working in ",
                "a journal repository (see `.guri` file).  The `journal` parameter ",
@@ -60,58 +56,99 @@ guri_outputs <- function(art_path,
                      "is advisable to generate your journals with `.guri_make_journal`.")
   }
 
-  cli_h1(col_green(paste("Article:", art_id)))
-
+  # Construct path to issue
   if(is.null(journal)){
-    path <- fs::path_abs(file.path(art_path))
+    path_issue <- fs::path_wd(issue)
   }else{
-    path <- fs::path_abs(file.path(journal, art_path))
+    path_issue <- fs::path_wd(journal, issue)
   }
+
+  article_list <- guri_list_articles(path_issue)
+
+  # recursive call for multiple articles
+  if(length(art_id) > 1 || art_id == "all"){
+
+    if(length(art_id) > 1){
+      article_list <- article_list |> dplyr::filter(id %in% art_id)
+
+      id_is_present <- art_id %in% article_list$id
+
+      if(!all(id_is_present)){
+        ui_abort("Theare are ids not present in the issue folder (see: ",
+                 paste0(paste0("'", art_id[!id_is_present], "'"), collapse = ", "),
+                 ").")
+      }
+    }
+
+    purrr::walk(article_list$id,
+                ~guri_outputs(art_id = .x,
+                              issue = issue,
+                              journal = journal,
+                              verbose = verbose,
+                              clean_files = clean_files))
+
+    return(invisible(TRUE))
+  }
+
+  # else -> single article (base case)
+  article_list <- article_list |> dplyr::filter(id %in% art_id)
+  if(nrow(article_list) != 1){
+    ui_abort("`" , art_id, "` does not exist in the issue folder.")
+  }
+
+  title <- article_list$dir |> stringr::str_replace_all("_", ": ") |> stringr::str_replace_all("-", " ")
+  cli_h1(col_green(paste0("Article ", title)))
 
   # CHECK: Do mandatory files and folders exist?
   art_files <- paste0(art_id, c(".docx", ".yaml"))
-  if(!dir.exists(path)){
-    ui_abort("Check `journal` and `art_path`. ",
+
+  if(!dir.exists(article_list$path)){
+    ui_abort("Check `journal` and `issue`. ",
              "The specified folder does not exist: ",
-             "{.path ", path, "}.")
-  }else if(!all(file.exists(file.path(path, art_files)))){
+             "{.path ", article_list$path, "}.")
+  }else if(!all(file.exists(fs::path(article_list$path, art_files)))){
     ui_abort("It is necessary that ",
              paste0(paste0("'", art_files, "' "), collapse = "and "),
              "exist in the specified folder.")
+  }else if(!file.exists(fs::path(path_issue, "_issue.yaml"))){
+    ui_abort("It is necessary that '_issue.yaml' exist in the issue folder.")
   }
 
+  art_path <- fs::path_rel(article_list$path)
+
   # PREPARE: art[~]_CREDIT.xlsx -> to -> art[~]_CREDIT.csv
-  CREDIT_to_CSV(path = path, art_id = art_id, verbose = verbose)
+  CREDIT_to_CSV(art_path = art_path, art_id = art_id, verbose = verbose)
 
   # CONVERT: files to format
-  path_relative <- fs::path_rel(path)
-  guri_to_md(path_relative, art_id, verbose = verbose)
-  guri_to_jats(path_relative, art_id, verbose = verbose)
-  guri_to_html(path_relative, art_id, verbose = verbose)
-  guri_to_pdf(path_relative, art_id, verbose = verbose)
+
+  guri_to_md(art_path, art_id, verbose = verbose)
+  guri_to_jats(art_path, art_id, verbose = verbose)
+  guri_to_html(art_path, art_id, verbose = verbose)
+  guri_to_pdf(art_path, art_id, verbose = verbose)
 
   # Auxiliary files
-  guri_to_AST(path_relative, art_id)
-  guri_biblio(path_relative, art_id)
+  guri_to_AST(art_path, art_id)
+  guri_biblio(art_path, art_id)
 
   # Cleaning of temporary files, log and output
-  guri_clean_files(path_relative, art_id, verbose = verbose)
+  guri_clean_files(art_path, art_id, verbose = verbose)
 
   ui_alert_success(col_green("Output files generated correctly."))
 
+  invisible(TRUE)
 }
 
 #' Convert the 'xlsx' file with the credit information to csv format.
 #'
-#' @inheritParams guri_article
+#' @inheritParams guri_outputs
 #' @inheritParams guri_clean_files
 #'
 #' @return Invisible TRUE.
 
-CREDIT_to_CSV <- function(path, art_id, verbose){
+CREDIT_to_CSV <- function(art_path, art_id, verbose){
 
   credit_files <- paste0(art_id, "_credit.", c("xlsx", "csv"))
-  credit_paths <- file.path(path, credit_files)
+  credit_paths <- fs::path(art_path, credit_files)
 
   if(file.exists(credit_paths[[1]])){
 
@@ -131,7 +168,7 @@ CREDIT_to_CSV <- function(path, art_id, verbose){
 #' Clean temporary log and output files
 #'
 #' @param path A string with the path to the article folder.
-#' @inheritParams guri_article
+#' @inheritParams guri_outputs
 #'
 #' @return Invisible TRUE.
 
