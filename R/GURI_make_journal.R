@@ -201,9 +201,9 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
               overwrite = T)
     cli_process_done(msg_done = col_grey("Copy example journal issue ('./example/num1/')"))
 
-    # TODO: Agregar función correcta
     ui_alert_info("To generate the output files for this 'example' journal run:\n",
-                  col_red("{.code guri_output_issue(path = 'num1', journal = 'example')}."))
+                  col_red("guri_outputs(art_id = 'all', issue = 'vol10num1', ",
+                          "journal = 'example')"))
 
     journal <- "The 'example' journal"
   }else{

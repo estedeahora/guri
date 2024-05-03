@@ -1,4 +1,4 @@
-#' Converts the corrected manuscript in docx format to markdown format.
+#' Converts the corrected manuscript between formats.
 #'
 #' @description They convert between the different formats required for the
 #' `~!guri_` workflow, applying the appropriate lua filters at each stage and

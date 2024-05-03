@@ -2,7 +2,7 @@
 % Please edit documentation in R/guri_outputs.R
 \name{guri_outputs}
 \alias{guri_outputs}
-\title{Función para generar archivos finales de un artículo individual}
+\title{Función para generar archivos finales}
 \usage{
 guri_outputs(
   art_id,

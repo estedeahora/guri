@@ -7,7 +7,7 @@
 \alias{guri_to_pdf}
 \alias{guri_to_AST}
 \alias{guri_biblio}
-\title{Converts the corrected manuscript in docx format to markdown format.}
+\title{Converts the corrected manuscript between formats.}
 \usage{
 guri_to_md(path_art, art, verbose = F)
 
