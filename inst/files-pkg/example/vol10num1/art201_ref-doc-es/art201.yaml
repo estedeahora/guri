@@ -20,7 +20,8 @@ article:
   # resources:
 
 # Metadatos del artículo (language principal)
-# -------------------------------------------metadata:
+# -------------------------------------------
+metadata:
   title: Documento de referencia para ~!gurí_ (Gestor Unificado de formatos para Revistas de Investigación)
   # subtitle: 
   abstract: |
