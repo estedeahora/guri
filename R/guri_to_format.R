@@ -33,7 +33,7 @@ guri_to_md <- function(path_art, art, verbose = F){
   guri_convert(path_art = path_art, art = art,
                output = "md", verbose = verbose)
 
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating markdown file (docx -> md)."))
 
   invisible(T)
 }
@@ -49,7 +49,7 @@ guri_to_html <- function(path_art, art, verbose = F){
   guri_convert(path_art = path_art, art = art,
                output = "html", verbose = verbose)
 
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating html file (md -> html)."))
 
   invisible(T)
 }
@@ -65,7 +65,7 @@ guri_to_jats <- function(path_art, art, verbose = F){
   guri_convert(path_art = path_art, art = art,
                output = "jats", verbose = verbose)
 
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating xml-jats file (md -> xml)."))
 
   invisible(T)
 }
@@ -84,7 +84,7 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   guri_convert(path_art = path_art, art = art,
                output = "tex", verbose = verbose)
 
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating latex file (md -> tex)."))
 
   # Conversión tex -> pdf
 
@@ -104,7 +104,7 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   if(pdf){
     cli_process_start(col_yellow("Creating pdf file (tex -> pdf)."))
     tinytex::lualatex(file_tex)
-    cli_process_done()
+    cli_process_done(msg_done = col_grey("Creating pdf file (tex -> pdf)."))
   }
 
   invisible(T)
@@ -123,7 +123,7 @@ guri_to_AST <- function(path_art, art, verbose = F) {
   guri_convert(path_art = path_art, art = art,
                output = "AST", verbose = verbose)
 
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating AST file (md -> native)."))
 
   invisible(T)
 }
@@ -154,7 +154,7 @@ guri_biblio <- function(path_art, art, bib_type = "csljson"){
                             from = "docx+citations",
                             output = file_out ,
                             to = bib_type)
-  cli_process_done()
+  cli_process_done(msg_done = col_grey("Creating biblio file (md -> ", bib_type, ")."))
 
   invisible(T)
 }
