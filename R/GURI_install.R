@@ -34,15 +34,17 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
       cli_process_done()
     }
 
-    latex_pkg <- c("amsmath", "amsfonts", "lm", "unicode-math", "iftex", "listings",
-                   "fancyvrb", "booktabs", "hyperref", "xcolor", "soul", "geometry",
-                   "setspace", "babel", "fontspec", "selnolig", "mathspec", "biblatex",
-                   "bibtex", "upquote", "microtype", "csquotes", "natbib",
-                   "bookmark", "xurl", "parskip", "svg", "geometry", "multirow",
-                   "etoolbox", "luacolor",  "lua-ul",
-                   "adjustbox", "fontawesome5", "caption",  "ccicons",
-                   "relsize", "koma-script", "truncate", "lastpage",
-                   "rorlink")
+    latex_pkg <- c("amsmath", "amsfonts", "lm", "unicode-math", "iftex",
+                   "fancyvrb", "booktabs", "hyperref", "xcolor", "geometry",
+                   "babel", "fontspec", "selnolig", "etoolbox", "bibtex",
+                   "natbib", "bookmark",
+                   # not in https://github.com/rstudio/tinytex/blob/main/tools/pkgs-custom.txt
+                   "upquote", "microtype", "csquotes", "xurl", "parskip",
+                    "luacolor",  "lua-ul", "svg",  "multirow",
+                   "adjustbox", "caption", "fontawesome5", "ccicons",  "rorlink",
+                   "koma-script", "truncate", "lastpage", "relsize","listings",
+                   "soul", "setspace", "mathspec", "biblatex",
+                   )
 
     cli_process_start("Checking necessary latex packages")
     latex_pkg_installed <- lapply(latex_pkg, tinytex::check_installed)  |>
