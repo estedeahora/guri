@@ -4,19 +4,14 @@
 \alias{guri_article}
 \title{Función para generar archivos finales de un artículo individual}
 \usage{
-guri_article(
-  art_path,
-  art_dir,
-  art_id,
-  path_issue,
-  verbose = T,
-  clean_files = T
-)
+guri_article(art_path, art_dir, art_id, verbose = T, clean_files = T)
 }
 \arguments{
-\item{art_id}{String...}
+\item{art_path}{String... description}
 
-\item{path_issue}{String... description}
+\item{art_dir}{String... description}
+
+\item{art_id}{String...}
 
 \item{verbose}{Logical...}
 

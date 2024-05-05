@@ -8,15 +8,16 @@
 #' @description
 #' describir
 #'
+#' @param art_path String... description
+#' @param art_dir String... description
 #' @param art_id String...
-#' @param path_issue String... description
 #' @param verbose Logical...
 #' @param clean_files Logical...
 #'
 #' @return Invisible. ...
 
-guri_article <- function(art_path, art_dir, art_id,
-                         path_issue, verbose = T, clean_files = T){
+guri_article <- function(art_path, art_dir, art_id, # path_issue,
+                         verbose = T, clean_files = T){
 
   title <- art_dir |> stringr::str_replace_all("_", ": ") |> stringr::str_replace_all("-", " ")
   cli_h1(col_green(paste0("Article ", title)))

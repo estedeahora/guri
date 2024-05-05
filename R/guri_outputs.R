@@ -97,7 +97,7 @@ guri_outputs <- function(art_id,
                              function(path, dir, id,
                                       v = verbose, cf = clean_files){
                                tryCatch(
-                                 exp = guri_article(art_path = path,
+                                 expr = guri_article(art_path = path,
                                                     art_dir = dir,
                                                     art_id = id,
                                                     verbose = v,

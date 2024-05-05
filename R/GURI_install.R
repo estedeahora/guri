@@ -43,8 +43,7 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
                     "luacolor",  "lua-ul", "svg",  "multirow",
                    "adjustbox", "caption", "fontawesome5", "ccicons",  "rorlink",
                    "koma-script", "truncate", "lastpage", "relsize","listings",
-                   "soul", "setspace", "mathspec", "biblatex",
-                   )
+                   "soul", "setspace", "mathspec", "biblatex")
 
     cli_process_start("Checking necessary latex packages")
     latex_pkg_installed <- lapply(latex_pkg, tinytex::check_installed)  |>
