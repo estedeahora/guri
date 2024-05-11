@@ -203,19 +203,24 @@ ${ it:affiliations.jats() }
 $endfor$
 </contrib-group>
 $endif$
-$if(article.author-notes)$
+$--         #### COI-statement ############### 
+$if(statements.coi)$
+$-- <!-- $if(article.author-notes)$ -->
 <author-notes>
-$if(article.author-notes.corresp)$
-$for(article.author-notes.corresp)$
-<corresp id="cor-$article.author-notes.corresp.id$">* E-mail: <email>$article.author-notes.corresp.email$</email></corresp>
-$endfor$
-$endif$
-$if(article.author-notes.conflict)$
-<fn fn-type="conflict"><p>$article.author-notes.conflict$</p></fn>
-$endif$
-$if(article.author-notes.con)$
-<fn fn-type="con"><p>$article.author-notes.con$</p></fn>
-$endif$
+$-- <!-- $if(article.author-notes.corresp)$ -->
+$-- <!-- $for(article.author-notes.corresp)$ -->
+$-- <!-- <corresp id="cor-$article.author-notes.corresp.id$">* E-mail: <email>$article.author-notes.corresp.email$</email></corresp> -->
+$-- <!-- $endfor$ -->
+$-- <!-- $endif$ -->
+$-- <!-- $if(article.author-notes.conflict)$ -->
+$-- <!-- <fn fn-type="conflict"><p>$article.author-notes.conflict$</p></fn> -->
+$-- <!-- $endif$ -->
+$-- <!-- $if(article.author-notes.con)$ -->
+$-- <!-- <fn fn-type="con"><p>$article.author-notes.con$</p></fn> -->
+$-- <!-- $endif$ -->
+<fn fn-type="coi-statement">
+$statements.coi$
+</fn>
 </author-notes>
 $endif$
 $--         #### PUBDATE ###############
@@ -251,6 +256,10 @@ $if(article.lpage)$
 <lpage>$article.lpage$</lpage>
 $endif$
 $endif$
+$endif$
+$--         #### BOOK REVIEWS #########################
+$if(book_info)$
+<product product-type="$book_info.type$">$book_info.text$</product>
 $endif$
 $--         #### HISTORY ##############################
 $if(history)$
@@ -334,11 +343,11 @@ $endfor$
 $endif$
 $endfor$
 $endif$
-$--         #### FINANCIAMIENTO ###################
-$if(funding)$
+$--         #### FUNDING STATEMENT ###################
+$if(statements.funding)$
 <funding-group>
-$if(funding.statement)$
-<funding-statement>$funding.statement$</funding-statement>
+$if(statements.funding.text)$
+<funding-statement>$statements.funding.text$</funding-statement>
 $endif$
 </funding-group>
 $endif$
@@ -372,8 +381,20 @@ $body$
 $if(back)$
 $back$
 $endif$
-$if(ack)$
-<ack>$ack$</ack>
+$if(statements.data.text)$
+<sec sec-type="data-availability">
+<title>$statements.data-title$</title>
+<p>$statements.data.text$</p>
+$if(statements.data.url)$
+<p>URL: <ext-link ext-link-type="uri" xlink:href="$statements.data.url$">$statements.data.url$</ext-link></p>
+$endif$
+$if(statements.data.doi)$
+<p>DOI: <ext-link ext-link-type="uri" xlink:href="https://doi.org/$statements.data.doi$">https://doi.org/$statements.data.doi$</ext-link></p>
+$endif$
+</sec>
+$endif$
+$if(statements.ack)$
+<ack>$statements.ack$</ack>
 $endif$
 $if(app)$
 <app-group>

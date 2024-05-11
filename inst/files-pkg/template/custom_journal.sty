@@ -118,7 +118,7 @@ $endif$
   $if(history)$\\ \vspace{1em} $for(history)$\textit{$it.type-title$:} \datejl{$it.year$}{$it.month$}{$it.day$}$sep$; $endfor$.\\$endif$%
 }
 
-$if(book_info)$\dedication{$book_info$}$endif$
+$if(book_info.text)$\dedication{$book_info.text$}$endif$
 
 %%% New enviroment: Credit (\Credit), Agradecimientos (\Ack), Sección de apéndices (\apps) y apéndices (\app) 
 \newenvironment{Div}[1][]
@@ -126,6 +126,9 @@ $if(book_info)$\dedication{$book_info$}$endif$
     \sffamily\small}
 
 \newenvironment{Credit}{\begin{Div}[$credit-title$]}{\end{Div}}%
-\newenvironment{Ack}{\begin{Div}[$ack-title$]}{\end{Div}}%
+\newenvironment{Ack}{\begin{Div}[$statements.ack-title$]}{\end{Div}}%
+\newenvironment{COI}{\begin{Div}[$statements.coi-title$]}{\end{Div}}%
+\newenvironment{Data}{\begin{Div}[$statements.data-title$]}{\end{Div}}%
+\newenvironment{Funding}{\begin{Div}[$statements.funding-title$]}{\end{Div}}%
 \newenvironment{apps}{\newpage}{}
 \newenvironment{app}{}{}

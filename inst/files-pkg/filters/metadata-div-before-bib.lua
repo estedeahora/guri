@@ -21,6 +21,9 @@ local n_refs = 0
 local references_title
 
 local cont_credit = ''
+local cont_funding = ''
+local cont_data = ''
+local cont_coi = ''
 local cont_ack = ''
 local cont_app = ''
 
@@ -92,17 +95,40 @@ end
 local function get_metadata(meta)
   
     -- Credit info
-    if(meta.credit) then        
+    if meta.credit then        
         cont_credit = credit_Div(meta.author, stringify(meta.lang))
     end
 
-    --- Acknowledgements info
-    if(meta.ack) then
-        cont_ack = Div(meta.ack, {id = "Ack", class = "Paratext"})
+    if meta.statements then
+       --- funding info
+        if meta.statements.funding and meta.statements.funding.text then
+            cont_funding = Div(Para(meta.statements.funding.text), {id = "Funding", class = "Paratext", title = meta.statements["funding-title"]})
+        end
+
+        -- data availability info
+        if meta.statements.data and meta.statements.data.text then
+            cont_data = Div(Para(meta.statements.data.text), {id = "Data", class = "Paratext", title = meta.statements["data-title"]})
+
+            cont_data.attributes["url"] = meta.statements.data.url and stringify(meta.statements.data.url)
+            cont_data.attributes["doi"] = meta.statements.data.doi and stringify(meta.statements.data.doi)
+
+        end
+
+        -- COI info
+        if meta.statements.coi then
+            cont_coi = Div(meta.statements.coi, {id = "COI", class = "Paratext", title = meta.statements["coi-title"]})
+        end
+
+        --- Acknowledgements info
+        if meta.statements.ack then
+            cont_ack = Div(meta.statements.ack, {id = "Ack", class = "Paratext", title = meta.statements["ack-title"]})
+        end
+        -- meta.statements = pandoc.utils.from_simple_table(meta.statements)
     end
+    
 
     -- Appendices info
-    if(meta.appendix) then
+    if meta.appendix then
 
         local app_file
 
@@ -195,7 +221,7 @@ function add_metadata(doc)
 
         warn('NOTE: Article without references.\n')
 
-        doc.blocks:extend({cont_credit, cont_ack, cont_app})
+        doc.blocks:extend({cont_credit, cont_data, cont_funding, cont_coi, cont_ack, cont_app})
     
     else
 
@@ -205,7 +231,7 @@ function add_metadata(doc)
             error('ERROR: References title is empty.')
         end
 
-        blocks:extend({cont_credit, cont_ack,
+        blocks:extend({cont_credit, cont_data, cont_funding, cont_coi, cont_ack,
                         Header(1, references_title),
                         RawBlock('markdown', '::: {#refs}\n:::'),
                         cont_app})

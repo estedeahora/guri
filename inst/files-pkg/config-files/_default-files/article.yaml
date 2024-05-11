@@ -4,8 +4,8 @@
 # ----------------------------
 # Otras varialbes disponibles: 
 #   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier), art-access-id (id personalizado)
-#   'funding-statement' (describe la financiación, en jats <funding-statement>)
 #   'categories' (Lista. Enumera asunto o temas del artículo. En jats: solo $if(article.heading)$: <subj-group>$for$<subject subj-group-type="categories">$$</subject></subj-group>)
+# [!] en el template de Pandoc se utiliza author-notes y funding-statement, pero en el template de guri debe usarse statements (ver abajo).
 article:
   heading:                  # Nombre de sección (interno de la revista).
   type:                     # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
@@ -18,6 +18,10 @@ article:
   # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
   # resource_url:
   # resources:
+  #   - type:               # Tipo de recurso (pdf, xml, html, etc)
+  #     url:                # URL del recurso
+  #     file_name:          # Nombre del archivo (si se desea cambiar el nombre del archivo en el resource_file)
+  
 
 # Metadatos del artículo (language principal)
 # -------------------------------------------
@@ -112,15 +116,30 @@ history:
   #   month: 
   #   year: 
 
+# Declaraciones / Staments
+# ------------------------
+# TODO: Es posible incorporar AI statement.
+# TODO: Es posible pensar en un texto de stament libre que pueda ser usado para declaraciones customizadas.
+# statements:
+#   ack: |
+#     Párrafo de gradecimiento.
+#   funding:              # Es posible desarrollar el elemento. Por ahora sólo se acepta la declaración sin diferenciar las fuentes.
+#     text:               # Declaración de fuente de financiación de la investigación en la que se basa el trabajo.
+#   data: 
+#     text:               # Declaración sobre la disponibilidad de datos.
+#     url:                # URL a los datos
+#     doi:                # DOI de los datos
+#   coi: |
+#     Declaración de conflicto de intereses (coi).
+
 # Otros elementos
 # ---------------
-# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
-# book_info: |
-#   Texto libre preliminar
-
-# ack: Agradecimiento.
-# funding:
-#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+# TODO Desarrollar 'details' para lista que cotnenga otros elementos que puedan incorporse a etiqueta <product> de jats
+# En texto se puede colocar texto libre. En TEX-PDF va a ser colocado dentro de "maketitle" (dedication). 
+# Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite otros comandos latex.
+# book_info:
+#   text: Texto libre preliminar
+#   type:                         # se coloca en atributo @product-type dentro de <product>
 
 # Variables de customización del artículo
 # ---------------------------------------
@@ -131,5 +150,8 @@ history:
   # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
   # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
   # reference_title:                      # Se puede modificar el título predefinido para las referencias
-  # ack_title:                            # Se puede modificar el título predefinido para las referencias
-  # credit_title:                         # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para los agradecimientos
+  # credit_title:                         # Se puede modificar el título predefinido para CREDIT
+  # funding_title:                        # Se puede modificar el título predefinido para la declaración de financiación
+  # data_title:                           # Se puede modificar el título predefinido para la declaración de disponibilidad de datos
+  # coi_title:                            # Se puede modificar el título predefinido para la declaración de conflicto de intereses (Conflict of interest COI)

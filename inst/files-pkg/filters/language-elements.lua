@@ -25,14 +25,14 @@ local dic = {
   }
 
 local dic_paratext = {
-    en = {ack = 'Acknowledgements', credit = 'CRediT (Contributor Roles Taxonomy)'},
-    es = {ack = 'Agradecimientos',  credit = 'CRediT (Contributor Roles Taxonomy)'},
-    pt = {ack = 'Reconhecimentos',  credit = 'CRediT (Contributor Roles Taxonomy)'},
-    fr = {ack = 'Remerciements',    credit = 'CRediT (Contributor Roles Taxonomy)'},
-    it = {ack = 'Ringraziamenti',   credit = 'CRediT (Contributor Roles Taxonomy)'},
-    de = {ack = 'Danksagungen',     credit = 'CRediT (Contributor Roles Taxonomy)'},
-    zh = {ack = '致谢',             credit = 'CRediT (Contributor Roles Taxonomy)'},
-    la = {ack = 'Agnitiones',       credit = 'CRediT (Contributor Roles Taxonomy)'}
+    en = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Acknowledgements', funding = 'Funding statement',              data = 'Data availability statement', coi = "Conflicts of Interest Statement"},
+    es = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Agradecimientos',  funding = 'Declaración de financiamiento',  data = 'Disponibilidad de datos',     coi = "Declaración de conflictos de intereses"},
+    pt = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Reconhecimentos',  funding = 'Declaração de financiamento',    data = 'Disponibilidade de dados',    coi = "Declaração de conflitos de interesses"},
+    fr = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Remerciements',    funding = 'Déclaration de financement',     data = 'Disponibilité des données',   coi = "Déclaration de conflits d'intérêts"},
+    it = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Ringraziamenti',   funding = 'Dichiarazione di finanziamento', data = 'Disponibilità dei dati',      coi = "Dichiarazione di conflitti di interesse"},
+    de = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Danksagungen',     funding = 'Finanzierungserklärung',         data = 'Datenverfügbarkeit',          coi = "Erklärung von Interessenkonflikten"},
+    zh = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = '致谢',             funding = '供资说明',                        data = '数据可用性',                   coi = "利益冲突声明"},
+    la = {credit = 'CRediT (Contributor Roles Taxonomy)', ack = 'Agnitiones',       funding = 'Funding statement',              data = 'Data availability statement', coi = "Disclosure statement"}
   }
 
 local custom_titles = {
@@ -43,8 +43,11 @@ local custom_titles = {
     {m = 'source-title',     k = 'none',             v = 'source',  float = true},
     {m = 'note-title',       k = 'none',             v = 'note',    float = true},
     {m = 'references-title', k = 'references_title', v = 'ref'},
-    {m = 'ack-title',        k = 'ack_title',        v = 'ack'},
-    {m = 'credit-title',     k = 'credit_title',     v = 'credit'}
+    {m = 'credit-title',     k = 'credit_title',     v = 'credit'},
+    {m = 'ack-title',        k = 'ack_title',        v = 'ack',     statement = true},
+    {m = 'funding-title',    k = 'funding_title',    v = 'funding', statement = true},
+    {m = 'data-title',       k = 'data_title',       v = 'data',    statement = true},
+    {m = 'coi-title',        k = 'coi_title',        v = 'coi',     statement = true}  
   }
 
 local dic_date = {
@@ -67,7 +70,6 @@ local dic_date = {
 --         [es] Una tabla con los metadatos agregando el título de abstract y kw.
 
 function add_metatitle(meta_i)
-
     -- local lang_i = lower(stringify(meta_i.lang):match('^..') )
     local lang_i = tocode(meta_i.lang)
     local dic_i = dic[lang_i]
@@ -110,17 +112,20 @@ function Meta(meta)
         meta.lang = meta.customized['artic-lang']
     end
     
-    -- Definir palabras para títulos de elementos main language (translate) y journal lang (translate_journal).
+    -- Titles of elements in the main language of the article (translate)    
     lang = tocode(meta.lang)
-    translate = dic[lang]
-    
+    translate = dic[lang] or {}
+
+    -- Titles of elements in the main language of the journal (translate_journal)
     lang_journal = tocode(meta.journal.lang)
-    translate_journal = dic_paratext[lang_journal]
+    translate_journal = dic_paratext[lang_journal] or {}
 
-    translate.ack = translate_journal.ack
-    translate.credit = translate_journal.credit
-
-    if not translate then translate = {} end
+    -- Add all elements from translate_journal to translate
+    for k, el in pairs(translate_journal) do
+        if el then
+           translate[k] = el
+        end
+    end
 
     meta.floats = {}
 
@@ -131,16 +136,20 @@ function Meta(meta)
             translate[t.v] = meta.customized[t.k]
         end
 
-        -- translate['v'] -> to -> meta['m']
+        -- translate['v'] -> to -> meta['m'] / meta.floats['m'] / meta.staments['m']
         if translate[t.v] then
-
             if t.float then
                 meta.floats[t.m] = translate[t.v]
+            elseif t.statement then
+                if  meta.statements and meta.statements[t.v] then
+                    -- meta.statements[t.m] = meta.statements[t.v]
+                    meta.statements[t.m] = translate[t.v]
+                end
             else
                 meta[t.m] = translate[t.v]
             end
         else
-            error('ERROR: The "' ..  t.k .. '" element must be provided ' .. 'for the "' .. lang .. '" language.\n')
+            error('ERROR: The customized "' ..  t.k .. '" element must be provided ' .. 'for the "' .. lang .. '" language.\n')
         end
     end
     
