@@ -52,17 +52,18 @@ function Meta(meta)
 
     local paises = get_country(meta.config_path, stringify(meta.lang))
 
-    for _, aff in ipairs(meta.affiliation) do
+    if meta.affiliation then
+        for _, aff in ipairs(meta.affiliation) do
 
-        local country = upper(stringify(aff["country-code"]))
-        aff.country =  paises[country]
-        
-        if aff.country == nill then
-            error("ERROR: Invalid country code (".. country .. "). You must enter code according to ISO 3166-1 alpha-2. " ..
-                            "See https://www.nationsonline.org/oneworld/country_code_list.htm")
+            local country = upper(stringify(aff["country-code"]))
+            aff.country =  paises[country]
+            
+            if aff.country == nill then
+                error("ERROR: Invalid country code (".. country .. "). You must enter code according to ISO 3166-1 alpha-2. " ..
+                                "See https://www.nationsonline.org/oneworld/country_code_list.htm")
+            end
         end
     end
-
     return meta
 
 end
