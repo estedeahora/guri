@@ -36,8 +36,8 @@ doi_register:
   registrant:                 # Registrant's name (institution)
   resource_url_constructor:   # URL'constructor (only used if article.resource_url is not provided). See pattern constructors.
   resource_files:
-    - type:                   # file type: pdf/html/xml-jats/epub
-      resource_constructor:   
+    - type:                   # file type. valid types: pdf/html/xml/epub
+      file_url_constructor:   
       tm:  true
 
 
@@ -46,7 +46,7 @@ doi_register:
 #    %i issue number (issue); 
 #    %Y Year (date.year); 
 #    %a OJS article ID (article.ojs_id); 
-#    %f OJS file ID (articule.ojs.files_id['type'])
+# !  %f OJS file ID (articule.ojs.files_id['type'])
 #    %p article pages (article.fpage-article.lpage).
 #
 # In addition, guri uses other markers that can be used more freely to customise your doi and resources: 
@@ -54,3 +54,7 @@ doi_register:
 #    %x article.publisher-id;
 #    %D doi prefix (journal.prefix);
 #    %d doi suffix (article.suffix).
+#    %t doi_register.resource_files[i].type
+#    %R resource url
+
+# !: sin implementar aun

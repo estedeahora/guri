@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <doi_batch xmlns="http://www.crossref.org/schema/5.3.0" version="5.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:fr="http://www.crossref.org/fundref.xsd" xsi:schemaLocation="http://www.crossref.org/schema/5.3.0 https://www.crossref.org/schemas/crossref5.3.0.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML">
 <head>
-<doi_batch_id>$journal.abbrev-title2$_$doi_register.unix_epoch$</doi_batch_id>
+<doi_batch_id>$journal.abbrev-title-doibatch$_$doi_register.unix_epoch$</doi_batch_id>
 <timestamp>$doi_register.unix_epoch$</timestamp>
 <depositor>
 <depositor_name>$doi_register.doi_depositor.name$</depositor_name>
@@ -131,30 +131,45 @@ $if(article.elocation-id)$
 </publisher_item>
 $endif$
 $-- <!-- Para contenido vinculado <crossmark></crossmark> -->
-$-- <!-- Para contenido vinculado <program></program> -->
+$-- <!-- Para financiamiento <fr:program></fr:program> -->
+<!-- TODO Para licencias ver: https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/license-information/
+<ai:program name="AccessIndicators">
+ <ai:free_to_read start_date="2011-02-11"/>
+ <ai:license_ref applies_to="vor" start_date="2011-02-11">https://www.crossref.org/license</ai:license_ref>
+</ai:program>
+-->
 $-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
 $-- <!-- <scn_policies> -->
 <doi_data>
 <doi>$article.doi$</doi>
 <timestamp>$doi_register.unix_epoch$</timestamp>
-<resource content_version="vor">$doi_register.resource$</resource>
-<!-- TODO Asociar archivos asociados (ej: pdf, xml, html) -->
-<!-- <collection property="crawler-based">
+<resource content_version="vor">$doi_register.resource_url$</resource>
 $for(doi_register.resource_files)$
+<collection property="crawler-based">
+<!-- TODO crawler debe ser iParadigms? quizás se puede dejar libre para que pueda ser usado en google? -->
 <item crawler="iParadigms">
-<resource>$it.url$</resource>
+<resource>$it.file_url$</resource>
 </item>
-$endfor$
-</collection> -->
-<!-- <collection property="text-mining">
+</collection>
+<!-- TODO Asociar archivos (ej: pdf, xml, html). 
+Revisar lista de mime_type: https://www.iana.org/assignments/media-types/media-types.xhtml 
+y https://data.crossref.org/reports/help/schema_doc/5.3.1/index.html-->
+<!--
+$if(it.textmining)$
+<collection property="text-mining">
 <item>
-<resource mime_type="application/pdf">https://publicaciones.sociales.uba.ar/index.php/quid16/article/viewFile/7620/pdf</resource>
+<resource mime_type="application/$it.type$">$it.file_url$</resource>
 </item>
-</collection> -->
+</collection>
+$endif$ -->
+$endfor$
 </doi_data>
-<!-- TODO -->
-<!-- <citation_list>
-</citation_list> -->
+<!-- TODO Emprolijar -->
+<citation_list>
+$for(refs2)$
+$it$
+$endfor$
+</citation_list>
 </journal_article>
 </journal>
 </body>
