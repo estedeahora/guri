@@ -6,15 +6,13 @@
 #' @param verbose Logical. Specifies whether to display verbose output.
 #' @param output A string. The desired output format (see ).
 #'
-#' @description 
+#' @description
 #' This function converts a document using `~!guri_`. It takes the path to the
 #' article, the article id, the desired output format, and an optional verbose
-#' flag. It performs the conversion by calling the [rmarkdown::pandoc_convert] 
+#' flag. It performs the conversion by calling the [rmarkdown::pandoc_convert]
 #' function.
-#' 
+#'
 #' @return Invisible TRUE
-#' 
-#' @export
 
 guri_convert <- function(path_art, art,
                          output,
