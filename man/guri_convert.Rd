@@ -11,13 +11,16 @@ guri_convert(path_art, art, output, verbose = F)
 
 \item{art}{A string with the article id.}
 
-\item{output}{String}
+\item{output}{A string. The desired output format (see ).}
 
-\item{verbose}{Logical}
+\item{verbose}{Logical. Specifies whether to display verbose output.}
 }
 \value{
-Invisible
+Invisible TRUE
 }
 \description{
-Converts the corrected manuscript between the formats required by \code{~!guri_}.
+This function converts a document using \code{~!guri_}. It takes the path to the
+article, the article id, the desired output format, and an optional verbose
+flag. It performs the conversion by calling the \link[rmarkdown:pandoc_convert]{rmarkdown::pandoc_convert}
+function.
 }

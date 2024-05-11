@@ -1,11 +1,20 @@
 #' Converts the corrected manuscript between the formats required by `~!guri_`.
 #'
+#'
 #' @param path_art A string with the path to the article directory
 #' @param art A string with the article id.
-#' @param verbose Logical
-#' @param output String
+#' @param verbose Logical. Specifies whether to display verbose output.
+#' @param output A string. The desired output format (see ).
 #'
-#' @return Invisible
+#' @description 
+#' This function converts a document using `~!guri_`. It takes the path to the
+#' article, the article id, the desired output format, and an optional verbose
+#' flag. It performs the conversion by calling the [rmarkdown::pandoc_convert] 
+#' function.
+#' 
+#' @return Invisible TRUE
+#' 
+#' @export
 
 guri_convert <- function(path_art, art,
                          output,
@@ -174,6 +183,7 @@ guri_convert <- function(path_art, art,
                                         opt_filters, opt_biblio, opt_templ)
   )
 
+  invisible(TRUE)
 }
 
 

@@ -56,6 +56,7 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
       cli_process_done()
     }
   }
+
   invisible(list(c(tinytex = tinytex::is_tinytex(),
                    pandoc = pandoc::pandoc_available()),
                  tinytex_version = tinytex::tlmgr_version(),

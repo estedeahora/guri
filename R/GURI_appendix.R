@@ -1,9 +1,10 @@
-#' DESCRIBE
+#' Make markdown appendix from docx documents
 #'
-#' @param wdir description
-#' @param art description
 #'
-#' @return Returns the name of the files containing the appendices in markdown format.
+#' @param wdir The working directory where the appendix files are located.
+#' @param art The article name used to identify the appendix files. The appendix files should be named as "art_app1.docx", "art_app2.docx", etc.
+#'
+#' @return A character vector containing the names of the converted Markdown files.
 
 guri_appendix <- function(wdir, art){
   appendix_files <-  list.files(wdir, pattern = paste0(art, "_app[0-9]*\\.docx"))

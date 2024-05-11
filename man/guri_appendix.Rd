@@ -2,18 +2,18 @@
 % Please edit documentation in R/guri_appendix.R
 \name{guri_appendix}
 \alias{guri_appendix}
-\title{DESCRIBE}
+\title{Make markdown appendix from docx documents}
 \usage{
 guri_appendix(wdir, art)
 }
 \arguments{
-\item{wdir}{description}
+\item{wdir}{The working directory where the appendix files are located.}
 
-\item{art}{description}
+\item{art}{The article name used to identify the appendix files. The appendix files should be named as "art_app1.docx", "art_app2.docx", etc.}
 }
 \value{
-Returns the name of the files containing the appendices in markdown format.
+A character vector containing the names of the converted Markdown files.
 }
 \description{
-DESCRIBE
+Make markdown appendix from docx documents
 }

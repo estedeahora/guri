@@ -26,7 +26,7 @@ guri_biblio(path_art, art, bib_type = "csljson")
 
 \item{art}{A string with the article id.}
 
-\item{verbose}{Logical}
+\item{verbose}{Logical. Specifies whether to display verbose output.}
 
 \item{pdf}{Logical. Should the pdf be generated? (default = TRUE)}
 
