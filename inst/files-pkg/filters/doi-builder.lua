@@ -28,12 +28,11 @@ function Meta(meta)
         -- Revista sin DOI
     elseif meta.article.doi and stringify(meta.article.doi) == 'none' then
         io.write('NOTE: The article has no DOI.\n')
+        meta.article.doi = nil
     elseif meta.article.doi then
-
         meta.article.doi = stringify(meta.journal.doi_prefix).. "/" .. stringify(meta.article.doi)
         warn('NOTE: Custom DOI is used (' .. meta.article.doi .. '). ' ..
                  'No patterns are used for its construction.\n')
-
     else
         -- pattern doi constructor
         local doi_suffix
@@ -54,6 +53,9 @@ function Meta(meta)
             end
         end
 
+        if meta.doi_register then
+            meta.doi_register.doi_suffix = doi_suffix
+        end
         meta.article.doi = stringify(meta.journal.doi_prefix) .. '/' .. doi_suffix
     end
     
