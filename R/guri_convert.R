@@ -167,7 +167,7 @@ guri_convert <- function(path_art, art,
     }
 
   }else{
-    # xml/AST/biblio pasa por acá
+    # xml/AST pasa por acá
   }
 
   rmarkdown::pandoc_convert(wd = wdir,
