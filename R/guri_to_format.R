@@ -128,12 +128,12 @@ guri_to_crossref <- function(path_art, art, verbose = F) {
     return(invisible(F))
   }
 
-  cli_process_start(col_yellow("Creating AST file (md -> xml-crossref)."))
+  cli_process_start(col_yellow("Creating crossref xml file (md -> xml-crossref)."))
 
   guri_convert(path_art = path_art, art = art,
                output = "crossref", verbose = verbose)
 
-  cli_process_done(msg_done = col_grey("Creating AST file (md -> xml-crossref)."))
+  cli_process_done(msg_done = col_grey("Creating crossref xml file (md -> xml-crossref)."))
 
   invisible(T)
 }
