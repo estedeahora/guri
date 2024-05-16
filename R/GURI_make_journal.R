@@ -195,11 +195,11 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
   if(example){
 
     # COPY: 'example' files
-    cli_process_start("Copy example journal issue ('./example/num1/')")
-    file.copy(from = file.path(use_folder, "num1"),
+    cli_process_start("Copy example journal issue ('./example/vol10num1/')")
+    file.copy(from = file.path(use_folder, "vol10num1"),
               to = journal_folder, recursive = T,
               overwrite = T)
-    cli_process_done(msg_done = col_grey("Copy example journal issue ('./example/num1/')"))
+    cli_process_done(msg_done = col_grey("Copy example journal issue ('./example/vol10num1/')"))
 
     ui_alert_info("To generate the output files for this 'example' journal run:\n",
                   col_red("guri_outputs(art_id = 'all', issue = 'vol10num1', ",

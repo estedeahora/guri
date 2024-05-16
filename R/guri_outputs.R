@@ -1,11 +1,3 @@
-# art_id <- "art101"
-# journal <-  "example"
-# issue <- "num1"
-# verbose = T; clean_files = T
-
-# Opciones: guri_publishing / guri_outputs / guri_to_formats /
-# guri_format_generator / guri_publish_formatter / guri_output_generator
-
 #' Función para generar archivos finales
 #'
 #' @description
