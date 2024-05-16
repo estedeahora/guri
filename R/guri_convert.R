@@ -25,8 +25,8 @@ guri_convert <- function(path_art, art,
   opt_type <- pandoc_options$type[[output]]
   names(opt_type) <- pandoc_options$type[["type"]]
 
-  file_input  <- paste(art, opt_type["file_ext_input"], sep = ".")
-  file_output <- paste(art, opt_type["file_ext_output"], sep = ".")
+  file_input  <- stringr::str_replace(opt_type["file_ext_input"], "%a", art)
+  file_output <- stringr::str_replace(opt_type["file_ext_output"], "%a", art)
 
   # Geth paths: Program files ('GURI/inst/') and customised journal configuration files ('./JOURNAL/_config').
   program_path <- pkg_file()
