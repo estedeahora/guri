@@ -47,10 +47,14 @@ function Meta(meta)
     meta.journal["abbrev-title-doibatch"] = abrev_tit
 
     -- (c) Modify 'abstract' and 'metadata_lang[i].abstract' to MetaString type
-    meta.abstract = MetaString(stringify(meta.abstract))
+    if meta.abstract then
+        meta.abstract = MetaString(stringify(meta.abstract))
+    end
 
-    for i = 1, #meta.metadata_lang do
-        meta.metadata_lang[i].abstract = MetaString(stringify(meta.metadata_lang[i].abstract))
+    if meta.metadata_lang then
+        for i = 1, #meta.metadata_lang do
+            meta.metadata_lang[i].abstract = MetaString(stringify(meta.metadata_lang[i].abstract))
+        end
     end
 
     -- (d) Standarize language code
