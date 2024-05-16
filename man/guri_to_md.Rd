@@ -5,6 +5,7 @@
 \alias{guri_to_html}
 \alias{guri_to_jats}
 \alias{guri_to_pdf}
+\alias{guri_to_crossref}
 \alias{guri_to_AST}
 \alias{guri_biblio}
 \title{Converts the corrected manuscript between formats.}
@@ -16,6 +17,8 @@ guri_to_html(path_art, art, verbose = F)
 guri_to_jats(path_art, art, verbose = F)
 
 guri_to_pdf(path_art, art, verbose = F, pdf = TRUE)
+
+guri_to_crossref(path_art, art, verbose = F)
 
 guri_to_AST(path_art, art, verbose = F)
 

@@ -8,6 +8,7 @@ guri_outputs(
   art_id,
   issue,
   journal = NULL,
+  doi_batch = FALSE,
   verbose = FALSE,
   clean_files = TRUE
 )
@@ -18,6 +19,8 @@ guri_outputs(
 \item{issue}{String...}
 
 \item{journal}{String... description}
+
+\item{doi_batch}{Logical...}
 
 \item{verbose}{Logical...}
 
