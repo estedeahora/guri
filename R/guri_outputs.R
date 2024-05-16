@@ -14,6 +14,7 @@
 #' @param art_id String...
 #' @param issue String...
 #' @param journal String... description
+#' @param doi_batch Logical...
 #' @param verbose Logical...
 #' @param clean_files Logical...
 #'
@@ -25,6 +26,7 @@
 guri_outputs <- function(art_id,
                          issue,
                          journal = NULL,
+                         doi_batch = FALSE,
                          verbose = FALSE,
                          clean_files = TRUE){
 
@@ -111,6 +113,11 @@ guri_outputs <- function(art_id,
                            )
 
   names(success) <- article_list$dir
+
+  if(doi_batch){
+    # TODO
+    # Llamar a funcion guri_doi_batch para generar batch de journal.
+  }
 
   cli_h1("Summary of processed articles:")
 
