@@ -19,8 +19,9 @@ guri_clean_files <- function(art_path, art_id, verbose){
 
   archivos <- fs::dir_ls(art_path, recurse = F, type = "file")
 
-  sel_temp <- c("\\.tex", "\\.native", "\\.md", "_app[0-9]\\.md",
-                "_credit\\.csv", "_biblio\\.((json)|(bib))")
+  sel_temp <- c("\\.md", "_app[0-9]\\.md", "_credit\\.csv",
+                "\\.tex", "_crossref\\.xml", "\\_AST.native",
+                "_biblio\\.((json)|(bib))")
   pattern_temp <- make_pattern(sel_temp, art_id )
   move_files(pattern_temp, path_dest = path_temp, file_list = archivos)
   # ui_alert_success("Move temporary files to './_temp/'")
