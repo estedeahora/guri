@@ -18,11 +18,10 @@ article:
   # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
   # resource_url:
   # resources:
-  #   - type:               # Tipo de recurso (pdf, xml, html, etc)
-  #     url:                # URL del recurso
-  #     file_name:          # Nombre del archivo (si se desea cambiar el nombre del archivo en el resource_file)
+  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub)
+  #     url:                # URL del recurso. Se utiliza por defecto este para generar url del recurso (<resource> dentro de <collection>), omitiendo 'resource_url_constructor' de _journal.yaml.
+  #     file_name:          # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
   
-
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:
@@ -134,11 +133,13 @@ history:
 
 # Otros elementos
 # ---------------
+# TODO Agregar free_text que vaya en '@dedication' de TeX, pero no en <product> de JATS.
 # TODO Desarrollar 'details' para lista que cotnenga otros elementos que puedan incorporse a etiqueta <product> de jats
-# En texto se puede colocar texto libre. En TEX-PDF va a ser colocado dentro de "maketitle" (dedication). 
+# En texto se puede colocar texto libre. En TEX-PDF va a ser colocado dentro de "maketitle" (@dedication). 
+# En XML-JATS va a ser colocado dentro de <product> (front)
 # Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite otros comandos latex.
 # book_info:
-#   text: Texto libre preliminar
+#   text: Texto libre describiendo el producto reseñado
 #   type:                         # se coloca en atributo @product-type dentro de <product>
 
 # Variables de customización del artículo

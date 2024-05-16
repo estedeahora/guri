@@ -60,12 +60,12 @@ guri_to_html <- function(path_art, art, verbose = F){
 
 guri_to_jats <- function(path_art, art, verbose = F){
 
-  cli_process_start(col_yellow("Creating xml-jats file (md -> xml)."))
+  cli_process_start(col_yellow("Creating xml-jats file (md -> xml-jats)."))
 
   guri_convert(path_art = path_art, art = art,
                output = "jats", verbose = verbose)
 
-  cli_process_done(msg_done = col_grey("Creating xml-jats file (md -> xml)."))
+  cli_process_done(msg_done = col_grey("Creating xml-jats file (md -> xml-jats)."))
 
   invisible(T)
 }
@@ -110,11 +110,37 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
   invisible(T)
 }
 
-# Genera archivo con bibliografia (en biblatex o csljson)
+# Genera archivo con xml para crossref
 
 #' @rdname guri_to_md
-#'
-#' @export
+
+guri_to_crossref <- function(path_art, art, verbose = F) {
+
+  is_doi <- fs::path(path_art, art, ext = "md") |>
+    rmarkdown::yaml_front_matter() |>
+    purrr::pluck("article") |>
+    purrr::pluck("doi")
+
+  if(is.null(is_doi)){
+    if(verbose){
+      ui_alert_info("There is no DOI present. Does not generate DOI register files for Crossref.")
+    }
+    return(invisible(F))
+  }
+
+  cli_process_start(col_yellow("Creating AST file (md -> xml-crossref)."))
+
+  guri_convert(path_art = path_art, art = art,
+               output = "crossref", verbose = verbose)
+
+  cli_process_done(msg_done = col_grey("Creating AST file (md -> xml-crossref)."))
+
+  invisible(T)
+}
+
+# Genera archivo con AST
+
+#' @rdname guri_to_md
 
 guri_to_AST <- function(path_art, art, verbose = F) {
 
@@ -128,11 +154,11 @@ guri_to_AST <- function(path_art, art, verbose = F) {
   invisible(T)
 }
 
+# Genera archivo con bibliografia (en biblatex o csljson)
+
 #' @rdname guri_to_md
 #'
 #' @param bib_type description
-#'
-#' @export
 
 guri_biblio <- function(path_art, art, bib_type = "csljson"){
 

@@ -24,9 +24,6 @@ $endif$
 $if(journal.eissn)$
 <issn media_type="electronic">$journal.eissn$</issn>
 $endif$
-$-- <!-- <coden>"string"</coden> -->
-$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
-$-- <!-- DOI de la revista <doi_data><doi>10.XXXX/XXXXXX</doi><resource content_version="vor/am" mime_type="string"></resource></doi_data>-->
 </journal_metadata>
 <journal_issue>
 $if(date)$
@@ -46,8 +43,6 @@ $endif$
 $if(issue)$
 <issue>$issue$</issue>
 $endif$
-$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
-$-- <!-- DOI del número <doi_data><doi>10.XXXX/XXXXXX</doi><resource content_version="vor/am" mime_type="string"></resource></doi_data>-->
 </journal_issue>
 <journal_article language="$lang$" publication_type="full_text" reference_distribution_opts="any">
 $if(title)$
@@ -87,7 +82,6 @@ $endif$
 $endfor$
 </contributors>
 $endif$
-$-- Abstracts are optional but encouraged, multiple abstracts may be provided
 $if(abstract)$
 <jats:abstract>
 <jats:p xml:lang="$lang$">$abstract$</jats:p>
@@ -111,12 +105,6 @@ $if(date.day)$
 $endif$
 <year>$date.year$</year>
 </publication_date>
-<!-- TODO 
-<acceptance_date media_type="online">
-<month>07</month>
-<day>07</day>
-<year>2021</year>
-</acceptance_date> -->
 $if(article.fpage)$
 $if(article.lpage)$
 <pages>
@@ -138,7 +126,6 @@ $-- <!-- Para financiamiento <fr:program></fr:program> -->
  <ai:license_ref applies_to="vor" start_date="2011-02-11">https://www.crossref.org/license</ai:license_ref>
 </ai:program>
 -->
-$-- <!-- Está vinculado a preservación digital, no soporta aun "PKP PN" <archive_locations><archive name="string"/><archive_locations> -->
 $-- <!-- <scn_policies> -->
 <doi_data>
 <doi>$article.doi$</doi>
@@ -146,25 +133,22 @@ $-- <!-- <scn_policies> -->
 <resource content_version="vor">$doi_register.resource_url$</resource>
 $for(doi_register.resource_files)$
 <collection property="crawler-based">
-<!-- TODO crawler debe ser iParadigms? quizás se puede dejar libre para que pueda ser usado en google? -->
 <item crawler="iParadigms">
 <resource>$it.file_url$</resource>
 </item>
 </collection>
-<!-- TODO Asociar archivos (ej: pdf, xml, html). 
-Revisar lista de mime_type: https://www.iana.org/assignments/media-types/media-types.xhtml 
-y https://data.crossref.org/reports/help/schema_doc/5.3.1/index.html-->
-<!--
-$if(it.textmining)$
-<collection property="text-mining">
-<item>
-<resource mime_type="application/$it.type$">$it.file_url$</resource>
-</item>
-</collection>
-$endif$ -->
 $endfor$
+$if(doi_register.text_mining)$
+<collection property="text-mining">
+$for(doi_register.text_mining)$
+<item>
+<resource mime_type="$it.prop$">$it.url$</resource>
+</item>
+$endfor$
+</collection>
+$endif$
 </doi_data>
-<!-- TODO Emprolijar -->
+$-- <!-- TODO Emprolijar -->
 <citation_list>
 $for(refs2)$
 $it$
@@ -174,45 +158,3 @@ $endfor$
 </journal>
 </body>
 </doi_batch>
-
-
-<!-- 
-    doi_register
-        - doi_depositor:
-            - name: nombre de depositor
-            - mail: mail de depositor
-        - registrant: Nombre del registrant (institución)
-        - resource_ojs_url: prefijo base de ojs
-        - unix_epoch: marca de tiempo en unix epoch. Con Filtro.
-        TODO 
-        - resource: Debe contener la página web en la que estará disponible el artículo. Con Filtro.
-                        En OJS se construye como 'https://' + portal + revista + '/article/view/' + art_ojs_id
-                                                 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
-                        ej: https://publicaciones.sociales.uba.ar/index.php/quid16/article/view/7620
-        - resource_files:
-            - url
-              tipo
-            - 
-        Resumen
-        - url resource:      'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id
-        - url resource_pdf:  'https://' + resource_ojs_url + '/article/viewFile/' + article.art_ojs_id + "/pdf"
-        - url resource_html: 'https://' + resource_ojs_url + '/article/view/' + article.art_ojs_id + "/html"
-    journal:
-        - title: nombre de la revista. Obligatorio
-        - abbrev-title: nombre abreviado de la revista
-        - abbrev-title2: nombre abreviado sin espacios. Con Filtro.
-        - eissn/pissn: issn electrónico e impreso.
-        - doi. Con filtro
-    date:
-        - year: fecha de publicación (año). Obligatorio
-        - month: fecha de publicación (mes)
-        - day: fecha de publicación (día)
-    volume: volumen de la revista
-    issue: número de la revista
-    title/subtitle: título y subtítulo del artículo
-    article:
-        - fpage/lpage: primera/última página
-        - elocation-id: identificador del artículo
-        - doi: DOI construido prefijo + sufijo (ej: 10.5555/n0HRokm)
-        - art_ojs_id: id de artículo en OJS
- -->

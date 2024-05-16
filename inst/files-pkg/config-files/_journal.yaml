@@ -30,15 +30,16 @@ license:
 # -----------------------------------------
 doi_register:
   doi_suffix_constructor:     # DOI suffix builder (only used if article.doi is not provided). See pattern constructors.
-  doi_depositor:              # Depositor
+  doi_depositor:              # Depositor information
     name:                     
     mail: 
   registrant:                 # Registrant's name (institution)
-  resource_url_constructor:   # URL'constructor (only used if article.resource_url is not provided). See pattern constructors.
+  resource_url_constructor:   # URL'constructor for complete resource (see pattern constructors). Only used if 'article.resource_url' is not provided. 
+  file_url_constructor:       # URL'constructor for files resources (see pattern constructors). Only used if 'doi_register.resource_files.resource_constructor' is not provided.
   resource_files:
-    - type:                   # file type. valid types: pdf/html/xml/epub
-      file_url_constructor:   
-      tm:  true
+    - type:                   # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm:true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
+      text_mining:  true      # is text mining on the resource allowed?
+      # file_url_constructor: # URL'constructor for files resources (see pattern constructors). Priority over 'file_url_constructor'.
 
 
 # 'doi_suffix_constructor' and 'resource_constructor' follows the OJS conventions: 
