@@ -118,15 +118,14 @@ $if(article.elocation-id)$
 <item_number item_number_type="article_number">$article.elocation-id$</item_number>
 </publisher_item>
 $endif$
-$-- <!-- Para contenido vinculado <crossmark></crossmark> -->
-$-- <!-- Para financiamiento <fr:program></fr:program> -->
-<!-- TODO Para licencias ver: https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/license-information/
+$if(license)$
 <ai:program name="AccessIndicators">
- <ai:free_to_read start_date="2011-02-11"/>
- <ai:license_ref applies_to="vor" start_date="2011-02-11">https://www.crossref.org/license</ai:license_ref>
+$if(license.free_to_read)$
+<ai:free_to_read/>
+$endif$
+<ai:license_ref applies_to="vor">$license.link$</ai:license_ref>
 </ai:program>
--->
-$-- <!-- <scn_policies> -->
+$endif$
 <doi_data>
 <doi>$article.doi$</doi>
 <timestamp>$doi_register.unix_epoch$</timestamp>
