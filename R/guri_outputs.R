@@ -106,12 +106,26 @@ guri_outputs <- function(art_id,
 
   names(success) <- article_list$dir
 
-  if(doi_batch){
-    # TODO
-    # Llamar a funcion guri_doi_batch para generar batch de journal.
+  if(T){# doi_batch
+    if(!all(success)){
+      # TODO
+      # Preguntar a usuario si no son todos success
+    }
+    cli_h1("Doi batch creation")
+
+    cli_process_start(col_yellow("Creating doi batch for Crossref."))
+
+    doi_batch_file <- guri_doi_batch(article_list[success, ], path_issue)
+
+    cli_process_done(msg_done = col_grey("Creating doi batch for Crossref."))
+
+    ui_alert_info("See files:\n",
+                  "* XML: {.path ", doi_batch_file, "}\n",
+                  "* INFO: {.path ", stringr::str_replace(doi_batch_file, "\\.xml$", ".txt") , "}")
+
   }
 
-  cli_h1("Summary of processed articles:")
+  cli_h1("Summary of processed articles")
 
   ui_alert_info("Processed articles: ", length(success),
                 col_blue(" (", sum(success), " successfull)"), ".")

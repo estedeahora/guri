@@ -23,7 +23,8 @@ Imports:
     rstudioapi,
     stringr,
     tinytex,
-    utils
+    utils,
+    xml2
 Depends: 
     R (>= 2.10)
 LazyData: true
