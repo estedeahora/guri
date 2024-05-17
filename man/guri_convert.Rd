@@ -4,16 +4,17 @@
 \alias{guri_convert}
 \title{Converts the corrected manuscript between the formats required by \code{~!guri_}.}
 \usage{
-guri_convert(path_art, art, output, verbose = F)
+guri_convert(art_path, art_id, output, verbose = TRUE)
 }
 \arguments{
-\item{path_art}{A string with the path to the article directory}
+\item{art_path}{A string with the path to the article folder.}
 
-\item{art}{A string with the article id.}
+\item{art_id}{A string with the article id.}
 
 \item{output}{A string. The desired output format (see ).}
 
-\item{verbose}{Logical. Specifies whether to display verbose output.}
+\item{verbose}{Logical. Specifies whether to display verbose output (default
+\code{TRUE}).}
 }
 \value{
 Invisible TRUE

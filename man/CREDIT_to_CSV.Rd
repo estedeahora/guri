@@ -9,11 +9,10 @@ CREDIT_to_CSV(art_path, art_id, verbose)
 \arguments{
 \item{art_path}{A string with the path to the article folder.}
 
-\item{art_id}{String or vector of strings with the article id to be processed
-in the issue. If "all" all articles are processed.}
+\item{art_id}{A string with the article id.}
 
-\item{verbose}{Logical. If \code{TRUE} the function will print more information
-during the process (default is \code{FALSE}).}
+\item{verbose}{Logical. Specifies whether to display verbose output (default
+\code{TRUE}).}
 }
 \value{
 Invisible TRUE.

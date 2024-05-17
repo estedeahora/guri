@@ -2,24 +2,27 @@
 % Please edit documentation in R/guri_article.R
 \name{guri_article}
 \alias{guri_article}
-\title{Función para generar archivos finales de un artículo individual}
+\title{Generate the output files for individual article.}
 \usage{
-guri_article(art_path, art_dir, art_id, verbose = T, clean_files = T)
+guri_article(art_path, art_dir, art_id, verbose = TRUE, clean_files = TRUE)
 }
 \arguments{
-\item{art_path}{String... description}
+\item{art_path}{A string with the path to the article folder.}
 
-\item{art_dir}{String... description}
+\item{art_dir}{A string with the article folder name.}
 
-\item{art_id}{String...}
+\item{art_id}{A string with the article id.}
 
-\item{verbose}{Logical...}
+\item{verbose}{Logical. Specifies whether to display verbose output (default
+\code{TRUE}).}
 
-\item{clean_files}{Logical...}
+\item{clean_files}{Logical. Should the temporary files be deleted and
+reordered in folders after the creation of the final files?. Primarily for
+debugging purposes (default is \code{TRUE}).}
 }
 \value{
-Invisible. ...
+Invisible TRUE.
 }
 \description{
-describir
+Generate the output files for individual article.
 }

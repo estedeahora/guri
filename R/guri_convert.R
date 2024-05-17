@@ -1,10 +1,8 @@
 #' Converts the corrected manuscript between the formats required by `~!guri_`.
 #'
-#'
-#' @param path_art A string with the path to the article directory
-#' @param art A string with the article id.
-#' @param verbose Logical. Specifies whether to display verbose output.
 #' @param output A string. The desired output format (see ).
+#'
+#' @inheritParams guri_article
 #'
 #' @description
 #' This function converts a document using `~!guri_`. It takes the path to the
@@ -14,19 +12,19 @@
 #'
 #' @return Invisible TRUE
 
-guri_convert <- function(path_art, art,
+guri_convert <- function(art_path, art_id,
                          output,
-                         verbose = F){
+                         verbose = TRUE){
 
   # Working directory
-  wdir <- file.path(getwd(), path_art)
+  wdir <- file.path(getwd(), art_path)
 
   # Input / output file names.
   opt_type <- pandoc_options$type[[output]]
   names(opt_type) <- pandoc_options$type[["type"]]
 
-  file_input  <- stringr::str_replace(opt_type["file_ext_input"], "%a", art)
-  file_output <- stringr::str_replace(opt_type["file_ext_output"], "%a", art)
+  file_input  <- stringr::str_replace(opt_type["file_ext_input"], "%a", art_id)
+  file_output <- stringr::str_replace(opt_type["file_ext_output"], "%a", art_id)
 
   # Geth paths: Program files ('GURI/inst/') and customised journal configuration files ('./JOURNAL/_config').
   program_path <- pkg_file()
@@ -72,7 +70,7 @@ guri_convert <- function(path_art, art,
   app_files <- NULL
 
   if(!is.na(opt_type[["appendix"]])) {
-    app_files <- guri_appendix(wdir, art)
+    app_files <- guri_appendix(wdir, art_id)
     if(length(app_files) > 0){
       if(verbose){
         ui_alert_info(length(app_files), " appendices are added.")
@@ -130,7 +128,7 @@ guri_convert <- function(path_art, art,
 
   if(output == "md"){
 
-    metadata_files <- c(article = file.path(paste0(art, ".yaml")),          # article
+    metadata_files <- c(article = file.path(paste0(art_id, ".yaml")),       # article
                         issue = file.path("..", "_issue.yaml"),             # issue
                         journal = file.path("..", "..", "_journal.yaml"))   # journal
 

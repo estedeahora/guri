@@ -53,7 +53,9 @@ function Meta(meta)
 
     if meta.metadata_lang then
         for i = 1, #meta.metadata_lang do
-            meta.metadata_lang[i].abstract = MetaString(stringify(meta.metadata_lang[i].abstract))
+            if meta.metadata_lang[i].abstract then
+                meta.metadata_lang[i].abstract = MetaString(stringify(meta.metadata_lang[i].abstract))
+            end
         end
     end
 

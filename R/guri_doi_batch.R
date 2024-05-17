@@ -65,6 +65,8 @@ guri_doi_batch <- function(list_art, path_issue){
 }
 
 # xml_art_info: Create the content of `doi_batch` info file
+# j: Complete journal xml file
+# ja: List of articles xml files
 
 xml_journal_info <- function(j, ja){
 
@@ -81,6 +83,7 @@ xml_journal_info <- function(j, ja){
 }
 
 # xml_art_info: Create the content of each article in `doi_batch` info file
+# ja: List of articles xml files
 
 xml_art_info <- function(ja){
 

@@ -4,12 +4,12 @@
 \alias{guri_appendix}
 \title{Make markdown appendix from docx documents}
 \usage{
-guri_appendix(wdir, art)
+guri_appendix(art_path, art_id)
 }
 \arguments{
-\item{wdir}{The working directory where the appendix files are located.}
+\item{art_path}{A string with the path to the article folder, where the appendix files are located.}
 
-\item{art}{The article name used to identify the appendix files. The appendix files should be named as "art_app1.docx", "art_app2.docx", etc.}
+\item{art_id}{A string with the article id, used to identify the appendix files. The appendix files should be named as "art_app1.docx", "art_app2.docx", etc.}
 }
 \value{
 A character vector containing the names of the converted Markdown files.

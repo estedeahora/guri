@@ -11,7 +11,7 @@
 #' (mostly for debugging purposes) and a file with the references used by the
 #' article, respectively.
 #'
-#' @inheritParams guri_convert
+#' @inheritParams guri_article
 #'
 #' @details These functions are, mostly, a wrapper of the internal function
 #' [guri_convert]. The functions are exported primarily for debugging and error
@@ -26,11 +26,11 @@
 #'
 #' @export
 
-guri_to_md <- function(path_art, art, verbose = F){
+guri_to_md <- function(art_path, art_id, verbose = TRUE){
 
   cli_process_start(col_yellow("Creating markdown file (docx -> md)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "md", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating markdown file (docx -> md)."))
@@ -42,11 +42,11 @@ guri_to_md <- function(path_art, art, verbose = F){
 #'
 #' @export
 
-guri_to_html <- function(path_art, art, verbose = F){
+guri_to_html <- function(art_path, art_id, verbose = TRUE){
 
   cli_process_start(col_yellow("Creating html file (md -> html)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "html", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating html file (md -> html)."))
@@ -58,11 +58,11 @@ guri_to_html <- function(path_art, art, verbose = F){
 #'
 #' @export
 
-guri_to_jats <- function(path_art, art, verbose = F){
+guri_to_jats <- function(art_path, art_id, verbose = TRUE){
 
   cli_process_start(col_yellow("Creating xml-jats file (md -> xml-jats)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "jats", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating xml-jats file (md -> xml-jats)."))
@@ -75,21 +75,21 @@ guri_to_jats <- function(path_art, art, verbose = F){
 #'
 #' @export
 
-guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
+guri_to_pdf <- function(art_path, art_id, verbose = TRUE, pdf = TRUE){
 
   # Conversión md -> tex
 
   cli_process_start(col_yellow("Creating latex file (md -> tex)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "tex", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating latex file (md -> tex)."))
 
   # Conversión tex -> pdf
 
-  wdir <- file.path(getwd(), path_art)
-  file_tex    <- paste0(art, ".tex")
+  wdir <- file.path(getwd(), art_path)
+  file_tex    <- paste0(art_id, ".tex")
 
   proj_dir <- setwd(wdir)
   on.exit(setwd(proj_dir), add = T)  # Volver a valores por defecto al salir
@@ -114,9 +114,9 @@ guri_to_pdf <- function(path_art, art, verbose = F, pdf = TRUE){
 
 #' @rdname guri_to_md
 
-guri_to_crossref <- function(path_art, art, verbose = F) {
+guri_to_crossref <- function(art_path, art_id, verbose = TRUE) {
 
-  is_doi <- fs::path(path_art, art, ext = "md") |>
+  is_doi <- fs::path(art_path, art_id, ext = "md") |>
     rmarkdown::yaml_front_matter() |>
     purrr::pluck("article") |>
     purrr::pluck("doi")
@@ -130,7 +130,7 @@ guri_to_crossref <- function(path_art, art, verbose = F) {
 
   cli_process_start(col_yellow("Creating crossref xml file (md -> xml-crossref)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "crossref", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating crossref xml file (md -> xml-crossref)."))
@@ -142,11 +142,11 @@ guri_to_crossref <- function(path_art, art, verbose = F) {
 
 #' @rdname guri_to_md
 
-guri_to_AST <- function(path_art, art, verbose = F) {
+guri_to_AST <- function(art_path, art_id, verbose = TRUE) {
 
   cli_process_start(col_yellow("Creating AST file (md -> native)."))
 
-  guri_convert(path_art = path_art, art = art,
+  guri_convert(art_path = art_path, art_id = art_id,
                output = "AST", verbose = verbose)
 
   cli_process_done(msg_done = col_grey("Creating AST file (md -> native)."))
@@ -160,22 +160,22 @@ guri_to_AST <- function(path_art, art, verbose = F) {
 #'
 #' @param bib_type description
 
-guri_biblio <- function(path_art, art, bib_type = "csljson"){
+guri_biblio <- function(art_path, art_id, bib_type = "csljson"){
 
   cli_process_start(col_yellow("Creating biblio file (md -> ", bib_type, ")."))
 
   # Archivos de entrada / salida
-  file_input  <- paste0(art, ".docx")
+  file_input  <- paste0(art_id, ".docx")
 
   if(bib_type == "csljson"){
-    file_out <- paste0(art, "_biblio.json")
+    file_out <- paste0(art_id, "_biblio.json")
   }else if(bib_type == "biblatex"){
-    file_out <- paste0(art, "_biblio.bib")
+    file_out <- paste0(art_id, "_biblio.bib")
   }else{
     ui_abort("'bib_type' argument must be 'biblatex' or 'csljson'.")
   }
 
-  rmarkdown::pandoc_convert(wd = file.path(getwd(), path_art),
+  rmarkdown::pandoc_convert(wd = file.path(getwd(), art_path),
                             input = file_input,
                             from = "docx+citations",
                             output = file_out ,

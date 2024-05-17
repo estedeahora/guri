@@ -14,8 +14,8 @@
 #'   journal repository. See [guri_make_journal] for details.
 #' @param doi_batch Logical. If `TRUE` a `doi_batch` file is created in the
 #'   'journal/issue/doi_register' folder (default `FALSE`).
-#' @param verbose Logical. If `TRUE` the function will print more information
-#'   during the process (default is `FALSE`).
+#' @param verbose Logical. Specifies whether to display verbose output (default
+#'   `TRUE`).
 #' @param clean_files Logical. Should the temporary files be deleted and
 #'   reordered in folders after the creation of the final files?. Primarily for
 #'   debugging purposes (default is `TRUE`).
@@ -23,7 +23,7 @@
 #' @details The function generates the output files for each (selected) article
 #'   in the issue folder. If art_id is "all", all articles in the issue folder
 #'   are processed. The `journal` parameter is mandatory if it is a repository
-#'   of journals, otherwise it will be `NULL`. 
+#'   of journals, otherwise it will be `NULL`.
 #'
 #' The function generates the following final files for each article:
 #' * `art[id].xml`: a xml-jats file. See: https://jats.nlm.nih.gov/publishing/
@@ -61,7 +61,7 @@ guri_outputs <- function(art_id,
                          issue,
                          journal = NULL,
                          doi_batch = FALSE,
-                         verbose = FALSE,
+                         verbose = TRUE,
                          clean_files = TRUE){
 
   # CHECK: dependences version (pandoc and tinytex)

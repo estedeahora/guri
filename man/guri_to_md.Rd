@@ -10,26 +10,27 @@
 \alias{guri_biblio}
 \title{Converts the corrected manuscript between formats.}
 \usage{
-guri_to_md(path_art, art, verbose = F)
+guri_to_md(art_path, art_id, verbose = TRUE)
 
-guri_to_html(path_art, art, verbose = F)
+guri_to_html(art_path, art_id, verbose = TRUE)
 
-guri_to_jats(path_art, art, verbose = F)
+guri_to_jats(art_path, art_id, verbose = TRUE)
 
-guri_to_pdf(path_art, art, verbose = F, pdf = TRUE)
+guri_to_pdf(art_path, art_id, verbose = TRUE, pdf = TRUE)
 
-guri_to_crossref(path_art, art, verbose = F)
+guri_to_crossref(art_path, art_id, verbose = TRUE)
 
-guri_to_AST(path_art, art, verbose = F)
+guri_to_AST(art_path, art_id, verbose = TRUE)
 
-guri_biblio(path_art, art, bib_type = "csljson")
+guri_biblio(art_path, art_id, bib_type = "csljson")
 }
 \arguments{
-\item{path_art}{A string with the path to the article directory}
+\item{art_path}{A string with the path to the article folder.}
 
-\item{art}{A string with the article id.}
+\item{art_id}{A string with the article id.}
 
-\item{verbose}{Logical. Specifies whether to display verbose output.}
+\item{verbose}{Logical. Specifies whether to display verbose output (default
+\code{TRUE}).}
 
 \item{pdf}{Logical. Should the pdf be generated? (default = TRUE)}
 

@@ -1,23 +1,15 @@
-# art_id <- "art101"
-# art_dir <- "art101_lorem-ipsum"
-# art_path <-  "C:/Users/este.de.ahora/Documents/_investigacion/99_Otros-proyectos/guri/example/vol10num1/art101_lorem-ipsum"
-# verbose = T; clean_files = T
+#' Generate the output files for individual article.
+#'
+#' @param art_path A string with the path to the article folder.
+#' @param art_dir A string with the article folder name.
+#' @param art_id A string with the article id.
+#'
+#' @inheritParams guri_outputs
+#'
+#' @return Invisible TRUE.
 
-#' Función para generar archivos finales de un artículo individual
-#'
-#' @description
-#' describir
-#'
-#' @param art_path String... description
-#' @param art_dir String... description
-#' @param art_id String...
-#' @param verbose Logical...
-#' @param clean_files Logical...
-#'
-#' @return Invisible. ...
-
-guri_article <- function(art_path, art_dir, art_id, # path_issue,
-                         verbose = T, clean_files = T){
+guri_article <- function(art_path, art_dir, art_id,
+                         verbose = TRUE, clean_files = TRUE){
 
   title <- art_dir |> stringr::str_replace_all("_", ": ") |> stringr::str_replace_all("-", " ")
   cli_h1(col_green(paste0("Article ", title)))
@@ -70,8 +62,7 @@ guri_article <- function(art_path, art_dir, art_id, # path_issue,
 
 #' Convert the 'xlsx' file with the credit information to csv format.
 #'
-#' @inheritParams guri_outputs
-#' @inheritParams guri_clean_files
+#' @inheritParams guri_article
 #'
 #' @return Invisible TRUE.
 

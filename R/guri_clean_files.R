@@ -1,7 +1,8 @@
-#' Clean temporary log and output files
+#' Clean and reorganize article folder, moving temporary (auxiliary), log and output files.
 #'
-#' @param art_path A string with the path to the article folder.
-#' @inheritParams guri_outputs
+#' @inheritParams guri_article
+#' 
+#' @seealso [guri_outputs]
 #'
 #' @return Invisible TRUE.
 

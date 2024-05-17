@@ -9,7 +9,7 @@ guri_outputs(
   issue,
   journal = NULL,
   doi_batch = FALSE,
-  verbose = FALSE,
+  verbose = TRUE,
   clean_files = TRUE
 )
 }
@@ -26,8 +26,8 @@ journal repository. See \link{guri_make_journal} for details.}
 \item{doi_batch}{Logical. If \code{TRUE} a \code{doi_batch} file is created in the
 'journal/issue/doi_register' folder (default \code{FALSE}).}
 
-\item{verbose}{Logical. If \code{TRUE} the function will print more information
-during the process (default is \code{FALSE}).}
+\item{verbose}{Logical. Specifies whether to display verbose output (default
+\code{TRUE}).}
 
 \item{clean_files}{Logical. Should the temporary files be deleted and
 reordered in folders after the creation of the final files?. Primarily for
