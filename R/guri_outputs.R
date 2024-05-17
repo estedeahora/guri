@@ -148,7 +148,7 @@ guri_outputs <- function(art_id,
 
   names(success) <- article_list$dir
 
-  if(T){# doi_batch
+  if(doi_batch){#
     if(!all(success)){
       # TODO
       # Preguntar a usuario si no son todos success
