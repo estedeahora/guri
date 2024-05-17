@@ -2,7 +2,7 @@
 % Please edit documentation in R/guri_outputs.R
 \name{guri_outputs}
 \alias{guri_outputs}
-\title{Función para generar archivos finales}
+\title{Generate output files for selected articles in an issue}
 \usage{
 guri_outputs(
   art_id,
@@ -14,21 +14,72 @@ guri_outputs(
 )
 }
 \arguments{
-\item{art_id}{String...}
+\item{art_id}{String or vector of strings with the article id to be processed
+in the issue. If "all" all articles are processed.}
 
-\item{issue}{String...}
+\item{issue}{String. The issue folder.}
 
-\item{journal}{String... description}
+\item{journal}{String (optional, mandatory if repository is \code{TRUE}). If the
+journal is not provided, it is assumed that the working directory is the
+journal repository. See \link{guri_make_journal} for details.}
 
-\item{doi_batch}{Logical...}
+\item{doi_batch}{Logical. If \code{TRUE} a \code{doi_batch} file is created in the
+'journal/issue/doi_register' folder (default \code{FALSE}).}
 
-\item{verbose}{Logical...}
+\item{verbose}{Logical. If \code{TRUE} the function will print more information
+during the process (default is \code{FALSE}).}
 
-\item{clean_files}{Logical...}
+\item{clean_files}{Logical. Should the temporary files be deleted and
+reordered in folders after the creation of the final files?. Primarily for
+debugging purposes (default is \code{TRUE}).}
 }
 \value{
-Invisible. ...
+Invisible, a logical vector with the success of the process for each
+article.
 }
 \description{
-describir
+For selected articles in an issue, generates output files in
+pdf, xml-jats and html format. In addition, it generates auxiliary and log
+files (see below for details). If \code{doi_batch = TRUE} is set, it also
+generates a single xml file to do the DOI deposit in Crossref for the
+selected articles.
+}
+\details{
+The function generates the output files for each (selected) article
+in the issue folder. If art_id is "all", all articles in the issue folder
+are processed. The \code{journal} parameter is mandatory if it is a repository
+of journals, otherwise it will be \code{NULL}.
+
+The function generates the following final files for each article:
+\itemize{
+\item \verb{art[id].xml}: a xml-jats file. See: https://jats.nlm.nih.gov/publishing/
+\item \verb{art[id].html}: a html file with the article content.
+\item \verb{art[id].pdf}: a pdf file with the article content.
+}
+
+Also, the following auxiliary files are created:
+\itemize{
+\item \verb{art[id].md}: a markdown file with the article content, used as an intermediate
+common format for the conversion to other formats.
+\item \verb{art[id].tex}: a tex (latex) file used to generate the pdf.
+\item \verb{art[id]_crossref.xml}: a xml file with the single article metadata for Crossref
+deposit. See:
+https://data.crossref.org/reports/help/schema_doc/5.3.1/index.html
+\item \verb{art[id]_biblio.json}: a json file with the article references.
+Primarily useful for debugging purposes.
+\item \verb{art[id]_AST.native}: the 'abstract syntax tree' used for Pandoc conversion.
+}
+
+In addition, if clean_files is \code{TRUE}, the function will create following
+folders in the article directory:
+\itemize{
+\item _output: with the final files generated (xml-jats, html and pdf).
+\item _temp: with the temporary and auxiliary files generated during the process.
+\item _log: with the log files generated during the process (only present if verbose is \code{TRUE}).
+}
+
+If \code{doi_batch = TRUE}, the function makes a single xml file (in
+'journal/issue/doi_register') with the metadata of all selected articles to
+do the DOI deposit in Crossref. An inform file is also created with the
+information present in the xml file.
 }
