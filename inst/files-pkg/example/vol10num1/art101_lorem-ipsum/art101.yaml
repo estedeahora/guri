@@ -3,13 +3,17 @@
 article:
   heading: Inroducción
   type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
-  elocation-id: a101            
+  elocation-id: a101
+  ojs_id: 4581                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)         
   # doi: guri_45.5555
   # fpage:                  # Página inicial
   # lpage:                  # Página final
   # resource_url:
   # resources:
-
+  #   - type:               # Tipo de recurso (pdf, xml, html, epub)
+  #     url:                # URL del recurso
+  #     file_name:          # Nombre del archivo (si se desea cambiar el nombre del archivo en el resource_file)
+  
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:
@@ -24,6 +28,9 @@ metadata:
 
 # Metadatos del artículo en otros idiomas
 # ---------------------------------------
+# Otras varialbes disponibles: 
+#   'abstract_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
+#   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
 metadata_lang:
   - lang: en
     title: Pain itself
@@ -34,8 +41,6 @@ metadata_lang:
       - Home
       - He himself
       - Pain
-    # abstract_title:           # Sólo necesario si lang no es es/en/pt
-    # keyword_title:            # Sólo necesario si lang no es es/en/pt
   - lang: es
     title: El propio dolor
     subtitle: No dejes que el dolor se vaya
@@ -45,8 +50,6 @@ metadata_lang:
       - Hogar
       - Él mismo
       - Dolor
-    # abstract_title:           # Sólo necesario si lang no es es/en/pt
-    # keyword_title:            # Sólo necesario si lang no es es/en/pt
 
 # Autores (un bloque por autor)
 # -----------------------------
@@ -88,15 +91,28 @@ history:
     month: 2
     year: 2024
 
+# Declaraciones / Staments
+# ------------------------
+statements:
+  ack: |
+    Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
+  funding:
+    text: Haec investigatio independenter funditur.
+  data: 
+    text: Declaración sobre la disponibilidad de datos.
+    # link: URL a los datos
+    # doi: zenodo/dsae21542sd
+  coi: |
+    Nulla certamina interest.
+
 # Otros elementos
 # ---------------
-# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
-# book_info: |
-#   Texto libre preliminar
-
-ack: Porta phasellus natoque fusce tempus aptent sem fames, mattis suspendisse inceptos ligula accumsan taciti.
-# funding:
-#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+# En texto se puede colocar texto libre. En TEX-PDF va a ser colocado dentro de "maketitle" (dedication). 
+# En XML-JATS va a ser colocado dentro de <product> (front)
+# Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite otros comandos latex.
+# book_info:
+#   text: Texto libre describiendo el producto reseñado
+#   type:                         # se coloca en atributo @product-type dentro de <product>
 
 # Variables de customización del artículo
 # ---------------------------------------

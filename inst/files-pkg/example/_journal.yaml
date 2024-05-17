@@ -5,17 +5,20 @@ lang: es-ES           # Using ISO 639-1 Code. See: https://www.loc.gov/standards
 
 # Datos de revista
 # ----------------
+# Otras varialbes disponibles: 
+#   identificadores de la revista (en jats dentro de <journal-id journal-id-type='$id$' >): 'publisher-id', 'redalyc' (Redalyc), 'nlm-ta' (PubMed), 'pmc' (PubMed Central), 'scielo' (Scielo).
 journal:
   title: ~!guri_ {An example journal}
   abbrev-title: ~!guri_
   # pissn:                 #print issn
   eissn: 0001-2000
   doi_prefix: 10.1234
+  scielo: 5423
   publisher-name: Editor de la Revista
   publisher-loc:
     country: Argentina
     email: publisher@university.edu
-    institution: Institution editora
+    institution: Nombre de la Institution Editora de la Revista
 
 # Licencia
 # --------
@@ -33,8 +36,12 @@ doi_register:
     name: Joe Depositor
     mail: joe@depositor.com
   registrant: University Registrant
-  resource_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a
+  resource_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a       # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581
+  file_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%t    # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581/pdf
   resource_files:
-    - type: pdf                   # file type: pdf/html/xml-jats
-      resource_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a/
+    - type: pdf     # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm: true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
       tm:  true
+      # file_url_constructor:             
+    - type: html    # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm: true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
+      tm:  false
+      # file_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%f

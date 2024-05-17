@@ -6,29 +6,33 @@
 #   Identificadores de artículos (en jats: <article-id>): 'pmid' (PubMed Identifier), 'pmcid' (PubMed Central Identifier), art-access-id (id personalizado)
 #   'funding-statement' (describe la financiación, en jats <funding-statement>)
 #   'categories' (Lista. Enumera asunto o temas del artículo. En jats: solo $if(article.heading)$: <subj-group>$for$<subject subj-group-type="categories">$$</subject></subj-group>)
+# [!] en el template de Pandoc se utiliza author-notes y funding-statement, pero en el template de guri debe usarse statements (ver abajo).
 article:
   heading: Dossier          # Nombre de sección (interno de la revista).
   type: research-article    # editorial / introduction / research-article / book-review / announcement / translation / review-article / reprint / rapid-communication
                             # Lista completa de tipos disponibles: https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id: a301        # Identificador digital electrónico (sustituye a la página cuando estas no son utlizadas como parte de los artículos)
+  ojs_id: 725                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
   # publisher-id:           # Identificador personalizado del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">. 
-  # ojs_id:                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
   # fpage:                  # Página inicial
   # lpage:                  # Página final
   # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
   # resource_url:
   # resources:
+  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub)
+  #     url:                # URL del recurso. Se utiliza por defecto este para generar url del recurso (<resource> dentro de <collection>), omitiendo 'resource_url_constructor' de _journal.yaml.
+  #     file_name:          # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
 
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:
-  title: Título
-  # subtitle: 
-  abstract: |
-    colocar abstract en lenguaje principal.
-  keyword: 
-    - kw1
-    - kw2
+  title: Ejecución de Tiros Libres en Fútbol
+  subtitle: Un Análisis Científico
+  # abstract: |
+  #   colocar abstract en lenguaje principal.
+  # keyword: 
+  #   - kw1
+  #   - kw2
 
 # Metadatos del artículo en otros idiomas
 # ---------------------------------------
@@ -37,12 +41,12 @@ metadata:
 #   'keyword_title' (es un campo obligatorio si lang no es es/en/pt, si es uno de estos lenguajes es optativo y modifica comportamiento predeterminado)
 metadata_lang:
   - lang: en                # Using ISO 639-1 Code. See: https://www.loc.gov/standards/iso639-2/php/English_list.php
-    title: English lorem ipsum
-    abstract: |
-      colocar abstract en segundo idioma
-    keyword: 
-      - kw1
-      - kw2
+    title: Free Kicks in Football. A Scientific Analysis
+    # abstract: |
+    #   colocar abstract en segundo idioma
+    # keyword: 
+    #   - kw1
+    #   - kw2
 
 # Autores (un bloque por autor)
 # -----------------------------
@@ -50,21 +54,20 @@ metadata_lang:
 #   'equal-contrib: yes' (permite definir igual contribución, pero sólo se recomienda usar si no se usa credit).
 #   'author-notes' See https://pandoc.org/jats.html -> "author-notes"
 author:
-  - given-names: Carlos Alberto 
-    surname: García
-    email: snm@instute.com
-    orcid: 0000-0000-1234-5678
-    cor-id: yes               # si no es autor de correspondencia comentar. Se recomienda utilizar sólo un autor de correspondencia
-    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+  - given-names: Diego Armando
+    surname: Maradona
+    email: d10s@afa.ar
+    orcid: 0000-0010-0010-0010
+    cor-id: yes               # si no es autor de correspondencia comentar
+    affiliation: 
       - aff1
-      - aff2
-  - given-names: Luis Alberto
-    surname: Spinetta
-    email: las@institute.com
-    orcid: 0000-0005-0901-8282
-    affiliation:              # Usar aff1, aff2, aff3, etc para referir a las afiliaciones. 
+  - given-names: Lionel
+    surname: Messi
+    email: lmessi@afa.ar
+    orcid: 0000-0001-2345-6789
+    cor-id: yes               # si no es autor de correspondencia comentar
+    affiliation: 
       - aff1
-      - aff3
 
 # Afiliaciones insitucionales
 # ---------------------------
@@ -75,40 +78,68 @@ author:
 #   información de ubicación: 'street-address', 'city'
 affiliation:
   - id: aff1
-    organization: Rock Nacional
+    organization: Selección de Futbol Argentina
+    # ror:
     country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
-  - id: aff2
-    organization: Say No More
-    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
-  - id: aff3
-    organization: Alma de diamante
-    country-code: AR # https://www.nationsonline.org/oneworld/country_code_list.htm
+
 
 # Historia de publicación del artículo
 # ------------------------------------
 history:
   - type: received
-    day: 1
-    month: 9
-    year: 2023
+    day: 25
+    month: 6
+    year: 1978
   - type: accepted
-    day: 11
-    month: 11
-    year: 2023
+    day: 29
+    month: 6
+    year: 1983
   - type: epub         # Para fecha de publicación electrónica (utilizar obligatoriamente si se usa AoP o continua)
-    day: 23
-    month: 1
-    year: 2024
+    day: 18
+    month: 12
+    year: 2022
+
+
+# Declaraciones / Staments
+# ------------------------
+statements:
+#   ack: |
+#     Párrafo de gradecimiento.
+#   funding:              # Es posible desarrollar el elemento. Por ahora sólo se acepta la declaración sin diferenciar las fuentes.
+#     text:               # Declaración de fuente de financiación de la investigación en la que se basa el trabajo.
+#   data: 
+#     text:               # Declaración sobre la disponibilidad de datos.
+#     url:                # URL a los datos
+#     doi:                # DOI de los datos
+  coi: |
+    Este texto fue parcialmente generado mediatne el uso de generadores de texto basados en inteligencia artificial.
 
 # Otros elementos
 # ---------------
-# Texto libre en title (dedication en latex-pdf). Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite comandos latex.
-# book_info: |
-#   Texto libre preliminar
+# En texto se puede colocar texto libre. En TEX-PDF va a ser colocado dentro de "maketitle" (@dedication). 
+# En XML-JATS va a ser colocado dentro de <product> (front)
+# Permite cursiva (*texto*) o negritas (**texto**) o salto de línea (\newline). También permite otros comandos latex.
+# book_info:
+#   text: Texto libre describiendo el producto reseñado
+#   type:                         # se coloca en atributo @product-type dentro de <product>
 
-# ack: Agradecimiento.
-# funding:
-#   statement: fuente de financiación de la investigación en la que se basa el trabajo.
+# Variables de customización del artículo
+# ---------------------------------------
+# customized:
+  # artic-lang: en                        # Se puede modificar el idioma predefinido en _journal.yaml
+  # abstract_title:                       # Se puede modificar el título predefinido para el resumen (1er idioma)
+  # keyword_title:                        # Se puede modificar el título predefinido para las palabras claves (1er idioma)
+  # table_title:                          # Se puede modificar el título predefinido para las tablas (1er idioma)
+  # figure_title:                         # Se puede modificar el título predefinido para las figuras (1er idioma)
+  # reference_title:                      # Se puede modificar el título predefinido para las referencias
+  # ack_title:                            # Se puede modificar el título predefinido para los agradecimientos
+  # credit_title:                         # Se puede modificar el título predefinido para CREDIT
+  # funding_title:                        # Se puede modificar el título predefinido para la declaración de financiación
+  # data_title:                           # Se puede modificar el título predefinido para la declaración de disponibilidad de datos
+  # coi_title:                            # Se puede modificar el título predefinido para la declaración de conflicto de intereses (Conflict of interest COI)
+
+  
+
 
 # Variables de customización del artículo
 # ---------------------------------------
