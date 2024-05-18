@@ -5,12 +5,14 @@
 
 local stringify = pandoc.utils.stringify
 
+-- table with file properties according to the file type
 local file_property = {
     pdf = "application/pdf",
     html = "text/html",
     xml = "application/xml",
     epub = "application/epub+zip"
 }
+
 -- pattern_match(m) --------------------------------------------------------------------------------------
 -- Description: [en] Take 'meta' and generate a table with patterns and values for the construction 
 --                     of the URL of the resource.
@@ -34,7 +36,6 @@ local function pattern_match(m)
         {p = '%%i', v = m.issue,                                 t = 'issue'},
         {p = '%%Y', v = m.year,                                  t = 'year'},
         {p = '%%a', v = m.article.ojs_id,                        t = 'ojs id'},
-        -- {p = '%%f', v = nil,                                     t = 'file id'},
         {p = '%%p', v = {m.article.fpage, "-", m.article.lpage}, t = 'pages'},
         {p = '%%e', v = m.article['elocation-id'],               t = 'elocation id'},
         {p = '%%x', v = m.article['publisher-id'],               t = 'publisher id'},
@@ -72,23 +73,25 @@ local function resource_builder(constructor, pattern)
 end
 
 -- Meta(m) --------------------------------------------------------------------------------------
--- Description: [en] 
---				[es] Construye la URL del recurso y la URL de los archivos del recurso.
--- Return: [en] 
---		   [es] 
+-- Description: [en] Build (a) the URL of the resource; (b) the URL of the files of the resource; and
+--                      (c) the URL for text mining.
+--				[es] Construye (a) la URL del recurso; (b) las URL de los archivos del recurso; y 
+--                      (c) las URL para minería de texto.
+-- Return: [en] Modified meta. The URL of the resource and the URL of the files of the resource
+--                are added within 'doi_register' and 'doi_register.resource_files'. Also, a
+--                'text_mining' table is added with url and file type for text mining.
+--		   [es] Meta modificado. Se agrega la URL del recurso y la URL de los archivos del recurso 
+--                dentro de 'doi_register' y 'doi_register.resource_files'. También se agrega
+--                tabla 'text_mining' con url y tipo de archivo para minería de texto.
 
 function Meta(meta)
-    
-    
-    -- print(art_res)
-    -- for i, res in pairs(meta.article.resources) do
 
-    --     print(i, res)
-    --     for j, res_file in pairs(res) do
-    --         print(j, res_file)
-    --     end
-        
-    -- end
+    local galleries = {}
+    if meta.article.resources then
+        for i, res in pairs(meta.article.resources) do
+            galleries[i] = res["gallery-id"]
+        end
+    end
 
     -- (a) Resource URL builder
     local resource_url
@@ -121,20 +124,17 @@ function Meta(meta)
     
     if meta.doi_register.resource_files then
         for i, res_file in ipairs(meta.doi_register.resource_files) do
-
-            -- TODO:
-            -- * agregar fiel_name (%f) a la tabla de patrones si esta en article.resources[tipo].file_name (deberia ser file_number)	
-            -- * usar article.resources[tipo].url como url del archivo si esta presente.
-            --
-            -- if article_resources and article_resources[stringify(res_file.type)] then
-            --     print(stringify(res_file.type), article_resources[stringify(res_file.type)])
-            -- end
             
             -- if not 'res_file.file_url_constructor': then use 'file_constructor'
             file_constructor_i = stringify(res_file.file_url_constructor or file_constructor)
 
+            -- insert gallery id (%g) and resource type file (%t) in the pattern table ('resource_pattern')
+            table.insert(resource_pattern, {p = "%%g", v = galleries[stringify(res_file.type)], t = "Gallery ID"})
             table.insert(resource_pattern, {p = "%%t", v = res_file.type, t = "resource type file"})
+            
             local file_url = resource_builder(file_constructor_i, resource_pattern)
+            
+            table.remove(resource_pattern)
             table.remove(resource_pattern)
 
             res_file.file_url = file_url
@@ -145,6 +145,8 @@ function Meta(meta)
                          prop = file_property[stringify(res_file.type)]}
             end
         end
+
+        -- (c) Text mining table
         if next(tm) then
             meta.doi_register.text_mining = tm
         end
