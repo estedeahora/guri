@@ -149,7 +149,7 @@ $endif$
 </doi_data>
 $-- <!-- TODO Emprolijar -->
 <citation_list>
-$for(refs2)$
+$for(refs4crossref)$
 $it$
 $endfor$
 </citation_list>

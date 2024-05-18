@@ -1,20 +1,43 @@
---- crossref-citation - 
+--- crossref-citation - Generates each reference in CrossRef format.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref-citation.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa
 
--- Meta(m) --------------------------------------------------------------------------------------
--- Description: [en] 
---				[es] 
--- Return: [en] 
---		   [es] 
-
-local stringify = pandoc.utils.stringify
 local RawBlock = pandoc.RawBlock
+local stringify = pandoc.utils.stringify
 local citeproc = pandoc.utils.citeproc
 
-local format_citation = {}
-local citation = ''
+-- plain_citation(document) ------------------------------------------------------------------------
+-- Description: [en] Generates a table with formatted citations according to the csl.
+--				[es] Genera una tabla con las citas formateadas según el csl.
+-- Return: [en] A table with formatted citations (in the form id = formatted citation).
+--		   [es] Una tabla con las citas formateadas (de la forma id = cita formateada).
+
+function plain_citation(document)
+
+    local doc_copy = citeproc(document)
+    local table_citation = {}
+
+    for _, b in ipairs(doc_copy.blocks) do
+        -- identify the reference div
+        if b.t == "Div" and b.identifier == "refs" then
+            -- get the content of the reference div 
+            for _, cite in ipairs(b.content) do
+                table_citation[cite.identifier] = stringify(cite):gsub('&', '&amp;')
+            end
+        end
+    end
+
+    return table_citation
+end
+
+-- Meta(m) --------------------------------------------------------------------------------------
+-- Description: [en] Generates each reference in CrossRef format (inside <citation>).
+--				[es] Genera cada referencia en el formato de CrossRef (dentro de <citation>). 
+-- Return: [en] The document encoded with a table (inside doc.meta.ref) containing a pandoc.RawBlock
+--               with each reference in CrossRef format.
+--		   [es] El documento codificado con una tabla (dentro de doc.meta.ref) que contiene un 
+--               un pandoc.RawBlock con cada referencia en el formato de CrossRef.
 
 function Pandoc(doc)
 
@@ -24,21 +47,12 @@ function Pandoc(doc)
         return doc
     end
 
-    -- make a table with formatted citations
-    local doc2 = citeproc(doc)
-
-    for _, b in ipairs(doc2.blocks) do
-        if b.t == "Div" and b.identifier == "refs" then
-            
-            format_citation = {}
-            for k, cite in ipairs(b.content) do
-                format_citation[cite.identifier] = stringify(cite)
-            end
-        end
-    end
+    -- make a table with formatted citations (key = id; value = formatted citation)
+    local formated_citation = plain_citation(doc)
     
-    -- Convert references into crossref citation format
-    local refs2 = {}
+    -- Convert references into crossref citation format (inside <citation>)
+    local refs4crossref = {}
+    local citation = ''
 
     for k, ref in ipairs(refs) do
         local id = stringify(ref.id)
@@ -94,16 +108,17 @@ function Pandoc(doc)
             citation = citation .. '<volume_title>' .. stringify(ref['title']) .. '</volume_title>\n'
         end
 
-        if format_citation['ref-' .. id] then
-            citation = citation .. '<unstructured_citation>' .. format_citation['ref-' .. id] .. '</unstructured_citation>\n'
+        -- add <unstructured-citation> (from block)
+        if formated_citation['ref-' .. id] then
+            citation = citation .. '<unstructured_citation>' .. formated_citation['ref-' .. id] .. '</unstructured_citation>\n'
         end
         citation = citation .. '</citation>'
-        citation = citation:gsub('&', '&amp;')
         
-        refs2[k] = RawBlock('jats', citation)      
+        refs4crossref[k] = RawBlock('jats', citation)      
 
     end
-    doc.meta.refs2 = refs2
+    
+    doc.meta.refs4crossref = refs4crossref
 
     return doc
 end
