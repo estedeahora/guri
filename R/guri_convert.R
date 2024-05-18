@@ -116,7 +116,7 @@ guri_convert <- function(art_path, art_id,
     # Default template is used
     }else{
       if(verbose && !is.na(opt_type[["custom"]])){
-        ui_alert_info("No custom template file exists in {.path 'JORUNAL/_config/'}. ",
+        ui_alert_info("No custom template file exists in {.path JORUNAL/_config/}. ",
                       "Default ", opt_type["template"], " template is used.")
       }
       opt_templ <- paste0("--template=", file.path(program_path, "template", template_file))
