@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#preparación-de-los-documentos" id="toc-preparación-de-los-documentos" class="nav-link active" data-scroll-target="#preparación-de-los-documentos">Preparación de los documentos</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
   <li><a href="#borrador-borrar" id="toc-borrador-borrar" class="nav-link" data-scroll-target="#borrador-borrar">Borrador (borrar)</a>
   <ul class="collapse">
   <li><a href="#exportar-archivo-.json-con-referencias" id="toc-exportar-archivo-.json-con-referencias" class="nav-link" data-scroll-target="#exportar-archivo-.json-con-referencias">Exportar archivo <code>.json</code> con referencias</a></li>
@@ -206,12 +206,44 @@ Importante
 <p>Esta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.</p>
 </div>
 </div>
-<section id="preparación-de-los-documentos" class="level1">
-<h1>Preparación de los documentos</h1>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
 <p>Este documento describe algunos aspectos a tener en cuenta en la etapa de corrección de pruebas con el objetivo de automatizar la etapa de <em>producción</em> de revistas científicas usando <em><code>~!gurí_</code></em> (<em>Gestor de formatos para Revistas de Investigación</em>).</p>
 </section>
 <section id="borrador-borrar" class="level1">
 <h1>Borrador (borrar)</h1>
+<p>En este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un <em>Corrector de estilo</em> y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (<code>.DOCX</code>) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (<em>front</em>, <em>body</em> y <em>back</em>) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver <strong>?@fig-esquema</strong>).</p>
+<blockquote class="blockquote">
+<p><strong>[TODO]</strong> Actualizar figura con esquema para incorporar CRediT y elementos flotantes</p>
+</blockquote>
+<p>Las tareas específicas del <em>Editor</em> durante esta etapa serán:</p>
+<ol type="a">
+<li>Generar un archivo (<code>YAML</code>) con los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
+<li>Incorporar un archivo (<code>XLSX</code>) enviado por el/los autores con la información de acreditación según la taxonomía <a href="https://credit.niso.org/">CRediT</a> (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
+<li>Garantizar que dichos metadatos queden correctamente representados en el sistema de gestión de revistas (<a href="https://pkp.sfu.ca/software/ojs/"><em>Open Journal System - OJS</em></a> o el gestor de portales de revistas utilizado).</li>
+<li>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales (ver sección <a href="#sec-folders">Organización de carpetas de trabajo</a>).</li>
+<li>Mediar en el intercambio con el resto del equipo editorial, en particular con los encargados de la comunicación con los autores para poder validar los documentos resultantes de este proceso antes de que pasen a la etapa siguiente.</li>
+</ol>
+<p>Las tarea del <em>Corrector de estilo</em> serán:</p>
+<ol type="a">
+<li>Hacer una marcación y diferenciación de los diferentes bloques de contenidos, como títulos, texto, citas, etc. (ver sección <a href="#sec-format">Formato de documento</a>).</li>
+<li>Hacer una lectura general del artículo, corrigiendo problemas de redacción, gramaticales u ortografía (ver sección <a href="#sec-content">Corrección de contenido</a>).</li>
+<li>Verificar el formato y la correcta inclusión de las Tablas y Figuras para que puedan ser incorporadas correctamente en la etapa siguiente (ver sección <a href="#sec-float">Elementos flotantes</a>). Esto incluye marcar las referencias cruzadas internas a dichos elementos.</li>
+<li>Identificar y marcar las referencias bibliográficas mediante el uso de un gestor de referencias (ver sección <a href="#sec-references">Referencias bibliográficas</a>).</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si bien por una cuestión de lógica de los artículos la sección referida a las <a href="#sec-references">Referencias bibliográficas</a> se encuentra al final de este documento, es recomendable que el <em>Corrector de pruebas</em> realice esta tarea en primer lugar. Esto se debe a que para poder realizar la gestión de las referencias deberá tener previamente cargadas las referencias. En este sentido, en términos prácticos se recomienda empezar por la carga de las referencias en <em>Zotero</em>. Más allá de esto, el resto de las tareas (incluida la identificación de citas en el texto) se desarrollan de forma casi paralela dependiendo del orden en que los elementos aparezcan en el manuscrito, por lo cual, no existe un ‘orden de trabajo’.</p>
+</div>
+</div>
 <section id="exportar-archivo-.json-con-referencias" class="level2">
 <h2 class="anchored" data-anchor-id="exportar-archivo-.json-con-referencias">Exportar archivo <code>.json</code> con referencias</h2>
 <p>Por último, con el listado completo de referencias utilizadas en el artículo (dentro de una colección indenpendiente en <em>Zotero</em>), deberá generar una exportación del archivo <code>JSON</code> final. Es importante realizar esta tarea luego de realizar la verificación de referencias en el manuscrito para evitar que haya referencias que no estén listadas en el listado de referencias original entregada por el autor. Para ello, dentro de <em>Zotero</em> debe seleccionar la colección donde están las referencias utilizadas en el artículo y presionar botón derecho. En el menú desplegable seleccione ‘Exportar colección’ y dentro de las opciones de formato seleccione <!--# 'Better BibTeX' --> ‘CSL JSON’ y presione ‘OK’ para seleccionar el nombre del archivo donde se exportará su colección. Este archivo deberá llamarse <code>art[~]_biblio.json</code> y es uno de los archivos que debe colocar en la carpeta de trabajo del artículo (ver sección <a href="#sec-folders">Organización de carpetas</a>).</p>

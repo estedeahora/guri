@@ -163,7 +163,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introducción-la-creación-de-documentos" id="toc-introducción-la-creación-de-documentos" class="nav-link active" data-scroll-target="#introducción-la-creación-de-documentos">Introducción: la creación de documentos</a></li>
-  <li><a href="#preparación-de-un-número-de-la-revista" id="toc-preparación-de-un-número-de-la-revista" class="nav-link" data-scroll-target="#preparación-de-un-número-de-la-revista">Preparación de un número de la revista</a></li>
   <li><a href="#sec-folders" id="toc-sec-folders" class="nav-link" data-scroll-target="#sec-folders">Organización de carpetas de trabajo</a></li>
   <li><a href="#sec-metadata" id="toc-sec-metadata" class="nav-link" data-scroll-target="#sec-metadata">Metadatos</a>
   <ul class="collapse">
@@ -228,44 +227,11 @@ Importante
 <p><code>~!guri_</code> le permite a los editores de revistas científicas de acceso diamante automatizar la etapa de producción generando múltiples formatos de salida a partir de un manuscrito en formato <code>.docx</code>. Para ello, <code>~!guri_</code> utiliza un conjunto de reglas y plantillas que posibilitan la conversión entre formatos.</p>
 <p>Para comenzar con la creación de documentos es necesario que previamente haya instalado el paquete <code>{guri}</code> y las dependencias necesarias, configurando el entorno de trabajo. Además, para poder utilizar <code>~!guri_</code> es necesario que haya creado una revista (ver <a href="articles/configuration.html">Configuración</a>)</p>
 </section>
-<section id="preparación-de-un-número-de-la-revista" class="level1">
-<h1>Preparación de un número de la revista</h1>
-<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas).</p>
-<p>En este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un <em>Corrector de estilo</em> y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (<code>.DOCX</code>) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (<em>front</em>, <em>body</em> y <em>back</em>) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver <strong>?@fig-esquema</strong>).</p>
-<blockquote class="blockquote">
-<p><strong>[TODO]</strong> Actualizar figura con esquema para incorporar CRediT y elementos flotantes</p>
-</blockquote>
-<p>Las tareas específicas del <em>Editor</em> durante esta etapa serán:</p>
-<ol type="a">
-<li>Generar un archivo (<code>YAML</code>) con los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
-<li>Incorporar un archivo (<code>XLSX</code>) enviado por el/los autores con la información de acreditación según la taxonomía <a href="https://credit.niso.org/">CRediT</a> (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
-<li>Garantizar que dichos metadatos queden correctamente representados en el sistema de gestión de revistas (<a href="https://pkp.sfu.ca/software/ojs/"><em>Open Journal System - OJS</em></a> o el gestor de portales de revistas utilizado).</li>
-<li>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales (ver sección <a href="#sec-folders">Organización de carpetas de trabajo</a>).</li>
-<li>Mediar en el intercambio con el resto del equipo editorial, en particular con los encargados de la comunicación con los autores para poder validar los documentos resultantes de este proceso antes de que pasen a la etapa siguiente.</li>
-</ol>
-<p>Las tarea del <em>Corrector de estilo</em> serán:</p>
-<ol type="a">
-<li>Hacer una marcación y diferenciación de los diferentes bloques de contenidos, como títulos, texto, citas, etc. (ver sección <a href="#sec-format">Formato de documento</a>).</li>
-<li>Hacer una lectura general del artículo, corrigiendo problemas de redacción, gramaticales u ortografía (ver sección <a href="#sec-content">Corrección de contenido</a>).</li>
-<li>Verificar el formato y la correcta inclusión de las Tablas y Figuras para que puedan ser incorporadas correctamente en la etapa siguiente (ver sección <a href="#sec-float">Elementos flotantes</a>). Esto incluye marcar las referencias cruzadas internas a dichos elementos.</li>
-<li>Identificar y marcar las referencias bibliográficas mediante el uso de un gestor de referencias (ver sección <a href="#sec-references">Referencias bibliográficas</a>).</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Si bien por una cuestión de lógica de los artículos la sección referida a las <a href="#sec-references">Referencias bibliográficas</a> se encuentra al final de este documento, es recomendable que el <em>Corrector de pruebas</em> realice esta tarea en primer lugar. Esto se debe a que para poder realizar la gestión de las referencias deberá tener previamente cargadas las referencias. En este sentido, en términos prácticos se recomienda empezar por la carga de las referencias en <em>Zotero</em>. Más allá de esto, el resto de las tareas (incluida la identificación de citas en el texto) se desarrollan de forma casi paralela dependiendo del orden en que los elementos aparezcan en el manuscrito, por lo cual, no existe un ‘orden de trabajo’.</p>
-</div>
-</div>
-</section>
 <section id="sec-folders" class="level1">
 <h1>Organización de carpetas de trabajo</h1>
+<!-- # Preparación de un número de la revista -->
+<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas).</p>
+<!-- # Organización de carpetas de trabajo {#sec-folders} -->
 <p>Para cada número se creará una carpeta independiente que contendrá un archivo <code>_issue.yaml</code> con la información básica del número. Dentro de esta carpeta se deberá generar una carpeta independiente para cada artículo. Las carpetas de cada artículo deben utilizar una estructura de prefijos común, de manera que empiecen por la sílaba ‘<code>art</code>’, seguida de un identificador de un dígito para la sección y dos dígitos que identifiquen a los artículos en un orden secuencial que se espera sean presentados (ver recuadro con ejemplo). En caso de que la revista no tenga sección podrá usar una numeración continuada con tres dígitos.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
