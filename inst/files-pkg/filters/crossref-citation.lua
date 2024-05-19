@@ -31,7 +31,7 @@ function plain_citation(document)
         if b.t == "Div" and b.identifier == "refs" then
             -- get the content of the reference div 
             for _, cite in ipairs(b.content) do
-                table_citation[cite.identifier] = stringify(cite):gsub('&', '&amp;')
+                table_citation[cite.identifier] = stringify(cite)
             end
         end
     end
@@ -121,6 +121,7 @@ function Pandoc(doc)
             citation = citation .. '<unstructured_citation>' .. formated_citation['ref-' .. id] .. '</unstructured_citation>\n'
         end
         citation = citation .. '</citation>'
+        citation = citation:gsub('&', '&amp;')
         
         refs4crossref[k] = RawBlock('jats', citation)      
 
