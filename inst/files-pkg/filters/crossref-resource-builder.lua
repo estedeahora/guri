@@ -1,10 +1,12 @@
 --- crossref-resource-builder - Create resource URL and resource galleries URL for DOI registration in Crossref.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref-resource-builder.lua
---- Copyright: © 2024 Pablo Santiago SERRATI
 --- The filter is part of the R package {guri}.
+---
+--- Copyright: © 2024 Pablo Santiago SERRATI
 --- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
 ---          (see https://github.com/estedeahora/guri/).
 
+-- Summary:
 -- The  crossref-resource-builder.lua is a Pandoc Lua filter that creates the resource URL and 
 -- resource galleries URL for DOI registration in Crossref. The script uses the metadata fields to
 -- build the URLs. 

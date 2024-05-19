@@ -1,7 +1,16 @@
 --- crossref_autaff – Prepare authors and affiliations for Crossref.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref_autaff.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The crossref_autaff.lua is a Pandoc Lua filter that adds the field 'author[i].sequence' 
+-- and place, for each author, 'meta.affiliation' within 'author[i].insitution'. For each
+-- 'author[i].afiliation' search within each element in 'meta.affiliation' until matching 'id'
+-- and copy the element from 'meta.affiliation' to 'author[i].institution[j]'.
 
 -- Meta(m) --------------------------------------------------------------------------------------
 -- Description: [en] Add the field 'author[i].sequence' and place, for each author,

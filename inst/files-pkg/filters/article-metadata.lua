@@ -1,7 +1,16 @@
 --- article-metadata.lua – filter to check content of titles
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/article-metadata.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The article-metadata.lua is a Pandoc Lua filter that moves the fields associated with 
+-- meta.metadata (title, subtitle, abstract, and kw) to meta, preventing them from being
+-- overwritten if they are present in the docx document (store these in 'title_word'/
+-- 'subtitle_word').
 
 -- Meta(m) ---------------------------------------------------------------------------
 -- Description: [en] Moves the fields associated with meta.metadata (title, subtitle, abstract, and kw) to meta, preventing 

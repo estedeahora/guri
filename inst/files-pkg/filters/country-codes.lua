@@ -1,7 +1,14 @@
---- country-codes – lua Change authors metadata to "canonical form", as achieved with the scholarly-metadata.lua filter.
+--- country-codes – Add the name of the countries for affiliations.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/country-codes.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The country-codes.lua is a Pandoc Lua filter that adds the name of the countries for
+-- affiliations. 
 
 local stringify = pandoc.utils.stringify
 local with_working_directory = pandoc.system.with_working_directory

@@ -1,7 +1,20 @@
 --- crossref-register-prepare – prepare metadata for DOI registration in Crossref.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref-register-prepare.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The crossref-register-prepare.lua is a Pandoc Lua filter that adds fields necessary for DOI
+-- registration in Crossref:
+--    (a) Generate 'unix_epoch' (unix epoch time).
+--    (b) Generate 'journal.abbrev-title-doibatch' (abbreviated journal title with spaces 
+--          replaced by '_').
+--    (c) Modify 'abstract' and 'metadata_lang[i].abstract' to return a 'MetaString' (not 
+--          enclosed in <p>).
+--    (d) Standarize language code (remove regional code).
 
 -- Meta(m) --------------------------------------------------------------------------------------
 -- Description: [en] Add fields necessary for DOI registration in Crossref:

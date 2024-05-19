@@ -1,7 +1,19 @@
 --- language-elements.lua – filter to define the language of the element titles
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/language-elements.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The language-elements.lua is a Pandoc Lua filter that defines the language of the element 
+-- titles (abstract, keywords, tables, figures, sources, notes, references, credit,
+-- acknowledgements, funding, data availability, conflicts of interest). The filter uses the
+-- language of the article to define the titles of the elements. If the language of the article
+-- is different from the language of the journal, it is modified. The filter also uses custom
+-- values for the titles of the elements if they are provided. The filter also modifies the
+-- metadata to add the title of the abstract and keywords in the metadata_lang elements.
 
 local stringify = pandoc.utils.stringify
 local lower = pandoc.text.lower

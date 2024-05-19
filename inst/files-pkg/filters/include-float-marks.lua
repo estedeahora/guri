@@ -1,7 +1,17 @@
 --- include-float.lua – filter to include float elements (pandoc.CodeBlock) from float flags
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/include-float.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The include-float.lua is a Pandoc Lua filter that includes float elements (pandoc.CodeBlock)
+-- from float flags. The filter detects floating element markers in blocks ("^~!include=FIG..." |
+-- "^~!include=TAB...") and replaces these markers by 'pandoc.CodeBlock' type blocks with the 
+-- elements that define a floating element. The filter also adds float counters ('n_figs' and
+-- 'n_tabs') and elements quoted within float element paratexts ('nocite') in the metadata.
 
 local contador_tab = 0        --Initialise table counters
 local contador_fig = 0        --Initialise figure counters

@@ -1,7 +1,18 @@
 --- metadata-format-in-text.lua – filter to include div elements (before the reference) in the output format
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/metadata-format-in-text.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The metadata-format-in-text.lua is a Pandoc Lua filter that includes div elements (before 
+-- the reference) in the output format. The filter accesses pandoc.Div elements with class
+-- attribute "Paratext": (a) in latex generate environments of type "identifier"; (b) in Jats
+-- remove these elements from the body text (create empty elements of type pandoc.RawBlock).
+-- For pandoc.Div whose identifier attribute is "app" store the content and its position (for
+-- number appendices) in a table inside another table with all the appendicies.
 
 local RawBlock = pandoc.RawBlock
 local stringify = pandoc.utils.stringify

@@ -1,7 +1,19 @@
 --- doi-builder.lua – filter to doi construct from patterns
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/doi-builder.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The doi-builder.lua is a Pandoc Lua filter that constructs a DOI from patterns. Multiple
+-- patterns can be used to construct the DOI. The filter checks if the metadata contains the
+-- necessary information to construct the DOI.  First, he filter checks if 'article.DOI' is 
+-- 'none'or if 'journal.doi_prefix' is not present, the filter does not  construct the DOI.
+-- If 'article.doi' is present, the filter uses it as a customized the DOI. If 'article.doi'
+-- is not present, the filter uses the patterns in 'doi_suffix_constructor' to construct the
+-- DOI. Pattern allowed are: '%v', '%i', '%Y', '%a', '%p', '%e', '%x' (see default `article.yaml`)
 
 local stringify = pandoc.utils.stringify
 

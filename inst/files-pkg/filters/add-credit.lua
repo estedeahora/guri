@@ -1,7 +1,15 @@
 --- add-credit.lua – filter to add credit data to author metadata (from art[~]_credit.csv file)
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/add-credit.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+--- The add-credit.lua is a Pandoc Lua filter that adds credit data to the author metadata. 
+--- The filter reads the credit data from a CSV file (art[XXX]_credit.csv) and adds it to the
+--- author metadata in the YAML file. The filter also adds the credit data to the article metadata. 
 
 -- function credit_dict() --------------------------------------------------------------
 -- Description: [en] Creates lists with credit terms and url to credit 

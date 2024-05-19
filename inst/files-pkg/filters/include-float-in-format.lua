@@ -1,7 +1,14 @@
 --- include-float-in-format.lua – filter to include floating element code (depending on output format)
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/include-float-in-format.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The include-float-in-format.lua is a Pandoc Lua filter that includes floating elements 
+-- (figures and tables) in the output format (latex, html, jats).
 
 local root = "./float/"
 local mark_citation = '%[{.-}{@.-}{.-}]{.-}'

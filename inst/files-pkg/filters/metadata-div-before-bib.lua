@@ -1,7 +1,15 @@
 --- metadata-div-before-bib.lua – filter to include credit, acknowledgements and appendices as div blocks before references (or at the end)
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/metadata-div-before-bib.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The metadata-div-before-bib.lua is a Pandoc Lua filter that includes credit, acknowledgements 
+-- and appendices as div blocks before references (or at the end). The script uses the metadata
+-- fields to build the div blocks.
 
 local Str = pandoc.Str
 local Strong = pandoc.Strong

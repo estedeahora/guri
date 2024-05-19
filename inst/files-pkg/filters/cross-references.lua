@@ -1,12 +1,19 @@
 --- cross-references.lua – filter to add cross-references from flags
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/cross-references.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
 
--- Meta(meta) ------------------------------------------------------------------------------------
+-- Summary:
+-- The cross-references.lua is a Pandoc Lua filter that changes cross-reference flags to links
+-- to floating elements.
 
 local stringify = pandoc.utils.stringify
 local dic
+
+-- Meta(meta) ------------------------------------------------------------------------------------
 
 function Meta(meta)
   dic = {TAB = meta.floats['table-title'],

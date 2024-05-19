@@ -1,7 +1,15 @@
 --- crossref-citation - Generates each reference in CrossRef format.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref-citation.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The crossref-citation.lua is a Pandoc Lua filter that generates each reference in CrossRef 
+-- format. The references are placed inside <citation> elements.
+
 
 local RawBlock = pandoc.RawBlock
 local stringify = pandoc.utils.stringify

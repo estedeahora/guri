@@ -1,7 +1,15 @@
 --- author-to-canonical – lua Change authors metadata to "canonical form", as achieved with the scholarly-metadata.lua filter.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/author-to-canonical.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The author-to-canonical.lua is a Pandoc Lua filter that changes authors and organization
+-- information to "canonical form", as achieved with the 'scholarly-metadata.lua' filter.
+-- This allows the use of 'author-info-blocks.lua'.
 
 local stringify = pandoc.utils.stringify
 

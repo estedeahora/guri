@@ -1,7 +1,14 @@
 --- language-elements.lua – filter to define the language of the element titles
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/language-elements.lua
+--- The filter is part of the R package {guri}.
+---
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- Summary:
+-- The language-elements.lua is a Pandoc Lua filter that defines the language of the element 
+-- titles.
 
 local stringify = pandoc.utils.stringify
 local lower = pandoc.text.lower
@@ -111,13 +118,6 @@ function Meta(meta)
     end
 
     meta.journal['lang-babel'] = babel_language(tocode(meta.journal['lang']))
-
-    -- if tocode(meta.lang):match('^es$') then
-    --     meta.to_header = {meta.to_header,
-    --                     pandoc.RawBlock('latex', 
-    --                                     '\\renewcommand{\\spanishtablename}{' .. 
-    --                                     stringify(meta.floats['table-title']) .. '}')}
-    -- end
 
     return meta
 end
