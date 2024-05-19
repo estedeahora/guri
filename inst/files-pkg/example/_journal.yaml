@@ -37,11 +37,32 @@ doi_register:
     mail: joe@depositor.com
   registrant: University Registrant
   resource_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/view/%a       # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581
-  file_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%t    # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581/pdf
-  resource_files:
+  gallery_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%t    # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581/pdf
+  gallery_resources:
     - type: pdf     # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm: true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
-      tm:  true
-      # file_url_constructor:             
+      text_mining:  true
+      # gallery_url_constructor:             
     - type: html    # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm: true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
-      tm:  false
-      # file_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%f
+      text_mining:  false
+      # gallery_url_constructor:
+    - type: xml    # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm: true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
+      text_mining:  true
+      gallery_url_constructor: https://publicaciones.uba.ar/index.php/guri/article/viewFile/%a/%g    # example: https://publicaciones.uba.ar/index.php/guri/article/view/4581/4872
+
+# 'doi_suffix_constructor' and 'resource_constructor' follows the OJS conventions: 
+#    %v volume nomber (volume); 
+#    %i issue number (issue); 
+#    %Y Year (date.year); 
+#    %a OJS article ID (article.ojs_id); 
+#    %g para el ID de las galeradas de OJS  (articule.resources['type'].files_id). 
+#    %p article pages (article.fpage-article.lpage).
+#
+# In addition, guri uses other markers that can be used more freely to customise your doi and resources: 
+#    %e article.elocation-id; 
+#    %x article.publisher-id;
+#    %D doi prefix (journal.prefix);
+#    %d doi suffix (article.suffix).
+#    %t doi_register.resource_files[i].type
+#    %R resource url
+
+# No se implementa %s ni %f.

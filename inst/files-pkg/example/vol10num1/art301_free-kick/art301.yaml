@@ -18,10 +18,9 @@ article:
   # lpage:                  # Página final
   # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
   # resource_url:
-  # resources:
-  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub)
-  #     url:                # URL del recurso. Se utiliza por defecto este para generar url del recurso (<resource> dentro de <collection>), omitiendo 'resource_url_constructor' de _journal.yaml.
-  #     file_name:          # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
+  resources:
+    xml:
+      gallery-id: 142d
 
 # Metadatos del artículo (language principal)
 # -------------------------------------------

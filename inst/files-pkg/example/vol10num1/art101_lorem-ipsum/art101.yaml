@@ -5,15 +5,22 @@ article:
   type: editorial               #  https://jats.nlm.nih.gov/publishing/tag-library/1.3/attribute/article-type.html 
   elocation-id: a101
   ojs_id: 4581                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)         
+  # publisher-id:           # Identificador personalizado del artículo asignado por el editor.En jats <article-id pub-id-type="publisher-id">.
   # doi: guri_45.5555
   # fpage:                  # Página inicial
   # lpage:                  # Página final
   # resource_url:
-  # resources:
-  #   - type:               # Tipo de recurso (pdf, xml, html, epub)
-  #     url:                # URL del recurso
-  #     file_name:          # Nombre del archivo (si se desea cambiar el nombre del archivo en el resource_file)
-  
+  resources:
+  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub)
+  #     url: www.xldaa.daw                # URL del recurso. Se utiliza por defecto este para generar url del recurso (<resource> dentro de <collection>), omitiendo 'resource_url_constructor' de _journal.yaml.
+  #     gallery-id: 4587          # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
+    html:
+      url: https://publicaciones.uba.ar/index.php/guri/article/4581/OTHER-CUSTOM-URL
+      # gallery-id: 4588
+    xml:
+      # url:
+      gallery-id: 4589
+
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:

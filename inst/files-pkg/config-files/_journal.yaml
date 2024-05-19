@@ -35,11 +35,11 @@ doi_register:
     mail: 
   registrant:                 # Registrant's name (institution)
   resource_url_constructor:   # URL'constructor for complete resource (see pattern constructors). Only used if 'article.resource_url' is not provided. 
-  file_url_constructor:       # URL'constructor for files resources (see pattern constructors). Only used if 'doi_register.resource_files.resource_constructor' is not provided.
-  resource_files:
-    - type:                   # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm:true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
-      text_mining:  true      # is text mining on the resource allowed?
-      # file_url_constructor: # URL'constructor for files resources (see pattern constructors). Priority over 'file_url_constructor'.
+  gallery_url_constructor:       # URL'constructor for files resources (see pattern constructors). Only used if 'doi_register.resource_files.resource_constructor' is not provided.
+  gallery_resources:
+    - type:                      # file type: 'pdf', 'html', 'xml' and 'epub' -> if 'tm:true', pdf → 'application/pdf'; html → 'text/html'; xml → 'application/xml'; epub → 'application/epub+zip'
+      text_mining:  true         # is text mining on the resource allowed?
+      # gallery_url_constructor: # URL'constructor for gallery resources (see pattern constructors). Priority over 'doi.register.gallery_url_constructor'.
 
 
 # 'doi_suffix_constructor' and 'resource_constructor' follows the OJS conventions: 
@@ -47,7 +47,7 @@ doi_register:
 #    %i issue number (issue); 
 #    %Y Year (date.year); 
 #    %a OJS article ID (article.ojs_id); 
-# !  %f OJS file ID (articule.ojs.files_id['type'])
+#    %g para el ID de las galeradas de OJS  (articule.resources['type'].files_id). 
 #    %p article pages (article.fpage-article.lpage).
 #
 # In addition, guri uses other markers that can be used more freely to customise your doi and resources: 
@@ -58,4 +58,4 @@ doi_register:
 #    %t doi_register.resource_files[i].type
 #    %R resource url
 
-# !: sin implementar aun
+# No se implementa %s ni %f.

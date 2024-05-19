@@ -15,13 +15,13 @@ article:
   # ojs_id:                   # Identificador usado por OJS (Si usa OJS es necesario para construir url-resources y, potencialmente, doi)
   # fpage:                  # Página inicial
   # lpage:                  # Página final
-  # doi:                    # sufijo doi customizado. Para artículos sin doi colocar 'none' (si la revista no tiene doi configurar  _journal.yaml)
-  # resource_url:
-  # resources:
-  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub)
+  # doi:                    # [!] Sufijo doi customizado. Se recomienda usar doi_register.doi_suffix_constructor en _journal.yaml. Para artículos sin doi colocar 'none'. Si la revista no tiene doi configurar journal.doi_prefix: "none" en _journal.yaml.
+  # resource_url:           # [!] Solo usar si se utiliza url personalizada para el recurso. Se recomienda usar resource_url_constructor en _journal.yaml para url construida por patrones.
+  # resources:              # [!] Solo usar si se requiere url personalizada para galeradas (pdf, xml, html, epub) o si se utiliza %g en gallery_url_constructor
+  #   pdf:                  # Colocar el tipo de recurso que corresponde (opciones válidas: pdf, xml, html, epub). Puede colocar más de un elemento (deben coincidir con los presentes en doi_register.gallery_resources de _journal.yaml).
   #     url:                # URL del recurso. Se utiliza por defecto este para generar url del recurso (<resource> dentro de <collection>), omitiendo 'resource_url_constructor' de _journal.yaml.
-  #     file_name:          # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
-  
+  #     gallery-id:         # Nombre del archivo (utilizado como patrón en la construcción de url a recursos).
+
 # Metadatos del artículo (language principal)
 # -------------------------------------------
 metadata:

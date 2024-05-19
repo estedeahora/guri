@@ -163,7 +163,7 @@ function Meta(meta)
             gallery_res.gallery_url = gallery_url
     
             -- (c) Text mining table
-            if gallery_res.tm then
+            if gallery_res.text_mining then
                 table.insert(tm, {url = gallery_url, 
                                   prop = file_property[res_type]})
             end
