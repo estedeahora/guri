@@ -1,11 +1,17 @@
---- crossref-resource-builder - Create resource URL and resource file URL for DOI registration in Crossref.
+--- crossref-resource-builder - Create resource URL and resource galleries URL for DOI registration in Crossref.
 --- https://github.com/estedeahora/guri/tree/main/inst/files-pkg/filters/crossref-resource-builder.lua
 --- Copyright: © 2024 Pablo Santiago SERRATI
---- License: CC-by-nc-sa
+--- The filter is part of the R package {guri}.
+--- License: CC-by-nc-sa. The licence for this filter is the same as for the {guri} package 
+---          (see https://github.com/estedeahora/guri/).
+
+-- The  crossref-resource-builder.lua is a Pandoc Lua filter that creates the resource URL and 
+-- resource galleries URL for DOI registration in Crossref. The script uses the metadata fields to
+-- build the URLs. 
 
 local stringify = pandoc.utils.stringify
 
--- table with file properties according to the file type
+-- table with file properties according to the gallery type
 local file_property = {
     pdf = "application/pdf",
     html = "text/html",
@@ -73,15 +79,15 @@ local function resource_builder(constructor, pattern)
 end
 
 -- Meta(m) --------------------------------------------------------------------------------------
--- Description: [en] Build (a) the URL of the resource; (b) the URL of the files of the resource; and
+-- Description: [en] Build (a) the URL of the resource; (b) the URL of the galleries of the resource; and
 --                      (c) the URL for text mining.
---				[es] Construye (a) la URL del recurso; (b) las URL de los archivos del recurso; y 
+--				[es] Construye (a) la URL del recurso; (b) las URL de las galeradas del recurso; y 
 --                      (c) las URL para minería de texto.
--- Return: [en] Modified meta. The URL of the resource and the URL of the files of the resource
---                are added within 'doi_register' and 'doi_register.resource_files'. Also, a
+-- Return: [en] Modified meta. The URL of the resource and the URL of the galleries of the resource
+--                are added within 'doi_register' and 'doi_register.gallery_resources'. Also, a
 --                'text_mining' table is added with url and file type for text mining.
---		   [es] Meta modificado. Se agrega la URL del recurso y la URL de los archivos del recurso 
---                dentro de 'doi_register' y 'doi_register.resource_files'. También se agrega
+--		   [es] Meta modificado. Se agrega la URL del recurso y la URL de las galeradas del recurso 
+--                dentro de 'doi_register' y 'doi_register.gallery_resources'. También se agrega
 --                tabla 'text_mining' con url y tipo de archivo para minería de texto.
 
 function Meta(meta)
@@ -110,43 +116,57 @@ function Meta(meta)
     end
 
     meta.doi_register.resource_url = resource_url
-    
-    -- (b) Resource file URL builder
     table.insert(resource_pattern, {p = "%%R", v = resource_url, t = "resource URL"})
     
-    local file_constructor = nil
-    if meta.doi_register.file_url_constructor then
-        file_constructor = stringify(meta.doi_register.file_url_constructor)
-    end
-    
-    -- local article_resources = meta.article.resources
+    -- Gallery URL and text mining
+    local gallery_constructor = stringify(meta.doi_register.gallery_url_constructor) or nil
     local tm = {}
     
-    if meta.doi_register.resource_files then
-        for i, res_file in ipairs(meta.doi_register.resource_files) do
+    if meta.doi_register.gallery_resources then
+        for _, gallery_res in ipairs(meta.doi_register.gallery_resources) do
             
-            -- if not 'res_file.file_url_constructor': then use 'file_constructor'
-            file_constructor_i = stringify(res_file.file_url_constructor or file_constructor)
+            local res_type = stringify(gallery_res.type)
+            local gallery_url
 
-            -- insert gallery id (%g) and resource type file (%t) in the pattern table ('resource_pattern')
-            table.insert(resource_pattern, {p = "%%g", v = galleries[stringify(res_file.type)], t = "Gallery ID"})
-            table.insert(resource_pattern, {p = "%%t", v = res_file.type, t = "resource type file"})
+            -- (b) Resource galleries URL builder
             
-            local file_url = resource_builder(file_constructor_i, resource_pattern)
-            
-            table.remove(resource_pattern)
-            table.remove(resource_pattern)
+            if meta.article.resources and
+                meta.article.resources[res_type] and
+                meta.article.resources[res_type].url then
 
-            res_file.file_url = file_url
+                    -- use custom resource galleriy url
+                    gallery_url = meta.article.resources[res_type].url
+
+            else
+                    -- use resource gallery url builder:
+                    -- if not 'gallery_res.gallery_url_constructor': then use 'gallery_constructor' (common for all galleries)
+                    gconstructor = stringify(gallery_res.gallery_url_constructor or gallery_constructor)
+                    if not gconstructor then
+                        error('ERROR: "doi_register.gallery_url_constructor" or ' .. 
+                                '"doi_register.gallery_resources.' .. res_type .. 
+                                '.gallery_url_constructor"' .. 
+                                'may be defined in the metadata')
+                    end
+
+                    -- insert gallery id (%g) and resource type gallery (%t) in the pattern table ('resource_pattern')
+                    table.insert(resource_pattern, {p = "%%g", v = galleries[res_type], t = "Gallery ID"})
+                    table.insert(resource_pattern, {p = "%%t", v = gallery_res.type, t = "Resource type"})
+
+                    gallery_url = resource_builder(gconstructor, resource_pattern)
+                    
+                    table.remove(resource_pattern)
+                    table.remove(resource_pattern)
+            end
+
+            gallery_res.gallery_url = gallery_url
     
-            -- Add text mining information
-            if res_file.tm then
-                tm[i] = {url = file_url, 
-                         prop = file_property[stringify(res_file.type)]}
+            -- (c) Text mining table
+            if gallery_res.tm then
+                table.insert(tm, {url = gallery_url, 
+                                  prop = file_property[res_type]})
             end
         end
 
-        -- (c) Text mining table
         if next(tm) then
             meta.doi_register.text_mining = tm
         end

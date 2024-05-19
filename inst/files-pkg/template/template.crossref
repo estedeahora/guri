@@ -130,10 +130,10 @@ $endif$
 <doi>$article.doi$</doi>
 <timestamp>$doi_register.unix_epoch$</timestamp>
 <resource content_version="vor">$doi_register.resource_url$</resource>
-$for(doi_register.resource_files)$
+$for(doi_register.gallery_resources)$
 <collection property="crawler-based">
 <item crawler="iParadigms">
-<resource>$it.file_url$</resource>
+<resource>$it.gallery_url$</resource>
 </item>
 </collection>
 $endfor$
