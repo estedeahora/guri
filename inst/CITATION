@@ -1,10 +1,10 @@
 key <- paste0("R-", meta$Package)
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
-doi <- "10.5281/zenodo.2543762"
+doi <- "10.5281/zenodo.11217931"
 title <- paste0(meta$Package, ": ", meta$Title)
 
-citHeader("To cite ggnewscale in publications use:")
+citHeader("To cite guri in publications use:")
 bibentry(bibtype = "Manual",
          key = key,
          title = title,
@@ -13,4 +13,5 @@ bibentry(bibtype = "Manual",
                          comment = c(ORCID = "0000-0001-5300-2243")),
          year = year,
          note = note,
-         doi  = doi)
+         doi  = doi
+         )

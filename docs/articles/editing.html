@@ -92,15 +92,15 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Descripción</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../articles/get_started.html"> 
+<span class="menu-text">Inicio rápido</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Documentación</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-documentación">    
-        <li>
-    <a class="dropdown-item" href="../articles/get_started.html">
- <span class="dropdown-text">Inicio rápido</span></a>
-  </li>  
         <li>
     <a class="dropdown-item" href="../articles/configuration.html">
  <span class="dropdown-text">Configuración</span></a>
@@ -108,6 +108,18 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../articles/editing.html">
  <span class="dropdown-text">Uso de gurí</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../articles/file_prepare.html">
+ <span class="dropdown-text">Preparación de archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../articles/customization.html">
+ <span class="dropdown-text">Personalización</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../articles/doi_batch.html">
+ <span class="dropdown-text">Depósito DOI</span></a>
   </li>  
     </ul>
   </li>
@@ -150,7 +162,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#el-uso-de-guri" id="toc-el-uso-de-guri" class="nav-link active" data-scroll-target="#el-uso-de-guri">El uso de <em>GURI</em></a></li>
+  <li><a href="#introducción-la-creación-de-documentos" id="toc-introducción-la-creación-de-documentos" class="nav-link active" data-scroll-target="#introducción-la-creación-de-documentos">Introducción: la creación de documentos</a></li>
+  <li><a href="#preparación-de-un-número-de-la-revista" id="toc-preparación-de-un-número-de-la-revista" class="nav-link" data-scroll-target="#preparación-de-un-número-de-la-revista">Preparación de un número de la revista</a></li>
   <li><a href="#sec-folders" id="toc-sec-folders" class="nav-link" data-scroll-target="#sec-folders">Organización de carpetas de trabajo</a></li>
   <li><a href="#sec-metadata" id="toc-sec-metadata" class="nav-link" data-scroll-target="#sec-metadata">Metadatos</a>
   <ul class="collapse">
@@ -210,29 +223,18 @@ Importante
 <p>Esta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.</p>
 </div>
 </div>
-<section id="el-uso-de-guri" class="level2">
-<h2 class="anchored" data-anchor-id="el-uso-de-guri">El uso de <em>GURI</em></h2>
-<p><strong>[TODO]</strong> Describir cómo usar GURI</p>
-<p>Es importante considerar que la propuesta editorial tiene como base diferenciar los tres grandes bloques que componen un artículo científico (ver estandar <a href="#0">XML-JATS</a>), a saber:</p>
-<ol type="a">
-<li>Metadatos (<em>front</em>): contiene información de identificación sobre la revista, los autores y el propio artículo;</li>
-<li>Cuerpo principal del manuscrito (<em>body</em>): contiene el contenido principal del texto, incluidos los elementos flotantes como tablas y figuras; y</li>
-<li>Material complementario (<em>back</em>): contiene elementos que complementan el cuerpo principal, incluyendo principalmente las referencias bibliográficas y anexos.</li>
-</ol>
-<p>En este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un <em>Corrector de estilo</em> y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (<code>.DOCX</code>) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (<em>front</em>, <em>body</em> y <em>back</em>) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver <a href="#fig-esquema" class="quarto-xref">Figura&nbsp;1</a>).</p>
+<section id="introducción-la-creación-de-documentos" class="level1">
+<h1>Introducción: la creación de documentos</h1>
+<p><code>~!guri_</code> le permite a los editores de revistas científicas de acceso diamante automatizar la etapa de producción generando múltiples formatos de salida a partir de un manuscrito en formato <code>.docx</code>. Para ello, <code>~!guri_</code> utiliza un conjunto de reglas y plantillas que posibilitan la conversión entre formatos.</p>
+<p>Para comenzar con la creación de documentos es necesario que previamente haya instalado el paquete <code>{guri}</code> y las dependencias necesarias, configurando el entorno de trabajo. Además, para poder utilizar <code>~!guri_</code> es necesario que haya creado una revista (ver <a href="articles/configuration.html">Configuración</a>)</p>
+</section>
+<section id="preparación-de-un-número-de-la-revista" class="level1">
+<h1>Preparación de un número de la revista</h1>
+<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas).</p>
+<p>En este sentido, una de las tareas principales de esta etapa es generar los documento necesarios para la etapa siguiente (maquetación), diferenciando estos tres grandes bloques. Este proceso deberá llevarse adelante en conjunto entre un <em>Corrector de estilo</em> y un Editor. Como insumo los encargados de esta etapa recibirán el manuscrito aceptado (<code>.DOCX</code>) en el proceso de revisión por pares, a partir del cual se deberá diferenciar estos tres grandes bloques (<em>front</em>, <em>body</em> y <em>back</em>) para que puedan ser utilizados en la etapa posterior de generación de archivos finales o maquetación (ver <strong>?@fig-esquema</strong>).</p>
 <blockquote class="blockquote">
 <p><strong>[TODO]</strong> Actualizar figura con esquema para incorporar CRediT y elementos flotantes</p>
 </blockquote>
-<div id="fig-esquema" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-esquema-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/scheme.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esquema-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: Esquema de la etapa final de publicación de revistas científicas (etapa de producción)
-</figcaption>
-</figure>
-</div>
 <p>Las tareas específicas del <em>Editor</em> durante esta etapa serán:</p>
 <ol type="a">
 <li>Generar un archivo (<code>YAML</code>) con los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
@@ -301,14 +303,14 @@ Ejemplo de nombre de carpetas para revista QUID16
 </ul>
 <!--# `art[~]_biblio.json` (ejemplo: `art302_biblio.json`): Contiene el listado bibliográfico en el formato estandarizado JSON (exportado desde Zotero). Sólo podrá haber un archivo `.JSON` por cada artículo y el mismo estará disponible sólo si el artículo tiene referencias bibliográficas asociadas. -->
 <p>Además de estos archivos, dentro de cada carpeta de artículo podrá haber una carpeta <code>./float</code> con varios archivos en donde estarán las Tablas y Figuras (ver sección <a href="#sec-float">Elementos flotantes</a> para mayor desarrollo).</p>
-<p>Para ilustrar la organización de archivos prevista, si el artículo que se está corrigiendo corresponde al <code>Número 20</code> de la revista, entonces la carpeta del segundo artículo de la sección “3” (<code>./art302</code>) deberá tener la estructura de archivos que se presenta en la <a href="#fig-folder" class="quarto-xref">Figura&nbsp;2</a>.</p>
+<p>Para ilustrar la organización de archivos prevista, si el artículo que se está corrigiendo corresponde al <code>Número 20</code> de la revista, entonces la carpeta del segundo artículo de la sección “3” (<code>./art302</code>) deberá tener la estructura de archivos que se presenta en la <a href="#fig-folder" class="quarto-xref">Figura&nbsp;1</a>.</p>
 <div id="fig-folder" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-folder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../figures/tree.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2: Estructura de carpetas y achivos.
+Figura&nbsp;1: Estructura de carpetas y achivos.
 </figcaption>
 </figure>
 </div>
@@ -380,7 +382,7 @@ Nota
 <p>Dentro de la corrección de estilo será necesario marcar los elementos flotantes (Tablas y Figuras) que aparezcan en el manuscrito. Las tablas y figuras serán guardadas externamente en una carpeta denominada ‘float’ dentro del directorio del artículo. Para facilitar la explicación diferenciamos</p>
 <section id="guardar-archivos-externamente" class="level2">
 <h2 class="anchored" data-anchor-id="guardar-archivos-externamente">Guardar archivos externamente</h2>
-<p>Para las <strong>figuras</strong> esto se puede hacer dentro de <em>Microsoft Word</em> presionando el botón derecho en la figura y eligiendo ‘Guardar como imagen’, lo que abrirá un cuadro de diálogo para guardar la misma (el formato del archivo podrá ser el que sugiere por defecto).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Por su parte, para las <strong>tablas</strong> las mismas deberán ser copiadas y pegadas en una planilla de cálculo de Microsoft Excel. En ambos casos los archivos deberán guardarse en la carpeta <code>float/</code> dentro de la carpeta de cada artículo. Los nombres de los archivos deberán ser <code>FIG_XX</code> o <code>TAB_XX</code> (dependiendo de si se trata de Figuras o Tablas) y reemplazando ‘<code>XX</code>’ por el número de tabla o figura (ver ejemplo en <a href="#fig-folder" class="quarto-xref">Figura&nbsp;2</a>). Además, como se mencionó en la sección de <a href="#sec-content">Corrección de contenido</a> es importante usar dos dígitos para la numeración de estos elementos flotantes.</p>
+<p>Para las <strong>figuras</strong> esto se puede hacer dentro de <em>Microsoft Word</em> presionando el botón derecho en la figura y eligiendo ‘Guardar como imagen’, lo que abrirá un cuadro de diálogo para guardar la misma (el formato del archivo podrá ser el que sugiere por defecto).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Por su parte, para las <strong>tablas</strong> las mismas deberán ser copiadas y pegadas en una planilla de cálculo de Microsoft Excel. En ambos casos los archivos deberán guardarse en la carpeta <code>float/</code> dentro de la carpeta de cada artículo. Los nombres de los archivos deberán ser <code>FIG_XX</code> o <code>TAB_XX</code> (dependiendo de si se trata de Figuras o Tablas) y reemplazando ‘<code>XX</code>’ por el número de tabla o figura (ver ejemplo en <a href="#fig-folder" class="quarto-xref">Figura&nbsp;1</a>). Además, como se mencionó en la sección de <a href="#sec-content">Corrección de contenido</a> es importante usar dos dígitos para la numeración de estos elementos flotantes.</p>
 </section>
 <section id="marcación-de-elementos-flotantes" class="level2">
 <h2 class="anchored" data-anchor-id="marcación-de-elementos-flotantes">Marcación de elementos flotantes</h2>
@@ -446,14 +448,14 @@ Tabla&nbsp;1: Resumen de elementos para la marcación de elementos flotantes
 </div>
 </figure>
 </div>
-<p>Los marcadores deben utilizar un sólo párrafo. Sin embargo, es posible separar los elementos clave-valor mediante el uso de saltos de líneas ‘débiles’ (<code>shift</code> + <code>enter</code>), como se muestra en la <code>FIG_01</code> del ejemplo de marcación de la <a href="#fig-marking" class="quarto-xref">Figura&nbsp;3</a>. También es posible (pero no necesario) resaltar estos elementos para facilitar su ubicación durante la tarea de corrección.</p>
+<p>Los marcadores deben utilizar un sólo párrafo. Sin embargo, es posible separar los elementos clave-valor mediante el uso de saltos de líneas ‘débiles’ (<code>shift</code> + <code>enter</code>), como se muestra en la <code>FIG_01</code> del ejemplo de marcación de la <a href="#fig-marking" class="quarto-xref">Figura&nbsp;2</a>. También es posible (pero no necesario) resaltar estos elementos para facilitar su ubicación durante la tarea de corrección.</p>
 <div id="fig-marking" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-marking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/float_elements.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-marking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3: Ejemplo de marcado de elementos flotantes
+Figura&nbsp;2: Ejemplo de marcado de elementos flotantes
 </figcaption>
 </figure>
 </div>
@@ -470,14 +472,14 @@ Automatizar el ‘Bloque de marcación’ en <em>Microsoft Word</em>
 <p>Para facilitar la marcación, es posible configurar <em>Microsoft Word</em> para generar automáticamente un ‘bloque de texto’ con la estructura necesaria para la marcación. Para ello debe copiar como texto sin formato el siguiente bloque de texto en la plantilla modelo sobre la que realizará la corrección (puede utilizar el bloque coloreado que está presente al final de la plantilla modelo).</p>
 <pre><code>~!include= ~!title= ~!source= ~!note=</code></pre>
 <p>Luego seleccione este contenido y dentro de la pestaña ‘Insertar’ busque el botón ‘Elementos rápidos’ y seleccione la opción ‘Guardar selección en una galería de elementos rápidos’. Dentro de la ventana emergente puede seleccionar un nombre y una descripción para el bloque (es recomendable usar un nombre que pueda recordar, como ‘Bloque de elemento flotante’ o ‘Marcación de elemento flotante’). Además, dentro de este cuadro de diálogo, seleccione dentro de ‘Opciones’ el texto ‘Insertar como contenido en su propio párrafo’ y presione ‘Aceptar’.</p>
-<p>Luego de esto, podrá insertar automáticamente el bloque de marcación seleccionándolo dentro de las opciones que aparecen en el botón ‘Elementos rápidos’ del menú ‘Insertar’ (ver <a href="#fig-float-block" class="quarto-xref">Figura&nbsp;4</a>). Si requiere modificar o eliminar el bloque de contenido que generó, puede elegir la opción ‘Organización de bloques de creación…’ (dentro del botón ‘Elementos rápidos’ del menú ‘Insertar’). Cuando guarde el archivo se le consultará para guardar los cambios hechos en los ‘estilos’ o ‘bloques de creación’ (debe guardar estos cambios).</p>
+<p>Luego de esto, podrá insertar automáticamente el bloque de marcación seleccionándolo dentro de las opciones que aparecen en el botón ‘Elementos rápidos’ del menú ‘Insertar’ (ver <a href="#fig-float-block" class="quarto-xref">Figura&nbsp;3</a>). Si requiere modificar o eliminar el bloque de contenido que generó, puede elegir la opción ‘Organización de bloques de creación…’ (dentro del botón ‘Elementos rápidos’ del menú ‘Insertar’). Cuando guarde el archivo se le consultará para guardar los cambios hechos en los ‘estilos’ o ‘bloques de creación’ (debe guardar estos cambios).</p>
 <div id="fig-float-block" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-float-block-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../figures/float-block.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-float-block-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4: Ejemplo de inserción automática de bloque de marcación
+Figura&nbsp;3: Ejemplo de inserción automática de bloque de marcación
 </figcaption>
 </figure>
 </div>

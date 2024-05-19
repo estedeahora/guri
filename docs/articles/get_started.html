@@ -143,6 +143,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../articles/editing.html">
  <span class="dropdown-text">Uso de gurí</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../articles/customization.html">
+ <span class="dropdown-text">Personalización</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -205,10 +209,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Para realizar una prueba rápida de <code>~!gurí_</code> puede utilizar el ejemplo que se brinda con el paquete, el cual contiene los archivos necesarios para crear el ’Volumen 10 - Número 1” de una revista ficticia.</p>
-<p>Dado que <code>~!guri_</code> es, además de un paquete de R, un flujo de trabajo que interaccina con su estructura de directorios, es muy recomendable que ejecute este ejemplo desde un proyecto nuevo (información sobre <a href="https://r4ds.had.co.nz/workflow-projects.html">Proyectos de R</a>).<!--Para ello abra el proyecto de R utilizando el archivo `guri.Rproj` (puede hacerlo desde RStudio o haciendo doble click desde el explorador de archivos). Esto abrirá una sesión de R con el proyecto 'guri' abierto.--> La carpeta que utilice para su proyecto será la que alojará las diferentes revistas que úede gestionar. Una vez generado su proyecto, debe instalar el paquete {gurí} y cargarlo para que esté disponible en su ambiente de trabajo. El paquete <code>{gurí}</code> no está aún disponible en <em>CRAN</em>, por lo cual debe realizar la instalación de forma directa desde <em>Github</em>. Para ello puede utilizar el paquete <code>{pak}</code> que permite instalar paquetes desde <em>Github</em> de forma simple (alternativamente puede utilizar el paqete {remotes}).</p>
+<p>Dado que <code>~!guri_</code> es, además de un paquete de R, un flujo de trabajo que interaccina con su estructura de directorios, es muy recomendable que ejecute este ejemplo desde un proyecto nuevo (información sobre <a href="https://r4ds.had.co.nz/workflow-projects.html">Proyectos de R</a>).<!--Para ello abra el proyecto de R utilizando el archivo `guri.Rproj` (puede hacerlo desde RStudio o haciendo doble click desde el explorador de archivos). Esto abrirá una sesión de R con el proyecto 'guri' abierto.--> La carpeta que utilice para su proyecto será la que alojará las diferentes revistas que úede gestionar. Una vez generado su proyecto, debe instalar el paquete {gurí} y cargarlo para que esté disponible en su ambiente de trabajo.</p>
+<p>El paquete <code>{gurí}</code> no está aún disponible en <em>CRAN</em>, por lo cual debe realizar la instalación de forma directa desde <em>Github</em>. Para ello puede utilizar el paquete <code>{pak}</code> que permite instalar paquetes desde <em>Github</em> de forma simple (alternativamente puede utilizar el paqete {remotes}).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pak"</span>)) <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pkg_install</span>(<span class="st">"estedeahora/guri"</span>, <span class="at">upgrade =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pkg_install</span>(<span class="st">"estedeahora/guri"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- pak::pkg_install("estedeahora/guri@*release", upgrade = T) -->
 <p>Si es la primera vez que usa <code>~!gurí_</code>, luego de que haya instalado el paquete <code>{gurí}</code> y que haya cargado el mismo en su ambiente de trabajo, deberá instalar las dependencias necesarias, a saber: <em>Pandoc</em>, la distribución <em>tinytex</em> de LaTeX y las librerías de LaTeX necesarias para que ~!gurí pueda funcionar correctamente. Dependiendo de si ya tiene instalada estos programas esto puede tardar más o menos tiempo y, asegúrese antes de comenzar contar con una conexión estable a internet. Para instalar estas dependencias ejecute en la consola de R lo siguiente:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(guri)</span>
