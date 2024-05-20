@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>~!gurí_ - Uso de ~!gurí_</title>
+<title>~!gurí_ - Creación de documentos finales con ~!gurí_</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Uso de gurí</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../articles/file_prepare.html">
+    <a class="dropdown-item" href="../articles/proofreading.html">
  <span class="dropdown-text">Preparación de archivos</span></a>
   </li>  
         <li>
@@ -139,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Uso de ~!gurí_</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Creación de documentos finales con ~!gurí_</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -162,28 +162,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#introducción-la-creación-de-documentos" id="toc-introducción-la-creación-de-documentos" class="nav-link active" data-scroll-target="#introducción-la-creación-de-documentos">Introducción: la creación de documentos</a></li>
+  <li><a href="#la-creación-de-documentos-finales-y-el-rol-del-coordinador-de-producción-en-guri_" id="toc-la-creación-de-documentos-finales-y-el-rol-del-coordinador-de-producción-en-guri_" class="nav-link active" data-scroll-target="#la-creación-de-documentos-finales-y-el-rol-del-coordinador-de-producción-en-guri_">La creación de documentos finales y el rol del coordinador de producción en ~!guri_</a></li>
   <li><a href="#sec-folders" id="toc-sec-folders" class="nav-link" data-scroll-target="#sec-folders">Organización de carpetas de trabajo</a></li>
   <li><a href="#sec-metadata" id="toc-sec-metadata" class="nav-link" data-scroll-target="#sec-metadata">Metadatos</a>
   <ul class="collapse">
-  <li><a href="#información-del-volumennúmero-y-el-artículo" id="toc-información-del-volumennúmero-y-el-artículo" class="nav-link" data-scroll-target="#información-del-volumennúmero-y-el-artículo">Información del volumen/número y el artículo</a></li>
+  <li><a href="#información-del-volumennúmero-el-archivo-_issue.yaml" id="toc-información-del-volumennúmero-el-archivo-_issue.yaml" class="nav-link" data-scroll-target="#información-del-volumennúmero-el-archivo-_issue.yaml">Información del volumen/número: el archivo <code>_issue.yaml</code></a></li>
   <li><a href="#taxonomía-credit" id="toc-taxonomía-credit" class="nav-link" data-scroll-target="#taxonomía-credit">Taxonomía CRediT</a></li>
+  <li><a href="#la-información-de-los-artículos-el-archivo-art.yaml" id="toc-la-información-de-los-artículos-el-archivo-art.yaml" class="nav-link" data-scroll-target="#la-información-de-los-artículos-el-archivo-art.yaml">La información de los artículos: el archivo <code>art[~].yaml</code></a></li>
   </ul></li>
-  <li><a href="#sec-format" id="toc-sec-format" class="nav-link" data-scroll-target="#sec-format">Formato de documento</a></li>
-  <li><a href="#sec-content" id="toc-sec-content" class="nav-link" data-scroll-target="#sec-content">Corrección de contenido</a></li>
-  <li><a href="#sec-float" id="toc-sec-float" class="nav-link" data-scroll-target="#sec-float">Elementos flotantes</a>
-  <ul class="collapse">
-  <li><a href="#guardar-archivos-externamente" id="toc-guardar-archivos-externamente" class="nav-link" data-scroll-target="#guardar-archivos-externamente">Guardar archivos externamente</a></li>
-  <li><a href="#marcación-de-elementos-flotantes" id="toc-marcación-de-elementos-flotantes" class="nav-link" data-scroll-target="#marcación-de-elementos-flotantes">Marcación de elementos flotantes</a></li>
-  <li><a href="#referencias-cruzadas-a-elementos-flotantes" id="toc-referencias-cruzadas-a-elementos-flotantes" class="nav-link" data-scroll-target="#referencias-cruzadas-a-elementos-flotantes">Referencias cruzadas a elementos flotantes</a></li>
-  </ul></li>
-  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references">Referencias bibliográficas</a>
-  <ul class="collapse">
-  <li><a href="#obtener-referencias" id="toc-obtener-referencias" class="nav-link" data-scroll-target="#obtener-referencias">Obtener referencias</a></li>
-  <li><a href="#corregir-referencias" id="toc-corregir-referencias" class="nav-link" data-scroll-target="#corregir-referencias">Corregir referencias</a></li>
-  <li><a href="#identificar-referencias" id="toc-identificar-referencias" class="nav-link" data-scroll-target="#identificar-referencias">Identificar referencias</a></li>
-  </ul></li>
-  <li><a href="#tratamiento-de-anexos" id="toc-tratamiento-de-anexos" class="nav-link" data-scroll-target="#tratamiento-de-anexos">Tratamiento de anexos</a></li>
   </ul>
 </nav>
     </div>
@@ -192,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Uso de ~!gurí_</h1>
+<h1 class="title">Creación de documentos finales con ~!gurí_</h1>
 </div>
 
 
@@ -222,16 +208,22 @@ Importante
 <p>Esta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.</p>
 </div>
 </div>
-<section id="introducción-la-creación-de-documentos" class="level1">
-<h1>Introducción: la creación de documentos</h1>
+<section id="la-creación-de-documentos-finales-y-el-rol-del-coordinador-de-producción-en-guri_" class="level1">
+<h1>La creación de documentos finales y el rol del coordinador de producción en ~!guri_</h1>
 <p><code>~!guri_</code> le permite a los editores de revistas científicas de acceso diamante automatizar la etapa de producción generando múltiples formatos de salida a partir de un manuscrito en formato <code>.docx</code>. Para ello, <code>~!guri_</code> utiliza un conjunto de reglas y plantillas que posibilitan la conversión entre formatos.</p>
 <p>Para comenzar con la creación de documentos es necesario que previamente haya instalado el paquete <code>{guri}</code> y las dependencias necesarias, configurando el entorno de trabajo. Además, para poder utilizar <code>~!guri_</code> es necesario que haya creado una revista (ver <a href="articles/configuration.html">Configuración</a>)</p>
+<p>Las tareas específicas del <em>Coodrdinador de producción</em> o <em>Editor de producción</em> serán:</p>
+<ol type="a">
+<li>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales (ver sección <a href="#sec-folders">Organización de carpetas de trabajo</a>).</li>
+<li>los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
+<li>Generar los documentos finales con el paquete <code>{guri}</code>. <!-- (b) Incorporar un archivo (`XLSX`) enviado por el/los autores con la información de acreditación según la taxonomía [CRediT](https://credit.niso.org/) (ver sección [Metadatos](#sec-metadata)). --> <!-- (c) Garantizar que dichos metadatos queden correctamente representados en el sistema de gestión de revistas ([*Open Journal System - OJS*](https://pkp.sfu.ca/software/ojs/) o el gestor de portales de revistas utilizado). --> <!-- (e) Mediar en el intercambio con el resto del equipo editorial, en particular con los encargados de la comunicación con los autores para poder validar los documentos resultantes de este proceso antes de que pasen a la etapa siguiente. --></li>
+</ol>
+<p>Además, como parte de las tareas del Coordinador de producción, se espera que coordine la preparación y corrección de los manuscritos (ver sección <a href="articles/proofreading.html">Corrección de pruebas</a>). En esta guía se describen los pasos necesarios para la organización de carpetas de trabajo, la generación de metadatos y la generación de los documentos finales a partir de un manuscrito.</p>
 </section>
 <section id="sec-folders" class="level1">
 <h1>Organización de carpetas de trabajo</h1>
 <!-- # Preparación de un número de la revista -->
-<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas).</p>
-<!-- # Organización de carpetas de trabajo {#sec-folders} -->
+<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas). <!-- # Organización de carpetas de trabajo {#sec-folders} --></p>
 <p>Para cada número se creará una carpeta independiente que contendrá un archivo <code>_issue.yaml</code> con la información básica del número. Dentro de esta carpeta se deberá generar una carpeta independiente para cada artículo. Las carpetas de cada artículo deben utilizar una estructura de prefijos común, de manera que empiecen por la sílaba ‘<code>art</code>’, seguida de un identificador de un dígito para la sección y dos dígitos que identifiquen a los artículos en un orden secuencial que se espera sean presentados (ver recuadro con ejemplo). En caso de que la revista no tenga sección podrá usar una numeración continuada con tres dígitos.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -283,256 +275,34 @@ Figura&nbsp;1: Estructura de carpetas y achivos.
 </section>
 <section id="sec-metadata" class="level1">
 <h1>Metadatos</h1>
-<section id="información-del-volumennúmero-y-el-artículo" class="level2">
-<h2 class="anchored" data-anchor-id="información-del-volumennúmero-y-el-artículo">Información del volumen/número y el artículo</h2>
+<section id="información-del-volumennúmero-el-archivo-_issue.yaml" class="level2">
+<h2 class="anchored" data-anchor-id="información-del-volumennúmero-el-archivo-_issue.yaml">Información del volumen/número: el archivo <code>_issue.yaml</code></h2>
 <blockquote class="blockquote">
 <p><strong>[TODO]</strong> El archivo <code>issue.yaml</code>.</p>
-<p><strong>[TODO]</strong> Desarrollar la descripción de los elementos a completar en <code>art[~].yaml</code>.</p>
 </blockquote>
 <p>Para la identifiación de los metadatos del número y el artículo se utilizará como modelo el documento <code>_issue.yaml</code> y <code>_article.yaml</code>, respectivamente (ver carpeta <code>./default-files</code>).</p>
 <p>La instalación y configuración general se explica en el Anexo 1</p>
 </section>
 <section id="taxonomía-credit" class="level2">
 <h2 class="anchored" data-anchor-id="taxonomía-credit">Taxonomía CRediT</h2>
-<p>Si la revista utiliza la <a href="https://credit.niso.org/">taxonomía CRediT</a> para identificar la contribución de los autores, entonces deberá proporcioanrse para cada artículo un archivo <code>art[~]_credit.xlsx</code>. Este archivo, deberá tener una primera columna (‘CREDIT’) con los catorces roles identificados por esta taxonomía<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> y una columna para cada autor (vea el modelo disponible en la carpeta <code>./default-files</code>). Para indicar la contribución de cada autor deberá agregar una ‘x’ (equis minúscula). Es importante que esta tabla no contenga columnas que no referencien a los autores (no deje las columnas de la plantilla en blanco). Por el momento, no es posible utilizar una escala de contribución para cada uno de los roles. Tenga en cuenta que autor puede haber contribuido en más de uno de los roles. El programa no corrobora si las contribuciones atribuidas a cada autor se consideran sustanciales y suficientes para generar atribución de autoría.</p>
+<!-- El autor remitente es responsable de que las contribuciones de todos los autores sean correctas. Se espera que todos los autores hayan revisado, discutido y acordado sus contribuciones individuales tal y como las comparte el autor remitente. La declaración de contribución de los autores se publicará con el artículo final y debe reflejar fielmente las contribuciones al trabajo.
+
+Cualquier colaborador con funciones que no representen una contribución sustancial (p. ej., Supervisión, Adquisición de fondos o Curación de datos) debe incluirse en los Agradecimientos.
+
+Cualquier otro rol que no esté considerado en los roles anteriores deberá ser considerado en agradecimientos. -->
+<p>Si la revista utiliza la <a href="https://credit.niso.org/">taxonomía CRediT</a> para identificar la contribución de los autores, entonces deberá proporcioanrse para cada artículo un archivo <code>art[~]_credit.xlsx</code>. Este archivo, deberá tener una primera columna (‘CREDIT’) con los catorces roles identificados por esta taxonomía[^1] y una columna para cada autor (vea el modelo disponible en la carpeta <code>./default-files</code>). Para indicar la contribución de cada autor deberá agregar una ‘x’ (equis minúscula). Es importante que esta tabla no contenga columnas que no referencien a los autores (no deje las columnas de la plantilla en blanco). Por el momento, no es posible utilizar una escala de contribución para cada uno de los roles. Tenga en cuenta que autor puede haber contribuido en más de uno de los roles. El programa no corrobora si las contribuciones atribuidas a cada autor se consideran sustanciales y suficientes para generar atribución de autoría.</p>
 </section>
-</section>
-<section id="sec-format" class="level1">
-<h1>Formato de documento</h1>
-<p>El texto debe formatearse utilizando como base el documento <code>default.docx</code> (ver carpeta <code>./default-files</code>). Para ello, se debe pegar los fragmentos del texto del manuscrito original en esta plantilla y utilizar los ‘estilos’ definidos en la misma.&nbsp;</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Es muy importante usar la plantilla o <em>template</em> <code>default.docx</code> como documento base para el proceso, ya que todo el proceso posterior depende del modo en que están configurados los estilos en este archivo.</p>
-</div>
-</div>
-<p>Deberá identificar cada uno de los ‘tipos de bloques de texto’ con un estilo de la plantilla. Para ello se deben utilizar sólo los siguientes estilos (entre paréntesis para los casos en que se utilice la versión en inglés):</p>
-<ul>
-<li>‘<code>Título</code>’ (o ‘<code>Title</code>’): Se coloca sólo el título principal del artículo.</li>
-<li>‘<code>SubTítulo</code>’ (o ‘<code>Subitle</code>’): Se coloca sólo el subtítulo principal del artículo.</li>
-<li>‘<code>Título 1</code>’ (o ‘<code>Heading 1</code>’): Se colocan los títulos de nivel 1 (sin incluir numeración).</li>
-<li>‘<code>Título 2</code>’ (o ‘<code>Heading 2</code>’): Se colocan los títulos de nivel 2 (sin incluir numeración).</li>
-<li>‘<code>Título 3</code>’ (o ‘<code>Heading 3</code>’): Se colocan los títulos de nivel 3 (sin incluir numeración).</li>
-<li>‘<code>Texto independiente</code>’ (o ‘<code>Body text</code>’): Incluye todos los bloques de texto que&nbsp;corresponden a los bloques de párrafo del cuerpo normal.</li>
-<li>‘<code>Texto de bloque</code>’ (o ‘<code>Block text</code>’): Se colocan las citas largas así como los resaltados de entrevistas.</li>
-</ul>
-<p>En caso de que encuentre bloques o fragmentos con líneas de código informático deberá usar el estilo de carácter ‘<code>SourceCode</code>’ (no utilice el bloque de ‘<code>Cita</code>’ o ‘<code>Blockquote</code>’). Por su parte, para la inclusión de fórmulas matemáticas utilice el editor de fórmulas incorporado en <em>Microsoft Word</em> con el estilo de ‘<code>Texto independiente</code>’.</p>
-<p>En caso de que encuentre otro tipo de bloque de texto que no sea posible etiquetar con estos estilos, deberá dejarlo asentado en el documento para notas asociado al artículo (<code>art[~]_notas.md</code>) y resaltarlo con color en el archivo <code>.docx</code> del manuscrito. De todas formas, considere que estos bloques deberían cubrir la mayor parte de las situaciones comunes.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Los datos de los autores, el resumen y las palabras claves no deben estar presentes en el documento <code>art[~].docx</code>, por lo cual deberán ser borrados del mismo (son incluidos en los metadatos). Por su parte, los <em>elementos flotantes</em> (tablas y figuras) tienen un tratamiento especial (ver sección <a href="#sec-float">Elementos flotantes</a>).</p>
-</div>
-</div>
-</section>
-<section id="sec-content" class="level1">
-<h1>Corrección de contenido</h1>
-<p>Deberá realizar una corrección general de la escritura para detectar inconsistencias gramaticales, errores tipográficos u otros problemas asociados a la escritura. No existen pautas únicas para realizar esta tarea, por lo cual cada revista seguirá sus propios criterios.</p>
-</section>
-<section id="sec-float" class="level1">
-<h1>Elementos flotantes</h1>
-<p>Dentro de la corrección de estilo será necesario marcar los elementos flotantes (Tablas y Figuras) que aparezcan en el manuscrito. Las tablas y figuras serán guardadas externamente en una carpeta denominada ‘float’ dentro del directorio del artículo. Para facilitar la explicación diferenciamos</p>
-<section id="guardar-archivos-externamente" class="level2">
-<h2 class="anchored" data-anchor-id="guardar-archivos-externamente">Guardar archivos externamente</h2>
-<p>Para las <strong>figuras</strong> esto se puede hacer dentro de <em>Microsoft Word</em> presionando el botón derecho en la figura y eligiendo ‘Guardar como imagen’, lo que abrirá un cuadro de diálogo para guardar la misma (el formato del archivo podrá ser el que sugiere por defecto).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Por su parte, para las <strong>tablas</strong> las mismas deberán ser copiadas y pegadas en una planilla de cálculo de Microsoft Excel. En ambos casos los archivos deberán guardarse en la carpeta <code>float/</code> dentro de la carpeta de cada artículo. Los nombres de los archivos deberán ser <code>FIG_XX</code> o <code>TAB_XX</code> (dependiendo de si se trata de Figuras o Tablas) y reemplazando ‘<code>XX</code>’ por el número de tabla o figura (ver ejemplo en <a href="#fig-folder" class="quarto-xref">Figura&nbsp;1</a>). Además, como se mencionó en la sección de <a href="#sec-content">Corrección de contenido</a> es importante usar dos dígitos para la numeración de estos elementos flotantes.</p>
-</section>
-<section id="marcación-de-elementos-flotantes" class="level2">
-<h2 class="anchored" data-anchor-id="marcación-de-elementos-flotantes">Marcación de elementos flotantes</h2>
-<p>Dentro del manuscrito deberá reemplazar las figuras y tablas por un marcador. El marcador deberá incluir obligatoriamente información sobre:</p>
-<ol type="a">
-<li>El nombre de la <strong>etiqueta</strong> utilizada para marcar el elemento. Debe ser igual al nombre del archivo (sin extensión) que contiene el elemento dentro del directorio <code>float/</code> (ver apartado anterior); y</li>
-<li>El <strong>título</strong> del elemento que se presentará debajo del elemento para las figuras y sobre el elemento para las tablas.</li>
-</ol>
-<p>Además, se podrá incluir opcionalmente<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> información sobre:</p>
-<ol start="3" type="a">
-<li>La autoría y la <strong>fuente</strong> de información con la cual se elaboró el elemento (Ejemplo: ‘Elaboración propia en base a datos de INDEC.’). Si estuviera presente, este elemento irá precedido del texto ‘Fuente:’;</li>
-<li>Otras <strong>notas</strong> adicionales que aclaren aspectos del elemento. Se recomienda hacer un uso excepcional de este campo, siendo preferible incorporar la información dentro del título o como notas internas del propio elemento. Si estuviera presente, este elemento irá precedido del texto ‘Nota:’.</li>
-</ol>
-<p>La marcación de los elementos flotantes se deberá realizar en párrafo propio (con estilo ‘Texto independiente’). Para identificar los elementos se utiliza una estructura ‘clave=valor’ (<em>key=value</em>), en la que cada clave comienza por el símbolo de virgulilla (<code>~</code>)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> y un signo de admiración de cierre (‘<code>!</code>’). La ‘clave’ deberá estar separada del ‘valor’ por un signo igual (‘=’) sin espacio entre ambos. Los pares clave-valor estarán separados entre sí por un espacio simple. Todos los marcadores de elementos flotantes deben respetar un orden de elementos prefijado, tal como es presentada en la <a href="#tbl-keyvalue" class="quarto-xref">Tabla&nbsp;1</a>: <code>~!include</code> -&gt; <code>~!title</code> -&gt; <code>~!source</code> -&gt; <code>~!notes</code>. Los marcadores deben tener al menos los campo <code>~!include</code> y <code>~!title</code>, siendo opcionales los otros campos (es posible dejar vacío el <code>value</code> si el campo no está presente). Es importante que si no se brinda alguno de los valores opcionales se genere un valor vacío para la clave omitida (ejemplo de figura con campo ‘note’ pero sin campo ‘source’: <code>'~!include=FIG_01 ~!=title=Este es el título ~!source= ~!note=Una nota'</code>).</p>
-<div id="tbl-keyvalue" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-keyvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;1: Resumen de elementos para la marcación de elementos flotantes
-</figcaption>
-<div aria-describedby="tbl-keyvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 55%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Clave=Valor</th>
-<th>Descripción de <code>value</code></th>
-<th style="text-align: center;">Obligatorio</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>~!include=<code>value</code></td>
-<td>Etiqueta utilizada para el marcado y nombre del archivo (sin extensión).</td>
-<td style="text-align: center;">x</td>
-<td><code>~!include=FIG_01</code></td>
-</tr>
-<tr class="even">
-<td>~!title=<code>value</code></td>
-<td>Título de la figura o la tabla. Recuerde incluir un punto final si es necesario al final de la oración.</td>
-<td style="text-align: center;">x</td>
-<td><code>~!title=Título de figura.</code></td>
-</tr>
-<tr class="odd">
-<td>~!source=<code>value</code></td>
-<td>Fuente de donde es extraída la figura o tabla. En caso de ser de elaboración propia deberá consignarse aquí.</td>
-<td style="text-align: center;"></td>
-<td><code>~!source=Elaboración propia en base a INDEC.</code></td>
-</tr>
-<tr class="even">
-<td>~!note=<code>value</code></td>
-<td>Notas asociadas al elemento. Se recomienda hacer un uso excepcional de este campo, siendo preferible incorporar la información dentro del título o como notas internas del propio elemento.</td>
-<td style="text-align: center;"></td>
-<td><code>~!note=Esta es una nota del elemento</code>.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Los marcadores deben utilizar un sólo párrafo. Sin embargo, es posible separar los elementos clave-valor mediante el uso de saltos de líneas ‘débiles’ (<code>shift</code> + <code>enter</code>), como se muestra en la <code>FIG_01</code> del ejemplo de marcación de la <a href="#fig-marking" class="quarto-xref">Figura&nbsp;2</a>. También es posible (pero no necesario) resaltar estos elementos para facilitar su ubicación durante la tarea de corrección.</p>
-<div id="fig-marking" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-marking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/float_elements.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-marking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2: Ejemplo de marcado de elementos flotantes
-</figcaption>
-</figure>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Automatizar el ‘Bloque de marcación’ en <em>Microsoft Word</em>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para facilitar la marcación, es posible configurar <em>Microsoft Word</em> para generar automáticamente un ‘bloque de texto’ con la estructura necesaria para la marcación. Para ello debe copiar como texto sin formato el siguiente bloque de texto en la plantilla modelo sobre la que realizará la corrección (puede utilizar el bloque coloreado que está presente al final de la plantilla modelo).</p>
-<pre><code>~!include= ~!title= ~!source= ~!note=</code></pre>
-<p>Luego seleccione este contenido y dentro de la pestaña ‘Insertar’ busque el botón ‘Elementos rápidos’ y seleccione la opción ‘Guardar selección en una galería de elementos rápidos’. Dentro de la ventana emergente puede seleccionar un nombre y una descripción para el bloque (es recomendable usar un nombre que pueda recordar, como ‘Bloque de elemento flotante’ o ‘Marcación de elemento flotante’). Además, dentro de este cuadro de diálogo, seleccione dentro de ‘Opciones’ el texto ‘Insertar como contenido en su propio párrafo’ y presione ‘Aceptar’.</p>
-<p>Luego de esto, podrá insertar automáticamente el bloque de marcación seleccionándolo dentro de las opciones que aparecen en el botón ‘Elementos rápidos’ del menú ‘Insertar’ (ver <a href="#fig-float-block" class="quarto-xref">Figura&nbsp;3</a>). Si requiere modificar o eliminar el bloque de contenido que generó, puede elegir la opción ‘Organización de bloques de creación…’ (dentro del botón ‘Elementos rápidos’ del menú ‘Insertar’). Cuando guarde el archivo se le consultará para guardar los cambios hechos en los ‘estilos’ o ‘bloques de creación’ (debe guardar estos cambios).</p>
-<div id="fig-float-block" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-float-block-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figures/float-block.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-float-block-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3: Ejemplo de inserción automática de bloque de marcación
-</figcaption>
-</figure>
-</div>
-<p>Además, es posible asignar un atajo de teclado para poder insertar este bloque de marcación. Para ello vaya a la pestaña ‘Archivo’ y selecciones ‘Opciones’. En la ventana emergente seleccione la pestaña ‘Personalizar cinta de opciones’ y debajo del cuadro de la izquierda seleccione ‘Personalizar…’ (al lado de donde dice ‘Métodos abreviados de teclado’). En el nuevo cuadro de diálogo seleccione la Categoría ‘Bloques de creación’, que estará cerca del final de toda la lista de categorías, y luego en el cuadro de la derecha seleccione el nombre del bloque de marcación por el nombre que le dio cuando lo creo. Por último seleccione una combinación de teclas de su preferencia (una opción recomendada es <code>Ctr</code> + <code>Alt</code> + <code>m</code>) y presione ‘Asignar’.</p>
-</div>
-</div>
-</section>
-<section id="referencias-cruzadas-a-elementos-flotantes" class="level2">
-<h2 class="anchored" data-anchor-id="referencias-cruzadas-a-elementos-flotantes">Referencias cruzadas a elementos flotantes</h2>
-<p>Se deberán marcar dentro del texto todas las referencias a elementos flotantes. Para esto se reemplazará cada referencia cruzada a tablas o figuras por <code>&lt;!TAB_XX&gt;</code> o <code>&lt;!FIG_XX&gt;</code> según corresponda, reemplazando ‘<code>XX</code>’ por el número de tabla o figura (es importante usar dos dígitos para esta numeración).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ejemplo de referencia cruzada a elementos flotantes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Si el texto original fuera:</p>
+<section id="la-información-de-los-artículos-el-archivo-art.yaml" class="level2">
+<h2 class="anchored" data-anchor-id="la-información-de-los-artículos-el-archivo-art.yaml">La información de los artículos: el archivo <code>art[~].yaml</code></h2>
 <blockquote class="blockquote">
-<p>Como se muestra en la Figura 1, tal cosa […] Mientras que en la Tabla 2 señalamos que pasa otra cosa.</p>
-</blockquote>
-<p>Debería reemplazarse por:</p>
-<blockquote class="blockquote">
-<p>Como se muestra en la &lt;!FIG_01&gt;, tal cosa […] Mientras que en la &lt;!TAB_02&gt; señalamos que pasa otra cosa.</p>
-</blockquote>
-</div>
-</div>
-</section>
-</section>
-<section id="sec-references" class="level1">
-<h1>Referencias bibliográficas</h1>
-<section id="obtener-referencias" class="level2">
-<h2 class="anchored" data-anchor-id="obtener-referencias">Obtener referencias</h2>
-<p>El primer paso consiste en copiar las referencias ubicadas al final del manuscrito original y pegarlas en el primer recuadro que aparece en la página <a href="https://anystyle.io/">anystile</a>. Luego presione el botón rojo que dice ‘Parse [X] references’ y, a continuación, descargue el archivo en formato Bibtex. Esto descargará un archivo en formato <code>.bib</code>. Es recomendable que en este momento modifique el nombre del archivo descargado identifique al artículo que está corrigiendo (por ejemplo, si está corrigiendo el ‘artículo 304’ del dossier para el ‘número 25’ de la revista ‘Quid16’, podría usar como nombre de archivo: <code>QUID16_N25_304.bib</code>).</p>
-</section>
-<section id="corregir-referencias" class="level2">
-<h2 class="anchored" data-anchor-id="corregir-referencias">Corregir referencias</h2>
-<p>Luego deberá abrir Zotero e importe el archivo generado en el paso anterior. Para ello vaya al menú <code>Archivo -&gt; Importar...</code> y en la primera ventana emergente seleccione ‘Un archivo (Bibtex, Ris, Zotero RDF, etc)’, luego elija el archivo que descargó anteriormente de <em>anystile</em> y en la última ventana emergente asegúrese de que está marcada la casilla ‘Coloca colecciones y elementos importados en una nueva colección’. En el lado izquierdo debería ver que se generó una ‘colección’ con el nombre del archivo que descargó (si no modificó anteriormente el nombre del archivo, puede modificar ahora el nombre de la colección para que sea más fácil identificarla). Dentro de esta colección deberá hacer una revisión de cada una de las referencias para verificar la correcta identificación de los campos.</p>
-</section>
-<section id="identificar-referencias" class="level2">
-<h2 class="anchored" data-anchor-id="identificar-referencias">Identificar referencias</h2>
-<p>Manteniendo <em>Zotero</em> abierto deberá integrar todas las referencias presentes en el texto manuscrito dentro de <em>Microsoft Word</em>. En caso de que alguna referencia no esté presente en el listado enviado por los autores (y por lo tanto en su lista de referencias dentro de <em>Zotero</em>), deberá marcarlas con un color resaltado dentro del texto y comunicárselo a los editores responsables para que puedan consultar al autor de manera que este pueda brindar dicha referencia (o la misma sea eliminada). Una vez que el autor haya enviado las referencias faltantes estas deberán ser incluidas dentro de <em>Zotero</em> (en la colección correspondiente a dicho artículo) y agregadas al manuscrito en <em>Microsoft Word</em> mediante el procedimiento anterior. No debe preocuparse por las referencias listadas por el autor que no fueron utilizadas en el texto, ya que las mismas serán descartadas por defecto.</p>
-<p>Al finalizar el texto deberá colocar un título de nivel 1 que diga ‘Referencias bibliográficas’ y a continuación el listado de referencias (como es generado por el botón ‘Add/Edit Bibliography’ de la aplicación de Zotero para Word).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Instalación de <em>Zotero</em> y configuración del entorno de trabajo
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para el caso de los artículos que tengan referencias bibliográficas, estas deberán ser manejadas mediante el uso del gestor de referencias de código abierto <a href="https://www.zotero.org/">Zotero</a> (no es posible utilizar otro gestor de referencia como <em>Mendeley</em> o <em>EndNote</em>). Para ello es necesario descargar el programa y crearse una cuenta en la página oficial. Además, deberá verificar que tenga instalado el complemento de <em>Zotero para Word</em>. Para saber si está instalado este complemento abra <em>Microsoft Word</em> y verifique que aparezca una pestaña que diga ‘Zotero’. En caso contrario instale el complemento de <em>Zotero</em> <em>para Word</em>.</p>
-<p>Además, es necesario instalar el complemento <em>Better Bibtex</em> para <em>Zotero</em>. Para ello vayan a la <a href="https://retorque.re/zotero-better-bibtex/installation/">página de instalación</a> del proyecto y utilicen el link que los lleva al último lanzamiento (‘latest release’). Esto les abrirá una ventana en la que habrá tres archivos. Deben descargar el que finaliza con la extensión <code>xpi</code>. Una vez descargado vayan a <em>Zotero</em> y elijan la pestaña ‘Herramientas’ -&gt; ‘Complementos’. En la ventana emergente elijan la rueda/engranaje que está arriba a la derecha y seleccionen ‘Install Add-on Form File…’, lo cual les abrirá una ventana de diálogo para que seleccionen el archivo que bajaron anteriormente. Una vez instalado el complemento es posible que deba reiniciar <em>Zotero</em>, luego vaya a la pestaña ‘Herramientas’ -&gt; ‘BetterBibTeX’ (debería aparecer luego de reiniciar) y seleccione la opción ‘Open Better BibTeX preferences…’. En la ventana emergente deberá cambiar la ‘Citation key formula’ por una de su gusto (recomiendo <code>auth.capitalize + year</code> que genera claves de la forma ‘AutorAÑO’). En el resto de las opciones de esta pestaña deberá asegurarse de que donde dice ‘Keep keys unique’ aparezca seleccionada la opción ‘across all libraries’; y donde dice ‘On conflict with a pinned keym non-pinned keys will be’ debe seleccionar ‘postfixed (causes key changes)’. El resto de las opciones puede configurarlas según sus preferencias.</p>
-<p>Además, es posible (y recomendable) personalizar los atajos de teclado de <em>Microsoft Word</em> para generar un comando rápido de teclado para agregar/editar las citas. Para ello, dentro de <em>Microsoft Word</em> vaya a <code>Archivo -&gt; Opciones</code> (en la parte inferior izquierda). Esto abrirá una ventana emergente, donde deberá seleccionar la pestaña ‘Personalizar cinta de opciones’ y luego presionar el botón de ‘Personalizar…’ los ‘Métodos abreviados de teclado’ (debajo de la primera caja de íconos). Se abrirá un nuevo cuadro de diálogo y deberá seleccionar la Categoría ‘Macros’ y, dentro de las opciones de la derecha, seleccionar ‘ZoteroAddEditCitation’. Luego donde dice ‘Nueva tecla de método abreviado’ deberá elegir el atajo que desea agregar. Como sugerencia se recomienda configurar este atajo como <code>Alt</code> + <code>z</code>.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="tratamiento-de-anexos" class="level1">
-<h1>Tratamiento de anexos</h1>
-<blockquote class="blockquote">
-<p><strong>[TODO]</strong> Definir tratamiento de anexos (<code>art[~]_app[~].docx</code>).</p>
-<p><strong>[TODO]</strong> Escribir instructivo sobre anexos.</p>
+<p><strong>[TODO]</strong> Desarrollar la descripción de los elementos a completar en <code>art[~].yaml</code>.</p>
 </blockquote>
 
 
 </section>
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Notas</h2>
-
-<ol>
-<li id="fn1"><p>Es importante respetar el siguiente orden de las filas con los roles:</p>
-<blockquote class="blockquote">
-<p>(1) Conceptualization; (2) Data curation; (3) Formal Analysis; (4) Funding acquisition; (5) Investigation; (6) Methodology; (7) Project administration; (8) Resources; (9) Software; (10) Supervision; (11) Validation; (12) Visualization; (13) Writing – original draft; (14) Writing – review &amp; editing.</p>
-</blockquote>
-<p>Es posible modificar el texto que aparece en la columna ‘CREDIT’ y, de hecho, es recomendable que lo haga para que esta se adapte al idioma de su revista. El texto que figura en esta columna será utilizado para indicar la taxonomía en los formatos de salida.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Las figuras podrán tener cualquiera de los formatos válidos para figuras, como ser: <code>.png</code>, <code>.jpg</code> o <code>.jpeg</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Los dos contenidos opcionales irán debajo del elemento en la versión de publicación.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Para hacer el signo de virgulilla puede presionar simultáneamente <code>Alt gr</code> + <code>4</code> o bien <code>Alt</code> + <code>126</code>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

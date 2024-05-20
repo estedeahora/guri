@@ -25,7 +25,7 @@
     "href": "index.html#contribuir",
     "title": "~!gurí_: Gestor Unificado de formatos para Revistas de Investigación",
     "section": "Contribuir",
-    "text": "Contribuir\nSe aceptan solicitudes de extracción, informes de errores y solicitudes de funciones. Utilice los issues para informar errores o solicitar funciones."
+    "text": "Contribuir\nSe aceptan solicitudes de extracción, informes de errores y solicitudes de funciones. Utilice los issues para informar errores o solicitar funciones. También puede utilizar la sección discussions para plantear preguntas o discutir sobre el proyecto."
   },
   {
     "objectID": "articles/04_file_prepare.html",
@@ -170,7 +170,7 @@
   {
     "objectID": "articles/editing.html",
     "href": "articles/editing.html",
-    "title": "Uso de ~!gurí_",
+    "title": "Creación de documentos finales con ~!gurí_",
     "section": "",
     "text": "Importante\n\n\n\nEsta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial."
   },
@@ -184,9 +184,9 @@
   {
     "objectID": "articles/editing.html#taxonomía-credit",
     "href": "articles/editing.html#taxonomía-credit",
-    "title": "Uso de ~!gurí_",
+    "title": "Creación de documentos finales con ~!gurí_",
     "section": "Taxonomía CRediT",
-    "text": "Taxonomía CRediT\nSi la revista utiliza la taxonomía CRediT para identificar la contribución de los autores, entonces deberá proporcioanrse para cada artículo un archivo art[~]_credit.xlsx. Este archivo, deberá tener una primera columna (‘CREDIT’) con los catorces roles identificados por esta taxonomía1 y una columna para cada autor (vea el modelo disponible en la carpeta ./default-files). Para indicar la contribución de cada autor deberá agregar una ‘x’ (equis minúscula). Es importante que esta tabla no contenga columnas que no referencien a los autores (no deje las columnas de la plantilla en blanco). Por el momento, no es posible utilizar una escala de contribución para cada uno de los roles. Tenga en cuenta que autor puede haber contribuido en más de uno de los roles. El programa no corrobora si las contribuciones atribuidas a cada autor se consideran sustanciales y suficientes para generar atribución de autoría."
+    "text": "Taxonomía CRediT\n\nSi la revista utiliza la taxonomía CRediT para identificar la contribución de los autores, entonces deberá proporcioanrse para cada artículo un archivo art[~]_credit.xlsx. Este archivo, deberá tener una primera columna (‘CREDIT’) con los catorces roles identificados por esta taxonomía[^1] y una columna para cada autor (vea el modelo disponible en la carpeta ./default-files). Para indicar la contribución de cada autor deberá agregar una ‘x’ (equis minúscula). Es importante que esta tabla no contenga columnas que no referencien a los autores (no deje las columnas de la plantilla en blanco). Por el momento, no es posible utilizar una escala de contribución para cada uno de los roles. Tenga en cuenta que autor puede haber contribuido en más de uno de los roles. El programa no corrobora si las contribuciones atribuidas a cada autor se consideran sustanciales y suficientes para generar atribución de autoría."
   },
   {
     "objectID": "articles/editing.html#guardar-archivos-externamente",
@@ -348,5 +348,75 @@
     "title": "Configuración de los datos para el depósito DOI en Crossref",
     "section": "",
     "text": "Importante\n\n\n\nEsta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial."
+  },
+  {
+    "objectID": "articles/editing.html#información-del-volumennúmero-el-archivo-_issue.yaml",
+    "href": "articles/editing.html#información-del-volumennúmero-el-archivo-_issue.yaml",
+    "title": "Creación de documentos finales con ~!gurí_",
+    "section": "Información del volumen/número: el archivo _issue.yaml",
+    "text": "Información del volumen/número: el archivo _issue.yaml\n\n[TODO] El archivo issue.yaml.\n\nPara la identifiación de los metadatos del número y el artículo se utilizará como modelo el documento _issue.yaml y _article.yaml, respectivamente (ver carpeta ./default-files).\nLa instalación y configuración general se explica en el Anexo 1"
+  },
+  {
+    "objectID": "articles/editing.html#la-información-de-los-artículos-el-archivo-art.yaml",
+    "href": "articles/editing.html#la-información-de-los-artículos-el-archivo-art.yaml",
+    "title": "Creación de documentos finales con ~!gurí_",
+    "section": "La información de los artículos: el archivo art[~].yaml",
+    "text": "La información de los artículos: el archivo art[~].yaml\n\n[TODO] Desarrollar la descripción de los elementos a completar en art[~].yaml."
+  },
+  {
+    "objectID": "articles/proofreading.html",
+    "href": "articles/proofreading.html",
+    "title": "Preparación de archivos",
+    "section": "",
+    "text": "Importante\n\n\n\nEsta es una versión preliminar y en proceso de construcción. Muchos aspectos pueden cambiar drásticamente (incluso en sólo un par de días). Tenga presente este aspecto y revise siempre la que esté trabajando con última versión antes de iniciar esta etapa del trabajo editorial.\n‘CSL JSON’ y presione ‘OK’ para seleccionar el nombre del archivo donde se exportará su colección. Este archivo deberá llamarse art[~]_biblio.json y es uno de los archivos que debe colocar en la carpeta de trabajo del artículo (ver sección Organización de carpetas). –&gt;"
+  },
+  {
+    "objectID": "articles/proofreading.html#guardar-archivos-externamente",
+    "href": "articles/proofreading.html#guardar-archivos-externamente",
+    "title": "Preparación de archivos",
+    "section": "Guardar archivos externamente",
+    "text": "Guardar archivos externamente\nPara las figuras esto se puede hacer dentro de Microsoft Word presionando el botón derecho en la figura y eligiendo ‘Guardar como imagen’, lo que abrirá un cuadro de diálogo para guardar la misma (el formato del archivo podrá ser el que sugiere por defecto).1 Por su parte, para las tablas las mismas deberán ser copiadas y pegadas en una planilla de cálculo de Microsoft Excel. En ambos casos los archivos deberán guardarse en la carpeta float/ dentro de la carpeta de cada artículo. Los nombres de los archivos deberán ser FIG_XX o TAB_XX (dependiendo de si se trata de Figuras o Tablas) y reemplazando ‘XX’ por el número de tabla o figura (ver ejemplo en ?@fig-folder). Además, como se mencionó en la sección de Corrección de contenido es importante usar dos dígitos para la numeración de estos elementos flotantes."
+  },
+  {
+    "objectID": "articles/proofreading.html#marcación-de-elementos-flotantes",
+    "href": "articles/proofreading.html#marcación-de-elementos-flotantes",
+    "title": "Preparación de archivos",
+    "section": "Marcación de elementos flotantes",
+    "text": "Marcación de elementos flotantes\nDentro del manuscrito deberá reemplazar las figuras y tablas por un marcador. El marcador deberá incluir obligatoriamente información sobre:\n\nEl nombre de la etiqueta utilizada para marcar el elemento. Debe ser igual al nombre del archivo (sin extensión) que contiene el elemento dentro del directorio float/ (ver apartado anterior); y\nEl título del elemento que se presentará debajo del elemento para las figuras y sobre el elemento para las tablas.\n\nAdemás, se podrá incluir opcionalmente2 información sobre:\n\nLa autoría y la fuente de información con la cual se elaboró el elemento (Ejemplo: ‘Elaboración propia en base a datos de INDEC.’). Si estuviera presente, este elemento irá precedido del texto ‘Fuente:’;\nOtras notas adicionales que aclaren aspectos del elemento. Se recomienda hacer un uso excepcional de este campo, siendo preferible incorporar la información dentro del título o como notas internas del propio elemento. Si estuviera presente, este elemento irá precedido del texto ‘Nota:’.\n\nLa marcación de los elementos flotantes se deberá realizar en párrafo propio (con estilo ‘Texto independiente’). Para identificar los elementos se utiliza una estructura ‘clave=valor’ (key=value), en la que cada clave comienza por el símbolo de virgulilla (~)3 y un signo de admiración de cierre (‘!’). La ‘clave’ deberá estar separada del ‘valor’ por un signo igual (‘=’) sin espacio entre ambos. Los pares clave-valor estarán separados entre sí por un espacio simple. Todos los marcadores de elementos flotantes deben respetar un orden de elementos prefijado, tal como es presentada en la Tabla 1: ~!include -&gt; ~!title -&gt; ~!source -&gt; ~!notes. Los marcadores deben tener al menos los campo ~!include y ~!title, siendo opcionales los otros campos (es posible dejar vacío el value si el campo no está presente). Es importante que si no se brinda alguno de los valores opcionales se genere un valor vacío para la clave omitida (ejemplo de figura con campo ‘note’ pero sin campo ‘source’: '~!include=FIG_01 ~!=title=Este es el título ~!source= ~!note=Una nota').\n\n\n\nTabla 1: Resumen de elementos para la marcación de elementos flotantes\n\n\n\n\n\n\n\n\n\n\n\nClave=Valor\nDescripción de value\nObligatorio\nEjemplo\n\n\n\n\n~!include=value\nEtiqueta utilizada para el marcado y nombre del archivo (sin extensión).\nx\n~!include=FIG_01\n\n\n~!title=value\nTítulo de la figura o la tabla. Recuerde incluir un punto final si es necesario al final de la oración.\nx\n~!title=Título de figura.\n\n\n~!source=value\nFuente de donde es extraída la figura o tabla. En caso de ser de elaboración propia deberá consignarse aquí.\n\n~!source=Elaboración propia en base a INDEC.\n\n\n~!note=value\nNotas asociadas al elemento. Se recomienda hacer un uso excepcional de este campo, siendo preferible incorporar la información dentro del título o como notas internas del propio elemento.\n\n~!note=Esta es una nota del elemento.\n\n\n\n\n\n\nLos marcadores deben utilizar un sólo párrafo. Sin embargo, es posible separar los elementos clave-valor mediante el uso de saltos de líneas ‘débiles’ (shift + enter), como se muestra en la FIG_01 del ejemplo de marcación de la Figura 1. También es posible (pero no necesario) resaltar estos elementos para facilitar su ubicación durante la tarea de corrección.\n\n\n\n\n\n\nFigura 1: Ejemplo de marcado de elementos flotantes\n\n\n\n\n\n\n\n\n\nAutomatizar el ‘Bloque de marcación’ en Microsoft Word\n\n\n\nPara facilitar la marcación, es posible configurar Microsoft Word para generar automáticamente un ‘bloque de texto’ con la estructura necesaria para la marcación. Para ello debe copiar como texto sin formato el siguiente bloque de texto en la plantilla modelo sobre la que realizará la corrección (puede utilizar el bloque coloreado que está presente al final de la plantilla modelo).\n~!include= ~!title= ~!source= ~!note=\nLuego seleccione este contenido y dentro de la pestaña ‘Insertar’ busque el botón ‘Elementos rápidos’ y seleccione la opción ‘Guardar selección en una galería de elementos rápidos’. Dentro de la ventana emergente puede seleccionar un nombre y una descripción para el bloque (es recomendable usar un nombre que pueda recordar, como ‘Bloque de elemento flotante’ o ‘Marcación de elemento flotante’). Además, dentro de este cuadro de diálogo, seleccione dentro de ‘Opciones’ el texto ‘Insertar como contenido en su propio párrafo’ y presione ‘Aceptar’.\nLuego de esto, podrá insertar automáticamente el bloque de marcación seleccionándolo dentro de las opciones que aparecen en el botón ‘Elementos rápidos’ del menú ‘Insertar’ (ver Figura 2). Si requiere modificar o eliminar el bloque de contenido que generó, puede elegir la opción ‘Organización de bloques de creación…’ (dentro del botón ‘Elementos rápidos’ del menú ‘Insertar’). Cuando guarde el archivo se le consultará para guardar los cambios hechos en los ‘estilos’ o ‘bloques de creación’ (debe guardar estos cambios).\n\n\n\n\n\n\nFigura 2: Ejemplo de inserción automática de bloque de marcación\n\n\n\nAdemás, es posible asignar un atajo de teclado para poder insertar este bloque de marcación. Para ello vaya a la pestaña ‘Archivo’ y selecciones ‘Opciones’. En la ventana emergente seleccione la pestaña ‘Personalizar cinta de opciones’ y debajo del cuadro de la izquierda seleccione ‘Personalizar…’ (al lado de donde dice ‘Métodos abreviados de teclado’). En el nuevo cuadro de diálogo seleccione la Categoría ‘Bloques de creación’, que estará cerca del final de toda la lista de categorías, y luego en el cuadro de la derecha seleccione el nombre del bloque de marcación por el nombre que le dio cuando lo creo. Por último seleccione una combinación de teclas de su preferencia (una opción recomendada es Ctr + Alt + m) y presione ‘Asignar’."
+  },
+  {
+    "objectID": "articles/proofreading.html#referencias-cruzadas-a-elementos-flotantes",
+    "href": "articles/proofreading.html#referencias-cruzadas-a-elementos-flotantes",
+    "title": "Preparación de archivos",
+    "section": "Referencias cruzadas a elementos flotantes",
+    "text": "Referencias cruzadas a elementos flotantes\nSe deberán marcar dentro del texto todas las referencias a elementos flotantes. Para esto se reemplazará cada referencia cruzada a tablas o figuras por &lt;!TAB_XX&gt; o &lt;!FIG_XX&gt; según corresponda, reemplazando ‘XX’ por el número de tabla o figura (es importante usar dos dígitos para esta numeración).\n\n\n\n\n\n\nEjemplo de referencia cruzada a elementos flotantes\n\n\n\nSi el texto original fuera:\n\nComo se muestra en la Figura 1, tal cosa […] Mientras que en la Tabla 2 señalamos que pasa otra cosa.\n\nDebería reemplazarse por:\n\nComo se muestra en la &lt;!FIG_01&gt;, tal cosa […] Mientras que en la &lt;!TAB_02&gt; señalamos que pasa otra cosa."
+  },
+  {
+    "objectID": "articles/proofreading.html#obtener-referencias",
+    "href": "articles/proofreading.html#obtener-referencias",
+    "title": "Preparación de archivos",
+    "section": "Obtener referencias",
+    "text": "Obtener referencias\nEl primer paso consiste en copiar las referencias ubicadas al final del manuscrito original y pegarlas en el primer recuadro que aparece en la página anystile. Luego presione el botón rojo que dice ‘Parse [X] references’ y, a continuación, descargue el archivo en formato Bibtex. Esto descargará un archivo en formato .bib. Es recomendable que en este momento modifique el nombre del archivo descargado identifique al artículo que está corrigiendo (por ejemplo, si está corrigiendo el ‘artículo 304’ del dossier para el ‘número 25’ de la revista ‘Quid16’, podría usar como nombre de archivo: QUID16_N25_304.bib)."
+  },
+  {
+    "objectID": "articles/proofreading.html#corregir-referencias",
+    "href": "articles/proofreading.html#corregir-referencias",
+    "title": "Preparación de archivos",
+    "section": "Corregir referencias",
+    "text": "Corregir referencias\nLuego deberá abrir Zotero e importe el archivo generado en el paso anterior. Para ello vaya al menú Archivo -&gt; Importar... y en la primera ventana emergente seleccione ‘Un archivo (Bibtex, Ris, Zotero RDF, etc)’, luego elija el archivo que descargó anteriormente de anystile y en la última ventana emergente asegúrese de que está marcada la casilla ‘Coloca colecciones y elementos importados en una nueva colección’. En el lado izquierdo debería ver que se generó una ‘colección’ con el nombre del archivo que descargó (si no modificó anteriormente el nombre del archivo, puede modificar ahora el nombre de la colección para que sea más fácil identificarla). Dentro de esta colección deberá hacer una revisión de cada una de las referencias para verificar la correcta identificación de los campos."
+  },
+  {
+    "objectID": "articles/proofreading.html#identificar-referencias",
+    "href": "articles/proofreading.html#identificar-referencias",
+    "title": "Preparación de archivos",
+    "section": "Identificar referencias",
+    "text": "Identificar referencias\nManteniendo Zotero abierto deberá integrar todas las referencias presentes en el texto manuscrito dentro de Microsoft Word. En caso de que alguna referencia no esté presente en el listado enviado por los autores (y por lo tanto en su lista de referencias dentro de Zotero), deberá marcarlas con un color resaltado dentro del texto y comunicárselo a los editores responsables para que puedan consultar al autor de manera que este pueda brindar dicha referencia (o la misma sea eliminada). Una vez que el autor haya enviado las referencias faltantes estas deberán ser incluidas dentro de Zotero (en la colección correspondiente a dicho artículo) y agregadas al manuscrito en Microsoft Word mediante el procedimiento anterior. No debe preocuparse por las referencias listadas por el autor que no fueron utilizadas en el texto, ya que las mismas serán descartadas por defecto.\nAl finalizar el texto deberá colocar un título de nivel 1 que diga ‘Referencias bibliográficas’ y a continuación el listado de referencias (como es generado por el botón ‘Add/Edit Bibliography’ de la aplicación de Zotero para Word).\n\n\n\n\n\n\nInstalación de Zotero y configuración del entorno de trabajo\n\n\n\nPara el caso de los artículos que tengan referencias bibliográficas, estas deberán ser manejadas mediante el uso del gestor de referencias de código abierto Zotero (no es posible utilizar otro gestor de referencia como Mendeley o EndNote). Para ello es necesario descargar el programa y crearse una cuenta en la página oficial. Además, deberá verificar que tenga instalado el complemento de Zotero para Word. Para saber si está instalado este complemento abra Microsoft Word y verifique que aparezca una pestaña que diga ‘Zotero’. En caso contrario instale el complemento de Zotero para Word.\nAdemás, es necesario instalar el complemento Better Bibtex para Zotero. Para ello vayan a la página de instalación del proyecto y utilicen el link que los lleva al último lanzamiento (‘latest release’). Esto les abrirá una ventana en la que habrá tres archivos. Deben descargar el que finaliza con la extensión xpi. Una vez descargado vayan a Zotero y elijan la pestaña ‘Herramientas’ -&gt; ‘Complementos’. En la ventana emergente elijan la rueda/engranaje que está arriba a la derecha y seleccionen ‘Install Add-on Form File…’, lo cual les abrirá una ventana de diálogo para que seleccionen el archivo que bajaron anteriormente. Una vez instalado el complemento es posible que deba reiniciar Zotero, luego vaya a la pestaña ‘Herramientas’ -&gt; ‘BetterBibTeX’ (debería aparecer luego de reiniciar) y seleccione la opción ‘Open Better BibTeX preferences…’. En la ventana emergente deberá cambiar la ‘Citation key formula’ por una de su gusto (recomiendo auth.capitalize + year que genera claves de la forma ‘AutorAÑO’). En el resto de las opciones de esta pestaña deberá asegurarse de que donde dice ‘Keep keys unique’ aparezca seleccionada la opción ‘across all libraries’; y donde dice ‘On conflict with a pinned keym non-pinned keys will be’ debe seleccionar ‘postfixed (causes key changes)’. El resto de las opciones puede configurarlas según sus preferencias.\nAdemás, es posible (y recomendable) personalizar los atajos de teclado de Microsoft Word para generar un comando rápido de teclado para agregar/editar las citas. Para ello, dentro de Microsoft Word vaya a Archivo -&gt; Opciones (en la parte inferior izquierda). Esto abrirá una ventana emergente, donde deberá seleccionar la pestaña ‘Personalizar cinta de opciones’ y luego presionar el botón de ‘Personalizar…’ los ‘Métodos abreviados de teclado’ (debajo de la primera caja de íconos). Se abrirá un nuevo cuadro de diálogo y deberá seleccionar la Categoría ‘Macros’ y, dentro de las opciones de la derecha, seleccionar ‘ZoteroAddEditCitation’. Luego donde dice ‘Nueva tecla de método abreviado’ deberá elegir el atajo que desea agregar. Como sugerencia se recomienda configurar este atajo como Alt + z."
+  },
+  {
+    "objectID": "articles/proofreading.html#footnotes",
+    "href": "articles/proofreading.html#footnotes",
+    "title": "Preparación de archivos",
+    "section": "Notas",
+    "text": "Notas\n\n\nLas figuras podrán tener cualquiera de los formatos válidos para figuras, como ser: .png, .jpg o .jpeg.↩︎\nLos dos contenidos opcionales irán debajo del elemento en la versión de publicación.↩︎\nPara hacer el signo de virgulilla puede presionar simultáneamente Alt gr + 4 o bien Alt + 126.↩︎"
   }
 ]
