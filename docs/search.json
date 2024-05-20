@@ -354,7 +354,7 @@
     "href": "articles/editing.html#información-del-volumennúmero-el-archivo-_issue.yaml",
     "title": "Creación de documentos finales con ~!gurí_",
     "section": "Información del volumen/número: el archivo _issue.yaml",
-    "text": "Información del volumen/número: el archivo _issue.yaml\n\n[TODO] El archivo issue.yaml.\n\nPara la identifiación de los metadatos del número y el artículo se utilizará como modelo el documento _issue.yaml y _article.yaml, respectivamente (ver carpeta ./default-files).\nLa instalación y configuración general se explica en el Anexo 1"
+    "text": "Información del volumen/número: el archivo _issue.yaml\n\n[TODO] El archivo issue.yaml.\n\nPara la identifiación de los metadatos del número y el artículo se utilizará como modelo el documento _issue.yaml y _article.yaml, respectivamente (ver carpeta ./default-files)."
   },
   {
     "objectID": "articles/editing.html#la-información-de-los-artículos-el-archivo-art.yaml",

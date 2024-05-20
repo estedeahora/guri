@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -167,9 +201,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#sec-metadata" id="toc-sec-metadata" class="nav-link" data-scroll-target="#sec-metadata">Metadatos</a>
   <ul class="collapse">
   <li><a href="#información-del-volumennúmero-el-archivo-_issue.yaml" id="toc-información-del-volumennúmero-el-archivo-_issue.yaml" class="nav-link" data-scroll-target="#información-del-volumennúmero-el-archivo-_issue.yaml">Información del volumen/número: el archivo <code>_issue.yaml</code></a></li>
-  <li><a href="#taxonomía-credit" id="toc-taxonomía-credit" class="nav-link" data-scroll-target="#taxonomía-credit">Taxonomía CRediT</a></li>
   <li><a href="#la-información-de-los-artículos-el-archivo-art.yaml" id="toc-la-información-de-los-artículos-el-archivo-art.yaml" class="nav-link" data-scroll-target="#la-información-de-los-artículos-el-archivo-art.yaml">La información de los artículos: el archivo <code>art[~].yaml</code></a></li>
+  <li><a href="#taxonomía-credit" id="toc-taxonomía-credit" class="nav-link" data-scroll-target="#taxonomía-credit">Taxonomía CRediT</a></li>
   </ul></li>
+  <li><a href="#generación-de-documentos-finales" id="toc-generación-de-documentos-finales" class="nav-link" data-scroll-target="#generación-de-documentos-finales">Generación de documentos finales</a></li>
   </ul>
 </nav>
     </div>
@@ -281,7 +316,12 @@ Figura&nbsp;1: Estructura de carpetas y achivos.
 <p><strong>[TODO]</strong> El archivo <code>issue.yaml</code>.</p>
 </blockquote>
 <p>Para la identifiación de los metadatos del número y el artículo se utilizará como modelo el documento <code>_issue.yaml</code> y <code>_article.yaml</code>, respectivamente (ver carpeta <code>./default-files</code>).</p>
-<p>La instalación y configuración general se explica en el Anexo 1</p>
+</section>
+<section id="la-información-de-los-artículos-el-archivo-art.yaml" class="level2">
+<h2 class="anchored" data-anchor-id="la-información-de-los-artículos-el-archivo-art.yaml">La información de los artículos: el archivo <code>art[~].yaml</code></h2>
+<blockquote class="blockquote">
+<p><strong>[TODO]</strong> Desarrollar la descripción de los elementos a completar en <code>art[~].yaml</code>.</p>
+</blockquote>
 </section>
 <section id="taxonomía-credit" class="level2">
 <h2 class="anchored" data-anchor-id="taxonomía-credit">Taxonomía CRediT</h2>
@@ -292,14 +332,30 @@ Cualquier colaborador con funciones que no representen una contribución sustanc
 Cualquier otro rol que no esté considerado en los roles anteriores deberá ser considerado en agradecimientos. -->
 <p>Si la revista utiliza la <a href="https://credit.niso.org/">taxonomía CRediT</a> para identificar la contribución de los autores, entonces deberá proporcioanrse para cada artículo un archivo <code>art[~]_credit.xlsx</code>. Este archivo, deberá tener una primera columna (‘CREDIT’) con los catorces roles identificados por esta taxonomía[^1] y una columna para cada autor (vea el modelo disponible en la carpeta <code>./default-files</code>). Para indicar la contribución de cada autor deberá agregar una ‘x’ (equis minúscula). Es importante que esta tabla no contenga columnas que no referencien a los autores (no deje las columnas de la plantilla en blanco). Por el momento, no es posible utilizar una escala de contribución para cada uno de los roles. Tenga en cuenta que autor puede haber contribuido en más de uno de los roles. El programa no corrobora si las contribuciones atribuidas a cada autor se consideran sustanciales y suficientes para generar atribución de autoría.</p>
 </section>
-<section id="la-información-de-los-artículos-el-archivo-art.yaml" class="level2">
-<h2 class="anchored" data-anchor-id="la-información-de-los-artículos-el-archivo-art.yaml">La información de los artículos: el archivo <code>art[~].yaml</code></h2>
-<blockquote class="blockquote">
-<p><strong>[TODO]</strong> Desarrollar la descripción de los elementos a completar en <code>art[~].yaml</code>.</p>
-</blockquote>
-
-
 </section>
+<section id="generación-de-documentos-finales" class="level1">
+<h1>Generación de documentos finales</h1>
+<p>Una vez finalizada la organización de las carpetas de trabajo (<a href="#sec-folders">Organización de carpetas de trabajo</a>), la carga de metadatos (<a href="#sec-metadata">Metadatos</a>) y la etapa de corrección de pruebas (ver <a href="articles/proofreading.html">Corrección de pruebas</a>), es posible generar los documentos finales de los artículos. Para ello, debe abrir R, cargar el paquete {guri} y ejecutar la función <code>guri_outputs</code>. Los parámetros de esta función son los siguientes:</p>
+<ul>
+<li><code>art_id</code>: Identificador del artículo o artículos que se desea generar. Puede ser un vector de caracteres con los identificadores de los artículos o la palabra <code>"all"</code> para generar los documentos finales de todos los artículos del número.</li>
+<li><code>issue</code>: Número del volumen/número que se desea generar. Debe ser un caracter.</li>
+<li><code>journal</code>: Nombre de la revista. Debe ser un caracter.</li>
+<li><code>doi_batch</code>: Valor lógico que indica si se desea generar un archivo XML con los metadatos de todos los artículos del número para realizar el depósito DOI en Crossref. Por defecto es <code>FALSE</code>.</li>
+</ul>
+<p>Además, existen dos parámetros que resultan útiles para detectar errores. Por un lado, el parámetro <code>verbose</code> que permite mostrar mensajes de progreso durante la ejecución de la función (por defecto <code>TRUE</code>). Por su parte, el parámetro <code>clean_files</code> indica si se desea reorganizar los archivos generados en carpetas (por defecto <code>TRUE</code>).</p>
+<p>Como ejemplo tomemos la revista “NEW_JOURNAL”, la cual sigue el modelo de “repositorio de revistas”. Si usted desea generar los documentos finales de todos los artículos del número que está alojado en la carpeta <code>issue14</code>, deberá ejecutar el siguiente código:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(guri)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">guri_outputs</span>(<span class="at">art_id =</span> <span class="st">"all"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">issue =</span> <span class="st">"issue14"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">journal =</span> <span class="st">"NEW_JOURNAL"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En caso de que quiera generar sólo algunos artículos (por ejemplo, los <code>art101</code>, <code>art201</code> y <code>art302</code>), deberá ejecutar el siguiente código:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(guri)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">guri_outputs</span>(<span class="at">art_id =</span> <span class="fu">c</span>(<span class="st">"art101"</span>, <span class="st">"art201"</span>, <span class="st">"art302"</span>), </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">issue =</span> <span class="st">"issue14"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">journal =</span> <span class="st">"NEW_JOURNAL"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Como resultado, dentro de cada una de las carpetas de los artículos se generará una carpeta <code>./output</code> con los documentos finales en los formatos PDF, HTML y XML. El nombre de estos archivos será <code>art[~].pdf</code>, <code>art[~].html</code> y <code>art[~].xml</code> (es decir, para el artículo <code>art101</code>, los archivos <code>art101.pdf</code>, <code>art101.html</code> y <code>art101.xml</code>). Además, en cada carpeta de artículo se generará una carpeta <code>_temp</code> con los archivos intermedios y auxiliares generados durante el proceso de conversión. En esta carpeta encontrará también un archivo xml con los metadatos del artículo, necesarios para realizar el depósito DOI en Crossref, sin embargo, es posible generar un archivo único con los metadatos de todos los artículos del número usando el parámetro <code>doi_batch = TRUE</code> (para más información, ver sección <a href="articles/doi_batch.html">Depósito de DOI</a>).</p>
+
+
 </section>
 
 </main> <!-- /main -->
