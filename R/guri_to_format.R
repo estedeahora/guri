@@ -23,8 +23,6 @@
 #' internally.
 #'
 #' @return Invisible `TRUE`
-#'
-#' @export
 
 guri_to_md <- function(art_path, art_id, verbose = TRUE){
 
@@ -39,8 +37,6 @@ guri_to_md <- function(art_path, art_id, verbose = TRUE){
 }
 
 #' @rdname guri_to_md
-#'
-#' @export
 
 guri_to_html <- function(art_path, art_id, verbose = TRUE){
 
@@ -55,8 +51,6 @@ guri_to_html <- function(art_path, art_id, verbose = TRUE){
 }
 
 #' @rdname guri_to_md
-#'
-#' @export
 
 guri_to_jats <- function(art_path, art_id, verbose = TRUE){
 
@@ -72,10 +66,8 @@ guri_to_jats <- function(art_path, art_id, verbose = TRUE){
 
 #' @rdname guri_to_md
 #' @param pdf Logical. Should the pdf be generated? (default = TRUE)
-#'
-#' @export
 
-guri_to_pdf <- function(art_path, art_id, verbose = TRUE, pdf = TRUE){
+guri_to_pdf <- function(art_path, art_id, verbose = TRUE, pdf = interactive()){
 
   # Conversión md -> tex
 
