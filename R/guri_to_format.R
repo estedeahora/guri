@@ -67,7 +67,7 @@ guri_to_jats <- function(art_path, art_id, verbose = TRUE){
 #' @rdname guri_to_md
 #' @param pdf Logical. Should the pdf be generated? (default = TRUE)
 
-guri_to_pdf <- function(art_path, art_id, verbose = TRUE, pdf = interactive()){
+guri_to_pdf <- function(art_path, art_id, verbose = TRUE, pdf = TRUE){
 
   # Conversión md -> tex
 

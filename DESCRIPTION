@@ -2,7 +2,7 @@ Package: guri
 Title: ~!gurí_: Unified Format Manager for Research Journals
 Version: 0.1.0.9000
 Authors@R: 
-    person("Pablo Santiago", "Serrati", , "pabloserrati@gmail.com", role = c("aut", "cre"),
+    person("Pablo Santiago", "Serrati", , "pabloserrati@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-5300-2243"))
 Description: ~gurí_ (Gestor Unificado de formatos para Revistas de Investigación / Unified Format Manager for Research Journals) facilitates the generation of final documents for scientific journals from documents obtained in the 'proofreading' stage. The proposal seeks to solve the difficulties of some academic journals in generating final documents in different formats in a consistent way and without generating duplicated processes. It also takes into account that many scientific journals use docx documents as the basis of their workflows.
 License: CC BY-NC-SA 4.0 + file LICENSE

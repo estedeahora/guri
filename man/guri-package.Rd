@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Pablo Santiago Serrati \email{pabloserrati@gmail.com} (\href{https://orcid.org/0000-0001-5300-2243}{ORCID})
+\strong{Maintainer}: Pablo Santiago Serrati \email{pabloserrati@gmail.com} (\href{https://orcid.org/0000-0001-5300-2243}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
