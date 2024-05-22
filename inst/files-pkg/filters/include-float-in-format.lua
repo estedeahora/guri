@@ -233,14 +233,14 @@ local function tab_float(label, float_attr)
     for line in fh:lines('L') do
         -- Salida latex
         if format_out == 'latex' then
-            -- (a) Inicio de entorno 'table' (agregar 'caption' y 'label')
-            if line:match "\\begin{table}" then
+            -- (a) Inicio de entorno 'table'/longtblr (agregar 'caption' y 'label')
+            if line:match "\\begin{table}" or line:match "\\begin{longtblr}" or line:match "\\begin{longtable}" then
                 tabla = true
                 raw_content = raw_content .. line .. 
                                 '\\caption{' .. title .. '}\n' ..
                                 '\\label{' .. label .. '}\n'
             -- (b) Final de entorno 'table' (agregar source y note )
-            elseif line:match "\\end{table}" then
+            elseif line:match "\\end{table}" or line:match "\\end{longtblr}" or line:match "\\end{longtable}" then
                 tabla = false
                 raw_content = raw_content .. source .. note .. line  
             -- (c) Contenido de entorno 'table'        
