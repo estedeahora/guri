@@ -116,7 +116,7 @@ local function fig_latex(label, float_attr)
 
   local raw_elem = '\\begin{figure}\n' ..
                     '\\centering\n' .. 
-                    '\\includegraphics[width=\\textwidth]{' .. root .. label .. '}\n' .. 
+                    '\\includegraphics[width=0.95\\textwidth]{' .. root .. label .. '}\n' .. 
                     '\\caption{' .. title .. '}\n' .. 
                     source .. note ..
                     '\\label{' .. label .. '}\n' ..
