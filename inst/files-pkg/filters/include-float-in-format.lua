@@ -230,27 +230,45 @@ local function tab_float(label, float_attr)
 
     -- TODO Es posible unificar este código para los formatos de salida. Posiblemente generando una tabla  común a todos 
     --        los formatos con el contenido del archivo y luego aplicando las midificaciones.
+    local longtable_header = false
     for line in fh:lines('L') do
         -- Salida latex
         if format_out == 'latex' then
-            -- (a) Inicio de entorno 'table'/longtblr (agregar 'caption' y 'label')
+            -- (a) Inicio de entorno 'table'/'longtblr'
             if line:match "\\begin{table}" or line:match "\\begin{longtable}" then
-                tabla = true
-                raw_content = raw_content .. line .. 
-                                '\\caption{' .. title .. '}\n' ..
-                                '\\label{' .. label .. '}\n'
-                if line:match "\\begin{longtable}" then
-                    -- fix longtable caption problem
-                    raw_content = raw_content .. '\\\\'
-                end
-            -- (b) Final de entorno 'table' (agregar source y note )
+              tabla = true
+              raw_content = raw_content .. line .. 
+                            '\\caption{' .. title .. '}\n'
+
+              if line:match "\\begin{table}" then 
+                -- 'table' (agregar 'caption' y 'label')
+                raw_content = raw_content .. 
+                              '\\label{' .. label .. '}\n'
+              elseif line:match "\\begin{longtable}" then
+                -- 'longtable'
+                raw_content = raw_content
+                longtable_header = true
+              end
+            -- (b) Final de entorno 'table'/'longtable'
             elseif line:match "\\end{table}" or line:match "\\end{longtable}" then
                 tabla = false
-                raw_content = raw_content .. source .. note .. line  
-            -- (c) Contenido de entorno 'table'        
+                if line:match "\\end{table}" then
+                  -- 'table' (agregar 'source' y 'note')
+                  raw_content = raw_content .. source .. note .. line
+                elseif line:match "\\end{longtable}" then
+                  -- 'longtable' (no se agrega source y note; debe agregarse en TAB_XX.tex como fila final)
+                  raw_content = raw_content .. line
+                end
+            -- (c) Contenido de entorno 'table'/'longtable'
             elseif tabla then
                 raw_content = raw_content .. line
-            -- (d) Incluir en header (anterior al entorno table)
+
+                -- Agregar '\endhead' al final de cabecera de 'longtable' (utiliza \midrule como marca para saber donde finaliza la cabecera)
+                if longtable_header and line:match '\\midrule' then
+                  raw_content = raw_content .. '\n\\endhead\\\n'
+                  longtable_header = false
+                end
+            -- (d) Incluir en header (todo lo anterior al entorno 'table'/'longtable')
             else
                 -- Quitar elementos no utilizados
                 line = line:gsub('%%.*', ''):gsub('\\documentclass{.*', ''):gsub('\\begin{document}.*', ''):gsub('\\end{document}.*', '')

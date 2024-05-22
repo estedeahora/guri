@@ -56,6 +56,8 @@ $endif$
 \AtBeginEnvironment{tabular}{\sffamily\footnotesize}
 \IfPackageLoadedTF{tabularray}{%
 \AtBeginEnvironment{tblr}{\sffamily\footnotesize}}{}
+\IfPackageLoadedTF{longtable}{%
+\AtBeginEnvironment{longtable}{\sffamily\footnotesize}}{}
 
 %%%% ENCABEZADO DE PÁGINA
 % Si utiliza clases de Koma-script debe utilizar el paquete 'scrlayer-scrpage'
