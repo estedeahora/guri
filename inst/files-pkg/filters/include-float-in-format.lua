@@ -234,13 +234,17 @@ local function tab_float(label, float_attr)
         -- Salida latex
         if format_out == 'latex' then
             -- (a) Inicio de entorno 'table'/longtblr (agregar 'caption' y 'label')
-            if line:match "\\begin{table}" or line:match "\\begin{longtblr}" or line:match "\\begin{longtable}" then
+            if line:match "\\begin{table}" or line:match "\\begin{longtable}" then
                 tabla = true
                 raw_content = raw_content .. line .. 
                                 '\\caption{' .. title .. '}\n' ..
                                 '\\label{' .. label .. '}\n'
+                if line:match "\\begin{longtable}" then
+                    -- fix longtable caption problem
+                    raw_content = raw_content .. '\\\\'
+                end
             -- (b) Final de entorno 'table' (agregar source y note )
-            elseif line:match "\\end{table}" or line:match "\\end{longtblr}" or line:match "\\end{longtable}" then
+            elseif line:match "\\end{table}" or line:match "\\end{longtable}" then
                 tabla = false
                 raw_content = raw_content .. source .. note .. line  
             -- (c) Contenido de entorno 'table'        
