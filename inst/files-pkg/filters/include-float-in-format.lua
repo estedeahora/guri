@@ -172,6 +172,7 @@ local function fig_jats(label, float_attr)
                     '<p>' .. title .. '</p>' .. 
                     '</caption>\n' ..
                     '<graphic xlink:href="'.. path .. '"/>\n' ..
+                    '<alt-text>none</alt-text>\n' ..
                     note .. source .. 
                     '</fig>'
               
