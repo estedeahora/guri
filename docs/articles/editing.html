@@ -245,20 +245,68 @@ Importante
 </div>
 <section id="la-creación-de-documentos-finales-y-el-rol-del-coordinador-de-producción-en-guri_" class="level1">
 <h1>La creación de documentos finales y el rol del coordinador de producción en ~!guri_</h1>
-<p><code>~!guri_</code> le permite a los editores de revistas científicas de acceso diamante automatizar la etapa de producción generando múltiples formatos de salida a partir de un manuscrito en formato <code>.docx</code>. Para ello, <code>~!guri_</code> utiliza un conjunto de reglas y plantillas que posibilitan la conversión entre formatos.</p>
-<p>Para comenzar con la creación de documentos es necesario que previamente haya instalado el paquete <code>{guri}</code> y las dependencias necesarias, configurando el entorno de trabajo. Además, para poder utilizar <code>~!guri_</code> es necesario que haya creado una revista (ver <a href="articles/configuration.html">Configuración</a>)</p>
-<p>Las tareas específicas del <em>Coodrdinador de producción</em> o <em>Editor de producción</em> serán:</p>
+<p><code>~!guri_</code> le permite a los equipos editoriales de revistas científicas de acceso diamante automatizar y facilitar la etapa de producción, generando múltiples formatos de salida a partir de un manuscrito en formato <code>.docx</code>. Esta automatización está basada en un flujo de trabajo que establece un conjunto de pautas que deben seguirse para que este proceso se realice correctamente. Estas pautas incluyen una organización específica de las carpetas de trabajo, la carga de metadatos de forma estandarizada, así como el plantillado y marcación de los documentos manuscritos en formato <code>.docx</code>.</p>
+<p>De modo esquemática podemos, dividir este flujo de trabajo diferenciando los roles del <em>Coodrdinador de producción</em> (o <em>Editor de producción</em>) y del <em>Corrector de pruebas</em>, los cuales no necesariamente tienen que ser desarrollados por personas diferentes. En este documento nos centraremos en las tareas específicas del <em>Coodrdinador de producción</em> (ver la sección <a href="proofreading.html">Corrección de pruebas</a> para las tareas del <em>Corrector de pruebas</em>). Las tareas específicas del <em>Coodrdinador de producción</em> o <em>Editor de producción</em> serán:</p>
 <ol type="a">
-<li>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales (ver sección <a href="#sec-folders">Organización de carpetas de trabajo</a>).</li>
-<li>los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
-<li>Generar los documentos finales con el paquete <code>{guri}</code>. <!-- (b) Incorporar un archivo (`XLSX`) enviado por el/los autores con la información de acreditación según la taxonomía [CRediT](https://credit.niso.org/) (ver sección [Metadatos](#sec-metadata)). --> <!-- (c) Garantizar que dichos metadatos queden correctamente representados en el sistema de gestión de revistas ([*Open Journal System - OJS*](https://pkp.sfu.ca/software/ojs/) o el gestor de portales de revistas utilizado). --> <!-- (e) Mediar en el intercambio con el resto del equipo editorial, en particular con los encargados de la comunicación con los autores para poder validar los documentos resultantes de este proceso antes de que pasen a la etapa siguiente. --></li>
+<li>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales (<em>ver</em> sección <a href="#sec-folders">Organización de carpetas de trabajo</a>).</li>
+<li>Cargar los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo (ver sección <a href="#sec-metadata">Metadatos</a>).</li>
+<li>Centralizar las modificaciones realizadas por el <em>Corrector de pruebas</em>, asegurando que los manuscritos estén listos para la generación de los documentos finales (ver sección <a href="proofreading.html">Corrección de pruebas</a>). En particular, la <em>generación de tablas</em> es un asecto que muchas veces es realizado directamente (o requiere la intervención) del Coodrdinador de producción (<em>ver</em> sección <a href="floats.html">Tablas</a>).</li>
+<li>Generar los documentos finales con el paquete <code>{guri}</code>.</li>
 </ol>
-<p>Además, como parte de las tareas del Coordinador de producción, se espera que coordine la preparación y corrección de los manuscritos (ver sección <a href="articles/proofreading.html">Corrección de pruebas</a>). En esta guía se describen los pasos necesarios para la organización de carpetas de trabajo, la generación de metadatos y la generación de los documentos finales a partir de un manuscrito.</p>
+<div id="tbl-roles" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Tareas específicas del <em>Coordinador de producción</em> y del <em>Corrector de pruebas</em> en el proceso de producción de documentos finales con <code>~!guri_</code>.
+</figcaption>
+<div aria-describedby="tbl-roles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coordinador de producción</th>
+<th>Corrector de pruebas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coordinar el proceso general de la etapa de corrección de pruebas, garantizando la correcta organización de los archivos finales</td>
+<td>Hacer una marcación y diferenciación de los diferentes bloques de contenidos, como títulos, texto, citas, etc.</td>
+</tr>
+<tr class="even">
+<td>Cargar los metadatos de los autores, el artículo y el volumen/número al que corresponde el dicho artículo</td>
+<td>Hacer una lectura general del artículo, corrigiendo problemas de redacción, gramaticales u ortografía</td>
+</tr>
+<tr class="odd">
+<td>Centralizar las modificaciones realizadas por el Corrector de pruebas, asegurando que los manuscritos estén listos para la generación de los documentos finales</td>
+<td>Verificar el formato y la correcta inclusión de las Tablas y Figuras para que puedan ser incorporadas correctamente en la etapa siguiente</td>
+</tr>
+<tr class="even">
+<td>Generar los documentos finales con el paquete <code>{guri}</code></td>
+<td>Identificar y marcar las referencias bibliográficas mediante el uso de un gestor de referencias</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Plantillar, corregir o generar los anexos cuando sea necesario</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<!-- Garantizar que dichos metadatos queden correctamente representados en el sistema de gestión de revistas ([*Open Journal System - OJS*](https://pkp.sfu.ca/software/ojs/) o el gestor de portales de revistas utilizado). -->
+<!-- Mediar en el intercambio con el resto del equipo editorial, en particular con los encargados de la comunicación con los autores para poder validar los documentos resultantes de este proceso antes de que pasen a la etapa siguiente. -->
+<p>A comtinuación se describen los pasos necesarios para la organización de carpetas de trabajo, la generación de metadatos y la generación de los documentos finales a partir de un manuscrito. Las tareas correspondientes a la etapa de corrección de pruebas se describen en la sección dedicada a la <a href="proofreading.html">Corrección de pruebas</a>, mientras que el tratamiento de las tablas se aborda en la sección sobre la construcción de <a href="floats.html">Tablas</a>.</p>
 </section>
 <section id="sec-folders" class="level1">
 <h1>Organización de carpetas de trabajo</h1>
 <!-- # Preparación de un número de la revista -->
-<p>Dentro de la carpeta de la revista usted puede generar un nuevo número creando una carpeta con el número correspondiente. No existen reglas específicas para nombrar los números, sin embargo, es recomendable que utilice un prefijo común y un número que le permita que sus documentos se ordenen naturalmente en su carpeta de trabajo. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3). De igual manera, puede utilizar cualquier otra forma de numeración, pero teniendo en cuenta que la carpeta con los números de la revista deben estar alojados en la carpeta principal de la revista (no anidando carpetas). <!-- # Organización de carpetas de trabajo {#sec-folders} --></p>
+<p>Para comenzar con la edición y generación de documentos es necesario que previamente haya instalado el paquete <code>{guri}</code> y las dependencias necesarias, configurando su entorno de trabajo. Además, para poder utilizar <code>~!guri_</code> es necesario que haya creado previamente una revista (ver la sección <a href="configuration.html">Configuración</a>).</p>
+<p>Dentro de la carpeta de la revista, deberá generar una carpeta para cada número de la revista. La única regla respecto a este punto es que las carpetas de los números de la revista estén alojadas directamente en la carpeta de la revista (no anidando subcarpetas). Más allá de esto, es recomendable que las carpetas de los números de la revista sigan una estructura de nombres que permita ordenar los números de forma natural. Para ello, es una práctica común utilizar prefijos que indiquen (como ‘vol’ o ‘issue’) seguido de un número. Por ejemplo, si su revista utiliza volúmenes y números, podría utilizar como nombre para la carpeta <code>vol[~]issue[~]</code> (por ejemplo, <code>vol02issue03</code> para el volumen 2, número 3).</p>
+<p>Dentro de cada carpeta correspondiente a un número de la revista, deberá colocar un archivo ’_issue.yaml’ con los metadatos del número. Puede encontrar un modelo de este archivo en la carpeta ’_default-files’, dentro del directorio de la revista. Además, dentro de la carpeta del número deberá generar una carpeta para cada artículo del número. Las carpetas de los artículos deben comenzar con el prefijo ‘art’ seguido de tres números que identifican el artículo (el ‘id del artículo’)</p>
+<p>Por ejemplo, si su revista utiliza secciones y numeración de artículos, podría utilizar como nombre para la carpeta <code>art[~]</code> (por ejemplo, <code>art302</code> para el artículo 2 de la sección 3).</p>
 <p>Para cada número se creará una carpeta independiente que contendrá un archivo <code>_issue.yaml</code> con la información básica del número. Dentro de esta carpeta se deberá generar una carpeta independiente para cada artículo. Las carpetas de cada artículo deben utilizar una estructura de prefijos común, de manera que empiecen por la sílaba ‘<code>art</code>’, seguida de un identificador de un dígito para la sección y dos dígitos que identifiquen a los artículos en un orden secuencial que se espera sean presentados (ver recuadro con ejemplo). En caso de que la revista no tenga sección podrá usar una numeración continuada con tres dígitos.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -266,19 +314,15 @@ Importante
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Ejemplo de nombre de carpetas para revista QUID16
+Ejemplo de los nombres de carpetas para un artículo
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En la revista <em>Quid16</em> las secciones disponibles y sus respectivos números de referencia son:</p>
+<p>Si su rebista tuviera las siguientes secciones:</p>
 <ol type="1">
 <li>Editorial;</li>
-<li>Presentación de dossier o número especial;</li>
 <li>Artículos del dossier;</li>
 <li>Artículos de sección abierta;</li>
-<li>Urbanidades;</li>
-<li>Novedades;</li>
-<li>Avisos editoriales.</li>
 </ol>
 <p>De esta manera, suponiendo que nuestro artículo pertenezca al Dossier (<code>3</code>) y sea el segundo en orden dentro de esta sección (<code>02</code>), el nombre de la carpeta sería <code>art302</code>.</p>
 </div>
@@ -335,7 +379,7 @@ Cualquier otro rol que no esté considerado en los roles anteriores deberá ser 
 </section>
 <section id="generación-de-documentos-finales" class="level1">
 <h1>Generación de documentos finales</h1>
-<p>Una vez finalizada la organización de las carpetas de trabajo (<a href="#sec-folders">Organización de carpetas de trabajo</a>), la carga de metadatos (<a href="#sec-metadata">Metadatos</a>) y la etapa de corrección de pruebas (ver <a href="articles/proofreading.html">Corrección de pruebas</a>), es posible generar los documentos finales de los artículos. Para ello, debe abrir R, cargar el paquete {guri} y ejecutar la función <code>guri_outputs</code>. Los parámetros de esta función son los siguientes:</p>
+<p>Una vez finalizada la organización de las carpetas de trabajo (<a href="#sec-folders">Organización de carpetas de trabajo</a>), la carga de metadatos (<a href="#sec-metadata">Metadatos</a>) y la etapa de corrección de pruebas (ver <a href="proofreading.html">Corrección de pruebas</a>), es posible generar los documentos finales de los artículos. Para ello, debe abrir R, cargar el paquete {guri} y ejecutar la función <code>guri_outputs</code>. Los parámetros de esta función son los siguientes:</p>
 <ul>
 <li><code>art_id</code>: Identificador del artículo o artículos que se desea generar. Puede ser un vector de caracteres con los identificadores de los artículos o la palabra <code>"all"</code> para generar los documentos finales de todos los artículos del número.</li>
 <li><code>issue</code>: Número del volumen/número que se desea generar. Debe ser un caracter.</li>
@@ -353,7 +397,7 @@ Cualquier otro rol que no esté considerado en los roles anteriores deberá ser 
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">guri_outputs</span>(<span class="at">art_id =</span> <span class="fu">c</span>(<span class="st">"art101"</span>, <span class="st">"art201"</span>, <span class="st">"art302"</span>), </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">issue =</span> <span class="st">"issue14"</span>, </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">journal =</span> <span class="st">"NEW_JOURNAL"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Como resultado, dentro de cada una de las carpetas de los artículos se generará una carpeta <code>./output</code> con los documentos finales en los formatos PDF, HTML y XML. El nombre de estos archivos será <code>art[~].pdf</code>, <code>art[~].html</code> y <code>art[~].xml</code> (es decir, para el artículo <code>art101</code>, los archivos <code>art101.pdf</code>, <code>art101.html</code> y <code>art101.xml</code>). Además, en cada carpeta de artículo se generará una carpeta <code>_temp</code> con los archivos intermedios y auxiliares generados durante el proceso de conversión. En esta carpeta encontrará también un archivo xml con los metadatos del artículo, necesarios para realizar el depósito DOI en Crossref, sin embargo, es posible generar un archivo único con los metadatos de todos los artículos del número usando el parámetro <code>doi_batch = TRUE</code> (para más información, ver sección <a href="articles/doi_batch.html">Depósito de DOI</a>).</p>
+<p>Como resultado, dentro de cada una de las carpetas de los artículos se generará una carpeta <code>./output</code> con los documentos finales en los formatos PDF, HTML y XML. El nombre de estos archivos será <code>art[~].pdf</code>, <code>art[~].html</code> y <code>art[~].xml</code> (es decir, para el artículo <code>art101</code>, los archivos <code>art101.pdf</code>, <code>art101.html</code> y <code>art101.xml</code>). Además, en cada carpeta de artículo se generará una carpeta <code>_temp</code> con los archivos intermedios y auxiliares generados durante el proceso de conversión. En esta carpeta encontrará también un archivo xml con los metadatos del artículo, necesarios para realizar el depósito DOI en Crossref, sin embargo, es posible generar un archivo único con los metadatos de todos los artículos del número usando el parámetro <code>doi_batch = TRUE</code> (para más información, ver sección <a href="doi_batch.html">Depósito de DOI</a>).</p>
 
 
 </section>
