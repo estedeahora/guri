@@ -35,9 +35,11 @@ local function get_country(config_path, lang)
         lang_index = 1
     elseif lang:match('^en') then
         lang_index = 2
-    else
-        warn('WARNING: The language provided ("' .. lang .. '") is not supported. International countries names are used".\n')
+    elseif lang:match('^fr') then
         lang_index = 3
+    else
+        warn('WARNING: The language provided ("' .. lang .. '") is not supported. English countries names are used".\n')
+        lang_index = 2
     end
 
     local paises = {}
@@ -57,7 +59,7 @@ end
 
 function Meta(meta)
 
-    local paises = get_country(meta.config_path, stringify(meta.lang))
+    local paises = get_country(meta.config_path, stringify(meta.journal.lang))
 
     if meta.affiliation then
         for _, aff in ipairs(meta.affiliation) do

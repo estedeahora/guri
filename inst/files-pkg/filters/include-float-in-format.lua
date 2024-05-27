@@ -240,15 +240,15 @@ local function tab_float(label, float_attr)
             if line:match "\\begin{table}" or line:match "\\begin{longtable}" then
               tabla = true
               raw_content = raw_content .. line .. 
-                            '\\caption{' .. title .. '}\\\\\n\n'
+                            '\\caption{' .. title .. '}'
 
               if line:match "\\begin{table}" then 
                 -- 'table' (agregar 'caption' y 'label')
-                raw_content = raw_content .. 
+                raw_content = raw_content .. '\n\n' ..
                               '\\label{' .. label .. '}\n'
               elseif line:match "\\begin{longtable}" then
                 -- 'longtable'
-                raw_content = raw_content
+                raw_content = raw_content .. '\\\\\n\n'
                 longtable_header = true
               end
             -- (b) Final de entorno 'table'/'longtable'
