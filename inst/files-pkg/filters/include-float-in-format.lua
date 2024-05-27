@@ -268,7 +268,6 @@ local function tab_float(label, float_attr)
                 if longtable_header and line:match '\\midrule' then
                   raw_content = raw_content .. '\n\\endhead\\\n'..
                                 '\\label{' .. label .. '}\\\\\n'
-                                
                   longtable_header = false
                 end
             -- (d) Incluir en header (todo lo anterior al entorno 'table'/'longtable')
