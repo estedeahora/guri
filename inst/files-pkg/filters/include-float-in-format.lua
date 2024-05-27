@@ -82,7 +82,7 @@ local function add_citation(str)
 
       -- Devuelve cita en formato
       if FORMAT:match 'latex' or FORMAT:match 'pdf' then
-        cita_new = el.prev .. '\\citeproc{ref-' .. el.id .. '}{' .. el.cita_comp .. '}' .. el.post 
+        cita_new = el.prev .. '\\citeproc{ref-' .. el.id .. '}{' .. el.cita_comp:gsub('&', '\\&') .. '}' .. el.post 
       elseif FORMAT:match 'html' or FORMAT:match 'json' then
         cita_new = '<span class="citation">' .. el.prev .. '<a href="#ref-' .. el.id .. '">' .. el.cita_comp .. '</a>' .. el.post .. '</span>'                            -- '<span class="citation">(' .. alll cita_new .. ')</span>'
       elseif FORMAT:match 'jats'  then
@@ -239,7 +239,7 @@ local function tab_float(label, float_attr)
             if line:match "\\begin{table}" or line:match "\\begin{longtable}" then
               tabla = true
               raw_content = raw_content .. line .. 
-                            '\\caption{' .. title .. '}\n'
+                            '\\caption{' .. title .. '}\\\\\n\n'
 
               if line:match "\\begin{table}" then 
                 -- 'table' (agregar 'caption' y 'label')
@@ -266,7 +266,7 @@ local function tab_float(label, float_attr)
 
                 -- Agregar '\endhead' al final de cabecera de 'longtable' (utiliza \midrule como marca para saber donde finaliza la cabecera)
                 if longtable_header and line:match '\\midrule' then
-                  raw_content = raw_content .. '\n\\endhead\\\n'..
+                  raw_content = raw_content .. '\n\\endhead\n'..
                                 '\\label{' .. label .. '}\\\\\n'
                   longtable_header = false
                 end
