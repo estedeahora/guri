@@ -86,7 +86,7 @@ local function add_citation(str)
       elseif FORMAT:match 'html' or FORMAT:match 'json' then
         cita_new = '<span class="citation">' .. el.prev .. '<a href="#ref-' .. el.id .. '">' .. el.cita_comp .. '</a>' .. el.post .. '</span>'                            -- '<span class="citation">(' .. alll cita_new .. ')</span>'
       elseif FORMAT:match 'jats'  then
-        cita_new = el.prev .. '<xref alt="' .. el.cita_comp .. '" rid="ref-' .. el.id .. '" ref-type="bibr">' .. el.cita_comp .. '</xref>' .. el.post         -- '(' .. alll cita_new .. ')'
+        cita_new = el.prev .. '<xref alt="' .. el.cita_comp:gsub('&', '&amp;') .. '" rid="ref-' .. el.id .. '" ref-type="bibr">' .. el.cita_comp:gsub('&', '&amp;')  .. '</xref>' .. el.post         -- '(' .. alll cita_new .. ')'
       end   
 
       -- Reemplaza la cita formateada por la marca de cita
