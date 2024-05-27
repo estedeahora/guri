@@ -110,14 +110,26 @@ end
 
 function Meta(meta)
     
+    local journal_lang = tocode(meta.journal['lang'])
+    local is_main_lang = meta.lang_journal or false
+
+    print(is_main_lang)
+
     if meta.metadata_lang then
         for _, metadata_lang_i in ipairs(meta.metadata_lang) do
             local lang = tocode(metadata_lang_i.lang)
+
+            if is_main_lang and lang == journal_lang then
+                is_main_lang = false
+            end
+
             metadata_lang_i['lang-babel'] = babel_language(lang)
         end
     end
 
-    meta.journal['lang-babel'] = babel_language(tocode(meta.journal['lang']))
+    print(is_main_lang)
+    meta.lang_journal = is_main_lang 
+    meta.journal['lang-babel'] = babel_language(journal_lang)
 
     return meta
 end

@@ -347,6 +347,9 @@ $if(mainfont)$
 \fi
 $endif$
 $endif$
+$if(lang_journal)$
+\babelprovide[import]{$journal.lang-babel$}
+$endif$
 $if(metadata_lang)$
 $for(metadata_lang)$
 \babelprovide[import]{$it.lang-babel$}

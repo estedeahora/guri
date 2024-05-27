@@ -122,6 +122,7 @@ function Meta(meta)
     if meta.customized and stringify(meta.customized['artic-lang']) ~= meta.lang then
         warn("NOTE: The article uses a different main language than the journal.\n")
         meta.lang = meta.customized['artic-lang']
+        meta.lang_journal = true
     end
     
     -- Titles of elements in the main language of the article (translate)    
