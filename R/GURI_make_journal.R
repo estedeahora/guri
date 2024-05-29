@@ -166,12 +166,16 @@ guri_make_journal <- function(journal = NULL, repository = FALSE,
   if(is.logical(config_options) && !config_options){
     do_config <- FALSE
   }else{
-    if((is.logical(config_options) && !config_options) || config_options == "default"){
+    if(((is.logical(config_options) && config_options)) || config_options == "default"){
       do_config <- TRUE
       config_options <- list(journal_folder)
     }else if(is.list(config_options)){
       do_config <- TRUE
       config_options <- c(journal_folder = journal_folder, config_options)
+    }else{
+      ui_abort("The 'config_options' parameter must be a logical value, ",
+               "a named list with parameter to pass to 'guri_config_journal' ",
+               "or 'default'.")
     }
   }
 
