@@ -99,7 +99,10 @@ function Pandoc(doc)
         end
         if ref['page'] then
             local pages = stringify(ref['page'])
-            citation = citation .. '<first_page>' .. pages:match('[0-9]*') .. '</first_page>\n'
+
+            pages = pages:match('[0-9]*') or pages
+            
+            citation = citation .. '<first_page>' .. pages .. '</first_page>\n'
         end
         if ref['issued'] then
             citation = citation .. '<cYear>' .. stringify(ref['issued']) .. '</cYear>\n'
