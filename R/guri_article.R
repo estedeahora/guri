@@ -36,6 +36,13 @@ guri_article <- function(art_path, art_dir, art_id,
   # art[~]_CREDIT.xlsx -> to -> art[~]_CREDIT.csv
   CREDIT_to_CSV(art_path = art_path, art_id = art_id, verbose = verbose)
 
+  # Check float directory
+  if(verbose && !fs::dir_exists(fs::path(art_path, "float")) ){
+    ui_alert_info("The folder `float` does not exist.")
+  }
+
+  cli::cli_text(col_yellow("Generating output files..."))
+
   # CONVERT files to format
   guri_to_md(art_path, art_id, verbose = verbose)
   guri_to_jats(art_path, art_id, verbose = verbose)

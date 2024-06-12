@@ -234,8 +234,6 @@ function Pandoc(p)
         end
       end
     end
-  else
-    print("The folder './float/' does not exist.\n")
   end
 
   p.meta.n_figs = contador_fig

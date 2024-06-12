@@ -103,8 +103,6 @@ function Meta(m)
 			m.author[i].credit = credit[i]
 		end
 		m.credit = true
-	else
-		warn('WARNING: There is no credit file.\n')
 	end
 
 	return m
