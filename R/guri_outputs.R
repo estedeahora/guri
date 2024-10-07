@@ -70,6 +70,10 @@ guri_outputs <- function(art_id,
              "To upgrade Pandoc run ", col_red("`GURI_install(pandoc = T, tinytex = F)`"),
              "; or Download manually the latest version from the Pandoc site: ",
              "{.url https://github.com/jgm/pandoc/releases/latest}")
+  }else if(pandoc::pandoc_version() != pandoc_req){
+    ui_abort("Pandoc version required is ", pandoc_req, " (current version:",
+             pandoc::pandoc_version(), "). Install the required version with ",
+             col_red("`GURI_install(pandoc = T, tinytex = F)`"))
   }else if(!tinytex::is_tinytex()){
     ui_abort("Tinytex (Latex distribution) is not available. To install tinytex",
              "try running ", col_red("`GURI_install(pandoc = F, tinytex = T)`"), ". ",

@@ -7,7 +7,7 @@ $endif$
 $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK} %  Caracteres asiáticos
 $endif$
-
+%
 %%%% Clase del documento y configuraciones generales de apariencia
 \documentclass[
 $if(fontsize)$

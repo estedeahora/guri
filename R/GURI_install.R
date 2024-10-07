@@ -17,7 +17,8 @@ guri_install <- function(pandoc = T, tinytex = T, force = F){
 
   # Pandoc
   if(pandoc){
-    pandoc::pandoc_install(force = force)
+    pandoc::pandoc_install(version = pandoc_req, force = force)
+    pandoc::pandoc_activate(version = pandoc_req)
   }
 
   # tinytex & LaTeX packages
