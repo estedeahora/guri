@@ -28,5 +28,7 @@ guri_list_articles <- function(path_issue){
                        dir  = art_dir,
                        id   = art_id)
 
+  art <- art[!is.na(art$id), ]
+
   return(art)
 }
