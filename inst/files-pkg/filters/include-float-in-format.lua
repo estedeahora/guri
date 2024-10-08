@@ -116,8 +116,8 @@ local function fig_latex(label, float_attr)
 
   local raw_elem = '\\begin{figure}\n' ..
                     '\\centering\n' .. 
-                    '\\includegraphics[width=0.95\\textwidth]{' .. root .. label .. '}\n' .. 
-                    '\\caption{' .. title .. '}\n' .. 
+                    '\\pandocbounded{' .. '\\includegraphics[width=0.95\\textwidth,keepaspectratio]{' .. root .. label .. '}' .. '}\n' ..
+                    '\\caption{' .. title .. '}\n' ..
                     source .. note ..
                     '\\label{' .. label .. '}\n' ..
                     '\\end{figure}'
