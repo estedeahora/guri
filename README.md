@@ -5,6 +5,7 @@
 <!-- badges: start -->
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/) [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/estedeahora/guri/blob/main/README.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/estedeahora/guri/blob/main/README.en.md) <!-- [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.pt-br.md)-->
 [![R-CMD-check](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml)
+![r-universe](https://estedeahora.r-universe.dev/badges/guri)
 <!-- badges: end -->
 
 `~!gurí_` es una propuesta que facilita la etapa de producción editorial de revistas científicas, mediante la generación de documentos finales a partir de documentos obtenidos de la etapa de 'revisión de pares' en formato `docx`. Para ello, esta propuesta se centra en el paquete de R `{guri}`, el cual se encarga de coordinar el proceso de generación de los documentos finales en diferentes formatos. 
@@ -29,7 +30,16 @@ Para el uso de esta herramienta se requiere tener previamente instalado [R](http
 
 ## Instalación
 
-Deberá instalar {guri} desde el repositorio github, para lo cual puede utilizar {remotes} o {pak} según usted prefiera.
+Deberá instalar {guri}. Para esto puede hacerlo desde `r-universe` de la siguiente manera: 
+
+``` r
+options(repos = c(
+    estedeahora = 'https://estedeahora.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+install.packages('guri')
+```
+
+También puede hacerlo directamente desde el repositorio github, para lo cual puede utilizar {remotes} o {pak} según usted prefiera.
 
 ``` r
 # install.packages("remotes")
