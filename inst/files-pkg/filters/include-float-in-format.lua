@@ -169,7 +169,7 @@ local function fig_jats(label, float_attr)
   local raw_elem = '<fig id="' .. label .. '">\n' ..
                     '<label>' .. dic_float.FIG .. ' ' ..  fignum .. '.</label>\n' ..
                     '<caption>\n' ..
-                    '<p>' .. title .. '</p>' .. 
+                    '<title>' .. title .. '</title>' .. 
                     '</caption>\n' ..
                     '<graphic xlink:href="'.. path .. '">\n' ..
                     '<alt-text>none</alt-text>\n' ..
