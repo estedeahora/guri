@@ -1,6 +1,6 @@
 Package: guri
 Title: ~!gurí_: Unified Format Manager for Research Journals
-Version: 0.1.0.9001
+Version: 0.1.0.9002
 Authors@R: 
     person("Pablo Santiago", "Serrati", , "pabloserrati@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-5300-2243"))
