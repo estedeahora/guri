@@ -5,7 +5,7 @@
 <!-- badges: start -->
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/) [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/estedeahora/guri/blob/main/README.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/estedeahora/guri/blob/main/README.en.md) <!-- [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.pt-br.md)-->
 [![R-CMD-check](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/estedeahora/guri/actions/workflows/R-CMD-check.yaml)
-![r-universe](https://estedeahora.r-universe.dev/badges/guri)
+[![r-universe](https://estedeahora.r-universe.dev/badges/guri)](https://estedeahora.r-universe.dev/guri)
 <!-- badges: end -->
 
 `~!gurí_` is a project that facilitates the editorial production of scientific journals, through the generation of output documents from manuscript obtained in the 'peer review' phase in `docx` format.  For this purpose, this project is based on the R package `{guri}`, which coordinates the process of generating the final documents in different formats. 
